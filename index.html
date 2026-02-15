@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,141 +7,761 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        :root { --brand: #00079e; --text: #333333; --border: #bdbdbd; --bg: #f8f8ff; }
-        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; }
-        .tool-card { background: white; border: 1px solid var(--border); transition: 0.3s; cursor: pointer; }
-        .tool-card:hover { transform: translateY(-5px); border-color: var(--brand); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .section-header { background: #fdece5; border-left: 5px solid var(--brand); padding: 8px 15px; font-weight: bold; margin: 20px 0; }
-        .form-input { border: 1px solid #667799; padding: 10px; border-radius: 4px; width: 100%; font-size: 14px; }
-        @media print { .no-print { display: none !important; } #resume-print { display: block !important; } }
+        :root {
+            --brand-blue: #00079e;
+            --text-dark: #333333;
+            --border-gray: #bdbdbd;
+            --bg-light: #f8f8ff;
+        }
+        body { background: var(--bg-light); color: var(--text-dark); font-family: 'Segoe UI', sans-serif; }
+        .tool-card { background: white; border: 1px solid var(--border-gray); transition: all 0.3s; cursor: pointer; }
+        .tool-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .hero-section { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .form-input { border: 1px solid #ccc; padding: 10px; border-radius: 4px; width: 100%; background: #f9f9f9; }
+        .form-input:focus { outline: none; border-color: var(--brand-blue); background: white; }
+        .btn-primary { background: #0088ff; color: white; padding: 10px 20px; border-radius: 4px; font-weight: bold; }
+        .btn-primary:hover { background: #0066cc; }
+        .footer-dark { background: #2d3748; color: white; }
+        @media print { .no-print { display: none !important; } }
     </style>
 </head>
 <body>
 
-    <header class="bg-white border-b-2 border-[#bdbdbd] no-print py-4 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
-            <a href="#" onclick="location.reload()">
-                <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" alt="Logo" class="h-12">
-            </a>
-            <nav class="hidden md:flex gap-8 font-bold text-[#00079e]">
-                <a href="#" onclick="location.reload()">HOME</a>
-                <a href="https://rojgarsangam.in" target="_blank">SARKARI RESULT</a>
+    <!-- Header -->
+    <header class="bg-white shadow-sm no-print sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" alt="Rojgar Sangam" class="h-12">
+                <span class="text-xl font-bold text-[#00079e] hidden md:block">SARKARI RESULT PORTAL</span>
+            </div>
+            <nav class="flex gap-6 text-sm font-semibold">
+                <a href="#" onclick="showHome()" class="text-[#00079e] hover:text-orange-600">Home</a>
+                <a href="#tools" class="text-[#00079e] hover:text-orange-600">Tools</a>
+                <a href="https://rojgarsangam.in" target="_blank" class="text-[#00079e] hover:text-orange-600">View All Tools</a>
+                <a href="https://rojgarsangam.in" target="_blank" class="text-[#00079e] hover:text-orange-600">www.sarkariresult.com</a>
             </nav>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto p-4 md:py-10">
-        
+    <main class="max-w-7xl mx-auto">
+
+        <!-- Hero Section -->
         <div id="home-view">
-            <div class="text-center mb-12">
-                <h1 class="text-4xl font-black text-[#00079e]">Simplify Your Workflow.</h1>
-                <p class="text-gray-500 mt-2 italic text-lg">Edit, Convert & Manage Documents in Seconds.</p>
+            <section class="hero-section text-white py-20 px-4 no-print">
+                <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
+                    <div class="md:w-1/2">
+                        <p class="text-purple-200 font-semibold mb-3">100% FREE to use!</p>
+                        <h1 class="text-5xl font-extrabold mb-6 leading-tight">Simplify Your Workflow. Edit, Convert, Manage PDFs in Seconds.</h1>
+                        <p class="text-xl text-purple-100 mb-8">This option highlights the time-saving benefit of using your all-in-one tool.</p>
+                        <button onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})" class="bg-white text-purple-700 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition">Explore Tools →</button>
+                    </div>
+                    <div class="md:w-1/2">
+                        <svg viewBox="0 0 500 400" class="w-full">
+                            <rect x="50" y="50" width="180" height="250" fill="#fff" rx="10"/>
+                            <text x="140" y="100" font-size="40" fill="#4a5568" font-weight="bold">PDF</text>
+                            <rect x="270" y="50" width="180" height="250" fill="#fff" rx="10"/>
+                            <text x="360" y="100" font-size="40" fill="#4a5568" font-weight="bold">DOC</text>
+                            <circle cx="250" cy="175" r="40" fill="#4299e1"/>
+                            <path d="M230 175 L250 185 L270 165" stroke="white" stroke-width="4" fill="none"/>
+                            <circle cx="160" cy="350" r="25" fill="#48bb78"/>
+                            <rect x="300" y="325" width="50" height="50" fill="#ed8936" rx="5"/>
+                            <path d="M100 370 Q250 320 400 370" stroke="#9f7aea" stroke-width="3" fill="none"/>
+                        </svg>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PDF Tools Section -->
+            <section id="tools" class="py-16 px-4 no-print">
+                <h2 class="text-4xl font-bold text-center mb-4">PDF Tools</h2>
+                <p class="text-center text-gray-600 mb-12">All essential tools for government forms and documents</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <!-- Merge PDF -->
+                    <div onclick="openTool('merge-pdf')" class="tool-card p-6 rounded-lg text-center">
+                        <div class="text-5xl mb-3">📚</div>
+                        <h3 class="font-bold text-lg mb-2">Merge PDF</h3>
+                        <p class="text-sm text-gray-500">Combine PDFs in the order you want with the easiest PDF merger available.</p>
+                    </div>
+
+                    <!-- Split PDF -->
+                    <div onclick="openTool('split-pdf')" class="tool-card p-6 rounded-lg text-center">
+                        <div class="text-5xl mb-3">✂️</div>
+                        <h3 class="font-bold text-lg mb-2">Split PDF</h3>
+                        <p class="text-sm text-gray-500">Separate one page or a whole set for easy conversion into independent PDF files.</p>
+                    </div>
+
+                    <!-- Compress PDF -->
+                    <div onclick="openTool('compress-pdf')" class="tool-card p-6 rounded-lg text-center">
+                        <div class="text-5xl mb-3">🗜️</div>
+                        <h3 class="font-bold text-lg mb-2">Compress PDF</h3>
+                        <p class="text-sm text-gray-500">Reduce file size while optimizing for maximal PDF quality.</p>
+                    </div>
+
+                    <!-- WORD to PDF -->
+                    <div class="tool-card p-6 rounded-lg text-center opacity-60">
+                        <div class="text-5xl mb-3">📝</div>
+                        <h3 class="font-bold text-lg mb-2">WORD to PDF</h3>
+                        <p class="text-sm text-gray-500">Make DOC and DOCX files easy to read by converting them to PDF.</p>
+                    </div>
+
+                    <!-- JPG to PDF -->
+                    <div onclick="openTool('jpg-to-pdf')" class="tool-card p-6 rounded-lg text-center">
+                        <div class="text-5xl mb-3">🖼️</div>
+                        <h3 class="font-bold text-lg mb-2">JPG to PDF</h3>
+                        <p class="text-sm text-gray-500">Convert JPG images to PDF in seconds. Easily adjust orientation and margins.</p>
+                    </div>
+
+                    <!-- PDF to JPG -->
+                    <div onclick="openTool('pdf-to-jpg')" class="tool-card p-6 rounded-lg text-center">
+                        <div class="text-5xl mb-3">📄</div>
+                        <h3 class="font-bold text-lg mb-2">PDF to JPG</h3>
+                        <p class="text-sm text-gray-500">Convert each PDF page into a JPG or extract all images contained in a PDF.</p>
+                    </div>
+
+                    <!-- Resume Maker -->
+                    <div onclick="openTool('resume-maker')" class="tool-card p-6 rounded-lg text-center">
+                        <div class="text-5xl mb-3">📋</div>
+                        <h3 class="font-bold text-lg mb-2">Resume CV Maker</h3>
+                        <p class="text-sm text-gray-500">Create professional resume with multiple templates</p>
+                    </div>
+
+                    <!-- Remove Background -->
+                    <div class="tool-card p-6 rounded-lg text-center bg-gradient-to-br from-blue-500 to-purple-600 text-white">
+                        <div class="text-5xl mb-3">🎨</div>
+                        <h3 class="font-bold text-lg mb-2">Remove Background</h3>
+                        <p class="text-sm">100% Automatically and Free</p>
+                    </div>
+
+                    <!-- Image Resizer -->
+                    <div onclick="openTool('image-resizer')" class="tool-card p-6 rounded-lg text-center">
+                        <div class="text-5xl mb-3">📐</div>
+                        <h3 class="font-bold text-lg mb-2">Image Resizer</h3>
+                        <p class="text-sm text-gray-500">Resize photos for SSC, Railway, UPP forms</p>
+                    </div>
+
+                    <!-- Name & Date on Photo -->
+                    <div onclick="openTool('name-date-photo')" class="tool-card p-6 rounded-lg text-center">
+                        <div class="text-5xl mb-3">📸</div>
+                        <h3 class="font-bold text-lg mb-2">Photo Name and Date Maker</h3>
+                        <p class="text-sm text-gray-500">Add name and date on photo</p>
+                    </div>
+
+                    <!-- Photo Signature Joiner -->
+                    <div onclick="openTool('photo-signature')" class="tool-card p-6 rounded-lg text-center">
+                        <div class="text-5xl mb-3">✍️</div>
+                        <h3 class="font-bold text-lg mb-2">Photo Signature Joiner</h3>
+                        <p class="text-sm text-gray-500">Combine photo and signature</p>
+                    </div>
+
+                    <!-- Age Calculator -->
+                    <div onclick="openTool('age-calculator')" class="tool-card p-6 rounded-lg text-center">
+                        <div class="text-5xl mb-3">🎂</div>
+                        <h3 class="font-bold text-lg mb-2">Age Calculator</h3>
+                        <p class="text-sm text-gray-500">Calculate exact age in years, months, days</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="bg-orange-50 py-16 px-4 no-print">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold text-orange-600 mb-6">Site Title : Sarkari Result Portal By SarkariResult.Com | sarkari result co sarkari result con www .sarkari result 2026 sarkre rejalt, Sarkari Result Tools Website</h2>
+                    
+                    <h3 class="text-2xl font-bold text-orange-600 mb-4">Sarkari Result Journey since 2012</h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li>• Sarkari Result is the name which you have been hearing continuously since 2012, a portal where there is neither any login nor any signup nor any fee, but if you see the information then there is a lot, there are many updates also, that is why SarkariResult.Com is the No. 1 education portal.</li>
+                        <li>• The aim is to make the Sarkari Result Portal whose URL is https://sarkariresultportal.com</li>
+                        <li>• With time, everything is becoming easier, in this sequence, we noticed many problems related to PDF and thought of making this Sarkari Result Portal, with the help of which you will be able to do all the work related to PDF here.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="py-16 px-4 bg-orange-50 no-print">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold text-orange-600 mb-8">What all work related to PDF can you do on Sarkari Result Portal and that too absolutely free</h2>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Sarkari Result Merge PDF</h3>
+                            <p class="text-gray-700">• Combine PDFs in the order you want with the easiest PDF merger available.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Sarkari Result Split PDF</h3>
+                            <p class="text-gray-700">• Separate one page or a whole set for easy conversion into independent PDF files.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Sarkari Result Compress PDF</h3>
+                            <p class="text-gray-700">• Reduce file size while optimizing for maximal PDF quality.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Sarkari Result WORD to PDF</h3>
+                            <p class="text-gray-700">• Make DOC and DOCX files easy to read by converting them to PDF.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Sarkari Result JPG to PDF</h3>
+                            <p class="text-gray-700">• Convert JPG images to PDF in seconds. Easily adjust orientation and margins.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Sarkari Result PDF to JPG</h3>
+                            <p class="text-gray-700">• Convert each PDF page into a JPG or extract all images contained in a PDF.</p>
+                        </div>
+                    </div>
+
+                    <p class="mt-8 text-gray-700">• These different PDF tools have different functions too, when you fill any recruitment / admission or any other online form or create a document then it often requires PDF like combining different PDFs, compressing PDF file, converting PDF to jpg, jpg to PDF, converting Word file to PDF and others.</p>
+                    <p class="mt-4 text-gray-700">• Sarkari Result Portal has been designed keeping in mind today's needs, that is why this portal will work equally on desktop, mobile and tablet and will work very fast, the work which used to take you hours earlier, will now be done in just a few seconds.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============= TOOL SECTIONS ============= -->
+
+        <!-- Resume Maker Tool -->
+        <div id="resume-maker" class="hidden no-print bg-white p-6 rounded-lg shadow-lg my-8 mx-4">
+            <button onclick="showHome()" class="mb-4 text-blue-600 hover:underline">← Back to Home</button>
+            <h2 class="text-3xl font-bold mb-8 text-center">Resume and CV Maker 2023 | Free & Online</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div><label class="font-semibold text-sm">Name:</label><input type="text" id="rName" class="form-input"></div>
+                <div class="md:col-span-2"><label class="font-semibold text-sm">Address:</label><input type="text" id="rAddr" class="form-input"></div>
+                <div><label class="font-semibold text-sm">Mobile No:</label><input type="text" id="rMob" class="form-input"></div>
+                <div><label class="font-semibold text-sm">Email Id:</label><input type="text" id="rEmail" class="form-input"></div>
+                <div><label class="font-semibold text-sm">Date of Birth:</label><input type="date" id="rDob" class="form-input"></div>
+                <div><label class="font-semibold text-sm">Father Name:</label><input type="text" id="rFather" class="form-input"></div>
+                <div><label class="font-semibold text-sm">Mother Name:</label><input type="text" id="rMother" class="form-input"></div>
+                <div><label class="font-semibold text-sm">Nationality :</label><input type="text" id="rNat" value="Indian" class="form-input"></div>
+                <div><label class="font-semibold text-sm">Gender:</label><select id="rGen" class="form-input"><option>--Select--</option><option>Male</option><option>Female</option></select></div>
+                <div><label class="font-semibold text-sm">Marital Status:</label><select id="rMar" class="form-input"><option>--Select--</option><option>Married</option><option>Unmarried</option></select></div>
+                <div><label class="font-semibold text-sm">Language Known:</label><input type="text" id="rLang" class="form-input"></div>
+                <div><label class="font-semibold text-sm">Hobbies:</label><input type="text" id="rHob" class="form-input"></div>
+                <div><label class="font-semibold text-sm">Zip:</label><input type="text" id="rZip" class="form-input"></div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div onclick="openTool('resume-maker')" class="tool-card p-8 rounded-lg text-center">
-                    <div class="text-5xl mb-4">📄</div><h3 class="font-bold">Resume Maker</h3>
+            <div class="mb-6">
+                <label class="font-semibold text-sm mb-2 block">Career Objective :</label>
+                <div class="space-y-2 text-sm">
+                    <label class="flex items-start gap-2"><input type="radio" name="rObj" value="Secure a responsible career opportunity to fully utilize my talent and skills to grow, while making a significant contribution to the success of the company." checked> Secure a responsible career opportunity to fully utilize my talent and skills to grow, while making a significant contribution to the success of the company.</label>
+                    <label class="flex items-start gap-2"><input type="radio" name="rObj" value="Self-motivated and hardworking fresher seeking for an opportunity to work in a challenging environment to prove my skills and utilize my knowledge & intelligence in the growth of the organization."> Self-motivated and hardworking fresher seeking for an opportunity to work in a challenging environment to prove my skills and utilize my knowledge & intelligence in the growth of the organization.</label>
+                    <label class="flex items-start gap-2"><input type="radio" name="rObj" value="Urge for a position in an aggressively growing organization where my technical & functional expertise can be effectively utilized and possess good analytical abilities, quick grasping power, zeal for learning new things and excellent communication skills."> Urge for a position in an aggressively growing organization where my technical & functional expertise can be effectively utilized.</label>
+                    <label class="flex items-start gap-2"><input type="radio" name="rObj" value="To seek a good & responsible job in professionally managed organization where in my conceptual and functional skills are effectively utilized."> To seek a good & responsible job in professionally managed organization where in my conceptual and functional skills are effectively utilized.</label>
+                    <label class="flex items-start gap-2"><input type="radio" name="rObj" value="To make a good position in a reputed company and work enthusiastically in team which provides steady career growth along with job satisfaction."> To make a good position in a reputed company and work enthusiastically in team which provides steady career growth.</label>
+                    <label class="flex items-start gap-2"><input type="radio" name="rObj" value="To contribute my best to the organization irrespective of the kind of project undertaken and to utilize my skills."> To contribute my best to the organization irrespective of the kind of project undertaken.</label>
                 </div>
-                <div onclick="openTool('image-resizer')" class="tool-card p-8 rounded-lg text-center">
-                    <div class="text-5xl mb-4">📐</div><h3 class="font-bold">Image Resizer</h3>
+                <label class="font-semibold text-sm mt-3 block">OR Write here:</label>
+                <textarea id="rObjCustom" class="form-input h-20"></textarea>
+            </div>
+
+            <div class="mb-6">
+                <label class="font-semibold text-sm mb-2 block">Academic Qualification :</label>
+                <div id="edu-rows" class="space-y-2"></div>
+                <button onclick="addEduRow()" class="btn-primary mt-2">Add</button>
+            </div>
+
+            <div class="mb-6">
+                <label class="font-semibold text-sm mb-2 block">Professional Qualification :</label>
+                <div id="prof-rows" class="space-y-2"></div>
+                <button onclick="addProfRow()" class="btn-primary mt-2">Add</button>
+            </div>
+
+            <div class="mb-6">
+                <label class="font-semibold text-sm mb-2 block">Extra Qualification :</label>
+                <textarea id="rExtra" class="form-input h-20"></textarea>
+                <button class="btn-primary mt-2">Add</button>
+            </div>
+
+            <div class="mb-6">
+                <label class="font-semibold text-sm mb-2 block">Work Experience :</label>
+                <textarea id="rExp" class="form-input h-20"></textarea>
+                <button class="btn-primary mt-2">Add</button>
+            </div>
+
+            <div class="mb-6">
+                <label class="font-semibold text-sm mb-2 block">Select image:</label>
+                <input type="file" id="rPhoto" accept="image/*" class="form-input">
+            </div>
+
+            <div class="text-center mb-8">
+                <p class="text-2xl font-bold mb-4">Choose format and Click on button</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                    <button onclick="selectTemplate(1)" class="btn-primary">Resume 1</button>
+                    <button onclick="selectTemplate(2)" class="btn-primary">Resume 2</button>
+                    <button onclick="selectTemplate(3)" class="btn-primary">Resume 3</button>
+                    <button onclick="selectTemplate(4)" class="btn-primary">Resume 4</button>
+                    <button onclick="selectTemplate(5)" class="btn-primary">Resume 5</button>
+                    <button onclick="selectTemplate(6)" class="btn-primary">Resume 6</button>
                 </div>
-                <div onclick="openTool('jpg-pdf')" class="tool-card p-8 rounded-lg text-center">
-                    <div class="text-5xl mb-4">🖼️</div><h3 class="font-bold">JPG to PDF</h3>
+                <div class="flex justify-center gap-4 items-center">
+                    <select id="resumeColor" class="form-input w-48">
+                        <option value="">--Select Color--</option>
+                        <option value="#dc143c">Red</option>
+                        <option value="#00ffff">Cyan</option>
+                        <option value="#0000ff">Blue</option>
+                        <option value="#000000">Black</option>
+                        <option value="#00008b">DarkBlue</option>
+                        <option value="#add8e6">LightBlue</option>
+                        <option value="#c0c0c0">Silver</option>
+                        <option value="#ffa500">Orange</option>
+                        <option value="#808000">Olive</option>
+                        <option value="#ffb6c1">Light Pink</option>
+                    </select>
+                    <button onclick="changeFormat()" class="btn-primary">Change Format</button>
                 </div>
-                <div onclick="openTool('merge-pdf')" class="tool-card p-8 rounded-lg text-center">
-                    <div class="text-5xl mb-4">📚</div><h3 class="font-bold">Merge PDF</h3>
+            </div>
+
+            <div class="text-center">
+                <button onclick="downloadResumePDF()" class="bg-blue-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-600">Download PDF</button>
+            </div>
+        </div>
+
+        <!-- Resume Preview Area -->
+        <div id="resume-preview" class="hidden bg-white p-8 max-w-4xl mx-auto my-8 border"></div>
+
+        <!-- Image Resizer Tool -->
+        <div id="image-resizer" class="hidden no-print bg-white p-8 rounded-lg shadow-lg my-8 mx-4">
+            <button onclick="showHome()" class="mb-4 text-blue-600 hover:underline">← Back to Home</button>
+            <h2 class="text-3xl font-bold mb-8 text-center">Image Resizer</h2>
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div><label class="font-bold">Upload Image:</label><input type="file" id="imgFile" accept="image/*" class="form-input"></div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label>Width (px):</label><input type="number" id="imgW" value="200" class="form-input"></div>
+                    <div><label>Height (px):</label><input type="number" id="imgH" value="230" class="form-input"></div>
+                </div>
+                <button onclick="resizeImage()" class="btn-primary w-full">RESIZE & DOWNLOAD</button>
+            </div>
+        </div>
+
+        <!-- Name & Date on Photo Tool -->
+        <div id="name-date-photo" class="hidden no-print bg-white p-8 rounded-lg shadow-lg my-8 mx-4">
+            <button onclick="showHome()" class="mb-4 text-blue-600 hover:underline">← Back to Home</button>
+            <h2 class="text-3xl font-bold mb-8 text-center">Name & Date on Photo Maker</h2>
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div><label class="font-bold">Upload Photo:</label><input type="file" id="ndPhoto" accept="image/*" class="form-input"></div>
+                <div><label class="font-bold">Enter Name:</label><input type="text" id="ndName" class="form-input"></div>
+                <div><label class="font-bold">Select Date:</label><input type="date" id="ndDate" class="form-input"></div>
+                <button onclick="addNameDate()" class="btn-primary w-full">GENERATE PHOTO</button>
+                <canvas id="ndCanvas" class="hidden w-full border mt-6"></canvas>
+                <button id="ndDownload" onclick="downloadNameDate()" class="hidden btn-primary w-full mt-4">DOWNLOAD</button>
+            </div>
+        </div>
+
+        <!-- Photo Signature Joiner Tool -->
+        <div id="photo-signature" class="hidden no-print bg-white p-8 rounded-lg shadow-lg my-8 mx-4">
+            <button onclick="showHome()" class="mb-4 text-blue-600 hover:underline">← Back to Home</button>
+            <h2 class="text-3xl font-bold mb-8 text-center">Photo & Signature Joiner</h2>
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div><label class="font-bold">Upload Photo:</label><input type="file" id="psPhoto" accept="image/*" class="form-input"></div>
+                <div><label class="font-bold">Upload Signature:</label><input type="file" id="psSign" accept="image/*" class="form-input"></div>
+                <button onclick="joinPhotoSign()" class="btn-primary w-full">JOIN & GENERATE</button>
+                <canvas id="psCanvas" class="hidden w-full border mt-6"></canvas>
+                <button id="psDownload" onclick="downloadPhotoSign()" class="hidden btn-primary w-full mt-4">DOWNLOAD</button>
+            </div>
+        </div>
+
+        <!-- Age Calculator Tool -->
+        <div id="age-calculator" class="hidden no-print bg-white p-8 rounded-lg shadow-lg my-8 mx-4">
+            <button onclick="showHome()" class="mb-4 text-blue-600 hover:underline">← Back to Home</button>
+            <h2 class="text-3xl font-bold mb-8 text-center">Age Calculator</h2>
+            <div class="max-w-md mx-auto space-y-6">
+                <div><label class="font-bold">Date of Birth:</label><input type="date" id="ageDob" class="form-input"></div>
+                <div><label class="font-bold">Calculate As On:</label><input type="date" id="ageAsOn" class="form-input"></div>
+                <button onclick="calculateAge()" class="btn-primary w-full">CALCULATE AGE</button>
+                <div id="ageResult" class="hidden mt-6 p-6 bg-green-50 border-2 border-green-500 rounded text-center">
+                    <p class="text-2xl font-bold text-green-800" id="ageOutput"></p>
                 </div>
             </div>
         </div>
 
-        <div id="resume-maker" class="hidden no-print bg-white p-8 border border-[#bdbdbd] rounded shadow-lg">
-            <button onclick="location.reload()" class="text-blue-700 font-bold mb-4">← Back</button>
-            <h2 class="text-2xl font-bold mb-8 text-[#00079e]">Resume and CV Maker 2026</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <input type="text" id="rName" placeholder="Full Name" class="form-input">
-                <input type="text" id="rFather" placeholder="Father's Name" class="form-input">
-                <input type="text" id="rMother" placeholder="Mother's Name" class="form-input">
-                <input type="text" id="rMob" placeholder="Mobile No" class="form-input">
-                <input type="email" id="rEmail" placeholder="Email Id" class="form-input">
-                <input type="date" id="rDob" class="form-input">
-                <input type="text" id="rAddr" placeholder="Full Address" class="form-input md:col-span-3">
+        <!-- JPG to PDF Tool -->
+        <div id="jpg-to-pdf" class="hidden no-print bg-white p-8 rounded-lg shadow-lg my-8 mx-4">
+            <button onclick="showHome()" class="mb-4 text-blue-600 hover:underline">← Back to Home</button>
+            <h2 class="text-3xl font-bold mb-8 text-center">JPG to PDF Converter</h2>
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div><label class="font-bold">Select JPG Files:</label><input type="file" id="jpgFiles" accept="image/*" multiple class="form-input"></div>
+                <button onclick="convertJPGtoPDF()" class="btn-primary w-full">CONVERT TO PDF</button>
             </div>
-            <div class="section-header">Career Objective :</div>
-            <textarea id="rObj" class="form-input h-20">To secure a career opportunity to fully utilize my talent and skills to grow.</textarea>
-            <button onclick="genResume()" class="w-full bg-[#00079e] text-white font-bold py-4 mt-8 rounded uppercase">Generate & Print</button>
         </div>
 
-        <div id="jpg-pdf" class="hidden no-print bg-white p-8 border border-[#bdbdbd] rounded">
-            <h2 class="text-xl font-bold mb-6">Convert JPG to PDF</h2>
-            <input type="file" id="jpgFiles" accept="image/*" multiple class="mb-4">
-            <button onclick="convertJpgPdf()" class="w-full bg-green-700 text-white py-3 rounded font-bold">CONVERT & DOWNLOAD PDF</button>
-        </div>
-
-        <div id="image-resizer" class="hidden no-print bg-white p-8 border border-[#bdbdbd] rounded">
-            <h2 class="text-xl font-bold mb-6">Photo/Signature Resizer</h2>
-            <input type="file" id="imgIn" class="mb-4">
-            <div class="flex gap-4 mb-4">
-                <input type="number" id="wIn" placeholder="Width" value="200" class="form-input">
-                <input type="number" id="hIn" placeholder="Height" value="230" class="form-input">
+        <!-- PDF to JPG Tool -->
+        <div id="pdf-to-jpg" class="hidden no-print bg-white p-8 rounded-lg shadow-lg my-8 mx-4">
+            <button onclick="showHome()" class="mb-4 text-blue-600 hover:underline">← Back to Home</button>
+            <h2 class="text-3xl font-bold mb-8 text-center">PDF to JPG Converter</h2>
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div><label class="font-bold">Upload PDF:</label><input type="file" id="pdfFile" accept=".pdf" class="form-input"></div>
+                <button onclick="alert('Feature coming soon!')" class="btn-primary w-full">CONVERT TO IMAGES</button>
             </div>
-            <button onclick="resizeImage()" class="w-full bg-orange-600 text-white py-3 rounded font-bold">DOWNLOAD JPG</button>
         </div>
 
-        <div id="resume-print" class="hidden bg-white p-12 mx-auto max-w-[800px] border-2 border-black">
-            <h1 id="pName" class="text-3xl font-bold uppercase border-b-2 border-black pb-2"></h1>
-            <p id="pContact" class="mt-2 text-sm whitespace-pre-line"></p>
-            <div class="mt-8"><h4 class="bg-gray-100 p-1 font-bold">CAREER OBJECTIVE</h4><p id="pObj" class="mt-2 text-sm text-justify"></p></div>
-            <div class="mt-20 flex justify-between font-bold border-t border-black pt-2"><span>Date: ________</span><span>Signature</span></div>
+        <!-- Merge PDF Tool -->
+        <div id="merge-pdf" class="hidden no-print bg-white p-8 rounded-lg shadow-lg my-8 mx-4">
+            <button onclick="showHome()" class="mb-4 text-blue-600 hover:underline">← Back to Home</button>
+            <h2 class="text-3xl font-bold mb-8 text-center">Merge PDF Files</h2>
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div><label class="font-bold">Select Multiple PDFs:</label><input type="file" id="mergePdfFiles" accept=".pdf" multiple class="form-input"></div>
+                <button onclick="mergePDFs()" class="btn-primary w-full">MERGE PDFs</button>
+            </div>
+        </div>
+
+        <!-- Split PDF Tool -->
+        <div id="split-pdf" class="hidden no-print bg-white p-8 rounded-lg shadow-lg my-8 mx-4">
+            <button onclick="showHome()" class="mb-4 text-blue-600 hover:underline">← Back to Home</button>
+            <h2 class="text-3xl font-bold mb-8 text-center">Split PDF Pages</h2>
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div><label class="font-bold">Upload PDF:</label><input type="file" id="splitPdfFile" accept=".pdf" class="form-input"></div>
+                <button onclick="splitPDF()" class="btn-primary w-full">SPLIT PDF</button>
+            </div>
+        </div>
+
+        <!-- Compress PDF Tool -->
+        <div id="compress-pdf" class="hidden no-print bg-white p-8 rounded-lg shadow-lg my-8 mx-4">
+            <button onclick="showHome()" class="mb-4 text-blue-600 hover:underline">← Back to Home</button>
+            <h2 class="text-3xl font-bold mb-8 text-center">Compress PDF</h2>
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div><label class="font-bold">Upload PDF:</label><input type="file" id="compressPdfFile" accept=".pdf" class="form-input"></div>
+                <button onclick="alert('Feature coming soon!')" class="btn-primary w-full">COMPRESS PDF</button>
+            </div>
         </div>
 
     </main>
 
+    <!-- Footer -->
+    <footer class="footer-dark py-12 px-4 mt-20 no-print">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div>
+                <h4 class="font-bold text-lg mb-4">ABOUT US</h4>
+                <p class="text-sm text-gray-300 leading-6">Sarkari Result is the name which you have been hearing continuously since 2012, a portal where there is neither any login nor any signup nor any fee, but if you see the information then there is a lot, there are many updates also.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-lg mb-4">USEFUL TOOLS</h4>
+                <ul class="text-sm space-y-2 text-gray-300">
+                    <li><a href="#" onclick="openTool('merge-pdf')" class="hover:text-white">Merge PDF</a></li>
+                    <li><a href="#" onclick="openTool('compress-pdf')" class="hover:text-white">Compress PDF</a></li>
+                    <li><a href="#" onclick="openTool('pdf-to-jpg')" class="hover:text-white">PDF to JPG</a></li>
+                    <li><a href="#" class="hover:text-white">Remove Image Background</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-lg mb-4">MEGA LINK</h4>
+                <ul class="text-sm space-y-2 text-gray-300">
+                    <li><a href="https://rojgarsangam.in" class="hover:text-white">RojgarResult.com</a></li>
+                    <li><a href="https://rojgarsangam.in" class="hover:text-white">SarkariResultTools.com</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-lg mb-4">CONTACT US</h4>
+                <p class="text-sm text-gray-300">sarkariresult@gmail.com</p>
+            </div>
+        </div>
+        <div class="text-center mt-10 pt-6 border-t border-gray-600 text-sm text-gray-400">
+            © 2026 Sarkari Result Tools | All Rights Reserved
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
     <script>
-        function openTool(id) {
-            document.getElementById('home-view').classList.add('hidden');
-            document.getElementById(id).classList.remove('hidden');
+        let selectedTemplate = 1;
+        let eduRowCount = 0;
+        let profRowCount = 0;
+
+        function showHome() {
+            document.getElementById('home-view').classList.remove('hidden');
+            document.querySelectorAll('[id$="-maker"], [id$="-resizer"], [id$="-calculator"], [id$="-photo"], [id$="-signature"], [id$="-pdf"], [id$="-jpg"]').forEach(el => el.classList.add('hidden'));
+            document.getElementById('resume-preview').classList.add('hidden');
+            window.scrollTo(0, 0);
         }
 
-        async function convertJpgPdf() {
-            const files = document.getElementById('jpgFiles').files;
-            if(!files.length) return alert("Select images!");
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF();
-            for(let i=0; i<files.length; i++) {
-                const imgData = await new Promise(res => {
-                    const r = new FileReader(); r.readAsDataURL(files[i]);
-                    r.onload = e => res(e.target.result);
-                });
-                if(i > 0) pdf.addPage();
-                pdf.addImage(imgData, 'JPEG', 10, 10, 190, 150);
-            }
-            pdf.save('rojgarsangam-converted.pdf');
+        function openTool(toolId) {
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById(toolId).classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function selectTemplate(num) {
+            selectedTemplate = num;
+            alert('Template ' + num + ' selected! Fill the form and click "Download PDF"');
+        }
+
+        function changeFormat() {
+            alert('Color changed! Click "Download PDF" to generate resume');
+        }
+
+        function addEduRow() {
+            eduRowCount++;
+            const container = document.getElementById('edu-rows');
+            const row = document.createElement('div');
+            row.className = 'grid grid-cols-5 gap-2';
+            row.innerHTML = `
+                <input type="text" placeholder="Exam" id="edu${eduRowCount}_exam" class="form-input text-sm p-2">
+                <input type="text" placeholder="Board/University" id="edu${eduRowCount}_board" class="form-input text-sm p-2">
+                <input type="text" placeholder="Passing year" id="edu${eduRowCount}_year" class="form-input text-sm p-2">
+                <input type="text" placeholder="Marks %" id="edu${eduRowCount}_marks" class="form-input text-sm p-2">
+                <select id="edu${eduRowCount}_div" class="form-input text-sm p-2"><option>Division</option><option>1st</option><option>2nd</option><option>3rd</option></select>
+            `;
+            container.appendChild(row);
+        }
+
+        function addProfRow() {
+            profRowCount++;
+            const container = document.getElementById('prof-rows');
+            const row = document.createElement('div');
+            row.className = 'grid grid-cols-5 gap-2';
+            row.innerHTML = `
+                <input type="text" placeholder="Exam" id="prof${profRowCount}_exam" class="form-input text-sm p-2">
+                <input type="text" placeholder="Board/University" id="prof${profRowCount}_board" class="form-input text-sm p-2">
+                <input type="text" placeholder="Passing year" id="prof${profRowCount}_year" class="form-input text-sm p-2">
+                <input type="text" placeholder="Marks %" id="prof${profRowCount}_marks" class="form-input text-sm p-2">
+                <select id="prof${profRowCount}_div" class="form-input text-sm p-2"><option>Division</option><option>1st</option><option>2nd</option><option>3rd</option></select>
+            `;
+            container.appendChild(row);
+        }
+
+        async function downloadResumePDF() {
+            const preview = document.getElementById('resume-preview');
+            const color = document.getElementById('resumeColor').value || '#0088ff';
+            
+            let html = `
+                <div style="padding: 40px; font-family: Arial;">
+                    <div style="border-bottom: 3px solid ${color}; padding-bottom: 20px; margin-bottom: 20px;">
+                        <h1 style="color: ${color}; font-size: 32px; margin: 0;">${document.getElementById('rName').value || 'YOUR NAME'}</h1>
+                        <p style="margin: 10px 0 0 0;">${document.getElementById('rAddr').value}</p>
+                        <p style="margin: 5px 0;">Mobile: ${document.getElementById('rMob').value} | Email: ${document.getElementById('rEmail').value}</p>
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <h3 style="background: ${color}; color: white; padding: 8px; margin: 0 0 10px 0;">CAREER OBJECTIVE</h3>
+                        <p style="text-align: justify; line-height: 1.6;">${document.getElementById('rObjCustom').value || document.querySelector('input[name="rObj"]:checked').value}</p>
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <h3 style="background: ${color}; color: white; padding: 8px; margin: 0 0 10px 0;">PERSONAL DETAILS</h3>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr><td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Father's Name:</strong></td><td style="padding: 8px; border-bottom: 1px solid #ddd;">${document.getElementById('rFather').value}</td></tr>
+                            <tr><td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Mother's Name:</strong></td><td style="padding: 8px; border-bottom: 1px solid #ddd;">${document.getElementById('rMother').value}</td></tr>
+                            <tr><td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Date of Birth:</strong></td><td style="padding: 8px; border-bottom: 1px solid #ddd;">${document.getElementById('rDob').value}</td></tr>
+                            <tr><td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Gender:</strong></td><td style="padding: 8px; border-bottom: 1px solid #ddd;">${document.getElementById('rGen').value}</td></tr>
+                            <tr><td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Nationality:</strong></td><td style="padding: 8px; border-bottom: 1px solid #ddd;">${document.getElementById('rNat').value}</td></tr>
+                        </table>
+                    </div>
+                </div>
+            `;
+            
+            preview.innerHTML = html;
+            preview.classList.remove('hidden');
+            
+            setTimeout(async () => {
+                const canvas = await html2canvas(preview);
+                const imgData = canvas.toDataURL('image/png');
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF();
+                pdf.addImage(imgData, 'PNG', 10, 10, 190, 277);
+                pdf.save('resume.pdf');
+            }, 500);
         }
 
         function resizeImage() {
-            const f = document.getElementById('imgIn').files[0];
-            const w = document.getElementById('wIn').value, h = document.getElementById('hIn').value;
-            if(!f) return alert("Select File!");
-            const r = new FileReader(); r.readAsDataURL(f);
-            r.onload = e => {
-                const img = new Image(); img.src = e.target.result;
+            const file = document.getElementById('imgFile').files[0];
+            const w = document.getElementById('imgW').value;
+            const h = document.getElementById('imgH').value;
+            if(!file) return alert("Select image!");
+            
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = e => {
+                const img = new Image();
+                img.src = e.target.result;
                 img.onload = () => {
-                    const c = document.createElement('canvas'); c.width = w; c.height = h;
-                    c.getContext('2d').drawImage(img, 0, 0, w, h);
-                    const link = document.createElement('a'); link.download = 'resized.jpg';
-                    link.href = c.toDataURL('image/jpeg', 0.9); link.click();
+                    const canvas = document.createElement('canvas');
+                    canvas.width = w;
+                    canvas.height = h;
+                    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                    const link = document.createElement('a');
+                    link.download = 'resized-image.jpg';
+                    link.href = canvas.toDataURL('image/jpeg', 0.9);
+                    link.click();
                 }
             }
         }
 
-        function genResume() {
-            document.getElementById('pName').innerText = document.getElementById('rName').value;
-            document.getElementById('pContact').innerText = `Addr: ${document.getElementById('rAddr').value}\nMob: ${document.getElementById('rMob').value} | Email: ${document.getElementById('rEmail').value}`;
-            document.getElementById('pObj').innerText = document.getElementById('rObj').value;
-            document.getElementById('resume-print').classList.remove('hidden');
-            window.print();
+        function addNameDate() {
+            const file = document.getElementById('ndPhoto').files[0];
+            const name = document.getElementById('ndName').value;
+            const dateVal = document.getElementById('ndDate').value;
+            if(!file || !name || !dateVal) return alert("Fill all fields!");
+            
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = e => {
+                const img = new Image();
+                img.src = e.target.result;
+                img.onload = () => {
+                    const canvas = document.getElementById('ndCanvas');
+                    const stripHeight = img.height * 0.15;
+                    canvas.width = img.width;
+                    canvas.height = img.height + stripHeight;
+                    const ctx = canvas.getContext('2d');
+                    
+                    ctx.drawImage(img, 0, 0);
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(0, img.height, canvas.width, stripHeight);
+                    ctx.strokeStyle = 'black';
+                    ctx.lineWidth = 3;
+                    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+                    
+                    ctx.fillStyle = 'black';
+                    ctx.font = `bold ${stripHeight * 0.3}px Arial`;
+                    ctx.textAlign = 'center';
+                    ctx.fillText(name, canvas.width/2, img.height + stripHeight*0.45);
+                    ctx.fillText(new Date(dateVal).toLocaleDateString('en-GB'), canvas.width/2, img.height + stripHeight*0.85);
+                    
+                    canvas.classList.remove('hidden');
+                    document.getElementById('ndDownload').classList.remove('hidden');
+                }
+            }
+        }
+
+        function downloadNameDate() {
+            const canvas = document.getElementById('ndCanvas');
+            const link = document.createElement('a');
+            link.download = 'photo-with-name-date.jpg';
+            link.href = canvas.toDataURL('image/jpeg', 1.0);
+            link.click();
+        }
+
+        function joinPhotoSign() {
+            const photo = document.getElementById('psPhoto').files[0];
+            const sign = document.getElementById('psSign').files[0];
+            if(!photo || !sign) return alert("Select both files!");
+            
+            const canvas = document.getElementById('psCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            const loadImage = (file) => new Promise(resolve => {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    const img = new Image();
+                    img.onload = () => resolve(img);
+                    img.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            });
+            
+            Promise.all([loadImage(photo), loadImage(sign)]).then(([photoImg, signImg]) => {
+                canvas.width = Math.max(photoImg.width, signImg.width);
+                canvas.height = photoImg.height + signImg.height + 10;
+                
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(photoImg, 0, 0);
+                ctx.drawImage(signImg, 0, photoImg.height + 10);
+                
+                canvas.classList.remove('hidden');
+                document.getElementById('psDownload').classList.remove('hidden');
+            });
+        }
+
+        function downloadPhotoSign() {
+            const canvas = document.getElementById('psCanvas');
+            const link = document.createElement('a');
+            link.download = 'photo-signature-joined.jpg';
+            link.href = canvas.toDataURL('image/jpeg', 1.0);
+            link.click();
+        }
+
+        function calculateAge() {
+            const dob = new Date(document.getElementById('ageDob').value);
+            const asOn = new Date(document.getElementById('ageAsOn').value);
+            if(!dob || !asOn) return alert("Fill both dates!");
+            
+            let years = asOn.getFullYear() - dob.getFullYear();
+            let months = asOn.getMonth() - dob.getMonth();
+            let days = asOn.getDate() - dob.getDate();
+            
+            if(days < 0) { months--; days += 30; }
+            if(months < 0) { years--; months += 12; }
+            
+            document.getElementById('ageOutput').innerText = `${years} Years, ${months} Months, ${days} Days`;
+            document.getElementById('ageResult').classList.remove('hidden');
+        }
+
+        async function convertJPGtoPDF() {
+            const files = document.getElementById('jpgFiles').files;
+            if(!files.length) return alert("Select images!");
+            
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+            
+            for(let i = 0; i < files.length; i++) {
+                const reader = new FileReader();
+                await new Promise(resolve => {
+                    reader.onload = e => {
+                        const img = new Image();
+                        img.onload = () => {
+                            if(i > 0) pdf.addPage();
+                            const imgWidth = 190;
+                            const imgHeight = (img.height * imgWidth) / img.width;
+                            pdf.addImage(e.target.result, 'JPEG', 10, 10, imgWidth, imgHeight);
+                            resolve();
+                        }
+                        img.src = e.target.result;
+                    }
+                    reader.readAsDataURL(files[i]);
+                });
+            }
+            pdf.save('converted.pdf');
+        }
+
+        async function mergePDFs() {
+            const files = document.getElementById('mergePdfFiles').files;
+            if(files.length < 2) return alert("Select at least 2 PDFs!");
+            
+            const { PDFDocument } = PDFLib;
+            const mergedPdf = await PDFDocument.create();
+            
+            for(let file of files) {
+                const arrayBuffer = await file.arrayBuffer();
+                const pdf = await PDFDocument.load(arrayBuffer);
+                const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+                pages.forEach(page => mergedPdf.addPage(page));
+            }
+            
+            const pdfBytes = await mergedPdf.save();
+            const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'merged.pdf';
+            link.click();
+        }
+
+        async function splitPDF() {
+            const file = document.getElementById('splitPdfFile').files[0];
+            if(!file) return alert("Select PDF!");
+            
+            const { PDFDocument } = PDFLib;
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await PDFDocument.load(arrayBuffer);
+            
+            for(let i = 0; i < pdf.getPageCount(); i++) {
+                const newPdf = await PDFDocument.create();
+                const [page] = await newPdf.copyPages(pdf, [i]);
+                newPdf.addPage(page);
+                
+                const pdfBytes = await newPdf.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `page-${i+1}.pdf`;
+                link.click();
+            }
+        }
+
+        // Initialize first education row
+        window.onload = function() {
+            addEduRow();
+            addProfRow();
         }
     </script>
+
 </body>
 </html>
