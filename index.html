@@ -3,86 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rojgar Sangam Tools - Image Resizer & More</title>
+    <title>Rojgar Sangam Tools - Resume Maker & Image Resizer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .card { transition: transform 0.2s; }
-        .card:hover { transform: translateY(-5px); }
+        .tool-box { display: none; }
+        .tool-box.active { display: block; }
+        @media print { .no-print { display: none; } }
     </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100 font-sans text-gray-800">
 
-    <nav class="bg-blue-800 text-white shadow-md p-4">
+    <nav class="bg-blue-900 text-white shadow-lg p-4 no-print">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold">ROJGAR SANGAM TOOLS</h1>
-            <a href="https://rojgarsangam.in" class="text-sm bg-blue-700 px-3 py-1 rounded">Main Site</a>
+            <h1 class="text-xl font-bold tracking-wider">ROJGAR SANGAM TOOLS</h1>
+            <div class="space-x-4 text-sm font-medium">
+                <button onclick="showTool('resizer')" class="hover:underline">Image Resizer</button>
+                <button onclick="showTool('resume')" class="hover:underline">Resume Maker</button>
+            </div>
         </div>
     </nav>
 
-    <div class="max-w-4xl mx-auto py-10 px-4">
-        <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Sarkari Result Tool Kit</h2>
-
-        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-            <div class="flex items-center mb-4">
-                <span class="text-3xl mr-3">🖼️</span>
-                <h3 class="text-xl font-bold text-blue-800">Photo & Signature Resizer</h3>
-            </div>
-            <p class="text-gray-600 mb-6 text-sm">UPP, SSC, Railway के फॉर्म के लिए फोटो को 20KB-50KB में बदलें।</p>
-            
-            <div class="space-y-4 border-t pt-4">
-                <input type="file" id="upload" accept="image/*" class="w-full border p-2 rounded bg-gray-50">
-                
-                <div class="grid grid-cols-2 gap-4">
-                    <input type="number" id="width" placeholder="Width (px)" class="border p-2 rounded w-full">
-                    <input type="number" id="height" placeholder="Height (px)" class="border p-2 rounded w-full">
+    <div class="max-w-4xl mx-auto py-8 px-4">
+        
+        <div id="resizer" class="tool-box active bg-white p-8 rounded-xl shadow-md border-t-4 border-orange-500">
+            <h2 class="text-2xl font-bold mb-6 text-gray-700 flex items-center">🖼️ Photo/Sign Resizer</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <label class="block font-semibold">Select Photo</label>
+                    <input type="file" id="photoIn" accept="image/*" class="w-full p-2 border rounded bg-gray-50">
+                    <div class="flex gap-2">
+                        <input type="number" id="pW" placeholder="Width (px)" class="w-1/2 p-2 border rounded">
+                        <input type="number" id="pH" placeholder="Height (px)" class="w-1/2 p-2 border rounded">
+                    </div>
+                    <button onclick="doResize()" class="w-full bg-orange-600 text-white font-bold py-3 rounded hover:bg-orange-700">RESIZE & DOWNLOAD</button>
                 </div>
-
-                <button onclick="processImage()" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded shadow-md transition">
-                    RESIZE & DOWNLOAD
-                </button>
+                <div class="bg-blue-50 p-4 rounded text-sm text-blue-800">
+                    <p class="font-bold">Instructions:</p>
+                    <ul class="list-disc ml-4 mt-2">
+                        <li>SSC: 200 x 230 px</li>
+                        <li>UPP: 150 x 200 px</li>
+                        <li>Sign: 140 x 60 px</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500 opacity-60">
-                <h4 class="font-bold text-gray-500">📄 Resume Maker (Coming Soon)</h4>
+        <div id="resume" class="tool-box bg-white p-8 rounded-xl shadow-md border-t-4 border-blue-600 no-print">
+            <h2 class="text-2xl font-bold mb-6 text-gray-700">📄 Free Resume Maker</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="text" id="rName" placeholder="Full Name" class="p-2 border rounded">
+                <input type="text" id="rEmail" placeholder="Email Address" class="p-2 border rounded">
+                <input type="text" id="rPhone" placeholder="Phone Number" class="p-2 border rounded">
+                <input type="text" id="rAddress" placeholder="Full Address" class="p-2 border rounded">
+                <textarea id="rEdu" placeholder="Education Details (e.g. 10th, 12th, BA...)" class="p-2 border rounded col-span-2 h-24"></textarea>
+                <textarea id="rExp" placeholder="Work Experience" class="p-2 border rounded col-span-2 h-24"></textarea>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500 opacity-60">
-                <h4 class="font-bold text-gray-500">📑 JPG to PDF (Coming Soon)</h4>
+            <button onclick="generateResume()" class="mt-6 w-full bg-blue-700 text-white font-bold py-3 rounded hover:bg-blue-800">GENERATE & PRINT RESUME</button>
+        </div>
+
+        <div id="printArea" class="hidden bg-white p-10 mt-10 shadow-lg border">
+            <h1 id="pName" class="text-3xl font-bold border-b-2 border-black uppercase"></h1>
+            <p id="pContact" class="mt-2 font-semibold"></p>
+            <div class="mt-6">
+                <h3 class="bg-gray-200 p-1 font-bold">EDUCATIONAL QUALIFICATION</h3>
+                <p id="pEdu" class="mt-2 whitespace-pre-wrap"></p>
+            </div>
+            <div class="mt-6">
+                <h3 class="bg-gray-200 p-1 font-bold">WORK EXPERIENCE</h3>
+                <p id="pExp" class="mt-2 whitespace-pre-wrap"></p>
             </div>
         </div>
+
     </div>
 
-    <footer class="text-center py-10 text-gray-500 text-sm">
-        © 16 Aug 2026 | rojgarsangam.in | All Rights Reserved
+    <footer class="mt-12 text-center text-gray-500 text-sm no-print">
+        <p>© 16 Feb 2026 | RojgarSangam.in | All Rights Reserved</p>
     </footer>
 
     <script>
-        function processImage() {
-            const file = document.getElementById('upload').files[0];
-            const w = document.getElementById('width').value;
-            const h = document.getElementById('height').value;
+        function showTool(id) {
+            document.querySelectorAll('.tool-box').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
 
-            if(!file || !w || !h) return alert("Please fill all details!");
-
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = function(e) {
-                const img = new Image();
-                img.src = e.target.result;
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = w;
-                    canvas.height = h;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, w, h);
-                    
-                    const link = document.createElement('a');
-                    link.download = 'rojgarsangam-tool.jpg';
-                    link.href = canvas.toDataURL('image/jpeg', 0.8);
-                    link.click();
+        function doResize() {
+            const file = document.getElementById('photoIn').files[0];
+            const w = document.getElementById('pW').value;
+            const h = document.getElementById('pH').value;
+            if(!file || !w || !h) return alert("Details bharen!");
+            const r = new FileReader();
+            r.readAsDataURL(file);
+            r.onload = e => {
+                const i = new Image();
+                i.src = e.target.result;
+                i.onload = () => {
+                    const c = document.createElement('canvas');
+                    c.width = w; c.height = h;
+                    c.getContext('2d').drawImage(i, 0, 0, w, h);
+                    const l = document.createElement('a');
+                    l.download = 'rojgarsangam-resized.jpg';
+                    l.href = c.toDataURL('image/jpeg', 0.8);
+                    l.click();
                 }
             }
+        }
+
+        function generateResume() {
+            document.getElementById('pName').innerText = document.getElementById('rName').value;
+            document.getElementById('pContact').innerText = `Email: ${document.getElementById('rEmail').value} | Phone: ${document.getElementById('rPhone').value} \nAddress: ${document.getElementById('rAddress').value}`;
+            document.getElementById('pEdu').innerText = document.getElementById('rEdu').value;
+            document.getElementById('pExp').innerText = document.getElementById('rExp').value;
+            
+            document.getElementById('printArea').classList.remove('hidden');
+            window.print();
         }
     </script>
 </body>
