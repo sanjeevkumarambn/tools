@@ -3,119 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rojgar Sangam Tools - Resume Maker & Image Resizer</title>
+    <title>Resume & CV Maker - RojgarSangam.in</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .tool-box { display: none; }
-        .tool-box.active { display: block; }
-        @media print { .no-print { display: none; } }
+        @media print { .no-print { display: none; } #preview { border: none; box-shadow: none; width: 100%; margin: 0; } body { background: white; } }
+        .form-label { font-weight: bold; font-size: 13px; color: #374151; display: block; margin-top: 8px; }
+        .form-input { width: 100%; border: 1px solid #d1d5db; padding: 6px 10px; border-radius: 4px; font-size: 14px; }
     </style>
 </head>
-<body class="bg-gray-100 font-sans text-gray-800">
+<body class="bg-gray-200 p-2 md:p-6">
 
-    <nav class="bg-blue-900 text-white shadow-lg p-4 no-print">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold tracking-wider">ROJGAR SANGAM TOOLS</h1>
-            <div class="space-x-4 text-sm font-medium">
-                <button onclick="showTool('resizer')" class="hover:underline">Image Resizer</button>
-                <button onclick="showTool('resume')" class="hover:underline">Resume Maker</button>
-            </div>
-        </div>
-    </nav>
-
-    <div class="max-w-4xl mx-auto py-8 px-4">
+    <div class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-6">
         
-        <div id="resizer" class="tool-box active bg-white p-8 rounded-xl shadow-md border-t-4 border-orange-500">
-            <h2 class="text-2xl font-bold mb-6 text-gray-700 flex items-center">🖼️ Photo/Sign Resizer</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-4">
-                    <label class="block font-semibold">Select Photo</label>
-                    <input type="file" id="photoIn" accept="image/*" class="w-full p-2 border rounded bg-gray-50">
-                    <div class="flex gap-2">
-                        <input type="number" id="pW" placeholder="Width (px)" class="w-1/2 p-2 border rounded">
-                        <input type="number" id="pH" placeholder="Height (px)" class="w-1/2 p-2 border rounded">
-                    </div>
-                    <button onclick="doResize()" class="w-full bg-orange-600 text-white font-bold py-3 rounded hover:bg-orange-700">RESIZE & DOWNLOAD</button>
+        <div class="lg:w-1/2 bg-white p-6 rounded shadow-lg no-print">
+            <h2 class="text-2xl font-bold text-blue-800 border-b pb-2 mb-4">Resume Maker 2026</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div><label class="form-label">Name</label><input type="text" id="fName" class="form-input"></div>
+                <div><label class="form-label">Mobile No</label><input type="text" id="fPhone" class="form-input"></div>
+                <div class="col-span-2"><label class="form-label">Address</label><input type="text" id="fAddr" class="form-input"></div>
+                <div><label class="form-label">Email Id</label><input type="text" id="fEmail" class="form-input"></div>
+                <div><label class="form-label">Date of Birth</label><input type="date" id="fDob" class="form-input"></div>
+                <div><label class="form-label">Father's Name</label><input type="text" id="fFather" class="form-input"></div>
+                <div><label class="form-label">Mother's Name</label><input type="text" id="fMother" class="form-input"></div>
+            </div>
+
+            <label class="form-label mt-4">Career Objective (Select One)</label>
+            <div class="text-xs space-y-2 mt-2 bg-gray-50 p-2 border rounded">
+                <label class="flex items-start gap-2"><input type="radio" name="obj" value="Secure a responsible career opportunity to fully utilize my talent and skills to grow." checked> <span>Option 1: Career growth and contribution.</span></label>
+                <label class="flex items-start gap-2"><input type="radio" name="obj" value="Self-motivated and hardworking fresher seeking for an opportunity to work in a challenging environment."> <span>Option 2: Fresher seeking challenge.</span></label>
+            </div>
+
+            <label class="form-label mt-4">Academic Qualification</label>
+            <textarea id="fEdu" class="form-input h-20" placeholder="High School - Board - Year - % - Div"></textarea>
+
+            <label class="form-label mt-4">Skills / Experience</label>
+            <textarea id="fExp" class="form-input h-20" placeholder="Extra Qualification or Experience"></textarea>
+
+            <button onclick="generate()" class="w-full bg-blue-700 text-white font-bold py-3 mt-6 rounded hover:bg-blue-800 shadow-md">GENERATE RESUME</button>
+        </div>
+
+        <div id="preview" class="lg:w-1/2 bg-white p-10 shadow-2xl border min-h-[1000px]">
+            <div class="text-center border-b-4 border-blue-900 pb-4">
+                <h1 id="pName" class="text-3xl font-bold uppercase text-blue-900">NAME</h1>
+                <p id="pContact" class="text-sm mt-1 font-semibold"></p>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="bg-blue-900 text-white px-3 py-1 font-bold inline-block">CAREER OBJECTIVE</h3>
+                <p id="pObj" class="mt-3 text-sm text-gray-700 leading-relaxed text-justify border-l-4 border-gray-200 pl-4"></p>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="bg-blue-900 text-white px-3 py-1 font-bold inline-block">ACADEMIC QUALIFICATION</h3>
+                <div id="pEdu" class="mt-3 text-sm whitespace-pre-wrap leading-7 border-t pt-2"></div>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="bg-blue-900 text-white px-3 py-1 font-bold inline-block">PERSONAL DETAILS</h3>
+                <div class="grid grid-cols-2 gap-y-2 mt-4 text-sm border p-4 bg-gray-50">
+                    <div><strong>Father Name:</strong> <span id="pFather"></span></div>
+                    <div><strong>Mother Name:</strong> <span id="pMother"></span></div>
+                    <div><strong>Date of Birth:</strong> <span id="pDob"></span></div>
+                    <div><strong>Nationality:</strong> Indian</div>
                 </div>
-                <div class="bg-blue-50 p-4 rounded text-sm text-blue-800">
-                    <p class="font-bold">Instructions:</p>
-                    <ul class="list-disc ml-4 mt-2">
-                        <li>SSC: 200 x 230 px</li>
-                        <li>UPP: 150 x 200 px</li>
-                        <li>Sign: 140 x 60 px</li>
-                    </ul>
-                </div>
+            </div>
+
+            <div class="mt-16 flex justify-between px-4">
+                <div class="text-xs">Date: ________<br>Place: ________</div>
+                <div class="text-center font-bold border-t border-black pt-1 min-w-[150px]">Signature</div>
             </div>
         </div>
-
-        <div id="resume" class="tool-box bg-white p-8 rounded-xl shadow-md border-t-4 border-blue-600 no-print">
-            <h2 class="text-2xl font-bold mb-6 text-gray-700">📄 Free Resume Maker</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" id="rName" placeholder="Full Name" class="p-2 border rounded">
-                <input type="text" id="rEmail" placeholder="Email Address" class="p-2 border rounded">
-                <input type="text" id="rPhone" placeholder="Phone Number" class="p-2 border rounded">
-                <input type="text" id="rAddress" placeholder="Full Address" class="p-2 border rounded">
-                <textarea id="rEdu" placeholder="Education Details (e.g. 10th, 12th, BA...)" class="p-2 border rounded col-span-2 h-24"></textarea>
-                <textarea id="rExp" placeholder="Work Experience" class="p-2 border rounded col-span-2 h-24"></textarea>
-            </div>
-            <button onclick="generateResume()" class="mt-6 w-full bg-blue-700 text-white font-bold py-3 rounded hover:bg-blue-800">GENERATE & PRINT RESUME</button>
-        </div>
-
-        <div id="printArea" class="hidden bg-white p-10 mt-10 shadow-lg border">
-            <h1 id="pName" class="text-3xl font-bold border-b-2 border-black uppercase"></h1>
-            <p id="pContact" class="mt-2 font-semibold"></p>
-            <div class="mt-6">
-                <h3 class="bg-gray-200 p-1 font-bold">EDUCATIONAL QUALIFICATION</h3>
-                <p id="pEdu" class="mt-2 whitespace-pre-wrap"></p>
-            </div>
-            <div class="mt-6">
-                <h3 class="bg-gray-200 p-1 font-bold">WORK EXPERIENCE</h3>
-                <p id="pExp" class="mt-2 whitespace-pre-wrap"></p>
-            </div>
-        </div>
-
     </div>
 
-    <footer class="mt-12 text-center text-gray-500 text-sm no-print">
-        <p>© 16 Feb 2026 | RojgarSangam.in | All Rights Reserved</p>
-    </footer>
-
     <script>
-        function showTool(id) {
-            document.querySelectorAll('.tool-box').forEach(t => t.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-        }
-
-        function doResize() {
-            const file = document.getElementById('photoIn').files[0];
-            const w = document.getElementById('pW').value;
-            const h = document.getElementById('pH').value;
-            if(!file || !w || !h) return alert("Details bharen!");
-            const r = new FileReader();
-            r.readAsDataURL(file);
-            r.onload = e => {
-                const i = new Image();
-                i.src = e.target.result;
-                i.onload = () => {
-                    const c = document.createElement('canvas');
-                    c.width = w; c.height = h;
-                    c.getContext('2d').drawImage(i, 0, 0, w, h);
-                    const l = document.createElement('a');
-                    l.download = 'rojgarsangam-resized.jpg';
-                    l.href = c.toDataURL('image/jpeg', 0.8);
-                    l.click();
-                }
-            }
-        }
-
-        function generateResume() {
-            document.getElementById('pName').innerText = document.getElementById('rName').value;
-            document.getElementById('pContact').innerText = `Email: ${document.getElementById('rEmail').value} | Phone: ${document.getElementById('rPhone').value} \nAddress: ${document.getElementById('rAddress').value}`;
-            document.getElementById('pEdu').innerText = document.getElementById('rEdu').value;
-            document.getElementById('pExp').innerText = document.getElementById('rExp').value;
+        function generate() {
+            document.getElementById('pName').innerText = document.getElementById('fName').value || 'YOUR NAME';
+            document.getElementById('pContact').innerText = `Mobile: ${document.getElementById('fPhone').value} | Email: ${document.getElementById('fEmail').value} \nAddr: ${document.getElementById('fAddr').value}`;
+            document.getElementById('pFather').innerText = document.getElementById('fFather').value;
+            document.getElementById('pMother').innerText = document.getElementById('fMother').value;
+            document.getElementById('pDob').innerText = document.getElementById('fDob').value;
+            document.getElementById('pEdu').innerText = document.getElementById('fEdu').value;
             
-            document.getElementById('printArea').classList.remove('hidden');
-            window.print();
+            const objValue = document.querySelector('input[name="obj"]:checked').value;
+            document.getElementById('pObj').innerText = objValue;
+
+            if(confirm("Resume Generated! Open Print Dialog?")) {
+                window.print();
+            }
         }
     </script>
 </body>
