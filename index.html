@@ -3,111 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rojgar Sangam Tools - Compress PDF, Word to PDF & Image Resizer</title>
-    <meta name="description" content="Rojgar Sangam Tools offers free online PDF converters, photo background remover, and image resizer for IERT and UPSSSC.">
-    <meta name="keywords" content="rojgar sangam tools, IERT Prayagraj, compress pdf online free, word to pdf converter online, jpg to pdf converter, image resizer">
+    <title>Rojgar Sangam Tools - Simplify Your Workflow</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Rojgar Sangam Tools",
-      "operatingSystem": "All",
-      "applicationCategory": "UtilitiesApplication",
-      "offers": { "@type": "Offer", "price": "0.00", "priceCurrency": "INR" },
-      "description": "Free tools to compress pdf and convert documents online."
-    }
-    </script>
 </head>
 <body>
-    <header style="background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-        <div class="row-settings flex justify-between items-center py-2 px-4">
+
+    <header class="bg-white nav-shadow sticky top-0 z-50">
+        <div class="row-settings flex justify-between items-center py-4 px-4">
             <a href="https://tools.rojgarsangam.in">
                 <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" class="h-10" alt="Rojgar Sangam">
             </a>
-            <nav class="hidden md:flex items-center">
-                <a href="#" class="font-bold ml-6 text-sm text-gray-700">PDF Tools</a>
-                <a href="#" class="font-bold ml-6 text-sm text-gray-700">Image Tools</a>
-                <a href="https://www.rojgarsangam.in" class="ml-6 bg-gray-100 px-4 py-2 rounded-full text-[10px] font-bold uppercase">Main Website</a>
-            </nav>
+            <div class="flex items-center gap-8">
+                <nav class="hidden md:flex gap-8">
+                    <a href="#" class="nav-link font-bold text-gray-700">Tools</a>
+                    <a href="#" class="nav-link font-bold text-gray-700">PDF Tools</a>
+                </nav>
+                <a href="https://www.rojgarsangam.in" class="bg-gray-100 border px-4 py-1.5 rounded-lg text-[10px] font-bold text-gray-600 hover:bg-gray-200">www.rojgarsangam.in</a>
+            </div>
         </div>
     </header>
 
     <main>
+        <section class="section-custom bg-white">
+            <div class="row-settings flex flex-col md:flex-row items-center py-16">
+                <div class="md:w-1/2 text-left">
+                    <span class="text-[#8e44ad] italic text-xs font-bold mb-4 block">100% FREE to use!</span>
+                    <h1 class="text-4xl md:text-5xl font-black text-[#2c3e50] leading-tight">Simplify Your Workflow. <span class="text-[#512da8]">Edit, Convert, Manage PDFs</span> in Seconds.</h1>
+                    <p class="text-gray-400 mt-6 text-sm max-w-sm">This option highlights the time-saving benefit of using your all-in-one tool.</p>
+                </div>
+                <div class="md:w-1/2 flex justify-end">
+                    <img src="https://img.freepik.com/free-vector/modern-document-management-concept-flat-design_23-2148281045.jpg" class="w-full max-w-md" alt="PDF Illustration">
+                </div>
+            </div>
+        </section>
+
         <section class="section-custom">
             <div class="row-settings">
-                <div class="ad-placeholder ad-leaderboard">Advertisement</div>
+                <div class="w-full mb-10"><h2 class="text-xl font-black text-[#2c3e50]">PDF Tools</h2></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 w-full">
+                    <a href="tools/merge-pdf.html" class="tool-card flex flex-col items-start text-left p-6">
+                        <i class="fas fa-object-group text-2xl text-orange-400 mb-4"></i>
+                        <h3 class="font-bold text-sm mb-2">Merge PDF</h3>
+                        <p class="text-[10px] text-gray-400 leading-relaxed">Combine PDFs in the order you want with the easiest PDF merger available.</p>
+                    </a>
+
+                    <a href="#" class="tool-card flex flex-col items-start text-left p-6">
+                        <i class="fas fa-file-export text-2xl text-orange-400 mb-4"></i>
+                        <h3 class="font-bold text-sm mb-2">Split PDF</h3>
+                        <p class="text-[10px] text-gray-400 leading-relaxed">Separate one page or a whole set for easy conversion into independent PDF files.</p>
+                    </a>
+
+                    <a href="tools/compress-pdf.html" class="tool-card flex flex-col items-start text-left p-6">
+                        <i class="fas fa-compress-arrows-alt text-2xl text-green-500 mb-4"></i>
+                        <h3 class="font-bold text-sm mb-2">Compress PDF</h3>
+                        <p class="text-[10px] text-gray-400 leading-relaxed">Reduce file size while optimizing for maximal PDF quality.</p>
+                    </a>
+
+                    <a href="#" class="tool-card flex flex-col items-start text-left p-6">
+                        <i class="fas fa-file-word text-2xl text-blue-500 mb-4"></i>
+                        <h3 class="font-bold text-sm mb-2">WORD to PDF</h3>
+                        <p class="text-[10px] text-gray-400 leading-relaxed">Make DOC and DOCX files easy to read by converting them to PDF.</p>
+                    </a>
+
+                    <a href="#" class="tool-card flex flex-col items-start text-left p-6">
+                        <i class="fas fa-image text-2xl text-yellow-500 mb-4"></i>
+                        <h3 class="font-bold text-sm mb-2">JPG to PDF</h3>
+                        <p class="text-[10px] text-gray-400 leading-relaxed">Convert JPG images to PDF in seconds. Easily adjust orientation and margins.</p>
+                    </a>
+
+                    <a href="#" class="tool-card flex flex-col items-start text-left p-6">
+                        <i class="fas fa-file-pdf text-2xl text-red-500 mb-4"></i>
+                        <h3 class="font-bold text-sm mb-2">PDF to JPG</h3>
+                        <p class="text-[10px] text-gray-400 leading-relaxed">Convert each PDF page into a JPG or extract all images contained in a PDF.</p>
+                    </a>
+
+                    <div class="md:col-span-2 bg-[#00134d] text-white rounded-xl overflow-hidden relative p-8 flex flex-col justify-end min-h-[220px]">
+                        <img src="https://www.freepnglogos.com/uploads/skateboarding-png/skateboarding-skater-silhouette-skateboarding-clip-art-at-clker-21.png" class="absolute right-4 top-4 h-40 object-contain opacity-80" alt="Skater">
+                        <h3 class="text-xl font-bold">Remove Background</h3>
+                        <p class="text-[10px] opacity-70 mt-1">100% Automatically and Free</p>
+                        <a href="#" class="absolute right-6 bottom-6 bg-white text-[#00134d] w-8 h-8 rounded-full flex items-center justify-center shadow-lg"><i class="fas fa-arrow-right text-xs"></i></a>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="section-custom bg-white">
-            <div class="row-settings flex flex-col md:flex-row items-center py-10">
-                <div class="md:w-1/2 text-left">
-                    <span style="color: #00079e; font-weight: bold; font-size: 12px; font-style: italic; text-transform: uppercase;">100% FREE!</span>
-                    <h1 class="text-4xl md:text-5xl font-black mt-4 leading-tight">Simplify Your Workflow with Rojgar Sangam Tools.</h1>
-                    <p class="text-gray-500 mt-6 text-sm max-w-md">Professional online tools optimized for IERT Prayagraj and UPSSSC aspirants.</p>
-                </div>
-                <div class="md:w-1/2 flex justify-center mt-10 md:mt-0">
-                    <img src="https://img.freepik.com/free-vector/modern-document-management-concept-flat-design_23-2148281045.jpg" class="w-full max-w-md rounded-2xl" alt="AI Tools">
-                </div>
-            </div>
-        </section>
-
-        <section class="section-custom">
             <div class="row-settings">
-                <div class="w-full"><h2 class="text-xl font-black mb-8 uppercase tracking-widest">Primary PDF Tools</h2></div>
+                <div class="w-full mb-10"><h2 class="text-xl font-black text-[#2c3e50]">Other Tools</h2></div>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 w-full">
-                    <a href="tools/compress-pdf.html" class="tool-card">
-                        <i class="fas fa-compress-arrows-alt text-3xl text-green-500 mb-4"></i>
-                        <h3 class="font-bold text-sm uppercase">Compress PDF Online Free</h3>
-                    </a>
-                    <a href="#" class="tool-card">
-                        <i class="fas fa-file-word text-3xl text-blue-500 mb-4"></i>
-                        <h3 class="font-bold text-sm uppercase">Word to PDF Converter</h3>
-                    </a>
-                    <a href="#" class="tool-card">
-                        <i class="fas fa-image text-3xl text-orange-400 mb-4"></i>
-                        <h3 class="font-bold text-sm uppercase">JPG to PDF Converter</h3>
-                    </a>
-                    <a href="#" class="tool-card">
-                        <i class="fas fa-file-image text-3xl text-red-500 mb-4"></i>
-                        <h3 class="font-bold text-sm uppercase">PDF to Image Converter</h3>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-custom bg-white border-t mt-12">
-            <div class="row-settings py-16 text-left">
-                <div class="w-full">
-                    <h2 class="text-2xl font-black mb-10 text-[#00079e] uppercase">Complete Guide to Rojgar Sangam Tools</h2>
-                    <div class="grid md:grid-cols-2 gap-10">
-                        <div>
-                            <h3 class="text-lg font-bold mb-4 uppercase">Why choose our Image Resizer?</h3>
-                            <p class="text-sm text-gray-600 leading-relaxed">Our <strong>image resizer</strong> and <strong>photo and signature resizer for online form</strong> are designed for UPSSSC and IERT applications.</p>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold mb-4 uppercase">Secure Photo Background Remover</h3>
-                            <p class="text-sm text-gray-600 leading-relaxed">Whether it's <strong>jpg to pdf converter</strong> or <strong>photo background remover online</strong>, your data stays on your device.</p>
-                        </div>
-                    </div>
+                    <div class="tool-card flex flex-col items-start text-left p-6"><i class="fas fa-expand-arrows-alt text-2xl text-teal-500 mb-4"></i><h3 class="font-bold text-sm mb-2">Image Resizer</h3><p class="text-[10px] text-gray-400">Resize images for SSC/IERT forms.</p></div>
+                    <div class="tool-card flex flex-col items-start text-left p-6"><i class="fas fa-qrcode text-2xl text-gray-600 mb-4"></i><h3 class="font-bold text-sm mb-2">QR Generator</h3><p class="text-[10px] text-gray-400">Create QR codes instantly.</p></div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer style="background: #001f5b; color: white; padding: 60px 0 30px; margin-top: 50px;">
-        <div class="row-settings grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
-            <div class="footer-col">
-                <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" class="h-8 mb-6 bg-white p-1 rounded">
-                <p class="text-[10px] text-gray-400">Copyright © 2017 – 2026 RojgarSangam.in</p>
+    <footer class="footer-main bg-white border-t border-gray-100 py-16">
+        <div class="row-settings grid grid-cols-1 md:grid-cols-12 gap-12 text-left">
+            <div class="md:col-span-5">
+                <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" class="h-12 mb-6" alt="Rojgar Sangam">
+                <h2 class="text-2xl font-black text-[#2c3e50] mb-6 uppercase tracking-tight">ABOUT ROJGAR SANGAM</h2>
+                <p class="text-xs text-gray-500 leading-relaxed max-w-sm">Rojgar Sangam is a Sarkari Job and Education Information Website providing verified government job updates across India.</p>
+                <p class="text-[10px] text-gray-400 mt-10 italic">Copyright © 2017 – 2026 All Rights Reserved. RojgarSangam.in</p>
             </div>
-            <div class="footer-col"><h3 class="text-white text-sm font-bold mb-4 uppercase">Company</h3></div>
-            <div class="footer-col"><h3 class="text-white text-sm font-bold mb-4 uppercase">Policies</h3></div>
-            <div class="footer-col"><h3 class="text-white text-sm font-bold mb-4 uppercase">Follow Us</h3></div>
+
+            <div class="md:col-span-2">
+                <h4 class="text-sm font-black text-[#2c3e50] mb-6 uppercase">Know Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us ↗</a></li>
+                    <li><a href="#">Contact Us ↗</a></li>
+                    <li><a href="#">Sitemap ↗</a></li>
+                </ul>
+            </div>
+            <div class="md:col-span-2">
+                <h4 class="text-sm font-black text-[#2c3e50] mb-6 uppercase">Policies</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy ↗</a></li>
+                    <li><a href="#">Editorial Policy ↗</a></li>
+                    <li><a href="#">Cookies Policy ↗</a></li>
+                    <li><a href="#">Terms of Use ↗</a></li>
+                    <li><a href="#">Disclaimer ↗</a></li>
+                </ul>
+            </div>
+            <div class="md:col-span-3">
+                <h4 class="text-sm font-black text-[#2c3e50] mb-6 uppercase">Follow us</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Twitter ↗</a></li>
+                    <li><a href="#">Telegram ↗</a></li>
+                    <li><a href="#">Arattai ↗</a></li>
+                    <li><a href="#">WhatsApp ↗</a></li>
+                    <li><a href="#">Mastodon ↗</a></li>
+                </ul>
+            </div>
         </div>
     </footer>
+
 </body>
 </html>
