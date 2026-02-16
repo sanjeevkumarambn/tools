@@ -14,6 +14,8 @@
     <style>
         .header-shadow { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
         .bg-banner { background: #00134d; color: white; border-radius: 12px; position: relative; overflow: hidden; min-height: 220px; }
+        .hero-png { filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1)); animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
     </style>
 </head>
 <body>
@@ -24,96 +26,136 @@
                 <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" class="h-10" alt="Rojgar Sangam">
             </a>
             <div class="flex items-center gap-6">
-                <nav class="hidden md:flex gap-6">
-                    <a href="#" class="nav-link">Tools</a>
-                    <a href="#" class="nav-link">PDF Tools</a>
+                <nav class="hidden md:flex gap-8">
+                    <a href="#" class="nav-link font-black text-gray-700 uppercase tracking-tight text-sm hover:text-[#00079e]">Tools</a>
+                    <a href="#" class="nav-link font-black text-gray-700 uppercase tracking-tight text-sm hover:text-[#00079e]">PDF Tools</a>
                 </nav>
-                <a href="https://www.rojgarsangam.in" class="bg-white border border-gray-300 px-4 py-1.5 rounded-full text-[10px] font-bold text-gray-600 hover:bg-gray-100 transition">www.rojgarsangam.in</a>
+                <a href="https://www.rojgarsangam.in" class="bg-white border border-gray-300 px-5 py-2 rounded-full text-[11px] font-black text-gray-600 hover:bg-gray-100 transition shadow-sm uppercase">Main Website</a>
             </div>
         </div>
     </header>
 
     <main>
         <section class="section-custom bg-white">
-            <div class="row-settings flex flex-col md:flex-row items-center py-10">
+            <div class="row-settings flex flex-col md:flex-row items-center py-16">
                 <div class="md:w-1/2 text-left">
-                    <span class="text-[#8e44ad] italic text-xs font-bold mb-4 block">100% FREE to use!</span>
-                    <h1 class="text-4xl md:text-5xl font-black text-[#2c3e50] leading-tight">Simplify Your Workflow. <span class="text-[#512da8]">Edit, Convert, Manage PDFs</span> in Seconds.</h1>
-                    <p class="text-gray-400 mt-6 text-sm max-w-sm">This option highlights the time-saving benefit of using your all-in-one tool.</p>
+                    <span class="text-[#8e44ad] italic text-xs font-black mb-4 block uppercase tracking-widest">100% FREE to use!</span>
+                    <h1 class="text-4xl md:text-5xl font-black text-[#2c3e50] leading-tight">Simplify Your Workflow. <br><span class="text-[#512da8] underline decoration-wavy decoration-[#512da8]/30">Edit, Convert, Manage PDFs</span> in Seconds.</h1>
+                    <p class="text-gray-400 mt-8 text-sm max-w-sm leading-relaxed">This professional toolkit highlights the time-saving benefit of using your all-in-one document solution.</p>
                 </div>
                 <div class="md:w-1/2 flex justify-end">
-                    <img src="https://img.freepik.com/free-vector/modern-document-management-concept-flat-design_23-2148281045.jpg" class="w-full max-w-md" alt="PDF Tools Illustration">
+                    <img src="https://static.vecteezy.com/system/resources/previews/011/153/360/original/3d-web-developer-working-on-project-illustration-png.png" class="w-full max-w-md hero-png" alt="Document Tools PNG">
                 </div>
             </div>
         </section>
 
-        <div class="row-settings">
+        <div class="row-settings py-2">
             <div class="ad-placeholder ad-leaderboard">ADVERTISEMENT - 728x90</div>
         </div>
 
         <section class="section-custom">
             <div class="row-settings">
-                <div class="w-full mb-8"><h2 class="text-xl font-black text-[#2c3e50] uppercase">PDF Tools</h2></div>
+                <div class="w-full mb-10"><h2 class="text-2xl font-black text-[#2c3e50] uppercase tracking-tighter">PDF Tools</h2></div>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 w-full text-left">
-                    <a href="tools/merge-pdf.html" class="tool-card flex flex-col items-start p-6">
-                        <i class="fas fa-object-group text-2xl text-orange-400 mb-4"></i>
-                        <h3 class="font-bold text-sm mb-2 uppercase">Merge PDF</h3>
-                        <p class="text-[10px] text-gray-400">Combine PDFs in the order you want easily.</p>
+                    <a href="tools/merge-pdf.html" class="tool-card flex flex-col items-start p-7">
+                        <i class="fas fa-object-group text-3xl text-orange-400 mb-5"></i>
+                        <h3 class="font-bold text-sm mb-3 uppercase tracking-tight">Merge PDF</h3>
+                        <p class="text-[10px] text-gray-400 leading-relaxed">Combine multiple PDFs in the order you want with the easiest PDF merger available.</p>
                     </a>
-                    <a href="tools/split-pdf.html" class="tool-card flex flex-col items-start p-6">
-                        <i class="fas fa-file-export text-2xl text-orange-400 mb-4"></i>
-                        <h3 class="font-bold text-sm mb-2 uppercase">Split PDF</h3>
-                        <p class="text-[10px] text-gray-400">Separate pages or sets from PDF files instantly.</p>
+                    <a href="tools/split-pdf.html" class="tool-card flex flex-col items-start p-7">
+                        <i class="fas fa-file-export text-3xl text-orange-400 mb-5"></i>
+                        <h3 class="font-bold text-sm mb-3 uppercase tracking-tight">Split PDF</h3>
+                        <p class="text-[10px] text-gray-400 leading-relaxed">Separate one page or a whole set for easy conversion into independent PDF files.</p>
                     </a>
-                    <a href="tools/compress-pdf.html" class="tool-card flex flex-col items-start p-6">
-                        <i class="fas fa-compress-arrows-alt text-2xl text-green-500 mb-4"></i>
-                        <h3 class="font-bold text-sm mb-2 uppercase">Compress PDF</h3>
-                        <p class="text-[10px] text-gray-400">Reduce file size while optimizing quality.</p>
+                    <a href="tools/compress-pdf.html" class="tool-card flex flex-col items-start p-7 border-2 border-[#00079e]/10">
+                        <i class="fas fa-compress-arrows-alt text-3xl text-green-500 mb-5"></i>
+                        <h3 class="font-bold text-sm mb-3 uppercase tracking-tight text-[#00079e]">Compress PDF</h3>
+                        <p class="text-[10px] text-gray-400 leading-relaxed">Reduce file size while optimizing for maximal PDF quality for government portals.</p>
                     </a>
-                    <a href="#" class="tool-card flex flex-col items-start p-6">
-                        <i class="fas fa-file-word text-2xl text-blue-500 mb-4"></i>
-                        <h3 class="font-bold text-sm mb-2 uppercase">WORD to PDF</h3>
-                        <p class="text-[10px] text-gray-400">Convert DOCX files to PDF online free.</p>
+                    <a href="#" class="tool-card flex flex-col items-start p-7">
+                        <i class="fas fa-file-word text-3xl text-blue-500 mb-5"></i>
+                        <h3 class="font-bold text-sm mb-3 uppercase tracking-tight">WORD to PDF</h3>
+                        <p class="text-[10px] text-gray-400 leading-relaxed">Make DOC and DOCX files easy to read by converting them to PDF online free.</p>
                     </a>
-                    <a href="#" class="tool-card flex flex-col items-start p-6">
-                        <i class="fas fa-image text-2xl text-yellow-500 mb-4"></i>
-                        <h3 class="font-bold text-sm mb-2 uppercase">JPG to PDF</h3>
-                        <p class="text-[10px] text-gray-400">Convert JPG images to PDF in seconds.</p>
+                    <a href="#" class="tool-card flex flex-col items-start p-7">
+                        <i class="fas fa-image text-3xl text-yellow-500 mb-5"></i>
+                        <h3 class="font-bold text-sm mb-3 uppercase tracking-tight">JPG to PDF</h3>
+                        <p class="text-[10px] text-gray-400 leading-relaxed">Convert JPG images to PDF in seconds. Easily adjust orientation and margins.</p>
                     </a>
-                    <a href="#" class="tool-card flex flex-col items-start p-6">
-                        <i class="fas fa-file-pdf text-2xl text-red-500 mb-4"></i>
-                        <h3 class="font-bold text-sm mb-2 uppercase">PDF to JPG</h3>
-                        <p class="text-[10px] text-gray-400">Convert each PDF page into JPG images.</p>
+                    <a href="#" class="tool-card flex flex-col items-start p-7">
+                        <i class="fas fa-file-pdf text-3xl text-red-500 mb-5"></i>
+                        <h3 class="font-bold text-sm mb-3 uppercase tracking-tight">PDF to JPG</h3>
+                        <p class="text-[10px] text-gray-400 leading-relaxed">Convert each PDF page into a JPG or extract all images contained in a PDF.</p>
                     </a>
-                    <div class="md:col-span-2 bg-banner flex flex-col justify-end p-8">
-                        <img src="https://www.freepnglogos.com/uploads/skateboarding-png/skateboarding-skater-silhouette-skateboarding-clip-art-at-clker-21.png" class="absolute right-4 top-4 h-40 opacity-80" alt="Skater">
-                        <h3 class="text-xl font-bold uppercase">Remove Background</h3>
-                        <p class="text-[10px] opacity-70 mt-1">100% Automatically and Free.</p>
-                        <a href="#" class="absolute right-6 bottom-6 bg-white text-[#00134d] w-8 h-8 rounded-full flex items-center justify-center shadow-lg"><i class="fas fa-arrow-right text-xs"></i></a>
+                    <div class="md:col-span-2 bg-banner flex flex-col justify-end p-8 group">
+                        <img src="https://www.freepnglogos.com/uploads/skateboarding-png/skateboarding-skater-silhouette-skateboarding-clip-art-at-clker-21.png" class="absolute right-4 top-4 h-44 opacity-80 group-hover:scale-110 transition-transform duration-500" alt="Skater">
+                        <h3 class="text-2xl font-black uppercase">Remove Background</h3>
+                        <p class="text-xs opacity-70 mt-2 font-bold uppercase tracking-widest">100% Automatically and Free</p>
+                        <a href="#" class="absolute right-8 bottom-8 bg-white text-[#00134d] w-10 h-10 rounded-full flex items-center justify-center shadow-2xl hover:bg-[#512da8] hover:text-white transition-colors"><i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="row-settings py-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+        <div class="row-settings py-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                 <div class="ad-placeholder ad-rectangle">SIDE AD - 300x250</div>
                 <div class="ad-placeholder ad-rectangle">SIDE AD - 300x250</div>
             </div>
         </div>
+
+        <section class="section-custom bg-white">
+            <div class="row-settings">
+                <div class="w-full mb-10"><h2 class="text-xl font-black text-[#2c3e50] uppercase tracking-widest">Other Tools</h2></div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 w-full">
+                    <a href="#" class="tool-card flex flex-col items-start p-6">
+                        <i class="fas fa-expand-arrows-alt text-2xl text-teal-500 mb-4"></i>
+                        <h3 class="font-bold text-sm mb-2 uppercase">Image Resizer</h3>
+                        <p class="text-[10px] text-gray-400">Perfect photo and signature resizer for online forms.</p>
+                    </a>
+                    <a href="#" class="tool-card flex flex-col items-start p-6">
+                        <i class="fas fa-calculator text-2xl text-purple-500 mb-4"></i>
+                        <h3 class="font-bold text-sm mb-2 uppercase tracking-tight">Age Calculator</h3>
+                        <p class="text-[10px] text-gray-400">Instant age calculator by date of birth.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="footer-main bg-white border-t py-16">
-        <div class="row-settings grid grid-cols-1 md:grid-cols-12 gap-12 text-left">
+    <footer class="footer-main py-20 mt-20">
+        <div class="row-settings grid grid-cols-1 md:grid-cols-12 gap-16 text-left">
             <div class="md:col-span-5">
-                <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" class="h-12 mb-6" alt="Rojgar Sangam">
-                <h2 class="text-2xl font-black text-[#2c3e50] mb-6 uppercase tracking-tight">ABOUT ROJGAR SANGAM</h2>
-                <p class="text-xs text-gray-500 leading-relaxed max-w-sm">Official toolkit for Rojgar Sangam job aspirants.</p>
-                <p class="text-[10px] text-gray-400 mt-10 italic">Copyright © 2017 – 2026 RojgarSangam.in</p>
+                <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" class="h-14 mb-8 bg-white p-1 rounded-sm" alt="Rojgar Sangam">
+                <h2 class="text-2xl font-black text-white mb-8 uppercase tracking-tighter">ABOUT ROJGAR SANGAM</h2>
+                <p class="text-[13px] text-gray-300 leading-loose max-w-sm font-medium">Rojgar Sangam is a Sarkari Job and Education Information Website providing verified government job updates across India.</p>
+                <p class="text-[11px] text-gray-500 mt-12 font-bold tracking-widest">Copyright © 2017 – 2026 All Rights Reserved. RojgarSangam.in</p>
             </div>
-            <div class="md:col-span-2"><h4 class="text-sm font-black mb-6 uppercase">Company</h4><ul class="footer-links"><li><a href="#">About Us ↗</a></li><li><a href="#">Contact Us ↗</a></li></ul></div>
-            <div class="md:col-span-2"><h4 class="text-sm font-black mb-6 uppercase">Policies</h4><ul class="footer-links"><li><a href="#">Privacy Policy ↗</a></li><li><a href="#">Terms of Use ↗</a></li></ul></div>
-            <div class="md:col-span-3"><h4 class="text-sm font-black mb-6 uppercase">Follow us</h4><ul class="footer-links"><li><a href="#">Twitter ↗</a></li><li><a href="#">Telegram ↗</a></li></ul></div>
+            <div class="md:col-span-2">
+                <h4 class="text-sm font-black mb-8 uppercase text-white tracking-widest border-b border-white/10 pb-2">Know Company</h4>
+                <ul class="footer-links space-y-4">
+                    <li><a href="#" class="hover:translate-x-1 inline-block transition-transform">About Us ↗</a></li>
+                    <li><a href="#" class="hover:translate-x-1 inline-block transition-transform">Contact Us ↗</a></li>
+                    <li><a href="#" class="hover:translate-x-1 inline-block transition-transform">Sitemap ↗</a></li>
+                </ul>
+            </div>
+            <div class="md:col-span-2">
+                <h4 class="text-sm font-black mb-8 uppercase text-white tracking-widest border-b border-white/10 pb-2">Policies</h4>
+                <ul class="footer-links space-y-4">
+                    <li><a href="#" class="hover:translate-x-1 inline-block transition-transform">Privacy Policy ↗</a></li>
+                    <li><a href="#" class="hover:translate-x-1 inline-block transition-transform">Editorial Policy ↗</a></li>
+                    <li><a href="#" class="hover:translate-x-1 inline-block transition-transform">Cookies Policy ↗</a></li>
+                    <li><a href="#" class="hover:translate-x-1 inline-block transition-transform">Terms of Use ↗</a></li>
+                </ul>
+            </div>
+            <div class="md:col-span-3">
+                <h4 class="text-sm font-black mb-8 uppercase text-white tracking-widest border-b border-white/10 pb-2">Follow us</h4>
+                <ul class="footer-links space-y-4">
+                    <li><a href="#" class="hover:translate-x-1 inline-block transition-transform"><i class="fab fa-twitter mr-2 text-blue-400"></i> Twitter ↗</a></li>
+                    <li><a href="#" class="hover:translate-x-1 inline-block transition-transform"><i class="fab fa-telegram mr-2 text-blue-500"></i> Telegram ↗</a></li>
+                    <li><a href="#" class="hover:translate-x-1 inline-block transition-transform"><i class="fab fa-whatsapp mr-2 text-green-500"></i> WhatsApp ↗</a></li>
+                </ul>
+            </div>
         </div>
     </footer>
 </body>
