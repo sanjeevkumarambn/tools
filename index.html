@@ -3,79 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rojgar Sangam Tools</title>
+<title>Tools - Rojgar Sangam</title>
 
 <style>
 body{
     margin:0;
     font-family:Segoe UI, sans-serif;
-    background:#f3f5fa;
+    background:#f4f6fb;
+    color:#1e1e1e;
 }
 
-.wrapper{
-    max-width:1150px;
+.container{
+    max-width:1200px;
     margin:auto;
     padding:40px 20px;
 }
 
-h1{
-    text-align:center;
-    font-size:34px;
-    font-weight:700;
-    margin-bottom:10px;
+/* Header */
+header{
+    background:#ffffff;
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 
-.subtitle{
-    text-align:center;
-    color:#666;
-    margin-bottom:45px;
+/* Hero */
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:60px;
+    gap:40px;
+}
+
+.hero-left{
+    width:50%;
+}
+
+.hero-left small{
+    color:#7c3aed;
+    font-weight:600;
+}
+
+.hero-left h1{
+    font-size:42px;
+    margin:15px 0;
+    line-height:1.3;
+}
+
+.hero-left p{
+    color:#6b7280;
     font-size:16px;
 }
 
-.grid{
+.hero-right{
+    width:45%;
+}
+
+/* Section Title */
+.section-title{
+    font-size:22px;
+    font-weight:700;
+    margin:60px 0 20px;
+}
+
+/* Tool Layout */
+.tools-wrapper{
+    display:flex;
+    gap:40px;
+}
+
+.tools-grid{
+    flex:1;
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:28px;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
 }
 
-.card{
+.tool-card{
     background:#ffffff;
-    padding:28px;
-    border-radius:14px;
-    box-shadow:0 5px 18px rgba(0,0,0,0.06);
-    text-align:center;
-    transition:0.3s;
+    padding:20px;
+    border-radius:12px;
+    border:1px solid #e5e7eb;
 }
 
-.card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 12px 28px rgba(0,0,0,0.08);
+.tool-card h3{
+    margin:5px 0;
+    font-size:16px;
 }
 
-.icon{
-    font-size:38px;
-    margin-bottom:14px;
+.tool-card p{
+    font-size:13px;
+    color:#6b7280;
 }
 
-.card h3{
-    margin:10px 0 8px;
-    font-size:18px;
+/* Featured Card */
+.featured{
+    width:300px;
+    background:#1e2a78;
+    border-radius:20px;
+    padding:20px;
+    color:#ffffff;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
 }
 
-.card p{
-    font-size:14px;
-    color:#666;
-    line-height:1.6;
+/* Footer */
+footer{
+    margin-top:80px;
+    background:#ffffff;
+    padding:60px 20px;
 }
 
-.card a{
-    display:inline-block;
-    margin-top:15px;
-    padding:10px 20px;
-    background:#16226c;
-    color:#fff;
-    border-radius:6px;
+.footer-grid{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+}
+
+footer h4{
+    margin-bottom:15px;
+}
+
+footer a{
+    display:block;
     text-decoration:none;
+    color:#374151;
+    margin-bottom:8px;
     font-size:14px;
 }
 </style>
@@ -83,81 +142,104 @@ h1{
 
 <body>
 
-<div class="wrapper">
+<header>
+<div><strong>ROJGAR SANGAM</strong></div>
+<div>Tools | PDF Tools</div>
+</header>
 
-<h1>Document & Image Tools</h1>
-<p class="subtitle">
-Simple online utilities for students and applicants to prepare documents quickly and correctly.
-</p>
+<div class="container">
 
-<div class="grid">
+<div class="hero">
+<div class="hero-left">
+<small>100% FREE to use!</small>
+<h1>Simplify Your Workflow. Edit, Convert, Manage PDFs in Seconds.</h1>
+<p>This option highlights the time-saving benefit of using your all-in-one tool.</p>
+</div>
+<div class="hero-right">
+<img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" width="100%">
+</div>
+</div>
 
-<div class="card">
-<div class="icon">📄</div>
+<div class="section-title">PDF Tools</div>
+
+<div class="tools-wrapper">
+
+<div class="tools-grid">
+
+<div class="tool-card">
 <h3>Merge PDF</h3>
-<p>Combine multiple PDF documents into a single file for easy uploading and submission.</p>
-<a href="/merge-pdf">Open Tool</a>
+<p>Combine PDFs in the order you want with the easiest PDF merger available.</p>
 </div>
 
-<div class="card">
-<div class="icon">✂️</div>
+<div class="tool-card">
 <h3>Split PDF</h3>
-<p>Extract selected pages or divide large PDF files into smaller parts instantly.</p>
-<a href="/split-pdf">Open Tool</a>
+<p>Separate one page or whole set for easy conversion into independent files.</p>
 </div>
 
-<div class="card">
-<div class="icon">📦</div>
+<div class="tool-card">
 <h3>Compress PDF</h3>
-<p>Reduce file size while maintaining readability to meet upload limits on forms.</p>
-<a href="/compress-pdf">Open Tool</a>
+<p>Reduce file size while optimizing for maximal PDF quality.</p>
 </div>
 
-<div class="card">
-<div class="icon">🖼️</div>
-<h3>PDF to JPG</h3>
-<p>Convert document pages into high quality JPG image files.</p>
-<a href="/pdf-to-jpg">Open Tool</a>
+<div class="tool-card">
+<h3>WORD to PDF</h3>
+<p>Make DOC and DOCX files easy to read by converting them to PDF.</p>
 </div>
 
-<div class="card">
-<div class="icon">📷</div>
+<div class="tool-card">
 <h3>JPG to PDF</h3>
-<p>Create PDF documents from image files for official use.</p>
-<a href="/jpg-to-pdf">Open Tool</a>
+<p>Convert JPG images to PDF in seconds. Easily adjust orientation and margins.</p>
 </div>
 
-<div class="card">
-<div class="icon">📝</div>
-<h3>Word to PDF</h3>
-<p>Convert DOC or DOCX documents into stable PDF format online.</p>
-<a href="/word-to-pdf">Open Tool</a>
+<div class="tool-card">
+<h3>PDF to JPG</h3>
+<p>Convert each PDF page into a JPG or extract all images contained in a PDF.</p>
 </div>
 
-<div class="card">
-<div class="icon">📐</div>
-<h3>Image Resizer</h3>
-<p>Resize images by pixel or file size according to application requirements.</p>
-<a href="/image-resizer">Open Tool</a>
 </div>
 
-<div class="card">
-<div class="icon">🎯</div>
+<div class="featured">
 <h3>Remove Background</h3>
-<p>Automatically remove image background for passport or ID style photos.</p>
-<a href="/remove-background">Open Tool</a>
-</div>
-
-<div class="card">
-<div class="icon">🎂</div>
-<h3>Age Calculator</h3>
-<p>Calculate exact age using date of birth for eligibility checks.</p>
-<a href="/age-calculator">Open Tool</a>
+<p>100% Automatically and Free</p>
 </div>
 
 </div>
 
 </div>
+
+<footer>
+<div class="footer-grid">
+<div>
+<h4>About Rojgar Sangam</h4>
+<p>Rojgar Sangam is a Sarkari Job and Education Information Website providing verified government job updates across India.</p>
+</div>
+
+<div>
+<h4>Know Company</h4>
+<a href="#">About Us</a>
+<a href="#">Contact Us</a>
+<a href="#">Sitemap</a>
+</div>
+
+<div>
+<h4>Policies</h4>
+<a href="#">Privacy Policy</a>
+<a href="#">Editorial Policy</a>
+<a href="#">Cookies Policy</a>
+<a href="#">Terms of Use</a>
+<a href="#">Disclaimer</a>
+</div>
+
+<div>
+<h4>Follow us</h4>
+<a href="#">Twitter</a>
+<a href="#">Telegram</a>
+<a href="#">WhatsApp</a>
+<a href="#">Mastodon</a>
+</div>
+
+</div>
+</footer>
 
 </body>
 </html>
