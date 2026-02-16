@@ -164,4 +164,18 @@
             }
         }
 
-        function downloadResult
+        function downloadResult() {
+            if (!pdfBlob) return;
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(pdfBlob);
+            link.download = docFile.name.replace(/\.[^/.]+$/, "") + ".pdf";
+            link.click();
+        }
+
+        function switchScreen(id) {
+            document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
+            document.getElementById('screen-' + id).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
