@@ -8,22 +8,22 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Transparent Checkerboard Background */
         .preview-container {
-            background-image: linear-gradient(45deg, #e5e5e5 25%, transparent 25%), 
-                              linear-gradient(-45deg, #e5e5e5 25%, transparent 25%), 
-                              linear-gradient(45deg, transparent 75%, #e5e5e5 75%), 
-                              linear-gradient(-45deg, transparent 75%, #e5e5e5 75%);
+            background-image: linear-gradient(45deg, #eee 25%, transparent 25%), 
+                              linear-gradient(-45deg, #eee 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #eee 75%), 
+                              linear-gradient(-45deg, transparent 75%, #eee 75%);
             background-size: 20px 20px;
             background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            border: 2px solid #bdbdbd;
+            border-radius: 12px;
             min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
-        #resultPreview { max-width: 100%; max-height: 500px; display: block; }
+        #resultPreview { max-width: 100%; max-height: 500px; }
     </style>
 </head>
 <body class="bg-[#f8f8ff]">
@@ -38,48 +38,41 @@
         <section id="screen-1" class="section-custom">
             <div class="row-settings text-center">
                 <h1 class="text-3xl font-black text-[#333] mb-4">Remove Photo Background</h1>
-                <p class="text-gray-500 mb-8">AI-Powered. 100% Secure. Works in Browser.</p>
+                <p class="text-gray-500 mb-8">AI-Powered. Free. No Data Leaves Your Device.</p>
                 
-                <div class="bg-white p-12 rounded-2xl border-2 border-dashed border-[#00079e] max-w-lg mx-auto cursor-pointer hover:bg-blue-50 transition" onclick="document.getElementById('fileInput').click()">
-                    <i class="fas fa-magic text-5xl text-[#00079e] mb-4"></i>
-                    <p class="font-bold text-lg">Click to Upload Image</p>
-                    <p class="text-xs text-gray-400 mt-2">No data sent to server. Your privacy is safe.</p>
-                    <input type="file" id="fileInput" class="hidden" accept="image/*" onchange="initRemoveBG()">
+                <div id="dropZone" class="bg-white p-12 rounded-3xl border-2 border-dashed border-[#00079e] max-w-lg mx-auto cursor-pointer hover:bg-blue-50 transition">
+                    <i class="fas fa-file-image text-5xl text-[#00079e] mb-4"></i>
+                    <p class="font-bold text-lg text-[#333]">Select or Drop Image Here</p>
+                    <p class="text-xs text-gray-400 mt-2">Click to browse files</p>
+                    <input type="file" id="fileInput" class="hidden" accept="image/*">
                 </div>
             </div>
         </section>
 
         <section id="screen-3" class="section-custom hidden">
-            <div class="row-settings text-center py-20 bg-white rounded-3xl border border-[#bdbdbd] max-w-xl shadow-sm">
-                <div class="relative w-24 h-24 mx-auto mb-6">
-                    <div class="absolute inset-0 border-4 border-blue-100 rounded-full"></div>
-                    <div class="absolute inset-0 border-4 border-[#00079e] rounded-full border-t-transparent animate-spin"></div>
-                </div>
-                <h2 class="text-2xl font-bold text-[#333]">AI is Processing...</h2>
-                <p class="text-gray-500 mt-3 px-6">Downloading AI models (first time) and removing background. This may take 15-30 seconds.</p>
+            <div class="row-settings text-center py-20 bg-white rounded-3xl border border-[#bdbdbd] max-w-xl mx-auto shadow-sm">
+                <div class="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#00079e] mb-6"></div>
+                <h2 class="text-2xl font-bold text-[#333]">Removing Background...</h2>
+                <p class="text-gray-500 mt-3 px-6 text-sm">Downloading AI models (first-time only) and processing image. <br> <b>Please do not close this tab.</b></p>
             </div>
         </section>
 
         <section id="screen-2" class="section-custom hidden">
             <div class="row-settings">
                 <div class="bg-white p-6 rounded-2xl border border-[#bdbdbd] max-w-3xl mx-auto shadow-lg">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-xl font-bold text-green-600"><i class="fas fa-check-circle"></i> Background Removed!</h2>
-                        <button onclick="location.reload()" class="text-sm text-gray-400 hover:text-[#00079e]"><i class="fas fa-undo"></i> Start Again</button>
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-green-700"><i class="fas fa-check-circle"></i> Result Preview</h2>
+                        <button onclick="location.reload()" class="text-xs font-bold text-gray-500 hover:text-red-600"><i class="fas fa-sync"></i> RESTART</button>
                     </div>
 
-                    <div class="preview-container mb-6 border">
-                        <img id="resultPreview" alt="Transparent Result">
+                    <div class="preview-container mb-8">
+                        <img id="resultPreview">
                     </div>
-                    
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <a id="downloadBtn" class="btn-brand flex items-center justify-center gap-2 py-4">
-                            <i class="fas fa-download"></i> Download PNG (Transparent)
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a id="downloadBtn" class="btn-brand flex-1 py-4 text-center text-lg flex items-center justify-center gap-2">
+                            <i class="fas fa-download"></i> Download Transparent PNG
                         </a>
-                        <button onclick="window.print()" class="border-2 border-[#00079e] text-[#00079e] font-bold py-4 rounded hover:bg-blue-50">
-                            <i class="fas fa-print"></i> Print Photo
-                        </button>
                     </div>
                 </div>
             </div>
@@ -89,44 +82,47 @@
     <div class="ad-manager-placeholder row-settings" data-ad-type="leaderboard"></div>
 
     <script type="module">
-        // Importing the background removal library directly
+        // Import AI Library
         import { removeBackground } from 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@2.0.1/+esm';
 
-        // Attaching the function to the window so the HTML can call it
-        window.initRemoveBG = async function() {
-            const fileInput = document.getElementById('fileInput');
-            const file = fileInput.files[0];
+        const fileInput = document.getElementById('fileInput');
+        const dropZone = document.getElementById('dropZone');
+
+        // Click on Div triggers hidden Input
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        // When user selects a file (This is the critical fix!)
+        fileInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
             if (!file) return;
 
-            // Switch to Screen 3 (Processing)
+            // Step 1: Switch to Processing Screen
             document.getElementById('screen-1').classList.add('hidden');
             document.getElementById('screen-3').classList.remove('hidden');
 
             try {
-                // AI Background Removal Process
+                // Step 2: Run AI Background Removal
                 const blob = await removeBackground(file);
                 
-                // Converting result to URL
+                // Step 3: Handle Result
                 const resultUrl = URL.createObjectURL(blob);
-                
-                // Setting up Screen 2 (Result)
-                const imgPreview = document.getElementById('resultPreview');
+                const previewImg = document.getElementById('resultPreview');
                 const dlBtn = document.getElementById('downloadBtn');
-                
-                imgPreview.src = resultUrl;
+
+                previewImg.src = resultUrl;
                 dlBtn.href = resultUrl;
                 dlBtn.download = "Rojgar-Sangam-NoBG-" + Date.now() + ".png";
 
-                // Final Switch to Result Screen
+                // Step 4: Show Result Screen
                 document.getElementById('screen-3').classList.add('hidden');
                 document.getElementById('screen-2').classList.remove('hidden');
 
-            } catch (error) {
-                console.error("BG Removal Error:", error);
-                alert("Something went wrong. Please ensure you are using a modern browser (Chrome/Edge) and a good internet connection to load the AI model.");
+            } catch (err) {
+                console.error("Error:", err);
+                alert("AI Model failed to load. Please check your internet connection and refresh the page.");
                 location.reload();
             }
-        };
+        });
     </script>
 </body>
 </html>
