@@ -16,8 +16,9 @@
 
     <main class="min-h-screen pt-10">
         <section id="screen-1" class="section-custom">
-            <div class="row-settings text-center">
-                <h1 class="text-2xl font-bold mb-8 uppercase">Compress PDF files</h1>
+            <div class="row-settings text-center border-1 border-solid border-gray-300">
+                <h1 class="text-2xl font-bold mb-8">Compress PDF Files</h1>
+                <p class="font-normal text-gray-400">Reduce File Size While Optimizing for Maximal PDF Quality.</p>
                 <div onclick="document.getElementById('cIn').click()" class="bg-white p-16 rounded-xl border-2 border-dashed border-gray-300 max-w-lg mx-auto cursor-pointer">
                     <p class="font-bold text-gray-400 uppercase tracking-widest">+ Upload PDF</p>
                     <input type="file" id="cIn" class="hidden" accept="application/pdf" onchange="handleFile(event)">
