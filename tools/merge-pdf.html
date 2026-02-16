@@ -2,14 +2,14 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <title>Merge PDF Files - Rojgar Sangam Tools</title>
+    <title>Merge PDF - Rojgar Sangam Tools</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-[#f8f8ff]">
-    <header class="header-main bg-white border-b px-4 py-2 flex justify-between">
+    <header class="header-main px-4 py-2 border-b bg-white flex justify-between">
         <a href="../index.html"><img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" class="h-10"></a>
     </header>
 
@@ -17,94 +17,73 @@
         <section id="screen-1" class="section-custom">
             <div class="row-settings text-center">
                 <h1 class="text-2xl font-bold mb-8">Merge PDF files</h1>
-                <div onclick="document.getElementById('pdfIn').click()" class="bg-white p-16 rounded-xl border-2 border-dashed border-gray-300 max-w-lg mx-auto cursor-pointer">
-                    <i class="fas fa-plus text-3xl text-gray-200 mb-2"></i>
-                    <p class="font-bold text-gray-500 uppercase">+ Upload PDF</p>
-                    <input type="file" id="pdfIn" class="hidden" accept="application/pdf" multiple onchange="handlePDFs(event)">
+                <div onclick="document.getElementById('mIn').click()" class="bg-white p-16 rounded-xl border-2 border-dashed border-gray-300 max-w-lg mx-auto cursor-pointer">
+                    <p class="font-bold text-gray-400 uppercase tracking-widest">+ Upload PDF</p>
+                    <input type="file" id="mIn" class="hidden" accept="application/pdf" multiple onchange="handleMergeFiles(event)">
                 </div>
             </div>
         </section>
 
         <section id="screen-2" class="section-custom hidden">
             <div class="row-settings text-center">
-                <div id="pdfGrid" class="flex flex-wrap justify-center gap-4 mb-10"></div>
+                <div id="mGrid" class="flex flex-wrap justify-center gap-4 mb-10"></div>
                 <div class="flex justify-center gap-4">
-                    <button onclick="document.getElementById('pdfIn').click()" class="bg-[#00079e] text-white rounded-full w-12 h-12 text-xl shadow-lg">+</button>
-                    <button id="mergeBtn" class="bg-[#00079e] text-white px-8 py-3 rounded font-bold uppercase tracking-wider">Merge PDF</button>
+                    <button onclick="document.getElementById('mIn').click()" class="bg-[#00079e] text-white rounded-full w-12 h-12 shadow-lg">+</button>
+                    <button id="doMerge" class="bg-[#00079e] text-white px-10 py-3 rounded font-bold uppercase">Merge PDF</button>
                 </div>
             </div>
         </section>
 
         <section id="screen-3" class="section-custom hidden">
-            <div class="row-settings text-center py-20 bg-white rounded-xl max-w-lg mx-auto">
+            <div class="row-settings text-center py-20 bg-white rounded-xl max-w-lg mx-auto border shadow-sm">
                 <div class="mb-6"><i class="fas fa-file-pdf text-5xl text-yellow-500 animate-pulse"></i></div>
-                <h2 class="text-2xl font-bold uppercase">Merging PDF</h2>
-                <p class="text-xs text-gray-400 mt-2">Do not close your browser. Wait until files are processed!</p>
+                <h2 class="text-2xl font-bold uppercase tracking-widest text-[#333]">MERGING PDF</h2>
+                <p class="text-[10px] text-gray-400 mt-2 px-6">Do not close your browser. Wait until your files are uploaded and processed!</p>
             </div>
         </section>
 
         <section id="screen-4" class="section-custom hidden">
-            <div class="row-settings text-center py-20 bg-white rounded-xl max-w-lg mx-auto shadow-lg">
+            <div class="row-settings text-center py-16 bg-white rounded-xl max-w-lg mx-auto shadow-lg">
                 <div class="text-6xl text-green-500 mb-6"><i class="fas fa-check-circle"></i></div>
                 <h2 class="text-2xl font-bold mb-8">PDFs have been merged</h2>
-                <a id="dlPDF" class="bg-[#00079e] text-white px-10 py-4 rounded font-bold inline-block uppercase">Download PDF <i class="fas fa-download ml-2"></i></a>
-                <button onclick="location.reload()" class="block mx-auto mt-6 text-xs text-[#00079e] underline">Back to Home</button>
+                <a id="mDl" class="bg-[#00079e] text-white px-10 py-4 rounded font-bold inline-block uppercase shadow-lg">Download PDF <i class="fas fa-download ml-2"></i></a>
             </div>
         </section>
     </main>
 
     <script>
-        let pdfFiles = [];
-        function handlePDFs(e) {
+        let mFiles = [];
+        function handleMergeFiles(e) {
             const files = Array.from(e.target.files);
-            pdfFiles = [...pdfFiles, ...files];
-            renderGrid();
+            mFiles = [...mFiles, ...files];
+            const grid = document.getElementById('mGrid');
+            grid.innerHTML = '';
+            mFiles.forEach((f, i) => {
+                grid.innerHTML += `<div class="relative bg-white border p-2 rounded shadow-sm w-32 h-44 flex flex-col items-center">
+                    <button onclick="removeM(${i})" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">X</button>
+                    <i class="fas fa-file-pdf text-4xl text-red-500 mt-10"></i>
+                    <p class="text-[8px] mt-4 font-bold truncate w-full text-center px-1">${f.name}</p>
+                </div>`;
+            });
             document.getElementById('screen-1').classList.add('hidden');
             document.getElementById('screen-2').classList.remove('hidden');
         }
+        function removeM(i) { mFiles.splice(i,1); if(mFiles.length===0) location.reload(); handleMergeFiles({target:{files:[]}}); }
 
-        function renderGrid() {
-            const grid = document.getElementById('pdfGrid');
-            grid.innerHTML = '';
-            pdfFiles.forEach((f, i) => {
-                grid.innerHTML += `
-                    <div class="relative bg-white border p-2 rounded shadow-sm w-32 h-44 flex flex-col items-center">
-                        <button onclick="removePdf(${i})" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">X</button>
-                        <i class="fas fa-file-pdf text-4xl text-red-500 mt-10"></i>
-                        <p class="text-[8px] mt-4 font-bold truncate w-full px-1">${f.name}</p>
-                    </div>`;
-            });
-            document.getElementById('mergeBtn').innerText = `Merge ${pdfFiles.length} PDF`;
-        }
-
-        function removePdf(i) {
-            pdfFiles.splice(i, 1);
-            renderGrid();
-            if(pdfFiles.length === 0) location.reload();
-        }
-
-        document.getElementById('mergeBtn').onclick = async () => {
-            if(pdfFiles.length < 2) return alert("Select 2 or more PDFs");
+        document.getElementById('doMerge').onclick = async () => {
             document.getElementById('screen-2').classList.add('hidden');
             document.getElementById('screen-3').classList.remove('hidden');
-
             const { PDFDocument } = PDFLib;
-            const mergedPdf = await PDFDocument.create();
-            for (let f of pdfFiles) {
+            const merged = await PDFDocument.create();
+            for (let f of mFiles) {
                 const pdf = await PDFDocument.load(await f.arrayBuffer());
-                const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-                pages.forEach(p => mergedPdf.addPage(p));
+                const pages = await merged.copyPages(pdf, pdf.getPageIndices());
+                pages.forEach(p => merged.addPage(p));
             }
-
-            const bytes = await mergedPdf.save();
-            const url = URL.createObjectURL(new Blob([bytes], {type: 'application/pdf'}));
-            document.getElementById('dlPDF').href = url;
-            document.getElementById('dlPDF').download = "merged-rojgar-sangam.pdf";
-            
-            setTimeout(() => {
-                document.getElementById('screen-3').classList.add('hidden');
-                document.getElementById('screen-4').classList.remove('hidden');
-            }, 1500);
+            const bytes = await merged.save();
+            document.getElementById('mDl').href = URL.createObjectURL(new Blob([bytes], {type:'application/pdf'}));
+            document.getElementById('mDl').download = "merged-rojgar-sangam.pdf";
+            setTimeout(() => { document.getElementById('screen-3').classList.add('hidden'); document.getElementById('screen-4').classList.remove('hidden'); }, 1500);
         };
     </script>
 </body>
