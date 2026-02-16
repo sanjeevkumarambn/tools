@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Checkerboard background for transparency preview */
+        .preview-box {
+            background-image: linear-gradient(45deg, #eee 25%, transparent 25%), linear-gradient(-45deg, #eee 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #eee 75%), linear-gradient(-45deg, transparent 75%, #eee 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+    </style>
 </head>
 <body>
     <header class="header-main">
@@ -19,10 +27,9 @@
         <section id="screen-1" class="section-custom">
             <div class="row-settings text-center">
                 <h1 class="text-3xl font-bold mb-4">Remove Image Background</h1>
-                <p class="text-gray-500 mb-8">100% Automatic and Free</p>
-                <div class="bg-white p-10 rounded-xl border-2 border-dashed border-[#00079e] max-w-lg mx-auto cursor-pointer" onclick="document.getElementById('fileInput').click()">
-                    <i class="fas fa-cloud-upload-alt text-5xl text-[#00079e] mb-4"></i>
-                    <p class="font-bold">Upload Image</p>
+                <div class="bg-white p-12 rounded-xl border-2 border-dashed border-[#00079e] max-w-lg mx-auto cursor-pointer" onclick="document.getElementById('fileInput').click()">
+                    <i class="fas fa-image text-5xl text-[#00079e] mb-4"></i>
+                    <p class="font-bold">Select Image to Remove Background</p>
                     <input type="file" id="fileInput" class="hidden" accept="image/*" onchange="processBG()">
                 </div>
             </div>
@@ -30,19 +37,25 @@
 
         <section id="screen-3" class="section-custom hidden">
             <div class="row-settings text-center py-20">
-                <div class="animate-bounce text-5xl text-[#00079e] mb-4"><i class="fas fa-magic"></i></div>
-                <h2 class="text-2xl font-bold">Removing Background...</h2>
-                <p>AI is processing your image. Please wait.</p>
+                <div class="animate-spin text-5xl text-[#00079e] mb-6"><i class="fas fa-circle-notch"></i></div>
+                <h2 class="text-2xl font-bold">AI is removing background...</h2>
+                <p class="text-gray-500 mt-2">First time it may take 30-40 seconds to load AI models.</p>
             </div>
         </section>
 
         <section id="screen-2" class="section-custom hidden">
             <div class="row-settings text-center">
-                <div class="bg-white p-10 rounded-xl border border-[#bdbdbd] max-w-lg mx-auto">
-                    <h2 class="text-2xl font-bold mb-6">Background Removed!</h2>
-                    <img id="preview" class="max-w-full h-auto mb-6 mx-auto border rounded bg-[url('https://www.transparenttextures.com/patterns/checkerboard.png')]">
-                    <a id="downloadBtn" class="btn-brand block text-center">Download PNG</a>
-                    <button onclick="location.reload()" class="mt-4 text-sm underline">Upload Another</button>
+                <div class="bg-white p-6 rounded-xl border border-[#bdbdbd] max-w-2xl mx-auto">
+                    <h2 class="text-xl font-bold mb-4 text-green-600">Background Removed Successfully!</h2>
+                    
+                    <div class="preview-box border rounded-lg p-2 mb-6 flex justify-center">
+                        <img id="resultPreview" class="max-h-[400px] object-contain">
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a id="downloadBtn" class="btn-brand flex-1 py-3 text-center">Download PNG</a>
+                        <button onclick="location.reload()" class="border-2 border-gray-300 py-3 px-6 rounded font-bold hover:bg-gray-100">Upload New</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -55,21 +68,29 @@
             const file = document.getElementById('fileInput').files[0];
             if(!file) return;
 
+            // Switch to Processing
             document.getElementById('screen-1').classList.add('hidden');
             document.getElementById('screen-3').classList.remove('hidden');
 
             try {
+                // actual AI processing
                 const blob = await removeBackground(file);
                 const url = URL.createObjectURL(blob);
-                document.getElementById('preview').src = url;
+                
+                // Show in Preview
+                document.getElementById('resultPreview').src = url;
+                
+                // Set Download
                 const dl = document.getElementById('downloadBtn');
                 dl.href = url;
                 dl.download = "no-bg-rojgar-sangam.png";
                 
+                // Switch to Result
                 document.getElementById('screen-3').classList.add('hidden');
                 document.getElementById('screen-2').classList.remove('hidden');
             } catch (e) {
-                alert("Error removing background");
+                console.error(e);
+                alert("Error: AI models failed to load. Please refresh and try again.");
                 location.reload();
             }
         };
