@@ -3,180 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Image Resizer: Resize Photo and Signature - Rojgar Sangam Tools</title>
-    <meta name="description" content="Use rojgar sangam tools for photo and signature resizer for online form. Easily resize image in pixels and KB for SSC, UPSC, and other government job applications.">
+    <title>Image Resizer - Rojgar Sangam Tools</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .kb-btn { background: #f8f8ff; border: 1px solid #bdbdbd; padding: 8px 12px; font-size: 13px; border-radius: 6px; cursor: pointer; transition: 0.2s; font-weight: 600; color: #333; }
-        .kb-btn:hover, .kb-btn.active { background: #00079e; color: white; border-color: #00079e; }
-        .input-group { text-align: left; margin-bottom: 15px; }
-        .input-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #555; }
-        .form-control { width: 100%; border: 1px solid #bdbdbd; padding: 10px; border-radius: 6px; outline: none; transition: 0.3s; }
-        .form-control:focus { border-color: #00079e; box-shadow: 0 0 0 2px rgba(0,7,158,0.1); }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
     <header class="header-main">
         <div class="row-settings flex justify-between items-center">
-            <a href="../index.html">
-                <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" class="logo-img">
-            </a>
-            <nav class="nav-menu">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="../index.html" class="nav-link">Tools</a>
-                <a href="https://rojgarsangam.in/contact-us/" class="nav-link">Contact</a>
-            </nav>
+            <a href="../index.html"><img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" class="h-12"></a>
         </div>
     </header>
 
-    <main>
+    <main class="min-h-screen">
         <section id="screen-1" class="section-custom">
             <div class="row-settings text-center">
-                <h1 class="h1-main">Image Resizer</h1>
-                
-                <div class="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-[#bdbdbd] max-w-2xl mx-auto">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                        <div class="input-group">
-                            <label>Width in Pixel (px)</label>
-                            <input type="number" id="targetW" class="form-control" placeholder="Width" value="350">
-                        </div>
-                        <div class="input-group">
-                            <label>Height in Pixel (px)</label>
-                            <input type="number" id="targetH" class="form-control" placeholder="Height" value="450">
-                        </div>
+                <h1 class="text-3xl font-bold mb-8">Online Image Resizer</h1>
+                <div class="bg-white p-8 rounded-xl border border-[#bdbdbd] max-w-lg mx-auto">
+                    <input type="file" id="fileInput" class="w-full border p-2 mb-4 rounded" accept="image/*">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <input type="number" id="width" placeholder="Width (px)" class="border p-2 rounded" value="350">
+                        <input type="number" id="height" placeholder="Height (px)" class="border p-2 rounded" value="450">
                     </div>
-
-                    <div class="text-left mb-6">
-                        <label class="block font-bold text-lg mb-3">OR</label>
-                        <div class="flex flex-wrap gap-2">
-                            <button class="kb-btn" onclick="setKB(10, this)">10 KB</button>
-                            <button class="kb-btn" onclick="setKB(15, this)">15 KB</button>
-                            <button class="kb-btn" onclick="setKB(20, this)">20 KB</button>
-                            <button class="kb-btn" onclick="setKB(25, this)">25 KB</button>
-                            <button class="kb-btn" onclick="setKB(30, this)">30 KB</button>
-                            <button class="kb-btn" onclick="setKB(50, this)">50 KB</button>
-                            <button class="kb-btn" onclick="setKB(100, this)">100 KB</button>
-                        </div>
-                    </div>
-
-                    <div class="input-group mb-8">
-                        <label>Select Photo</label>
-                        <input type="file" id="imageInput" class="form-control" accept="image/*">
-                    </div>
-
-                    <button class="btn-brand w-full py-4 text-lg" onclick="processImage()">Resize Image</button>
-                </div>
-
-                <div class="mt-16 bg-[#eff6ef] p-10 rounded-3xl text-left max-w-4xl mx-auto border border-[#bdbdbd]">
-                    <h2 class="text-xl font-bold text-[#333333] mb-4 border-l-4 border-[#00079e] pl-4">About Image Resizer Tool</h2>
-                    <p class="p-hero text-sm">
-                        Resizing images correctly is vital for competitive exam applications. Our rojgar sangam tools offer a precise photo and signature resizer for online form filling. 
-                    </p>
-                    <p class="p-hero text-sm">
-                        Whether you need a specific pixel dimension or a strict KB limit, this image resizer provides a fast solution. It helps you avoid rejection due to incorrect document formats.
-                    </p>
-                    <p class="p-hero text-sm">
-                        The tool processes your photos locally. This means your private images are not sent to any server, keeping your personal data 100% secure on your device.
-                    </p>
+                    <button onclick="startProcessing()" class="btn-brand w-full">Resize Now</button>
                 </div>
             </div>
         </section>
 
         <section id="screen-3" class="section-custom hidden">
-            <div class="row-settings text-center py-20 bg-white rounded-3xl border border-[#bdbdbd] max-w-2xl">
-                <div class="mb-6 text-5xl text-[#00079e] animate-spin"><i class="fas fa-spinner"></i></div>
-                <h2 class="text-2xl font-bold text-[#333333]">Resizing Image</h2>
-                <p class="text-gray-500 mt-2 text-sm">Please wait while we optimize your image...</p>
+            <div class="row-settings text-center py-20">
+                <div class="animate-spin text-5xl text-[#00079e] mb-4"><i class="fas fa-spinner"></i></div>
+                <h2 class="text-2xl font-bold">Processing...</h2>
+                <p>Please wait while we resize your image.</p>
             </div>
         </section>
 
         <section id="screen-2" class="section-custom hidden">
-            <div class="row-settings text-center py-10 bg-white rounded-3xl border border-[#bdbdbd] max-w-2xl">
-                <div class="text-6xl text-green-500 mb-6"><i class="fas fa-check-circle"></i></div>
-                <h2 class="text-3xl font-extrabold text-[#333333] mb-2">Image Resized!</h2>
-                <p id="sizeInfo" class="text-gray-500 mb-8 text-sm"></p>
-                
-                <div class="flex flex-col gap-4 max-w-xs mx-auto">
-                    <button class="btn-brand flex items-center justify-center gap-2" onclick="downloadResized()">
-                        Download Image <i class="fas fa-download"></i>
-                    </button>
-                    <button class="btn-outline" onclick="location.reload()">Resize Another</button>
-                    <a href="../index.html" class="text-sm text-blue-800 font-bold mt-4">Back to Home</a>
+            <div class="row-settings text-center">
+                <div class="bg-white p-10 rounded-xl border border-[#bdbdbd] max-w-lg mx-auto">
+                    <div class="text-5xl text-green-500 mb-4"><i class="fas fa-check-circle"></i></div>
+                    <h2 class="text-2xl font-bold mb-6">Resize Successful!</h2>
+                    <img id="preview" class="max-w-full h-auto mb-6 mx-auto border">
+                    <a id="downloadBtn" class="btn-brand block text-center">Download Resized Image</a>
+                    <button onclick="location.reload()" class="mt-4 text-sm underline">Resize Another</button>
                 </div>
             </div>
         </section>
-
-        <div class="ad-manager-placeholder row-settings" data-ad-type="leaderboard"></div>
     </main>
 
-    <footer class="footer-main">
-        <div class="row-settings text-center text-[10px] text-gray-400">
-            Rojgar Sangam Tools - Professional Image Utilities
-        </div>
-    </footer>
-
-    <script src="../js/ad-manager.js"></script>
-    <script src="../js/main.js"></script>
     <script>
-        let resizedDataUrl = "";
-        let targetKBValue = null;
-
-        function setKB(kb, el) {
-            targetKBValue = kb;
-            document.querySelectorAll('.kb-btn').forEach(btn => btn.classList.remove('active'));
-            el.classList.add('active');
-        }
-
-        async function processImage() {
-            const file = document.getElementById('imageInput').files[0];
-            if (!file) return alert("Please select an image file first.");
-
-            switchScreen(3);
-
-            const img = new Image();
-            img.src = await RojgarTools.readFile(file);
-            
-            img.onload = () => {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                
-                const w = parseInt(document.getElementById('targetW').value) || img.width;
-                const h = parseInt(document.getElementById('targetH').value) || img.height;
-                
-                canvas.width = w;
-                canvas.height = h;
-                ctx.drawImage(img, 0, 0, w, h);
-
-                let quality = 0.9;
-                resizedDataUrl = canvas.toDataURL('image/jpeg', quality);
-
-                if (targetKBValue) {
-                    while ((resizedDataUrl.length * 3/4) / 1024 > targetKBValue && quality > 0.1) {
-                        quality -= 0.05;
-                        resizedDataUrl = canvas.toDataURL('image/jpeg', quality);
-                    }
-                }
-
-                const finalSize = Math.round((resizedDataUrl.length * 3/4) / 1024);
-                document.getElementById('sizeInfo').innerText = `Final Size: ~${finalSize} KB | Dimensions: ${w}x${h}px`;
-                
-                setTimeout(() => switchScreen(2), 1000);
-            };
-        }
-
-        function downloadResized() {
-            const a = document.createElement('a');
-            a.href = resizedDataUrl;
-            a.download = 'rojgar-sangam-resized.jpg';
-            a.click();
-        }
-
         function switchScreen(id) {
-            document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
+            document.getElementById('screen-1').classList.add('hidden');
+            document.getElementById('screen-2').classList.add('hidden');
+            document.getElementById('screen-3').classList.add('hidden');
             document.getElementById('screen-' + id).classList.remove('hidden');
+        }
+
+        async function startProcessing() {
+            const file = document.getElementById('fileInput').files[0];
+            if(!file) return alert("Select a file");
+
+            switchScreen(3); // Show Processing
+
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function(e) {
+                const img = new Image();
+                img.src = e.target.result;
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const w = document.getElementById('width').value;
+                    const h = document.getElementById('height').value;
+                    canvas.width = w;
+                    canvas.height = h;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, w, h);
+
+                    const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+                    
+                    // Delay for realistic processing feel
+                    setTimeout(() => {
+                        document.getElementById('preview').src = dataUrl;
+                        const dl = document.getElementById('downloadBtn');
+                        dl.href = dataUrl;
+                        dl.download = "resized-rojgar-sangam.jpg";
+                        switchScreen(2); // Show Result
+                    }, 1500);
+                }
+            }
         }
     </script>
 </body>
