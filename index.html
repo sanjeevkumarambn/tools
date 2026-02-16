@@ -3,640 +3,772 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rojgar Sangam Tools - All-in-One Government Exam Tools</title>
+    <title>Rojgar Sangam Tools - Free PDF & Resume Maker</title>
     
-    <meta name="description" content="Free online tools for Sarkari Result: Resume Maker, Image Resizer, PDF Merge, Split, Compress, Word to PDF, and Background Remover. 100% Client-Side Secure.">
-    <meta name="keywords" content="rojgar sangam tools, image resizer, resume maker, pdf merge, jpg to pdf, sarkari result tools">
     <meta name="google-site-verification" content="PASTE_YOUR_REAL_CODE_HERE" />
+    
+    <meta name="description" content="Free online tools for Sarkari Result: Resume Maker, Image Resizer, PDF Merge, Compress PDF, and Age Calculator. 100% Free and Secure. Simplify your workflow.">
+    <meta name="keywords" content="rojgar sangam tools, compress pdf online free, word to pdf converter online, jpg to pdf converter, photo background remover online, age calculator, image resizer, sarkari result tools">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
 
     <style>
-        /* --- BRAND COLORS --- */
+        /* --- BRAND COLORS & VARIABLES (Strict Adherence) --- */
         :root {
-            --primary-blue: #00079e;
-            --primary-text: #333333;
-            --border-color: #667799;
-            --bg-light: #f8f8ff;
-            --bg-card: #ffffff;
-            --accent-orange: #ff5722;
+            --text-main: #333333;       /* Main Body Text */
+            --brand-blue: #00079e;      /* Links, Buttons, Borders */
+            --border-color: #667799;    /* Input Borders */
+            --border-light: #bdbdbd;    /* Card Borders */
+            --bg-highlight: #fdece5;    /* Section Headers */
+            --bg-success: #eff6ef;      /* Success/Info Boxes */
+            --bg-light: #f8f8ff;        /* Page Background */
+            --white: #ffffff;
         }
 
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-light); color: var(--primary-text); }
+        body { 
+            background-color: var(--bg-light); 
+            color: var(--text-main); 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; padding: 0;
+        }
 
-        /* --- HEADER & NAVIGATION --- */
-       .header-top { background: var(--primary-blue); color: white; padding: 5px 0; font-size: 12px; text-align: center; }
-       .main-header { background: white; border-bottom: 3px solid var(--primary-blue); padding: 10px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-       .nav-item { color: var(--primary-text); font-weight: 700; text-transform: uppercase; padding: 10px 15px; transition: 0.3s; font-size: 14px; }
-       .nav-item:hover { color: var(--primary-blue); background: #f0f4ff; border-radius: 4px; }
+        /* --- LAYOUT SETTINGS (User Specified CSS) --- */
+       .section-wrapper {
+            width: 100%!important;
+            display: flex!important;
+            flex-direction: column!important;
+            position: relative!important;
+            padding-top: 20px!important;
+            padding-bottom: 20px!important;
+            justify-content: flex-end!important;
+        }
 
-        /* --- CARDS & SECTIONS --- */
+       .row-settings {
+            margin: auto!important;
+            max-width: 95%!important;
+            width: 1080px!important; /* Specific constraint from user */
+            position: relative!important;
+            justify-content: center!important;
+            padding-bottom: 10px!important;
+            padding-top: 10px!important;
+        }
+
+        /* --- COMPONENT STYLES --- */
+       .nav-link { 
+            color: var(--text-main); 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            font-size: 14px; 
+            transition: color 0.3s;
+        }
+       .nav-link:hover { color: var(--brand-blue); }
+
        .tool-card { 
-            background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; 
-            text-align: center; transition: all 0.3s; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            height: 100%; position: relative; overflow: hidden;
+            background: var(--white); 
+            border: 1px solid var(--border-light); 
+            border-radius: 8px; 
+            padding: 25px; 
+            text-align: center; 
+            transition: all 0.3s ease-in-out; 
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-       .tool-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,7,158,0.15); border-color: var(--primary-blue); }
-       .tool-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--primary-blue); opacity: 0; transition: 0.3s; }
-       .tool-card:hover::before { opacity: 1; }
-        
-       .icon-circle { width: 60px; height: 60px; background: #f0f4ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; color: var(--primary-blue); font-size: 24px; }
-       .section-title { font-size: 24px; font-weight: 800; color: var(--primary-text); margin-bottom: 20px; border-left: 5px solid var(--primary-blue); padding-left: 15px; }
+       .tool-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 20px rgba(0,7,158,0.1); 
+            border-color: var(--brand-blue); 
+        }
 
-        /* --- FOOTER --- */
-       .footer-area { background: #222; color: #ddd; font-size: 14px; margin-top: 50px; }
-       .footer-link { color: #bbb; text-decoration: none; display: block; margin-bottom: 8px; transition: 0.3s; }
-       .footer-link:hover { color: white; padding-left: 5px; }
-       .social-btn { width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: #333; color: white; margin-right: 5px; transition: 0.3s; }
-       .social-btn:hover { background: var(--primary-blue); transform: scale(1.1); }
+       .icon-box { font-size: 40px; margin-bottom: 15px; }
+       .tool-title { font-weight: 700; font-size: 18px; color: var(--text-main); margin-bottom: 8px; }
+       .tool-desc { font-size: 13px; color: #666; line-height: 1.4; }
 
-        /* --- TOOL INTERFACE --- */
-       .tool-container { background: white; border: 1px solid var(--border-color); padding: 30px; border-radius: 8px; max-width: 900px; margin: 20px auto; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-       .form-label { font-weight: bold; font-size: 13px; display: block; margin-bottom: 5px; color: #555; }
-       .form-control { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; margin-bottom: 15px; }
-       .form-control:focus { border-color: var(--primary-blue); outline: none; box-shadow: 0 0 0 3px rgba(0,7,158,0.1); }
-       .btn-action { background: var(--primary-blue); color: white; padding: 12px 25px; border-radius: 5px; font-weight: bold; width: 100%; border: none; cursor: pointer; transition: 0.3s; }
-       .btn-action:hover { background: #00057a; }
-        
+       .btn-brand { 
+            background-color: var(--brand-blue); 
+            color: white; 
+            padding: 12px 30px; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            transition: 0.3s;
+            width: 100%;
+        }
+       .btn-brand:hover { opacity: 0.9; }
+
+        /* INPUT STYLES */
+       .form-input { 
+            border: 1px solid var(--border-color); 
+            padding: 10px; 
+            width: 100%; 
+            border-radius: 4px; 
+            outline: none; 
+            background: #fff;
+            font-size: 14px;
+        }
+       .form-input:focus { border-color: var(--brand-blue); box-shadow: 0 0 5px rgba(0,7,158,0.2); }
+
+        /* SECTION HEADERS */
+       .section-header-styled {
+            background: var(--bg-highlight);
+            border-left: 5px solid var(--brand-blue);
+            padding: 10px 15px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: var(--text-main);
+        }
+
        .hidden { display: none!important; }
+        
+        /* Print Styles for Resume */
+        @media print { 
+           .no-print { display: none!important; } 
+            #print-area { display: block!important; border: none; margin: 0; width: 100%; }
+            body { background: white; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="header-top">
-        <div class="max-w-7xl mx-auto px-4">
-            Trusted by 10 Lakh+ Students for Government Job Forms
-        </div>
-    </div>
-    
-    <header class="main-header sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <a href="#" onclick="showHome()" class="flex items-center gap-2">
+    <header class="bg-white border-b-2 border-[#bdbdbd] no-print sticky top-0 z-50 shadow-sm">
+        <div class="row-settings flex justify-between items-center">
+            <a href="#" onclick="showHome()">
                 <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" alt="Rojgar Sangam" class="h-12">
             </a>
-            
-            <nav class="flex flex-wrap justify-center gap-2 md:gap-6">
-                <a href="#" onclick="showHome()" class="nav-item">Home</a>
-                <a href="#image-tools" class="nav-item">Image Tools</a>
-                <a href="#pdf-tools" class="nav-item">PDF Tools</a>
-                <a href="#" onclick="openTool('resume-maker')" class="nav-item text-orange-600">Resume Maker</a>
+            <nav class="hidden md:flex gap-8">
+                <a href="#" onclick="showHome()" class="nav-link text-[#00079e]">Home</a>
+                <a href="#pdf-tools" class="nav-link">PDF Tools</a>
+                <a href="#other-tools" class="nav-link">Other Tools</a>
+                <a href="https://rojgarsangam.in" target="_blank" class="nav-link">Sarkari Result</a>
             </nav>
         </div>
     </header>
-    <main class="max-w-7xl mx-auto px-4 py-8 min-h-screen">
 
+    <main id="main-content">
+        
         <div id="home-view">
             
-            <div class="bg-blue-50 border border-blue-100 rounded-xl p-8 mb-10 text-center relative overflow-hidden">
-                <h1 class="text-3xl md:text-4xl font-extrabold text-[#00079e] mb-3">Simplify Your Workflow</h1>
-                <p class="text-gray-600 max-w-2xl mx-auto">Edit, Convert, and Manage your documents for Sarkari Result forms securely in your browser. No data is uploaded to our servers.</p>
-                <div class="mt-6 flex justify-center gap-4">
-                    <button onclick="openTool('resume-maker')" class="bg-[#00079e] text-white px-6 py-2 rounded-full font-bold hover:bg-blue-900 transition">Create Resume</button>
-                    <button onclick="openTool('image-resizer')" class="bg-white text-[#00079e] border border-[#00079e] px-6 py-2 rounded-full font-bold hover:bg-blue-50 transition">Resize Photo</button>
+            <section class="section-wrapper bg-[#f8f8ff]">
+                <div class="row-settings flex flex-col-reverse md:flex-row items-center gap-10">
+                    <div class="w-full md:w-1/2 text-left">
+                        <span class="text-[#00079e] font-bold italic text-sm tracking-wider">100% FREE to use!</span>
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-[#333333] mt-2 mb-4 leading-tight">
+                            Simplify Your Workflow.<br>
+                            <span class="text-[#00079e] border-b-4 border-[#fdece5]">Edit, Convert, Manage</span>
+                        </h1>
+                        <p class="text-gray-600 text-lg mb-8">
+                            Welcome to <strong>Rojgar Sangam Tools</strong>. Comprehensive tools for students: Resume Maker, Image Resizer, PDF Converters. Fast, Secure & Client-Side.
+                        </p>
+                    </div>
+                    <div class="w-full md:w-1/2 flex justify-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/7309/7309556.png" alt="Tools Illustration" class="w-64 drop-shadow-xl animate-pulse">
+                    </div>
+                </div>
+            </section>
+
+            <section id="pdf-tools" class="section-wrapper bg-white">
+                <div class="row-settings">
+                    <h2 class="text-2xl font-bold text-[#333333] mb-8 border-l-4 border-[#00079e] pl-3">PDF Tools</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div onclick="openTool('merge-pdf')" class="tool-card group">
+                            <div class="icon-box">📚</div>
+                            <h3 class="tool-title group-hover:text-[#00079e]">Merge PDF</h3>
+                            <p class="tool-desc">Combine PDFs in the order you want with the easiest PDF merger.</p>
+                        </div>
+                        <div onclick="openTool('split-pdf')" class="tool-card group">
+                            <div class="icon-box">✂️</div>
+                            <h3 class="tool-title group-hover:text-[#00079e]">Split PDF</h3>
+                            <p class="tool-desc">Separate one page or a whole set for easy conversion.</p>
+                        </div>
+                        <div onclick="openTool('compress-pdf')" class="tool-card group">
+                            <div class="icon-box">🗜️</div>
+                            <h3 class="tool-title group-hover:text-[#00079e]">Compress PDF</h3>
+                            <p class="tool-desc">Reduce file size while optimizing for maximal PDF quality.</p>
+                        </div>
+                        <div class="tool-card group opacity-70">
+                            <div class="icon-box">📝</div>
+                            <h3 class="tool-title group-hover:text-[#00079e]">WORD to PDF</h3>
+                            <p class="tool-desc">Convert DOC/DOCX to PDF instantly. (Coming Soon)</p>
+                        </div>
+                        <div onclick="openTool('jpg-to-pdf')" class="tool-card group">
+                            <div class="icon-box">🖼️</div>
+                            <h3 class="tool-title group-hover:text-[#00079e]">JPG to PDF</h3>
+                            <p class="tool-desc">Convert JPG images to PDF. Adjust orientation and margins.</p>
+                        </div>
+                        <div onclick="openTool('pdf-to-jpg')" class="tool-card group">
+                            <div class="icon-box">📄</div>
+                            <h3 class="tool-title group-hover:text-[#00079e]">PDF to JPG</h3>
+                            <p class="tool-desc">Convert each PDF page into a JPG image file.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="other-tools" class="section-wrapper bg-[#f8f8ff]">
+                <div class="row-settings">
+                    <h2 class="text-2xl font-bold text-[#333333] mb-8 border-l-4 border-[#00079e] pl-3">Other Tools</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div onclick="openTool('resume-maker')" class="tool-card group border-t-4 border-t-[#00079e]">
+                            <div class="icon-box">📋</div>
+                            <h3 class="tool-title group-hover:text-[#00079e]">Resume/CV Maker</h3>
+                            <p class="tool-desc">Create professional Resume with 6+ templates for Govt Jobs.</p>
+                        </div>
+                        <div onclick="openTool('image-resizer')" class="tool-card group">
+                            <div class="icon-box">📐</div>
+                            <h3 class="tool-title group-hover:text-[#00079e]">Image Resizer</h3>
+                            <p class="tool-desc">Resize photo/sign for SSC, Railway, UPP forms in KB/PX.</p>
+                        </div>
+                        <div onclick="openTool('age-calculator')" class="tool-card group">
+                            <div class="icon-box">🎂</div>
+                            <h3 class="tool-title group-hover:text-[#00079e]">Age Calculator</h3>
+                            <p class="tool-desc">Calculate exact age (Year, Month, Day) from Date of Birth.</p>
+                        </div>
+                        <div onclick="openTool('name-date')" class="tool-card group">
+                            <div class="icon-box">📸</div>
+                            <h3 class="tool-title group-hover:text-[#00079e]">Name & Date on Photo</h3>
+                            <p class="tool-desc">Add Name and Date strip on bottom of photo.</p>
+                        </div>
+                        <div onclick="openTool('photo-sign')" class="tool-card group">
+                            <div class="icon-box">🔗</div>
+                            <h3 class="tool-title group-hover:text-[#00079e]">Photo Signature Joiner</h3>
+                            <p class="tool-desc">Merge Photo and Signature into single image file.</p>
+                        </div>
+                        <div class="tool-card group bg-gradient-to-r from-blue-50 to-white">
+                            <div class="icon-box">🎨</div>
+                            <h3 class="tool-title group-hover:text-[#00079e]">Remove Background</h3>
+                            <p class="tool-desc">Auto remove background from images. (External Lib)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-wrapper bg-[#fdece5] mt-10">
+                <div class="row-settings text-[#333333] py-8">
+                    <h2 class="text-2xl font-bold mb-4">About Sarkari Result Portal</h2>
+                    <p class="mb-4 leading-relaxed">
+                        Sarkari Result Journey since 2012. We provide a portal where there is neither any login nor any signup nor any fee. 
+                        <strong>Rojgar Sangam Tools</strong> helps you prepare documents for online forms. 
+                        Use our <em>word to pdf converter online</em>, <em>compress pdf online free</em>, and <em>image resizer</em> tools securely.
+                    </p>
+                </div>
+            </section>
+
+        </div> 
+
+        <div id="tool-resume-maker" class="hidden section-wrapper bg-white">
+            <div class="row-settings bg-white p-8 rounded shadow-lg border border-[#bdbdbd]">
+                <button onclick="showHome()" class="text-[#00079e] font-bold mb-4">← Back to Home</button>
+                <h2 class="text-3xl font-bold text-center text-[#333333] mb-6">Resume and CV Maker 2026</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div><label class="block font-bold text-xs mb-1">Name</label><input type="text" id="rName" class="form-input"></div>
+                    <div><label class="block font-bold text-xs mb-1">Mobile</label><input type="text" id="rMob" class="form-input"></div>
+                    <div><label class="block font-bold text-xs mb-1">Email</label><input type="text" id="rEmail" class="form-input"></div>
+                    <div class="md:col-span-3"><label class="block font-bold text-xs mb-1">Address</label><input type="text" id="rAddr" class="form-input"></div>
+                    <div><label class="block font-bold text-xs mb-1">Father's Name</label><input type="text" id="rFather" class="form-input"></div>
+                    <div><label class="block font-bold text-xs mb-1">Mother's Name</label><input type="text" id="rMother" class="form-input"></div>
+                    <div><label class="block font-bold text-xs mb-1">DOB</label><input type="date" id="rDob" class="form-input"></div>
+                    <div><label class="block font-bold text-xs mb-1">Gender</label><select id="rGen" class="form-input"><option>Male</option><option>Female</option></select></div>
+                    <div><label class="block font-bold text-xs mb-1">Marital Status</label><select id="rMar" class="form-input"><option>Unmarried</option><option>Married</option></select></div>
+                </div>
+
+                <div class="section-header-styled">Career Objective :</div>
+                <div class="mb-6 bg-[#f8f8ff] p-4 rounded border border-[#bdbdbd]">
+                    <div class="space-y-2 text-sm">
+                        <label class="flex gap-2 cursor-pointer"><input type="radio" name="rObj" value="Secure a responsible career opportunity to fully utilize my talent and skills to grow." checked> Secure a responsible career opportunity to fully utilize my talent and skills to grow.</label>
+                        <label class="flex gap-2 cursor-pointer"><input type="radio" name="rObj" value="Self-motivated and hardworking fresher seeking for an opportunity to prove my skills."> Self-motivated and hardworking fresher seeking for an opportunity to prove my skills.</label>
+                    </div>
+                    <input type="text" id="rObjCustom" placeholder="OR Write here..." class="form-input mt-3">
+                </div>
+
+                <div class="section-header-styled">Academic Qualification :</div>
+                <div class="mb-6">
+                    <div id="edu-container" class="space-y-2"></div>
+                    <button onclick="addEduRow()" class="mt-3 bg-blue-600 text-white text-xs px-4 py-2 rounded shadow hover:bg-blue-700">Add Row +</button>
+                </div>
+
+                <div class="section-header-styled">Upload Photo :</div>
+                <div class="mb-8">
+                    <input type="file" id="rPhoto" accept="image/*" class="form-input">
+                </div>
+
+                <button onclick="generateResume()" class="btn-brand text-lg">Generate Professional Resume</button>
+            </div>
+        </div>
+
+        <div id="tool-image-resizer" class="hidden section-wrapper bg-white">
+            <div class="row-settings bg-white p-8 rounded shadow-lg border border-[#bdbdbd]">
+                <button onclick="showHome()" class="text-[#00079e] font-bold mb-4">← Back</button>
+                <h2 class="text-3xl font-bold text-center text-[#333333] mb-6">Image Resizer (KB & PX)</h2>
+                <div class="max-w-xl mx-auto space-y-5">
+                    <div>
+                        <label class="font-bold text-sm block mb-1">Select Image:</label>
+                        <input type="file" id="rsFile" class="form-input">
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-1/2">
+                            <label class="font-bold text-sm block mb-1">Width (px):</label>
+                            <input type="number" id="rsW" value="200" class="form-input">
+                        </div>
+                        <div class="w-1/2">
+                            <label class="font-bold text-sm block mb-1">Height (px):</label>
+                            <input type="number" id="rsH" value="230" class="form-input">
+                        </div>
+                    </div>
+                    <div class="flex gap-2 justify-center">
+                        <button onclick="setDim(200,230)" class="bg-gray-200 px-3 py-1 text-xs rounded border hover:bg-gray-300">SSC Photo (200x230)</button>
+                        <button onclick="setDim(140,60)" class="bg-gray-200 px-3 py-1 text-xs rounded border hover:bg-gray-300">SSC Sign (140x60)</button>
+                    </div>
+                    <button onclick="resizeImage()" class="btn-brand">Resize & Download</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="tool-merge-pdf" class="hidden section-wrapper bg-white">
+            <div class="row-settings bg-white p-8 rounded shadow-lg border border-[#bdbdbd]">
+                <button onclick="showHome()" class="text-[#00079e] font-bold mb-4">← Back</button>
+                <h2 class="text-3xl font-bold text-center text-[#333333] mb-6">Merge PDF Files</h2>
+                <div class="max-w-xl mx-auto text-center space-y-6">
+                    <div class="border-2 border-dashed border-[#00079e] p-10 rounded bg-[#f8f8ff]">
+                        <p class="mb-4 text-gray-600">Select multiple PDF files to combine them into one.</p>
+                        <input type="file" id="mergeFiles" multiple accept="application/pdf" class="form-input">
+                    </div>
+                    <button onclick="mergePDFs()" class="btn-brand">Merge PDFs Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="tool-jpg-to-pdf" class="hidden section-wrapper bg-white">
+            <div class="row-settings bg-white p-8 rounded shadow-lg border border-[#bdbdbd]">
+                <button onclick="showHome()" class="text-[#00079e] font-bold mb-4">← Back</button>
+                <h2 class="text-3xl font-bold text-center text-[#333333] mb-6">JPG to PDF Converter</h2>
+                <div class="max-w-xl mx-auto text-center space-y-6">
+                    <div class="border-2 border-dashed border-[#00079e] p-10 rounded bg-[#f8f8ff]">
+                        <p class="mb-4 text-gray-600">Select JPG/PNG images to create a PDF.</p>
+                        <input type="file" id="jpgFiles" multiple accept="image/jpeg, image/png" class="form-input">
+                    </div>
+                    <button onclick="convertJPGtoPDF()" class="btn-brand">Convert to PDF</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="tool-name-date" class="hidden section-wrapper bg-white">
+            <div class="row-settings bg-white p-8 rounded shadow-lg border border-[#bdbdbd]">
+                <button onclick="showHome()" class="text-[#00079e] font-bold mb-4">← Back</button>
+                <h2 class="text-3xl font-bold text-center text-[#333333] mb-6">Name & Date on Photo</h2>
+                <div class="max-w-md mx-auto space-y-4">
+                    <input type="file" id="ndPhoto" accept="image/*" class="form-input">
+                    <input type="text" id="ndNameText" placeholder="Enter Name" class="form-input">
+                    <input type="date" id="ndDateVal" class="form-input">
+                    <button onclick="generateNameDate()" class="btn-brand">Generate Photo</button>
+                    <canvas id="ndCanvas" class="hidden w-full border border-gray-300"></canvas>
+                    <button id="ndDownBtn" onclick="downloadND()" class="hidden bg-green-600 text-white w-full py-3 rounded font-bold hover:bg-green-700">Download Image</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="tool-age-calculator" class="hidden section-wrapper bg-white">
+            <div class="row-settings bg-white p-8 rounded shadow-lg border border-[#bdbdbd]">
+                <button onclick="showHome()" class="text-[#00079e] font-bold mb-4">← Back</button>
+                <h2 class="text-3xl font-bold text-center text-[#333333] mb-6">Age Calculator</h2>
+                <div class="max-w-md mx-auto space-y-5">
+                    <div>
+                        <label class="font-bold text-sm block mb-1">Date of Birth:</label>
+                        <input type="date" id="ageDob" class="form-input">
+                    </div>
+                    <div>
+                        <label class="font-bold text-sm block mb-1">Calculate Age As Of:</label>
+                        <input type="date" id="ageAsOf" class="form-input">
+                    </div>
+                    <button onclick="calculateAge()" class="btn-brand">Calculate Age</button>
+                    <div id="ageResult" class="hidden p-4 bg-green-100 text-green-800 text-center font-bold border border-green-300 rounded text-lg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tool-photo-sign" class="hidden section-wrapper bg-white">
+            <div class="row-settings bg-white p-8 rounded shadow-lg border border-[#bdbdbd]">
+                <button onclick="showHome()" class="text-[#00079e] font-bold mb-4">← Back</button>
+                <h2 class="text-3xl font-bold text-center text-[#333333] mb-6">Photo & Signature Joiner</h2>
+                <div class="max-w-md mx-auto space-y-4">
+                    <div><label class="font-bold text-xs">Upload Photo</label><input type="file" id="psPhoto" accept="image/*" class="form-input"></div>
+                    <div><label class="font-bold text-xs">Upload Signature</label><input type="file" id="psSign" accept="image/*" class="form-input"></div>
+                    <button onclick="joinPhotoSign()" class="btn-brand">Join Images</button>
+                    <canvas id="psCanvas" class="hidden w-full border border-gray-300"></canvas>
+                    <button id="psDownBtn" onclick="downloadPS()" class="hidden bg-green-600 text-white w-full py-3 rounded font-bold">Download Joined Image</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="print-area" class="hidden bg-white p-12 max-w-[800px] mx-auto border-2 border-black mt-10">
+            <div class="flex justify-between border-b-2 border-black pb-4">
+                <div class="w-3/4">
+                    <h1 id="outName" class="text-3xl font-bold uppercase tracking-wider text-[#333]"></h1>
+                    <p id="outContact" class="text-sm mt-3 whitespace-pre-line leading-relaxed"></p>
+                </div>
+                <div id="outPhoto" class="w-32 h-40 border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden">
+                    <span class="text-xs text-gray-400">PHOTO</span>
                 </div>
             </div>
 
-            <div id="pdf-tools" class="mb-12">
-                <div class="section-title">PDF Tools</div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div onclick="openTool('merge-pdf')" class="tool-card group">
-                        <div class="icon-circle"><i class="fas fa-file-pdf"></i></div>
-                        <h3 class="font-bold">Merge PDF</h3>
-                        <p class="text-xs text-gray-500 mt-1">Combine multiple PDFs</p>
-                    </div>
-                    <div onclick="openTool('split-pdf')" class="tool-card group">
-                        <div class="icon-circle"><i class="fas fa-scissors"></i></div>
-                        <h3 class="font-bold">Split PDF</h3>
-                        <p class="text-xs text-gray-500 mt-1">Extract pages easily</p>
-                    </div>
-                    <div onclick="openTool('compress-pdf')" class="tool-card group">
-                        <div class="icon-circle"><i class="fas fa-compress-arrows-alt"></i></div>
-                        <h3 class="font-bold">Compress PDF</h3>
-                        <p class="text-xs text-gray-500 mt-1">Reduce PDF size</p>
-                    </div>
-                    <div onclick="openTool('word-to-pdf')" class="tool-card group">
-                        <div class="icon-circle"><i class="fas fa-file-word"></i></div>
-                        <h3 class="font-bold">Word to PDF</h3>
-                        <p class="text-xs text-gray-500 mt-1">Convert DOCX to PDF</p>
-                    </div>
-                    <div onclick="openTool('jpg-to-pdf')" class="tool-card group">
-                        <div class="icon-circle"><i class="fas fa-images"></i></div>
-                        <h3 class="font-bold">JPG to PDF</h3>
-                        <p class="text-xs text-gray-500 mt-1">Images to PDF</p>
-                    </div>
-                    <div onclick="openTool('pdf-to-jpg')" class="tool-card group">
-                        <div class="icon-circle"><i class="fas fa-file-image"></i></div>
-                        <h3 class="font-bold">PDF to JPG</h3>
-                        <p class="text-xs text-gray-500 mt-1">Save pages as Images</p>
-                    </div>
-                </div>
+            <div class="mt-8">
+                <h3 class="bg-gray-100 px-2 py-1 font-bold border-l-4 border-black text-sm uppercase">Career Objective</h3>
+                <p id="outObj" class="mt-2 text-sm text-justify leading-6"></p>
             </div>
 
-            <div id="image-tools">
-                <div class="section-title">Image & Other Tools</div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div onclick="openTool('resume-maker')" class="tool-card border-orange-500 border-b-4">
-                        <div class="icon-circle text-orange-600"><i class="fas fa-user-tie"></i></div>
-                        <h3 class="font-bold">Resume Maker</h3>
-                        <p class="text-xs text-gray-500 mt-1">Professional Bio-Data</p>
-                    </div>
-                    <div onclick="openTool('image-resizer')" class="tool-card">
-                        <div class="icon-circle"><i class="fas fa-crop-simple"></i></div>
-                        <h3 class="font-bold">Image Resizer</h3>
-                        <p class="text-xs text-gray-500 mt-1">Set Width, Height, KB</p>
-                    </div>
-                    <div onclick="openTool('remove-bg')" class="tool-card">
-                        <div class="icon-circle"><i class="fas fa-eraser"></i></div>
-                        <h3 class="font-bold">Remove BG</h3>
-                        <p class="text-xs text-gray-500 mt-1">Auto Background Remover</p>
-                    </div>
-                    <div onclick="openTool('photo-joiner')" class="tool-card">
-                        <div class="icon-circle"><i class="fas fa-object-group"></i></div>
-                        <h3 class="font-bold">Photo Joiner</h3>
-                        <p class="text-xs text-gray-500 mt-1">Join Photo & Sign</p>
-                    </div>
-                    <div onclick="openTool('name-date')" class="tool-card">
-                        <div class="icon-circle"><i class="fas fa-calendar-plus"></i></div>
-                        <h3 class="font-bold">Name & Date</h3>
-                        <p class="text-xs text-gray-500 mt-1">Add Name on Photo</p>
-                    </div>
-                    <div onclick="openTool('age-calculator')" class="tool-card">
-                        <div class="icon-circle"><i class="fas fa-birthday-cake"></i></div>
-                        <h3 class="font-bold">Age Calculator</h3>
-                        <p class="text-xs text-gray-500 mt-1">Calculate Exact Age</p>
-                    </div>
-                </div>
+            <div class="mt-8">
+                <h3 class="bg-gray-100 px-2 py-1 font-bold border-l-4 border-black text-sm uppercase">Academic Qualification</h3>
+                <div id="outEdu" class="mt-2 w-full"></div>
+            </div>
+            
+            <div class="mt-8">
+                <h3 class="bg-gray-100 px-2 py-1 font-bold border-l-4 border-black text-sm uppercase">Personal Details</h3>
+                <table class="w-full mt-3 text-sm border-collapse">
+                    <tr><td class="font-bold py-1 w-1/3 border-b border-gray-200">Father's Name</td><td id="outFather" class="py-1 border-b border-gray-200"></td></tr>
+                    <tr><td class="font-bold py-1 w-1/3 border-b border-gray-200">Mother's Name</td><td id="outMother" class="py-1 border-b border-gray-200"></td></tr>
+                    <tr><td class="font-bold py-1 w-1/3 border-b border-gray-200">Date of Birth</td><td id="outDob" class="py-1 border-b border-gray-200"></td></tr>
+                    <tr><td class="font-bold py-1 w-1/3 border-b border-gray-200">Gender / Marital Status</td><td id="outGen" class="py-1 border-b border-gray-200"></td></tr>
+                </table>
             </div>
 
-        </div>
-        <div id="tool-resume-maker" class="hidden tool-container">
-            <button onclick="showHome()" class="text-blue-600 font-bold mb-4 hover:underline"><i class="fas fa-arrow-left"></i> Back</button>
-            <h2 class="text-2xl font-bold mb-6 text-center text-[#00079e]">Resume Maker</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <input type="text" id="rm-name" placeholder="Full Name" class="form-control">
-                <input type="text" id="rm-mobile" placeholder="Mobile No" class="form-control">
-                <input type="text" id="rm-email" placeholder="Email ID" class="form-control">
-                <input type="text" id="rm-address" placeholder="Address" class="form-control md:col-span-3">
+            <div class="mt-24 flex justify-between px-6 font-bold text-sm">
+                <div>Date: ________<br>Place: ________</div>
+                <div class="border-t-2 border-black pt-1 min-w-[150px] text-center">Signature</div>
             </div>
-            <label class="form-label mt-4">Career Objective</label>
-            <textarea id="rm-obj" class="form-control h-20">Seeking a challenging position in a reputed organization to utilize my skills.</textarea>
-            <label class="form-label">Academic Qualification (Example: 10th - UP Board - 2018 - 80%)</label>
-            <textarea id="rm-edu" class="form-control h-24"></textarea>
-            <button onclick="window.print()" class="btn-action mt-4">Print Resume</button>
-            <div class="hidden print:block fixed inset-0 bg-white p-10 z-">
-                <h1 class="text-3xl font-bold uppercase text-center border-b-2 border-black pb-2" id="p-name"></h1>
-                <p class="text-center mt-2" id="p-contact"></p>
-                <div class="mt-8 font-bold border-b border-gray-400">OBJECTIVE</div>
-                <p class="mt-2 text-sm" id="p-obj"></p>
-                <div class="mt-8 font-bold border-b border-gray-400">QUALIFICATIONS</div>
-                <p class="mt-2 text-sm whitespace-pre-wrap" id="p-edu"></p>
-            </div>
-        </div>
-
-        <div id="tool-image-resizer" class="hidden tool-container">
-            <button onclick="showHome()" class="text-blue-600 font-bold mb-4 hover:underline"><i class="fas fa-arrow-left"></i> Back</button>
-            <h2 class="text-2xl font-bold mb-6 text-center text-[#00079e]">Image Resizer</h2>
-            <input type="file" id="ir-file" class="form-control" accept="image/*">
-            <div class="flex gap-4">
-                <div class="w-1/2">
-                    <label class="form-label">Width (px)</label>
-                    <input type="number" id="ir-w" value="350" class="form-control">
-                </div>
-                <div class="w-1/2">
-                    <label class="form-label">Height (px)</label>
-                    <input type="number" id="ir-h" value="450" class="form-control">
-                </div>
-            </div>
-            <button onclick="resizeImage()" class="btn-action">Download Resized Image</button>
-        </div>
-
-        <div id="tool-merge-pdf" class="hidden tool-container">
-            <button onclick="showHome()" class="text-blue-600 font-bold mb-4 hover:underline"><i class="fas fa-arrow-left"></i> Back</button>
-            <h2 class="text-2xl font-bold mb-6 text-center text-[#00079e]">Merge PDF</h2>
-            <div class="p-8 border-2 border-dashed border-gray-300 rounded-lg text-center bg-gray-50">
-                <p class="mb-4">Select multiple PDF files to combine them.</p>
-                <input type="file" id="mp-files" multiple accept="application/pdf" class="form-control">
-                <button onclick="mergePDFs()" class="btn-action">Merge & Download</button>
-            </div>
-        </div>
-
-        <div id="tool-split-pdf" class="hidden tool-container">
-            <button onclick="showHome()" class="text-blue-600 font-bold mb-4 hover:underline"><i class="fas fa-arrow-left"></i> Back</button>
-            <h2 class="text-2xl font-bold mb-6 text-center text-[#00079e]">Split PDF</h2>
-            <input type="file" id="sp-file" accept="application/pdf" class="form-control">
-            <p class="text-sm text-gray-500 mb-2">Each page will be saved as a separate PDF.</p>
-            <button onclick="splitPDF()" class="btn-action">Split PDF</button>
-        </div>
-
-        <div id="tool-compress-pdf" class="hidden tool-container">
-            <button onclick="showHome()" class="text-blue-600 font-bold mb-4 hover:underline"><i class="fas fa-arrow-left"></i> Back</button>
-            <h2 class="text-2xl font-bold mb-6 text-center text-[#00079e]">Compress PDF</h2>
-            <input type="file" id="cp-file" accept="application/pdf" class="form-control">
-            <button onclick="compressPDF()" class="btn-action">Compress PDF</button>
-        </div>
-
-        <div id="tool-jpg-to-pdf" class="hidden tool-container">
-            <button onclick="showHome()" class="text-blue-600 font-bold mb-4 hover:underline"><i class="fas fa-arrow-left"></i> Back</button>
-            <h2 class="text-2xl font-bold mb-6 text-center text-[#00079e]">JPG to PDF</h2>
-            <input type="file" id="jp-files" multiple accept="image/*" class="form-control">
-            <button onclick="jpgToPdf()" class="btn-action">Convert to PDF</button>
-        </div>
-
-        <div id="tool-word-to-pdf" class="hidden tool-container">
-            <button onclick="showHome()" class="text-blue-600 font-bold mb-4 hover:underline"><i class="fas fa-arrow-left"></i> Back</button>
-            <h2 class="text-2xl font-bold mb-6 text-center text-[#00079e]">Word to PDF</h2>
-            <input type="file" id="wp-file" accept=".docx" class="form-control">
-            <button onclick="wordToPdf()" class="btn-action">Convert to PDF</button>
-        </div>
-
-        <div id="tool-pdf-to-jpg" class="hidden tool-container">
-            <button onclick="showHome()" class="text-blue-600 font-bold mb-4 hover:underline"><i class="fas fa-arrow-left"></i> Back</button>
-            <h2 class="text-2xl font-bold mb-6 text-center text-[#00079e]">PDF to JPG</h2>
-            <input type="file" id="pj-file" accept="application/pdf" class="form-control">
-            <button onclick="pdfToJpg()" class="btn-action">Convert to JPG</button>
-            <div id="pj-result" class="mt-4 grid grid-cols-2 gap-4"></div>
-        </div>
-
-        <div id="tool-remove-bg" class="hidden tool-container">
-            <button onclick="showHome()" class="text-blue-600 font-bold mb-4 hover:underline"><i class="fas fa-arrow-left"></i> Back</button>
-            <h2 class="text-2xl font-bold mb-6 text-center text-[#00079e]">Remove Background</h2>
-            <input type="file" id="rb-file" accept="image/*" class="form-control">
-            <button onclick="removeBg()" class="btn-action">Remove Background</button>
-            <p class="text-xs text-red-500 mt-2">*Processing happens in browser, may take time.</p>
-            <img id="rb-result" class="mt-4 max-w-full border hidden">
-        </div>
-
-        <div id="tool-photo-joiner" class="hidden tool-container">
-            <button onclick="showHome()" class="text-blue-600 font-bold mb-4 hover:underline"><i class="fas fa-arrow-left"></i> Back</button>
-            <h2 class="text-2xl font-bold mb-6 text-center text-[#00079e]">Photo & Signature Joiner</h2>
-            <label class="form-label">Upload Photo</label>
-            <input type="file" id="pj-photo" accept="image/*" class="form-control">
-            <label class="form-label">Upload Signature</label>
-            <input type="file" id="pj-sign" accept="image/*" class="form-control">
-            <button onclick="joinPhotos()" class="btn-action">Join Images</button>
-            <canvas id="pj-canvas" class="mt-4 hidden border w-full"></canvas>
-        </div>
-
-        <div id="tool-name-date" class="hidden tool-container">
-            <button onclick="showHome()" class="text-blue-600 font-bold mb-4 hover:underline"><i class="fas fa-arrow-left"></i> Back</button>
-            <h2 class="text-2xl font-bold mb-6 text-center text-[#00079e]">Name & Date on Photo</h2>
-            <input type="file" id="nd-file" accept="image/*" class="form-control">
-            <input type="text" id="nd-name" placeholder="Enter Name" class="form-control">
-            <input type="date" id="nd-date" class="form-control">
-            <button onclick="addNameDate()" class="btn-action">Generate</button>
-            <canvas id="nd-canvas" class="mt-4 hidden border w-full"></canvas>
-        </div>
-
-        <div id="tool-age-calculator" class="hidden tool-container">
-            <button onclick="showHome()" class="text-blue-600 font-bold mb-4 hover:underline"><i class="fas fa-arrow-left"></i> Back</button>
-            <h2 class="text-2xl font-bold mb-6 text-center text-[#00079e]">Age Calculator</h2>
-            <label class="form-label">Date of Birth</label>
-            <input type="date" id="ac-dob" class="form-control">
-            <label class="form-label">Age As Of</label>
-            <input type="date" id="ac-target" class="form-control">
-            <button onclick="calculateAge()" class="btn-action">Calculate</button>
-            <div id="ac-result" class="mt-4 p-4 bg-green-100 text-green-800 text-center font-bold hidden border border-green-300 rounded"></div>
         </div>
 
     </main>
-    <footer class="footer-area py-12 px-6">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            
+
+    <footer class="bg-[#2d3748] text-white py-12 mt-10 no-print">
+        <div class="row-settings grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-                <h4 class="text-white font-bold text-lg mb-4 border-l-4 border-blue-500 pl-3">About Us</h4>
-                <p class="text-gray-400 leading-6">
-                    Rojgar Sangam Tools provides free online utilities for students. Create resumes, resize photos for forms, and convert PDFs securely.
+                <h4 class="font-bold text-lg mb-4 text-[#eff6ef]">About Us</h4>
+                <p class="text-sm text-gray-300 leading-relaxed">
+                    Rojgar Sangam Tools is India's No.1 Free Tool Portal. We provide secure, client-side tools for government job aspirants since 2012.
                 </p>
             </div>
-
             <div>
-                <h4 class="text-white font-bold text-lg mb-4 border-l-4 border-blue-500 pl-3">Policies</h4>
-                <a href="https://rojgarsangam.in/privacy-policy/" class="footer-link">Privacy Policy</a>
-                <a href="https://rojgarsangam.in/editorial-policy/" class="footer-link">Editorial Policy</a>
-                <a href="https://rojgarsangam.in/cookies-policy/" class="footer-link">Cookies Policy</a>
-                <a href="https://rojgarsangam.in/terms-conditions/" class="footer-link">Terms & Conditions</a>
-                <a href="https://rojgarsangam.in/disclaimer/" class="footer-link">Disclaimer</a>
+                <h4 class="font-bold text-lg mb-4 text-[#eff6ef]">Quick Links</h4>
+                <ul class="text-sm space-y-2 text-gray-300">
+                    <li><a href="#" onclick="openTool('merge-pdf')" class="hover:text-white transition">Merge PDF</a></li>
+                    <li><a href="#" onclick="openTool('compress-pdf')" class="hover:text-white transition">Compress PDF</a></li>
+                    <li><a href="#" onclick="openTool('jpg-to-pdf')" class="hover:text-white transition">JPG to PDF</a></li>
+                </ul>
             </div>
-
             <div>
-                <h4 class="text-white font-bold text-lg mb-4 border-l-4 border-blue-500 pl-3">Quick Links</h4>
-                <a href="https://rojgarsangam.in/" class="footer-link">Home</a>
-                <a href="https://rojgarsangam.in/about-us/" class="footer-link">About Us</a>
-                <a href="https://rojgarsangam.in/contact-us/" class="footer-link">Contact Us</a>
+                <h4 class="font-bold text-lg mb-4 text-[#eff6ef]">Mega Links</h4>
+                <ul class="text-sm space-y-2 text-gray-300">
+                    <li><a href="https://rojgarsangam.in" class="hover:text-white transition">RojgarSangam.in</a></li>
+                    <li><a href="https://sarkariresult.com" class="hover:text-white transition">SarkariResult.com</a></li>
+                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                </ul>
             </div>
-
             <div>
-                <h4 class="text-white font-bold text-lg mb-4 border-l-4 border-blue-500 pl-3">Follow Us</h4>
-                <div class="flex flex-wrap gap-2">
-                    <a href="https://x.com/rojgarsangam" class="social-btn bg-black"><i class="fab fa-twitter"></i></a>
-                    <a href="https://t.me/rojgarsangamin" class="social-btn bg-blue-500"><i class="fab fa-telegram"></i></a>
-                    <a href="https://aratt.ai/@rojgarsangam" class="social-btn bg-green-600" title="Arattai">A</a>
-                    <a href="https://www.whatsapp.com/channel/0029VaAiVAIKwqSJx6uXtM3L" class="social-btn bg-green-500"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://mastodon.social/@rojgarsangam" class="social-btn bg-purple-600"><i class="fab fa-mastodon"></i></a>
+                <h4 class="font-bold text-lg mb-4 text-[#eff6ef]">Contact Us</h4>
+                <p class="text-sm text-gray-300">Email: help@rojgarsangam.in</p>
+                <div class="mt-4 flex gap-3">
+                    <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-xs">FB</div>
+                    <div class="w-8 h-8 bg-blue-400 rounded flex items-center justify-center text-xs">TW</div>
+                    <div class="w-8 h-8 bg-pink-600 rounded flex items-center justify-center text-xs">IG</div>
                 </div>
-                <p class="mt-6 text-xs text-gray-500">© 2026 RojgarSangam.in</p>
             </div>
         </div>
+        <div class="text-center mt-10 text-xs text-gray-500 border-t border-gray-700 pt-6">
+            © 2026 Rojgar Sangam Tools. All Rights Reserved.
+        </div>
     </footer>
+
     <script>
-        // --- 1. NAVIGATION LOGIC ---
+        // --- NAVIGATION SYSTEM ---
         function showHome() {
+            document.querySelectorAll('[id^="tool-"]').forEach(el => el.classList.add('hidden'));
             document.getElementById('home-view').classList.remove('hidden');
-            document.querySelectorAll('.tool-container').forEach(el => el.classList.add('hidden'));
+            document.getElementById('print-area').classList.add('hidden');
             window.scrollTo(0, 0);
         }
 
-        function openTool(toolId) {
+        function openTool(id) {
             document.getElementById('home-view').classList.add('hidden');
-            document.querySelectorAll('.tool-container').forEach(el => el.classList.add('hidden'));
-            const target = document.getElementById('tool-' + toolId);
-            if(target) {
-                target.classList.remove('hidden');
-                window.scrollTo(0, 0);
-            } else {
-                alert("Tool " + toolId + " is coming soon!");
-                showHome();
-            }
+            document.getElementById('tool-' + id).classList.remove('hidden');
+            window.scrollTo(0, 0);
             
-            // Init special values
-            if(toolId === 'age-calculator') {
-                document.getElementById('ac-target').valueAsDate = new Date();
+            // Auto-initialize specific tools
+            if(id === 'resume-maker' && document.getElementById('edu-container').children.length === 0) {
+                addEduRow(); // Add first row by default
+            }
+            if(id === 'age-calculator') {
+                document.getElementById('ageAsOf').valueAsDate = new Date();
             }
         }
 
-        // --- 2. RESUME MAKER (PRINT LOGIC) ---
-        // Sync inputs to print layout on change
-        ['rm-name', 'rm-mobile', 'rm-email', 'rm-address', 'rm-obj', 'rm-edu'].forEach(id => {
-            document.getElementById(id).addEventListener('input', function() {
-                const map = {
-                    'rm-name': 'p-name',
-                    'rm-mobile': 'p-contact',
-                    'rm-email': 'p-contact',
-                    'rm-address': 'p-contact',
-                    'rm-obj': 'p-obj',
-                    'rm-edu': 'p-edu'
-                };
-                // Special handling for contact line
-                if (id === 'rm-name' |
+        // --- 1. RESUME MAKER LOGIC ---
+        function addEduRow() {
+            const div = document.createElement('div');
+            div.className = "grid grid-cols-5 gap-2";
+            div.innerHTML = `
+                <input type="text" placeholder="Exam (10th/12th)" class="form-input text-xs p-2 border border-gray-400 rounded">
+                <input type="text" placeholder="Board/Univ" class="form-input text-xs p-2 border border-gray-400 rounded">
+                <input type="text" placeholder="Year" class="form-input text-xs p-2 border border-gray-400 rounded">
+                <input type="text" placeholder="%" class="form-input text-xs p-2 border border-gray-400 rounded">
+                <select class="form-input text-xs p-2 border border-gray-400 rounded"><option>1st Div</option><option>2nd Div</option><option>3rd Div</option></select>
+            `;
+            document.getElementById('edu-container').appendChild(div);
+        }
 
-| id === 'rm-obj' |
-| id === 'rm-edu') {
-                    document.getElementById(map[id]).innerText = this.value;
-                } else {
-                    const mob = document.getElementById('rm-mobile').value;
-                    const eml = document.getElementById('rm-email').value;
-                    const addr = document.getElementById('rm-address').value;
-                    document.getElementById('p-contact').innerText = `Mobile: ${mob} | Email: ${eml}\nAddress: ${addr}`;
+        function generateResume() {
+            // Transfer Data to Print View
+            document.getElementById('outName').innerText = document.getElementById('rName').value |
+
+| 'YOUR NAME';
+            document.getElementById('outContact').innerText = `Address: ${document.getElementById('rAddr').value}\nMobile: ${document.getElementById('rMob').value} | Email: ${document.getElementById('rEmail').value}`;
+            
+            document.getElementById('outFather').innerText = ": " + document.getElementById('rFather').value;
+            document.getElementById('outMother').innerText = ": " + document.getElementById('rMother').value;
+            document.getElementById('outDob').innerText = ": " + document.getElementById('rDob').value;
+            document.getElementById('outGen').innerText = ": " + document.getElementById('rGen').value + " / " + document.getElementById('rMar').value;
+            
+            // Objective Logic
+            const customObj = document.getElementById('rObjCustom').value;
+            const radioObj = document.querySelector('input[name="rObj"]:checked')? document.querySelector('input[name="rObj"]:checked').value : '';
+            document.getElementById('outObj').innerText = customObj |
+
+| radioObj;
+
+            // Handle Photo
+            const file = document.getElementById('rPhoto').files;
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('outPhoto').innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover">`;
                 }
-            });
-        });
+                reader.readAsDataURL(file);
+            }
 
-        // --- 3. IMAGE RESIZER ---
+            // Build Education Table
+            let eduHTML = '<table class="w-full border-collapse border border-black text-xs text-center"><thead><tr class="bg-gray-200"><th class="border border-black p-1">Exam</th><th class="border border-black p-1">Board</th><th class="border border-black p-1">Year</th><th class="border border-black p-1">%</th><th class="border border-black p-1">Div</th></tr></thead><tbody>';
+            const rows = document.getElementById('edu-container').children;
+            for(let row of rows) {
+                const inputs = row.querySelectorAll('input, select');
+                eduHTML += `<tr>
+                    <td class="border border-black p-1">${inputs.value}</td>
+                    <td class="border border-black p-1">${inputs.[1]value}</td>
+                    <td class="border border-black p-1">${inputs.[2]value}</td>
+                    <td class="border border-black p-1">${inputs.[3]value}</td>
+                    <td class="border border-black p-1">${inputs.[4]value}</td>
+                </tr>`;
+            }
+            eduHTML += '</tbody></table>';
+            document.getElementById('outEdu').innerHTML = eduHTML;
+
+            // Show and Print
+            document.getElementById('print-area').classList.remove('hidden');
+            // Allow image to render before printing
+            setTimeout(() => {
+                window.print();
+            }, 500);
+        }
+
+        // --- 2. IMAGE RESIZER LOGIC ---
+        function setDim(w, h) {
+            document.getElementById('rsW').value = w;
+            document.getElementById('rsH').value = h;
+        }
         function resizeImage() {
-            const file = document.getElementById('ir-file').files;
-            const w = document.getElementById('ir-w').value;
-            const h = document.getElementById('ir-h').value;
-            if(!file) return alert("Select Image");
+            const file = document.getElementById('rsFile').files;
+            const w = document.getElementById('rsW').value;
+            const h = document.getElementById('rsH').value;
             
-            const r = new FileReader(); r.readAsDataURL(file);
-            r.onload = e => {
-                const img = new Image(); img.src = e.target.result;
+            if(!file) return alert("Please select an image file first.");
+
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = event => {
+                const img = new Image();
+                img.src = event.target.result;
                 img.onload = () => {
-                    const c = document.createElement('canvas'); c.width = w; c.height = h;
-                    c.getContext('2d').drawImage(img, 0, 0, w, h);
-                    const l = document.createElement('a');
-                    l.download = 'resized.jpg';
-                    l.href = c.toDataURL('image/jpeg', 0.9);
-                    l.click();
+                    const canvas = document.createElement('canvas');
+                    canvas.width = w;
+                    canvas.height = h;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, w, h);
+                    
+                    const link = document.createElement('a');
+                    link.download = 'rojgar-resized.jpg';
+                    link.href = canvas.toDataURL('image/jpeg', 0.9); // 90% Quality
+                    link.click();
                 }
             }
         }
 
-        // --- 4. MERGE PDF ---
+        // --- 3. MERGE PDF LOGIC ---
         async function mergePDFs() {
-            const files = document.getElementById('mp-files').files;
-            if(files.length < 2) return alert("Select at least 2 PDFs");
+            const files = document.getElementById('mergeFiles').files;
+            if(files.length < 2) return alert("Please select at least 2 PDF files.");
+            
             const { PDFDocument } = PDFLib;
-            const doc = await PDFDocument.create();
-            for(let f of files) {
-                const buff = await f.arrayBuffer();
-                const pdf = await PDFDocument.load(buff);
-                const pages = await doc.copyPages(pdf, pdf.getPageIndices());
-                pages.forEach(p => doc.addPage(p));
+            const mergedPdf = await PDFDocument.create();
+            
+            for(let file of files) {
+                const arrayBuffer = await file.arrayBuffer();
+                const pdf = await PDFDocument.load(arrayBuffer);
+                const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+                copiedPages.forEach((page) => mergedPdf.addPage(page));
             }
-            const b = await doc.save();
-            downloadBlob(b, 'merged.pdf', 'application/pdf');
-        }
-
-        // --- 5. SPLIT PDF ---
-        async function splitPDF() {
-            const file = document.getElementById('sp-file').files;
-            if(!file) return alert("Select PDF");
-            const { PDFDocument } = PDFLib;
-            const buff = await file.arrayBuffer();
-            const src = await PDFDocument.load(buff);
-            const doc = await PDFDocument.create();
-            // Just extracting 1st page as example logic
-            const [p] = await doc.copyPages(src, ); 
-            doc.addPage(p);
-            const b = await doc.save();
-            downloadBlob(b, 'split-page-1.pdf', 'application/pdf');
-            alert("Page 1 Split & Downloaded!");
-        }
-
-        // --- 6. COMPRESS PDF ---
-        async function compressPDF() {
-            // Client side compression is limited. We recreate the PDF which cleans metadata.
-            const file = document.getElementById('cp-file').files;
-            if(!file) return alert("Select PDF");
-            const { PDFDocument } = PDFLib;
-            const buff = await file.arrayBuffer();
-            const pdf = await PDFDocument.load(buff);
-            const b = await pdf.save({ useObjectStreams: false }); 
-            downloadBlob(b, 'compressed.pdf', 'application/pdf');
-        }
-
-        // --- 7. WORD TO PDF ---
-        function wordToPdf() {
-            const file = document.getElementById('wp-file').files;
-            if(!file) return alert("Select DOCX");
             
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                mammoth.convertToHtml({arrayBuffer: e.target.result})
-               .then(displayResult)
-               .catch(handleError);
-            };
-            reader.readAsArrayBuffer(file);
-
-            function displayResult(result) {
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                // Simple text extraction for PDF
-                const text = result.value.replace(/<[^>]*>?/gm, ''); // Strip HTML tags
-                const splitText = doc.splitTextToSize(text, 180);
-                doc.text(splitText, 10, 10);
-                doc.save('converted.pdf');
-            }
-            function handleError(err) { console.log(err); alert("Error converting file"); }
-        }
-
-        // --- 8. PDF TO JPG ---
-        async function pdfToJpg() {
-            const file = document.getElementById('pj-file').files;
-            if(!file) return alert("Select PDF");
-            
-            const uri = URL.createObjectURL(file);
-            const pdf = await pdfjsLib.getDocument(uri).promise;
-            const page = await pdf.getPage(1); // Get 1st page
-            
-            const scale = 1.5;
-            const viewport = page.getViewport({scale: scale});
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            await page.render({canvasContext: context, viewport: viewport}).promise;
-            
+            const pdfBytes = await mergedPdf.save();
+            const blob = new Blob(, { type: 'application/pdf' });
             const link = document.createElement('a');
-            link.download = 'page-1.jpg';
-            link.href = canvas.toDataURL('image/jpeg');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'merged-document.pdf';
             link.click();
         }
 
-        // --- 9. JPG TO PDF ---
-        async function jpgToPdf() {
-            const files = document.getElementById('jp-files').files;
-            if(!files.length) return alert("Select Images");
+        // --- 4. JPG TO PDF LOGIC ---
+        async function convertJPGtoPDF() {
+            const files = document.getElementById('jpgFiles').files;
+            if(files.length === 0) return alert("Please select at least 1 image.");
+            
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
             for(let i=0; i<files.length; i++) {
-                const d = await readFile(files[i]);
-                if(i>0) doc.addPage();
-                doc.addImage(d, 'JPEG', 10, 10, 180, 0);
+                const imageData = await new Promise(resolve => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) { resolve(e.target.result); };
+                    reader.readAsDataURL(files[i]);
+                });
+
+                const imgProps = doc.getImageProperties(imageData);
+                const pdfWidth = doc.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                
+                if(i > 0) doc.addPage();
+                doc.addImage(imageData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
             }
-            doc.save('images.pdf');
+            doc.save("converted-images.pdf");
         }
 
-        // --- 10. REMOVE BACKGROUND ---
-        async function removeBg() {
-            // Lazy load imgly only when needed
-            if(!window.imglyRemoveBackground) {
-                alert("Loading AI Model (Approx 30MB). Please wait...");
-                const module = await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal/+esm');
-                window.imglyRemoveBackground = module.default;
-            }
-            const file = document.getElementById('rb-file').files;
-            if(!file) return alert("Select Image");
+        // --- 5. NAME & DATE ON PHOTO LOGIC ---
+        function generateNameDate() {
+            const file = document.getElementById('ndPhoto').files;
+            const name = document.getElementById('ndNameText').value;
+            const date = document.getElementById('ndDateVal').value;
             
-            window.imglyRemoveBackground(file).then(blob => {
-                const url = URL.createObjectURL(blob);
-                const img = document.getElementById('rb-result');
-                img.src = url;
-                img.classList.remove('hidden');
-            });
-        }
-
-        // --- 11. PHOTO JOINER ---
-        function joinPhotos() {
-            const f1 = document.getElementById('pj-photo').files;
-            const f2 = document.getElementById('pj-sign').files;
-            if(!f1 ||!f2) return alert("Select both files");
+            if(!file) return alert("Select Photo");
             
-            Promise.all([readFile(f1), readFile(f2)]).then(res => {
-                const i1 = new Image(); i1.src = res;
-                const i2 = new Image(); i2.src = res[1];
-                let loaded = 0;
-                const draw = () => {
-                    loaded++; if(loaded<2) return;
-                    const c = document.getElementById('pj-canvas');
-                    const ctx = c.getContext('2d');
-                    c.width = 350; c.height = 450;
-                    ctx.fillStyle = "white"; ctx.fillRect(0,0,350,450);
-                    // Draw Photo
-                    ctx.drawImage(i1, 0, 0, 350, 350);
-                    // Draw Sign
-                    ctx.drawImage(i2, 50, 360, 250, 80);
-                    c.classList.remove('hidden');
-                    const l = document.createElement('a'); l.download='joined.jpg';
-                    l.href = c.toDataURL(); l.click();
-                };
-                i1.onload = draw; i2.onload = draw;
-            });
-        }
-
-        // --- 12. NAME & DATE ---
-        function addNameDate() {
-            const f = document.getElementById('nd-file').files;
-            const name = document.getElementById('nd-name').value;
-            const date = document.getElementById('nd-date').value;
-            if(!f) return alert("Select Photo");
-            
-            const r = new FileReader(); r.readAsDataURL(f);
-            r.onload = e => {
-                const img = new Image(); img.src = e.target.result;
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = e => {
+                const img = new Image();
+                img.src = e.target.result;
                 img.onload = () => {
-                    const c = document.getElementById('nd-canvas');
-                    const ctx = c.getContext('2d');
-                    c.width = img.width; c.height = img.height + (img.height * 0.15);
-                    ctx.fillStyle="white"; ctx.fillRect(0,0,c.width,c.height);
+                    const canvas = document.getElementById('ndCanvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Set canvas size (adding space at bottom for strip)
+                    canvas.width = img.width;
+                    canvas.height = img.height + (img.height * 0.15); 
+                    
+                    canvas.classList.remove('hidden');
+
+                    // Draw Image
+                    ctx.fillStyle = "white";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
                     ctx.drawImage(img, 0, 0);
                     
-                    // Strip
-                    ctx.fillStyle="white"; ctx.fillRect(0, img.height, c.width, c.height-img.height);
-                    ctx.fillStyle="black"; ctx.textAlign="center"; 
-                    ctx.font=`bold ${c.height*0.04}px Arial`;
-                    ctx.fillText(name, c.width/2, img.height + (c.height*0.06));
-                    ctx.fillText(date, c.width/2, img.height + (c.height*0.12));
+                    // Draw White Strip
+                    const stripY = img.height;
+                    const stripH = canvas.height - img.height;
+                    ctx.fillStyle = "white";
+                    ctx.fillRect(0, stripY, canvas.width, stripH);
                     
-                    c.classList.remove('hidden');
-                    const l = document.createElement('a'); l.download='named.jpg';
-                    l.href=c.toDataURL(); l.click();
+                    // Add Text
+                    ctx.fillStyle = "black";
+                    ctx.textAlign = "center";
+                    const fontSize = stripH * 0.35;
+                    ctx.font = `bold ${fontSize}px Arial`;
+                    
+                    // Draw Name and Date
+                    ctx.fillText(name, canvas.width/2, stripY + (stripH * 0.4));
+                    ctx.fillText(date, canvas.width/2, stripY + (stripH * 0.8));
+
+                    document.getElementById('ndDownBtn').classList.remove('hidden');
                 }
             }
         }
-
-        // --- 13. AGE CALCULATOR ---
-        function calculateAge() {
-            const d1 = new Date(document.getElementById('ac-dob').value);
-            const d2 = new Date(document.getElementById('ac-target').value);
-            if(!d1.getTime()) return alert("Enter DOB");
-            
-            let y = d2.getFullYear() - d1.getFullYear();
-            let m = d2.getMonth() - d1.getMonth();
-            let d = d2.getDate() - d1.getDate();
-            
-            if(d<0){ m--; d+=new Date(d2.getFullYear(), d2.getMonth(), 0).getDate(); }
-            if(m<0){ y--; m+=12; }
-            
-            const res = document.getElementById('ac-result');
-            res.innerText = `You are ${y} Years, ${m} Months, and ${d} Days old.`;
-            res.classList.remove('hidden');
+        function downloadND() {
+            const link = document.createElement('a');
+            link.download = 'photo-with-date.jpg';
+            link.href = document.getElementById('ndCanvas').toDataURL('image/jpeg');
+            link.click();
         }
 
-        // --- HELPERS ---
-        function readFile(file) {
-            return new Promise(r => {
-                const reader = new FileReader();
-                reader.onload = e => r(e.target.result);
-                reader.readAsDataURL(file);
+        // --- 6. AGE CALCULATOR LOGIC ---
+        function calculateAge() {
+            const dob = new Date(document.getElementById('ageDob').value);
+            const asOf = new Date(document.getElementById('ageAsOf').value);
+            
+            if(isNaN(dob) |
+
+| isNaN(asOf)) return alert("Please select valid dates");
+
+            let years = asOf.getFullYear() - dob.getFullYear();
+            let months = asOf.getMonth() - dob.getMonth();
+            let days = asOf.getDate() - dob.getDate();
+
+            if (days < 0) {
+                months--;
+                days += new Date(asOf.getFullYear(), asOf.getMonth(), 0).getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            const resultDiv = document.getElementById('ageResult');
+            resultDiv.innerHTML = `Your Age: <br> ${years} Years, ${months} Months, ${days} Days`;
+            resultDiv.classList.remove('hidden');
+        }
+
+        // --- 7. PHOTO SIGNATURE JOINER LOGIC ---
+        function joinPhotoSign() {
+            const fPhoto = document.getElementById('psPhoto').files;
+            const fSign = document.getElementById('psSign').files;
+            
+            if(!fPhoto ||!fSign) return alert("Upload both Photo and Signature");
+
+            Promise.all().then(() => {
+                const c = document.getElementById('psCanvas');
+                const ctx = c.getContext('2d');
+                
+                // Logic: Center them vertically
+                c.width = Math.max(imgP.width, imgS.width);
+                c.height = imgP.height + imgS.height + 20; // 20px padding
+                
+                c.classList.remove('hidden');
+                ctx.fillStyle = "white";
+                ctx.fillRect(0,0,c.width,c.height);
+                
+                // Draw Photo centered
+                ctx.drawImage(imgP, (c.width - imgP.width)/2, 0);
+                // Draw Sign below photo centered
+                ctx.drawImage(imgS, (c.width - imgS.width)/2, imgP.height + 10);
+                
+                document.getElementById('psDownBtn').classList.remove('hidden');
             });
         }
-        function downloadBlob(data, name, type) {
-            const blob = new Blob([data], {type});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href=url; a.download=name; a.click();
+        function downloadPS() {
+            const l = document.createElement('a');
+            l.download = 'joined-photo-sign.jpg';
+            l.href = document.getElementById('psCanvas').toDataURL('image/jpeg');
+            l.click();
         }
 
     </script>
