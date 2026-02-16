@@ -20,7 +20,7 @@
                 <h1 class="text-2xl font-bold mb-8 uppercase">Compress PDF files</h1>
                 <div onclick="document.getElementById('cIn').click()" class="bg-white p-16 rounded-xl border-2 border-dashed border-gray-300 max-w-lg mx-auto cursor-pointer">
                     <p class="font-bold text-gray-400 uppercase tracking-widest">+ Upload PDF</p>
-                    <input type="file" id="cIn" class="hidden" accept="application/pdf" onchange="handleFile(event)">
+                    <input type="file" id="cIn" class="hidden" accept="application/pdf" onchange="handleCompFile(event)">
                 </div>
             </div>
         </section>
@@ -34,8 +34,8 @@
                     </div>
                 </div>
                 <div class="md:w-1/3 bg-white p-6 border rounded shadow-sm text-left">
-                    <h3 class="font-bold mb-4 uppercase text-[#333] text-sm">Compression level</h3>
-                    <div class="space-y-3 mb-8">
+                    <h3 class="font-bold mb-4 uppercase text-[#333] text-sm tracking-tighter">Compression level</h3>
+                    <div class="space-y-4 mb-8">
                         <label class="flex items-center gap-3 p-3 border rounded cursor-pointer hover:bg-gray-50 border-[#00079e]">
                             <input type="radio" name="lvl" value="re" checked class="w-4 h-4">
                             <div><p class="text-xs font-bold">Recommended Compression</p><p class="text-[8px] text-gray-400 uppercase">Good quality, good compression</p></div>
@@ -45,7 +45,7 @@
                             <div><p class="text-xs font-bold">Extreme Compression</p><p class="text-[8px] text-gray-400 uppercase">Less quality, high compression</p></div>
                         </label>
                     </div>
-                    <button id="doComp" class="btn-brand w-full py-4 uppercase font-bold tracking-widest shadow-lg">Compress PDF <i class="fas fa-arrow-right ml-2"></i></button>
+                    <button id="doComp" class="btn-brand w-full py-4 uppercase font-bold shadow-lg">Compress PDF <i class="fas fa-arrow-right ml-2"></i></button>
                 </div>
             </div>
         </section>
@@ -54,7 +54,7 @@
             <div class="row-settings text-center py-20 bg-white rounded-xl max-w-lg mx-auto border shadow-sm">
                 <div class="mb-6"><i class="fas fa-file-pdf text-5xl text-yellow-500 animate-pulse"></i></div>
                 <h2 class="text-2xl font-bold uppercase tracking-widest text-[#333]">COMPRESSING PDF</h2>
-                <div class="w-full bg-gray-100 h-1 mt-6 rounded-full overflow-hidden">
+                <div class="w-full bg-gray-100 h-1 mt-6 rounded-full overflow-hidden px-4">
                     <div id="prog-bar" class="bg-[#00079e] h-full" style="width: 5%"></div>
                 </div>
                 <p class="text-[10px] text-gray-400 mt-2 px-6">Processing pages. Please do not close your browser!</p>
@@ -62,12 +62,11 @@
         </section>
 
         <section id="screen-4" class="section-custom hidden">
-            <div class="row-settings text-center py-16 bg-white rounded-xl max-w-lg mx-auto shadow-xl px-8 border">
+            <div class="row-settings text-center py-16 bg-white rounded-xl max-w-lg mx-auto shadow-xl border px-8">
                 <div class="text-6xl text-green-500 mb-6"><i class="fas fa-check-circle"></i></div>
-                <h2 class="text-2xl font-bold mb-2 uppercase tracking-tight">PDFs have been compressed</h2>
+                <h2 class="text-2xl font-bold mb-2 uppercase tracking-tight text-[#333]">PDFs have been compressed</h2>
                 <p id="compRes" class="text-xs font-bold text-gray-500 mb-8 leading-relaxed"></p>
                 <a id="cDl" class="bg-[#00079e] text-white px-10 py-4 rounded font-bold inline-block uppercase shadow-lg">Download PDF <i class="fas fa-download ml-2"></i></a>
-                <button onclick="location.reload()" class="block mx-auto mt-8 text-[10px] font-bold text-[#00079e] uppercase tracking-widest underline">Back to Home</button>
             </div>
         </section>
     </main>
@@ -76,7 +75,7 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
         let cFile = null;
 
-        function handleFile(e) {
+        function handleCompFile(e) {
             cFile = e.target.files[0]; if(!cFile) return;
             document.getElementById('cName').innerText = cFile.name;
             document.getElementById('screen-1').classList.add('hidden');
@@ -94,45 +93,34 @@
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF('p', 'mm', 'a4');
                 
-                // Compression Settings
-                const scale = (level === 'ex') ? 1.0 : 1.5; // Lower scale = smaller size
-                const quality = (level === 'ex') ? 0.5 : 0.7; // Lower quality = smaller size
+                const scale = (level === 'ex') ? 1.0 : 1.3; 
+                const quality = (level === 'ex') ? 0.4 : 0.6; 
 
                 for (let i = 1; i <= pdf.numPages; i++) {
                     if (i > 1) doc.addPage();
                     const page = await pdf.getPage(i);
-                    const viewport = page.getViewport({scale: scale});
+                    const viewport = page.viewport || page.getViewport({scale: scale});
                     const canvas = document.createElement('canvas');
-                    const context = canvas.getContext('2d');
+                    const ctx = canvas.getContext('2d');
                     canvas.height = viewport.height;
                     canvas.width = viewport.width;
 
-                    await page.render({canvasContext: context, viewport: viewport}).promise;
-                    const imgData = canvas.toDataURL('image/jpeg', quality);
-                    doc.addImage(imgData, 'JPEG', 0, 0, 210, 297); // Fit to A4
-                    
-                    // Update Progress
+                    await page.render({canvasContext: ctx, viewport: viewport}).promise;
+                    doc.addImage(canvas.toDataURL('image/jpeg', quality), 'JPEG', 0, 0, 210, 297);
                     document.getElementById('prog-bar').style.width = Math.round((i/pdf.numPages)*100) + "%";
                 }
 
-                const pdfBlob = doc.output('blob');
-                const oldS = cFile.size;
-                const newS = pdfBlob.size;
-                const pct = (((oldS - newS) / oldS) * 100).toFixed(2);
-
-                document.getElementById('compRes').innerText = `Your PDF are now ${pct}% smaller! \n ${(oldS/1024/1024).toFixed(2)} MB ==> ${(newS/1024/1024).toFixed(2)} MB`;
-                document.getElementById('cDl').href = URL.createObjectURL(pdfBlob);
+                const blob = doc.output('blob');
+                const pct = (((cFile.size - blob.size) / cFile.size) * 100).toFixed(2);
+                document.getElementById('compRes').innerText = `Your PDF is now ${pct}% smaller! \n ${(cFile.size/1024/1024).toFixed(2)} MB ==> ${(blob.size/1024/1024).toFixed(2)} MB`;
+                document.getElementById('cDl').href = URL.createObjectURL(blob);
                 document.getElementById('cDl').download = "compressed-" + cFile.name;
                 
                 setTimeout(() => { 
                     document.getElementById('screen-3').classList.add('hidden'); 
                     document.getElementById('screen-4').classList.remove('hidden'); 
                 }, 1000);
-            } catch (err) {
-                console.error(err);
-                alert("Compression Error. Please try a different PDF.");
-                location.reload();
-            }
+            } catch (err) { alert("Compression Error"); location.reload(); }
         };
     </script>
 </body>
