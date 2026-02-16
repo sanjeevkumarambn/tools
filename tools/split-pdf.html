@@ -2,114 +2,96 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Split PDF - Rojgar Sangam Tools</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-    <header class="header-main"><div class="row-settings flex justify-between px-4"><a href="../index.html"><img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" class="h-12"></a></div></header>
+<body class="bg-[#f8f8ff]">
+    <header class="header-main bg-white border-b px-4 py-2"><a href="../index.html"><img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" class="h-10"></a></header>
 
-    <main class="min-h-screen">
+    <main class="min-h-screen pt-10">
         <section id="screen-1" class="section-custom">
             <div class="row-settings text-center">
-                <h1 class="text-3xl font-bold mb-8">Split PDF Pages</h1>
-                <div class="bg-white p-8 rounded-xl border border-[#bdbdbd] max-w-lg mx-auto text-left">
-                    <label class="block font-bold mb-2">Select PDF File:</label>
-                    <input type="file" id="pdfInput" class="w-full border p-2 mb-4 rounded" accept="application/pdf">
-                    <label class="block font-bold mb-2">Enter Page Numbers (e.g. 1-2 or 3):</label>
-                    <input type="text" id="pageRange" placeholder="Example: 1-2" class="w-full border p-2 mb-6 rounded">
-                    <button onclick="splitPDF()" class="btn-brand w-full">Split & Preview</button>
+                <h1 class="text-2xl font-bold mb-8">Split PDF file</h1>
+                <div onclick="document.getElementById('sIn').click()" class="bg-white p-16 rounded-xl border-2 border-dashed border-gray-300 max-w-lg mx-auto cursor-pointer">
+                    <p class="font-bold text-gray-400 uppercase">+ Upload PDF</p>
+                    <input type="file" id="sIn" class="hidden" accept="application/pdf" onchange="handleSplitFile(event)">
+                </div>
+            </div>
+        </section>
+
+        <section id="screen-2" class="section-custom hidden">
+            <div class="row-settings flex flex-col md:flex-row gap-8">
+                <div id="pageGrid" class="md:w-2/3 flex flex-wrap gap-4 overflow-y-auto max-h-[500px] p-4 bg-white border rounded"></div>
+                <div class="md:w-1/3 bg-white p-6 border rounded shadow-sm">
+                    <h3 class="font-bold mb-4 uppercase text-[#333]">Split Options</h3>
+                    <div class="mb-6">
+                        <label class="text-xs font-bold text-gray-400">Range (e.g. 1-5)</label>
+                        <input type="text" id="sRange" class="w-full border p-2 mt-1 rounded" placeholder="1-10">
+                    </div>
+                    <button id="doSplit" class="btn-brand w-full py-3 uppercase font-bold">Split PDF <i class="fas fa-arrow-right ml-2"></i></button>
                 </div>
             </div>
         </section>
 
         <section id="screen-3" class="section-custom hidden">
-            <div class="row-settings text-center py-20">
-                <div class="animate-bounce text-5xl mb-4">✂️</div>
-                <h2 class="text-2xl font-bold">Splitting PDF...</h2>
+            <div class="row-settings text-center py-20 bg-white rounded-xl max-w-lg mx-auto border shadow-sm">
+                <div class="mb-6"><i class="fas fa-scissors text-5xl text-yellow-500 animate-pulse"></i></div>
+                <h2 class="text-2xl font-bold uppercase tracking-widest text-[#333]">SPLITTING PDF</h2>
+                <p class="text-xs text-gray-400 mt-2 px-6 tracking-tighter">Your files are being processed. This might take a few minutes!</p>
             </div>
         </section>
 
-        <section id="screen-2" class="section-custom hidden">
-            <div class="row-settings text-center">
-                <div class="bg-white p-6 rounded-xl border border-[#bdbdbd] max-w-2xl mx-auto">
-                    <h2 class="text-xl font-bold mb-4">Split Preview</h2>
-                    
-                    <div class="border rounded mb-6 h-[400px] overflow-hidden">
-                        <iframe id="pdfPreview" class="w-full h-full"></iframe>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a id="downloadBtn" class="btn-brand flex-1 py-3 text-center">Download Split PDF</a>
-                        <button onclick="location.reload()" class="border-2 border-gray-300 py-3 px-6 rounded font-bold hover:bg-gray-100">Try Again</button>
-                    </div>
-                </div>
+        <section id="screen-4" class="section-custom hidden">
+            <div class="row-settings text-center py-16 bg-white rounded-xl max-w-lg mx-auto shadow-lg">
+                <div class="text-6xl text-green-500 mb-6"><i class="fas fa-check-circle"></i></div>
+                <h2 class="text-2xl font-bold mb-8 uppercase">PDFs have been split</h2>
+                <a id="sDl" class="bg-[#00079e] text-white px-10 py-4 rounded font-bold inline-block uppercase">Download PDF <i class="fas fa-download ml-2"></i></a>
             </div>
         </section>
     </main>
 
     <script>
-        async function splitPDF() {
-            const fileInput = document.getElementById('pdfInput');
-            const range = document.getElementById('pageRange').value;
-
-            if(!fileInput.files[0] || !range) {
-                alert("Please select a file and enter page range");
-                return;
-            }
-
+        let sFile = null;
+        async function handleSplitFile(e) {
+            sFile = e.target.files[0]; if(!sFile) return;
+            const grid = document.getElementById('pageGrid');
+            grid.innerHTML = '<p class="text-xs text-gray-400 p-10 mx-auto">Generating Thumbnails...</p>';
             document.getElementById('screen-1').classList.add('hidden');
-            document.getElementById('screen-3').classList.remove('hidden');
-
-            try {
-                const { PDFDocument } = PDFLib;
-                const file = fileInput.files[0];
-                const arrayBuffer = await file.arrayBuffer();
-                const sourcePdf = await PDFDocument.load(arrayBuffer);
-                const resultPdf = await PDFDocument.create();
-
-                const totalPages = sourcePdf.getPageCount();
-                let pagesToExtract = [];
-
-                if(range.includes('-')) {
-                    const [start, end] = range.split('-').map(Number);
-                    for(let i = start; i <= end; i++) {
-                        if(i > 0 && i <= totalPages) pagesToExtract.push(i - 1);
-                    }
-                } else {
-                    const pageNum = parseInt(range);
-                    if(pageNum > 0 && pageNum <= totalPages) pagesToExtract.push(pageNum - 1);
-                }
-
-                if(pagesToExtract.length === 0) throw new Error("Invalid Range");
-
-                const copiedPages = await resultPdf.copyPages(sourcePdf, pagesToExtract);
-                copiedPages.forEach(p => resultPdf.addPage(p));
-
-                const pdfBytes = await resultPdf.save();
-                const pdfBlob = new Blob([pdfBytes], { type: 'application/pdf' });
-                const pdfUrl = URL.createObjectURL(pdfBlob);
-
-                // Show in iFrame (Preview)
-                document.getElementById('pdfPreview').src = pdfUrl + "#toolbar=0";
-                
-                // Set Download
-                const dl = document.getElementById('downloadBtn');
-                dl.href = pdfUrl;
-                dl.download = "split-rojgar-sangam.pdf";
-
-                setTimeout(() => {
-                    document.getElementById('screen-3').classList.add('hidden');
-                    document.getElementById('screen-2').classList.remove('hidden');
-                }, 1000);
-
-            } catch (err) {
-                alert("Error splitting PDF. Check page numbers.");
-                location.reload();
+            document.getElementById('screen-2').classList.remove('hidden');
+            
+            // Generate visual placeholders for pages (Simple Grid)
+            const { PDFDocument } = PDFLib;
+            const pdf = await PDFDocument.load(await sFile.arrayBuffer());
+            const total = pdf.getPageCount();
+            grid.innerHTML = '';
+            for(let i=1; i<=total; i++) {
+                grid.innerHTML += `<div class="bg-gray-50 border p-2 rounded w-24 h-32 flex flex-col items-center justify-center">
+                    <i class="fas fa-file-pdf text-red-500 mb-2"></i>
+                    <span class="text-[10px] font-bold">${i}</span>
+                </div>`;
             }
         }
+
+        document.getElementById('doSplit').onclick = async () => {
+            const range = document.getElementById('sRange').value; if(!range) return;
+            document.getElementById('screen-2').classList.add('hidden');
+            document.getElementById('screen-3').classList.remove('hidden');
+            const { PDFDocument } = PDFLib;
+            const srcDoc = await PDFDocument.load(await sFile.arrayBuffer());
+            const newDoc = await PDFDocument.create();
+            const [start, end] = range.split('-').map(Number);
+            const indices = []; for(let i=start; i<=end; i++) indices.push(i-1);
+            const copied = await newDoc.copyPages(srcDoc, indices);
+            copied.forEach(p => newDoc.addPage(p));
+            const bytes = await newDoc.save();
+            document.getElementById('sDl').href = URL.createObjectURL(new Blob([bytes], {type:'application/pdf'}));
+            document.getElementById('sDl').download = "split-rojgar.pdf";
+            setTimeout(() => { document.getElementById('screen-3').classList.add('hidden'); document.getElementById('screen-4').classList.remove('hidden'); }, 1500);
+        };
     </script>
 </body>
 </html>
