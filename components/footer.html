@@ -1,92 +1,123 @@
 <style>
-    /* इमेज के हिसाब से स्टाइलिंग */
-    .footer-exact-match {
-        background-color: #ffffff;
-        color: #333;
-        font-family: 'Times New Roman', Times, serif; /* इमेज वाला सेरिफ फॉन्ट */
-        padding: 40px 0;
-        border-top: 1px solid #ddd;
+    .footer-locked-wrapper {
+        background-color: #ffffff !important;
+        padding: 50px 0 !important;
+        border-top: 1px solid #e1e4e8 !important;
+        font-family: 'Times New Roman', Times, serif !important;
+        color: #333 !important;
+        width: 100% !important;
     }
-    .footer-exact-match h3 {
-        font-style: italic;
-        font-size: 24px;
-        margin-bottom: 20px;
-        color: #333;
-        font-weight: 500;
+    .footer-inner-container {
+        display: flex !important;
+        justify-content: space-between !important;
+        width: 1080px !important;
+        max-width: 95% !important;
+        margin: 0 auto !important;
     }
-    .footer-exact-match .about-title {
-        font-size: 32px;
-        font-weight: bold;
-        text-transform: uppercase;
-        margin-top: 20px;
-        color: #222;
-        letter-spacing: 1px;
+    .footer-about-box {
+        width: 45% !important;
+        text-align: left !important;
     }
-    .footer-exact-match .links-col a {
-        color: #0000ee; /* इमेज वाला ब्लू लिंक कलर */
-        text-decoration: none;
-        font-size: 16px;
-        display: block;
-        margin-bottom: 10px;
+    .footer-about-box img {
+        height: 60px !important;
+        width: auto !important;
+        margin-bottom: 20px !important;
+        object-fit: contain !important;
     }
-    .footer-exact-match .links-col a:hover {
-        text-decoration: underline;
+    .footer-about-box .about-heading {
+        font-size: 28px !important;
+        font-weight: bold !important;
+        text-transform: uppercase !important;
+        margin-bottom: 15px !important;
+        color: #000 !important;
+        letter-spacing: 1px !important;
     }
-    .footer-exact-match .copyright-text {
-        margin-top: 30px;
-        font-size: 14px;
-        color: #444;
+    .footer-about-box p {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        color: #444 !important;
+        margin-bottom: 30px !important;
     }
-    .footer-exact-match .arrow {
-        font-size: 14px;
-        margin-left: 2px;
+    .footer-copyright-text {
+        font-size: 14px !important;
+        color: #666 !important;
+        font-family: Arial, sans-serif !important;
+    }
+    .footer-links-grid {
+        width: 50% !important;
+        display: flex !important;
+        justify-content: space-between !important;
+    }
+    .footer-link-col {
+        min-width: 130px !important;
+    }
+    .footer-link-col h3 {
+        font-style: italic !important;
+        font-size: 22px !important;
+        font-weight: 500 !important;
+        margin-bottom: 20px !important;
+        color: #000 !important;
+    }
+    .footer-link-col a {
+        display: block !important;
+        color: #0000ee !important;
+        text-decoration: none !important;
+        font-size: 16px !important;
+        margin-bottom: 10px !important;
+    }
+    .footer-link-col a:hover {
+        text-decoration: underline !important;
     }
     @media (max-width: 768px) {
-        .footer-grid { grid-template-columns: 1fr !important; text-align: center; }
-        .links-row { justify-content: center !important; gap: 30px; }
+        .footer-inner-container {
+            flex-direction: column !important;
+            text-align: center !important;
+        }
+        .footer-about-box, .footer-links-grid {
+            width: 100% !important;
+        }
+        .footer-about-box {
+            margin-bottom: 40px !important;
+        }
+        .footer-about-box .about-heading {
+            text-align: center !important;
+        }
+        .footer-links-grid {
+            flex-direction: column !important;
+            gap: 25px !important;
+        }
     }
 </style>
 
-<footer class="footer-exact-match">
-    <div class="row-settings grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
-        
-        <div class="footer-left">
-            <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/rojgar-sangam-logo.png" 
-                 style="height: 70px; width: auto; object-fit: contain;" alt="Rojgar Sangam">
-            
-            <div class="about-title">ABOUT ROJGAR SANGAM</div>
-            <p class="mt-4 text-lg leading-snug" style="max-width: 500px;">
-                Rojgar Sangam is a Sarkari Job and Education Information Website providing verified government job updates across India.
+<footer class="footer-locked-wrapper">
+    <div class="footer-inner-container">
+        <div class="footer-about-box">
+            <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/rojgar-sangam-logo.png" alt="Rojgar Sangam">
+            <div class="about-heading">ABOUT ROJGAR SANGAM</div>
+            <p>
+                Rojgar Sangam is a Sarkari Job and Education Information Website providing verified government job updates across India. We aim to simplify your career journey.
             </p>
-            <div class="copyright-text">
+            <div class="footer-copyright-text">
                 Copyright © 2017 – 2026 All Rights Reserved. RojgarSangam.in
             </div>
         </div>
-
-        <div class="links-row flex justify-between gap-4">
-            <div class="links-col">
+        <div class="footer-links-grid">
+            <div class="footer-link-col">
                 <h3>Know Company</h3>
-                <a href="https://rojgarsangam.in/about-us/">About Us <span class="arrow">↙</span></a>
-                <a href="https://rojgarsangam.in/contact-us/">Contact Us <span class="arrow">↙</span></a>
-                <a href="#">Sitemap <span class="arrow">↙</span></a>
+                <a href="https://rojgarsangam.in/about-us/">About Us ↙</a>
+                <a href="https://rojgarsangam.in/contact-us/">Contact Us ↙</a>
+                <a href="#">Sitemap ↙</a>
             </div>
-
-            <div class="links-col">
+            <div class="footer-link-col">
                 <h3>Policies</h3>
-                <a href="#">Privacy Policy <span class="arrow">↙</span></a>
-                <a href="#">Editorial Policy <span class="arrow">↗</span></a>
-                <a href="#">Cookies Policy <span class="arrow">↙</span></a>
-                <a href="#">Terms of Use <span class="arrow">↙</span></a>
-                <a href="#">Disclaimer <span class="arrow">↙</span></a>
+                <a href="#">Privacy Policy ↙</a>
+                <a href="#">Terms of Use ↙</a>
+                <a href="#">Disclaimer ↙</a>
             </div>
-
-            <div class="links-col">
+            <div class="footer-link-col">
                 <h3>Follow us</h3>
-                <a href="#">Twitter <span class="arrow">↗</span></a>
-                <a href="#">Telegram <span class="arrow">↗</span></a>
-                <a href="#">Arattai <span class="arrow">↗</span></a>
-                <a href="#">WhatsApp <span class="arrow">↗</span></a>
-                <a href="#">Mastodon <span class="arrow">↗</span></a>
+                <a href="#">Telegram ↗</a>
+                <a href="#">WhatsApp ↗</a>
             </div>
         </div>
     </div>
