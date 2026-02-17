@@ -119,14 +119,26 @@ blockquote p {
     .ad-leaderboard { width: 320px !important; height: 50px !important; }
 }
 .nav-link {
-    color: var(--text-main);
-    font-weight: 600;
-    margin-left: 20px;
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.3s;
+    color: var(--brand-blue);
+    font-size: 15px!important;
+    font-weight: bold!important;
+    margin-left: 20px!important;
+    text-decoration: none!important;
+    transition: 0.3s!important;
 }
-.nav-link:hover { color: var(--brand-blue); }
+.nav-link:hover {
+    color: var(--text-main);
+}
+.link {
+    color: var(--brand-blue);
+    font-size: 15px!important;
+    font-weight: bold!important;
+    text-decoration: none!important;
+    transition: 0.3s!important;
+}
+.link:hover {
+    color: var(--text-main);
+}
 .tool-card {
     background: var(--white);
     border: 1px solid var(--border-light);
