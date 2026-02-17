@@ -15,10 +15,11 @@
     .footer-about-box img { height: 60px !important; margin-bottom: 20px !important; object-fit: contain !important; }
     .footer-about-box .about-heading { font-size: 28px!important; font-weight: bold!important; text-transform: uppercase!important; margin-bottom: 10px!important; margin-top: 0px!important; letter-spacing: 1px!important; }
     .footer-about-box p { font-size: 14px!important; line-height: 1.6!important; color: #444!important; margin-bottom: 30px !important; }
-    .footer-copyright-text { font-size: 14px !important; color: #666 !important; font-family: Arial, sans-serif !important; }
+    .footer-copyright-text { font-size: 14px !important; color: #666 !important; }
     .footer-links-grid { width: 50% !important; display: flex !important; justify-content: space-between !important; }
     .footer-link-col h3 { font-style: italic!important; font-size: 22px !important; margin-bottom: 20px !important; }
-    .footer-link-col a { font-style:italic!important; font-size:18px!important; line-height:2em!important; display: block!important;}
+    .footer-link-col a { font-style:italic!important; font-size:18px!important; line-height:2em!important; display: block!important; color: #00079e!important; }
+    .footer-link-col a:hover { color: #333333!important; }
     @media (max-width: 768px) {
         .row-settings.footer-flex { flex-direction: column!important; text-align: center!important; }
         .footer-about-box, .footer-links-grid { width: 100%!important; }
@@ -35,15 +36,11 @@
             <div class="footer-copyright-text">
                 Copyright © 2017 – <span id="current-year"></span> All Rights Reserved. <a href="https://rojgarsangam.in" target="_blank" class="nav-link" style="font-weight: bold;">RojgarSangam.in</a>
 </div>
-
-<script>
-    document.getElementById("current-year").textContent = new Date().getFullYear();
-</script>
         </div>
         <div class="footer-links-grid">
             <div class="footer-link-col">
                 <h3>Know Company</h3>
-                <div class="footer-link-col nav-link">
+                <div class="footer-link-col">
                 <a href="https://tools.rojgarsangam.in/legal/about-us">About Us ↙</a>
                 <a href="https://tools.rojgarsangam.in/legal/contact">Contact Us ↙</a>
                 <a href="https://rojgarsangam.in/">Official Website ↗</a>
@@ -64,4 +61,7 @@
             </div>
         </div>
     </div>
+        <script>
+            document.getElementById("current-year").textContent = new Date().getFullYear();
+        </script>
 </footer>
