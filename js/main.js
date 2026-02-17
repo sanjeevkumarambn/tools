@@ -1,17 +1,36 @@
 const RojgarTools = {
     init() {
-        this.setupMobileMenu();
-        this.setupActiveLinks();
+        this.loadComponents();
+    },
+
+    async loadComponents() {
+        const isSubFolder = window.location.pathname.includes('/tools/');
+        const pathPrefix = isSubFolder ? '../' : '';
+
+        try {
+            const headerRes = await fetch(pathPrefix + 'components/header.html');
+            const headerHtml = await headerRes.text();
+            document.getElementById('header-placeholder').innerHTML = headerHtml;
+
+            const footerRes = await fetch(pathPrefix + 'components/footer.html');
+            const footerHtml = await footerRes.text();
+            document.getElementById('footer-placeholder').innerHTML = footerHtml;
+
+            this.setupMobileMenu();
+            this.setupActiveLinks();
+
+        } catch (error) {
+            console.error("Component loading failed:", error);
+        }
     },
 
     setupMobileMenu() {
         const menuBtn = document.querySelector('.md\\:hidden');
-        const navMenu = document.querySelector('.nav-menu');
+        const navMenu = document.querySelector('nav');
         
         if (menuBtn && navMenu) {
             menuBtn.addEventListener('click', () => {
                 navMenu.classList.toggle('hidden');
-                navMenu.classList.toggle('flex');
                 navMenu.classList.toggle('flex-col');
                 navMenu.classList.toggle('absolute');
                 navMenu.classList.toggle('top-16');
@@ -31,10 +50,8 @@ const RojgarTools = {
         
         navLinks.forEach(link => {
             const linkPath = link.getAttribute('href');
-            if (currentPath.endsWith(linkPath) || (currentPath === '/' && linkPath === 'index.html')) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
+            if (currentPath.endsWith(linkPath) || (currentPath === '/' && linkPath.includes('index.html'))) {
+                link.classList.add('active-link');
             }
         });
     },
@@ -53,7 +70,7 @@ const RojgarTools = {
             const reader = new FileReader();
             reader.onload = e => resolve(e.target.result);
             reader.onerror = e => reject(e);
-            reader.readAsDataURL(file);
+            reader.readAsArrayBuffer(file);
         });
     }
 };
