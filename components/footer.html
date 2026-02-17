@@ -1,32 +1,93 @@
-<footer class="footer-main py-20 mt-10">
-    <div class="row-settings grid grid-cols-1 md:grid-cols-4 gap-12 text-left px-4">
-        <div class="footer-col">
-            <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" class="h-12 mb-8 bg-white p-1 rounded-sm">
-            <p class="text-xs text-gray-300 leading-relaxed">Rojgar Sangam is your trusted portal for Sarkari Jobs and Educational Tools。</p>
-            <div class="flex gap-4 mt-8">
-                <a href="#" class="text-white hover:text-blue-400 text-xl"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-white hover:text-blue-500 text-xl"><i class="fab fa-telegram"></i></a>
-                <a href="#" class="text-white hover:text-green-500 text-xl"><i class="fab fa-whatsapp"></i></a>
+<style>
+    /* इमेज के हिसाब से स्टाइलिंग */
+    .footer-exact-match {
+        background-color: #ffffff;
+        color: #333;
+        font-family: 'Times New Roman', Times, serif; /* इमेज वाला सेरिफ फॉन्ट */
+        padding: 40px 0;
+        border-top: 1px solid #ddd;
+    }
+    .footer-exact-match h3 {
+        font-style: italic;
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+        font-weight: 500;
+    }
+    .footer-exact-match .about-title {
+        font-size: 32px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: 20px;
+        color: #222;
+        letter-spacing: 1px;
+    }
+    .footer-exact-match .links-col a {
+        color: #0000ee; /* इमेज वाला ब्लू लिंक कलर */
+        text-decoration: none;
+        font-size: 16px;
+        display: block;
+        margin-bottom: 10px;
+    }
+    .footer-exact-match .links-col a:hover {
+        text-decoration: underline;
+    }
+    .footer-exact-match .copyright-text {
+        margin-top: 30px;
+        font-size: 14px;
+        color: #444;
+    }
+    .footer-exact-match .arrow {
+        font-size: 14px;
+        margin-left: 2px;
+    }
+    @media (max-width: 768px) {
+        .footer-grid { grid-template-columns: 1fr !important; text-align: center; }
+        .links-row { justify-content: center !important; gap: 30px; }
+    }
+</style>
+
+<footer class="footer-exact-match">
+    <div class="row-settings grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+        
+        <div class="footer-left">
+            <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/rojgar-sangam-logo.png" 
+                 style="height: 70px; width: auto; object-fit: contain;" alt="Rojgar Sangam">
+            
+            <div class="about-title">ABOUT ROJGAR SANGAM</div>
+            <p class="mt-4 text-lg leading-snug" style="max-width: 500px;">
+                Rojgar Sangam is a Sarkari Job and Education Information Website providing verified government job updates across India.
+            </p>
+            <div class="copyright-text">
+                Copyright © 2017 – 2026 All Rights Reserved. RojgarSangam.in
             </div>
         </div>
-        <div class="footer-col">
-            <h3 class="text-white font-black mb-8 uppercase text-sm tracking-widest">Quick Links</h3>
-            <ul class="footer-links space-y-4 text-xs font-bold">
-                <li><a href="https://rojgarsangam.in/">Official Site ↗</a></li>
-                <li><a href="https://rojgarsangam.in/about-us/">About Us ↗</a></li>
-                <li><a href="https://rojgarsangam.in/contact-us/">Contact Us ↗</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h3 class="text-white font-black mb-8 uppercase text-sm tracking-widest">Legal</h3>
-            <ul class="footer-links space-y-4 text-xs font-bold">
-                <li><a href="#">Privacy Policy ↗</a></li>
-                <li><a href="#">Terms & Conditions ↗</a></li>
-                <li><a href="#">Disclaimer ↗</a></li>
-            </ul>
-        </div>
-        <div class="footer-col flex flex-col justify-end text-[10px] text-gray-400 uppercase font-black tracking-widest">
-            <p>© 2026 Rojgar Sangam Tools.</p>
+
+        <div class="links-row flex justify-between gap-4">
+            <div class="links-col">
+                <h3>Know Company</h3>
+                <a href="https://rojgarsangam.in/about-us/">About Us <span class="arrow">↙</span></a>
+                <a href="https://rojgarsangam.in/contact-us/">Contact Us <span class="arrow">↙</span></a>
+                <a href="#">Sitemap <span class="arrow">↙</span></a>
+            </div>
+
+            <div class="links-col">
+                <h3>Policies</h3>
+                <a href="#">Privacy Policy <span class="arrow">↙</span></a>
+                <a href="#">Editorial Policy <span class="arrow">↗</span></a>
+                <a href="#">Cookies Policy <span class="arrow">↙</span></a>
+                <a href="#">Terms of Use <span class="arrow">↙</span></a>
+                <a href="#">Disclaimer <span class="arrow">↙</span></a>
+            </div>
+
+            <div class="links-col">
+                <h3>Follow us</h3>
+                <a href="#">Twitter <span class="arrow">↗</span></a>
+                <a href="#">Telegram <span class="arrow">↗</span></a>
+                <a href="#">Arattai <span class="arrow">↗</span></a>
+                <a href="#">WhatsApp <span class="arrow">↗</span></a>
+                <a href="#">Mastodon <span class="arrow">↗</span></a>
+            </div>
         </div>
     </div>
 </footer>
