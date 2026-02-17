@@ -87,16 +87,17 @@ blockquote p {
     margin: 0 !important;
 }
 .btn-brand {
-    background: var(--brand-blue) !important;
-    color: var(--white) !important;
-    padding: 12px 30px;
-    border-radius: 5px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    transition: 0.3s;
-    display: inline-block;
+    background: var(--bg-success)!important;
+    color: var(--text-main)!important;
+    padding: 8px 20px!important;
+    border-radius: 50px!important;
+    font-size: 12px!important;
+    font-weight: bold!important;
+    border: 2px solid var(--border-color)!important;
+    cursor: pointer!important;
+    text-decoration: none!important;
+    transition: 0.3s!important;
+    display: inline-block!important;
 }
 .ad-placeholder {
     background: #ebebeb !important;
