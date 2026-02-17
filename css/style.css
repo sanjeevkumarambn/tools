@@ -62,7 +62,7 @@ section, .section-main, .section-custom {
 body {
     background-color: var(--bg-light);
     color: var(--text-main);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-family: 'Lora', serif!important;
     margin: 0; padding: 0;
     -webkit-font-smoothing: antialiased;
     line-height: 1.6;
