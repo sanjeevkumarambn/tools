@@ -142,15 +142,9 @@ blockquote p {
     }
 }
 @media print {
-    .no-print { display: none !important; }
     .ad-placeholder { display: none !important; }
 }
 html {
     scroll-behavior: smooth;
 }
-.btn-primary:focus-visible,
-.btn-ghost:focus-visible {
-    outline: 2px solid var(--brand-blue);
-    outline-offset: 2px;
-}
-.hidden { display: none !important; }
+.hidden { display: none!important; }
