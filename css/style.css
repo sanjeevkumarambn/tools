@@ -17,7 +17,7 @@ header, .header-main {
     padding-bottom: 0!important;
     height: 100%!important;
     max-height: 70px!important;
-   justify-content: space-between !important;
+    justify-content: space-between !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06)!important;
     transition: all 0.3s ease!important;
 }
@@ -29,14 +29,12 @@ section, .section-main, .section-custom {
     padding-top: 10px!important;
     padding-bottom: 10px!important;
     height:100%!important;
-    justify-content: center!important;
 }
 .row-settings, .row-container {
     margin: auto!important;
     position: relative!important;
     width: 1080px!important;
     max-width: 95%!important;
-    justify-content: center!important;
     padding-bottom: 10px !important;
     padding-top: 10px !important;
 }
