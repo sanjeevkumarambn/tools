@@ -9,22 +9,21 @@
     --white: #ffffff;
 }
 section, .section-main, .section-custom {
-    width: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    position: relative !important;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
-    justify-content: flex-end !important;
+    width: 100%!important;
+    display: flex!important;
+    flex-direction: column!important;
+    position: relative!important;
+    padding-top: 10px!important;
+    padding-bottom: 10px!important;
+    height:100%!important;
+    justify-content: center!important;
 }
 .row-settings, .row-container {
-    margin: auto !important;
-    position: relative !important;
-    width: 1080px !important;
-    max-width: 95% !important;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center !important;
+    margin: auto!important;
+    position: relative!important;
+    width: 1080px!important;
+    max-width: 95%!important;
+    justify-content: center!important;
     padding-bottom: 10px !important;
     padding-top: 10px !important;
 }
