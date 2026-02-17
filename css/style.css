@@ -18,8 +18,7 @@ header, .header-main {
     height: 100%!important;
     max-height: 70px!important;
     justify-content: space-between !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06)!important;
-    transition: all 0.3s ease!important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08)!important;
 }
 section, .section-main, .section-custom {
     width: 100%!important;
