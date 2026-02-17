@@ -121,22 +121,10 @@ blockquote p {
 .nav-link {
     color: var(--brand-blue);
     font-size: 15px!important;
-    font-weight: bold!important;
-    margin-left: 20px!important;
     text-decoration: none!important;
     transition: 0.3s!important;
 }
 .nav-link:hover {
-    color: var(--text-main);
-}
-.link {
-    color: var(--brand-blue);
-    font-size: 15px!important;
-    font-weight: bold!important;
-    text-decoration: none!important;
-    transition: 0.3s!important;
-}
-.link:hover {
     color: var(--text-main);
 }
 .tool-card {
