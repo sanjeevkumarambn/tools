@@ -12,12 +12,13 @@ header, .header-main {
     width: 100%!important;
     display: flex!important;
     flex-direction: column!important;
-    background-color: #ffffff!important;
-    padding-top: 0!important;
-    padding-bottom: 0!important;
-    height: 100%!important;
-    max-height: 70px!important;
-    justify-content: space-between !important;
+    position: relative!important;
+    background-color: var(--white)!important;
+    padding-top: 5px!important;
+    padding-bottom: 5px!important;
+    height: 80px!important;
+    max-height: 80px!important;
+    justify-content: space-between!important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08)!important;
 }
 section, .section-main, .section-custom {
@@ -27,7 +28,6 @@ section, .section-main, .section-custom {
     position: relative!important;
     padding-top: 10px!important;
     padding-bottom: 10px!important;
-    height:100%!important;
     justify-content: center!important;
 }
 .row-settings, .row-container {
