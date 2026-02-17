@@ -1,16 +1,66 @@
-<header class="" style="">
-    <div class="row-settings">
-        <a href="../index.html">
-            <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" alt="Rojgar Sangam" class="h-10">
+<style>
+    .header-flex-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+    .nav-container {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+    .nav-link-item {
+        text-decoration: none;
+        color: #333;
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: 1px;
+        transition: 0.3s;
+    }
+    .nav-link-item:hover {
+        color: #00079e;
+    }
+    .nav-link-active {
+        color: #00079e;
+    }
+    .main-site-btn {
+        background-color: #00079e;
+        color: white !important;
+        padding: 10px 22px;
+        border-radius: 50px;
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: 11px;
+        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(0, 7, 158, 0.2);
+        transition: 0.3s;
+    }
+    .main-site-btn:hover {
+        background-color: #00134d;
+        transform: translateY(-2px);
+    }
+    @media (max-width: 768px) {
+        .nav-container {
+            display: none;
+        }
+    }
+</style>
+<div class="row-settings header-flex-row">
+    <a href="https://tools.rojgarsangam.in" style="display: flex; align-items: center;">
+        <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" 
+             alt="Rojgar Sangam" 
+             style="height: 55px; width: auto;">
+    </a>
+    <div class="nav-container">
+        <a href="https://tools.rojgarsangam.in" class="nav-link-item">Home</a>
+        <a href="https://tools.rojgarsangam.in#pdf-tools" class="nav-link-item">Tools</a>
+        <a href="https://rojgarsangam.in/about-us/" class="nav-link-item">About Us</a>
+        <a href="https://rojgarsangam.in/contact-us/" class="nav-link-item">Contact</a>
+        <a href="https://rojgarsangam.in" class="main-site-btn">
+            ROJGAR SANGAM ↗
         </a>
-        <div class="">
-            <nav class="">
-                <a href="https://rojgarsangam.in/" class="nav-link font-black uppercase text-xs">Home</a>
-                <a href="../index.html" class="nav-link font-black uppercase text-xs text-[#00079e]">Tools</a>
-                <a href="https://rojgarsangam.in/about-us/" class="nav-link font-black uppercase text-xs">About Us</a>
-                <a href="https://rojgarsangam.in/contact-us/" class="nav-link font-black uppercase text-xs">Contact</a>
-            </nav>
-            <a href="https://www.rojgarsangam.in" class="bg-white border border-gray-300 px-4 py-1.5 rounded-full text-[10px] font-black text-gray-600 hover:bg-gray-100 transition shadow-sm uppercase">Main Site</a>
-        </div>
     </div>
-</header>
+</div>
