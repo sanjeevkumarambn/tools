@@ -1,8 +1,8 @@
 const AdConfig = {
     publisherId: "ca-pub-XXXXXXXXXXXXXXXX",
-    leaderboardSlot: "0000000000", // 728x90
-    rectangleSlot: "1111111111",   // 300x250
-    responsiveSlot: "2222222222",  // Responsive
+    leaderboardSlot: "0000000000", 
+    rectangleSlot: "1111111111",   
+    responsiveSlot: "2222222222",  
     showAds: true
 };
 
@@ -23,8 +23,21 @@ const AdManager = {
 
     renderAds() {
         const slots = document.querySelectorAll('.ad-manager-placeholder');
+        const isMobile = window.innerWidth < 768;
+
         slots.forEach(slot => {
             const type = slot.dataset.adType; 
+            
+            if (type === 'leaderboard' && isMobile) {
+                slot.style.display = 'none';
+                return;
+            }
+            
+            if (type === 'rectangle' && !isMobile) {
+                slot.style.display = 'none';
+                return;
+            }
+
             const ins = document.createElement('ins');
             ins.className = "adsbygoogle";
             ins.style.display = "block";
@@ -32,19 +45,16 @@ const AdManager = {
             ins.dataset.adClient = AdConfig.publisherId;
 
             if (type === 'leaderboard') {
-                // 728x90 for Desktop, 320x100 for Mobile
                 ins.dataset.adSlot = AdConfig.leaderboardSlot;
                 ins.dataset.adFormat = "horizontal";
-                ins.style.minHeight = window.innerWidth < 768 ? "100px" : "90px";
+                ins.style.minHeight = "90px";
             } 
             else if (type === 'rectangle') {
-                // 300x250 Fixed Size
                 ins.dataset.adSlot = AdConfig.rectangleSlot;
                 ins.style.width = "300px";
                 ins.style.height = "250px";
             } 
             else {
-                // Fully Responsive Ad
                 ins.dataset.adSlot = AdConfig.responsiveSlot;
                 ins.dataset.adFormat = "auto";
                 ins.dataset.fullWidthResponsive = "true";
