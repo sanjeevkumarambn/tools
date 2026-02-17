@@ -1,55 +1,49 @@
 <style>
-    .header-nav-group {
+    .header-content-flex {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+    .nav-group-right {
         display: flex;
         align-items: center;
-        gap: 35px;
+        gap: 30px;
     }
-
-    .header-links {
+    .nav-links-desktop {
         display: flex;
-        gap: 25px;
+        align-items: center;
+        gap: 20px;
     }
-
-    .header-anchor {
-        text-decoration: none;
-        color: #1a1a1a;
-        font-weight: 900;
-        text-transform: uppercase;
-        font-size: 11px;
-        letter-spacing: 0.5px;
-    }
-
-    .header-btn {
-        background-color: #00079e;
-        color: white !important;
-        padding: 10px 22px;
-        border-radius: 50px;
-        font-weight: 900;
-        text-transform: uppercase;
-        font-size: 11px;
-        text-decoration: none;
-    }
-
     @media (max-width: 768px) {
-        .header-links { display: none; }
+        .nav-links-desktop {
+            display: none;
+        }
+        .header-content-flex {
+            flex-direction: row !important;
+            text-align: left !important;
+        }
     }
 </style>
 
-<div class="row-settings flex justify-between items-center" style="width:100%; height:100%;">
-    
-    <a href="https://tools.rojgarsangam.in" style="display: flex; align-items: center;">
+<div class="row-settings header-content-flex">
+    <a href="https://tools.rojgarsangam.in" style="display: flex; align-items: center; text-decoration: none;">
         <img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" 
-             style="height: 52px; width: auto;">
+             style="height: 50px; width: auto;" 
+             alt="Rojgar Sangam">
     </a>
 
-    <div class="header-nav-group">
-        <nav class="header-links">
-            <a href="https://tools.rojgarsangam.in" class="header-anchor" style="color:#00079e;">Home</a>
-            <a href="https://tools.rojgarsangam.in#pdf-tools" class="header-anchor">Tools</a>
-            <a href="https://rojgarsangam.in/about-us/" class="header-anchor">About Us</a>
-            <a href="https://rojgarsangam.in/contact-us/" class="header-anchor">Contact</a>
+    <div class="nav-group-right">
+        <nav class="nav-links-desktop">
+            <a href="https://tools.rojgarsangam.in" class="nav-link" style="margin: 0; color: var(--brand-blue);">HOME</a>
+            <a href="https://tools.rojgarsangam.in#pdf-tools" class="nav-link" style="margin: 0;">TOOLS</a>
+            <a href="https://rojgarsangam.in/about-us/" class="nav-link" style="margin: 0;">ABOUT US</a>
+            <a href="https://rojgarsangam.in/contact-us/" class="nav-link" style="margin: 0;">CONTACT</a>
         </nav>
-        <a href="https://rojgarsangam.in" class="header-btn">ROJGAR SANGAM ↗</a>
-    </div>
 
+        <a href="https://rojgarsangam.in" class="btn-brand" style="padding: 8px 20px; font-size: 11px; border-radius: 50px; white-space: nowrap;">
+            ROJGAR SANGAM ↗
+        </a>
+    </div>
 </div>
