@@ -8,19 +8,34 @@
     --bg-light: #f8f8ff;
     --white: #ffffff;
 }
-section, .section-main, .section-custom {
+header, .header-main {
     width: 100%!important;
-    position: relative!important;
     display: flex!important;
     flex-direction: column!important;
+    position: relative!important;
+    background-color: var(--white)!important;
+    padding: 5px 0px 5px !important;
+    width: 1080px !important;
+    max-width: 95% !important;
+    height: 70px !important;
+    max-height: 100% !important;
+    justify-content: space-between!important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08)!important;
+}
+section, .section-main, .section-custom {
+    width: 100%!important;
+    display: flex!important;
+    flex-direction: column!important;
+    position: relative!important;
+    padding: 10px 0px 10px !important;
     justify-content: center!important;
 }
 .row-settings, .row-container {
-    margin: 0px 0px !important;
-    position: relative !important;
-    width: 1080px !important;
-    max-width: 95% !important;
-    padding: 10px 0px !important;
+    margin: auto!important;
+    position: relative!important;
+    width: 1080px!important;
+    max-width: 95%!important;
+    padding: 10px 0px 10px !important;
     align-items: center!important;
 }
 @media screen and (max-width: 1080px) {
@@ -42,13 +57,6 @@ section, .section-main, .section-custom {
     .grid {
         grid-template-columns: 1fr !important; 
     }
-}
-body {
-    background-color: var(--bg-light);
-    color: var(--text-main);
-    font-family: 'Lora', serif!important;
-}
-h1, h2, h3, h4, h5, h6 {
 }
 .btn-brand {
     background: var(--bg-success)!important;
