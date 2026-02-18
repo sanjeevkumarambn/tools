@@ -20,7 +20,7 @@ header, .header-main {
     height: 70px !important;
     max-height: 100% !important;
     justify-content: space-between!important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08)!important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 09.09)!important;
 }
 section, .section-main, .section-custom {
     width: 100%!important;
