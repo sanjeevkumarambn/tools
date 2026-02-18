@@ -9,12 +9,12 @@
     --white: #ffffff;
 }
 header, .header-main {
-    width: 100%!important;
-    display: flex!important;
-    flex-direction: column!important;
-    position: relative!important;
-    background-color: var(--white)!important;
-    padding: 5px 0px 5px !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+    background-color: #ffffff !important;
+    padding: 5px 0px !important;
     width: 1080px !important;
     max-width: 95% !important;
     height: 70px !important;
@@ -27,15 +27,15 @@ section, .section-main, .section-custom {
     display: flex!important;
     flex-direction: column!important;
     position: relative!important;
-    padding: 10px 0px 10px !important;
+    padding: 5px 0px !important;
     justify-content: center!important;
 }
 .row-settings, .row-container {
-    margin: auto!important;
+    margin: 0px 0px !important;
     position: relative!important;
     width: 1080px!important;
     max-width: 95%!important;
-    padding: 10px 0px 10px !important;
+    padding: 10px 0px !important;
     align-items: center!important;
 }
 @media screen and (max-width: 1080px) {
