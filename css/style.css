@@ -13,8 +13,6 @@ section, .section-main, .section-custom {
     position: relative!important;
     display: flex!important;
     flex-direction: column!important;
-    padding: 0px 0px !important;
-    margin: 0px 0px !important;
     justify-content: center!important;
 }
 .row-settings, .row-container {
