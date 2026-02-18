@@ -13,7 +13,8 @@
     position: relative!important;
     display: flex!important;
     flex-direction: column!important;
-    padding: 0px 0px 0px !important;
+    padding: 0px 0px !important;
+    margin: 0px 0px !important;
     justify-content: center!important;
 }
 .row-settings, .row-container {
@@ -21,7 +22,7 @@
     position: relative !important;
     width: 1080px !important;
     max-width: 95% !important;
-    padding: 10px 0px 10px !important;
+    padding: 10px 0px !important;
     align-items: center!important;
 }
 @media screen and (max-width: 1080px) {
