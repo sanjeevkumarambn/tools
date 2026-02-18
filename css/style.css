@@ -11,7 +11,9 @@
 .section, .section-main, .section-custom, .header, .header-main {
     width: 100%!important;
     position: relative!important;
-    padding: 10px 0px 10px !important;
+    display: flex!important;
+    flex-direction: column!important;
+    padding: 0px 0px 0px !important;
     justify-content: center!important;
 }
 .row-settings, .row-container {
