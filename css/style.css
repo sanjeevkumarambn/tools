@@ -8,10 +8,8 @@
     --bg-light: #f8f8ff;
     --white: #ffffff;
 }
-section, .section-main, .section-custom, .header, .header-main {
+.section, .section-main, .section-custom, .header, .header-main {
     width: 100%!important;
-    display: flex!important;
-    flex-direction: column!important;
     position: relative!important;
     padding: 10px 0px 10px !important;
     justify-content: center!important;
