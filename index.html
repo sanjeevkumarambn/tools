@@ -1,59 +1,182 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <title>Rojgar Sangam Tools - Compress PDF, Word to PDF & Image Resizer</title>
     <meta name="description" content="Rojgar Sangam Tools offers free online PDF converters, photo background remover, and image resizer for IERT and UPSSSC for government job aspirants.">
     <meta name="keywords" content="rojgar sangam tools, compress pdf online free, word to pdf converter online, jpg to pdf converter, photo background remover, image resizer, name and date of birth on photo maker, photo and signature resizer for online form">
     <link rel="canonical" href="https://tools.rojgarsangam.in/">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-white">
-    <div id="header-placeholder"></div>
-    <main>
-        <section class="section-custom bg-[#f8f8ff] min-h-[500px] flex items-center">
-    <div class="row-settings flex flex-col md:flex-row items-center justify-between gap-12 px-6 py-16">
-        
-        <div class="w-full md:w-3/5 text-left">
-            <span class="bg-[#eff6ef] text-[#00079e] px-4 py-1.5 rounded-full text-[11px] font-black uppercase tracking-widest shadow-sm">
-                100% Free & Secure Browser-Based Tools
-            </span>
-            
-            <h1 class="text-4xl md:text-6xl font-black text-[#1a1a1a] leading-[1.1] mt-8">
-                Professional Tools for <br>
-                <span class="text-[#00079e]">Competitive Exam Forms</span>
-            </h1>
-            
-            <p class="text-gray-500 my-10 text-base md:text-lg leading-relaxed max-w-lg font-medium">
-                Easily resize photos, merge signatures, and manage PDF documents directly in your browser. No data upload required, ensuring 100% privacy for every candidate.
-            </p>
-            
-            <div class="flex flex-wrap gap-5">
-                <a href="#photo-tools" class="btn-brand shadow-xl hover:-translate-y-1 transition-all">Photo Tools</a>
-                <a href="#pdf-tools" class="border-2 border-[#00079e] text-[#00079e] font-black py-3 px-10 rounded text-sm hover:bg-[#00079e] hover:text-white transition-all uppercase shadow-lg">
-                    PDF Tools
-                </a>
-            </div>
-        </div>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            font-family: 'Lora', serif !important;
+        }
 
-        <div class="w-full md:w-2/5 flex justify-center md:justify-end mt-12 md:mt-0">
-            <img src="https://static.vecteezy.com/system/resources/previews/011/153/360/original/3d-web-developer-working-on-project-illustration-png.png" 
-                 alt="Rojgar Sangam Professional Tools" 
-                 class="w-full max-w-[420px] drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)] transform hover:scale-105 transition-duration-500">
-        </div>
-        
-    </div>
-</section>
+        .hero-locked-section {
+            background-color: #f8f8ff !important;
+            padding: 80px 0 !important;
+            width: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            min-height: 500px !important;
+        }
+
+        .hero-container.row-settings {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            flex-wrap: wrap !important;
+        }
+
+        .hero-text-content {
+            flex: 1 !important;
+            min-width: 300px !important;
+            max-width: 60% !important;
+        }
+
+        .hero-badge {
+            background-color: #eff6ef !important;
+            color: #00079e !important;
+            padding: 6px 15px !important;
+            border-radius: 50px !important;
+            font-size: 11px !important;
+            font-weight: 900 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1px !important;
+            display: inline-block !important;
+        }
+
+        .hero-main-title {
+            font-size: 55px !important;
+            font-weight: 900 !important;
+            color: #1a1a1a !important;
+            line-height: 1.1 !important;
+            margin: 25px 0 !important;
+        }
+
+        .hero-main-title span {
+            color: #00079e !important;
+        }
+
+        .hero-description {
+            font-size: 18px !important;
+            color: #666666 !important;
+            line-height: 1.6 !important;
+            margin-bottom: 40px !important;
+            max-width: 500px !important;
+        }
+
+        .hero-btn-group {
+            display: flex !important;
+            gap: 20px !important;
+            flex-wrap: wrap !important;
+        }
+
+        .btn-primary-hero {
+            background-color: #00079e !important;
+            color: #ffffff !important;
+            padding: 15px 35px !important;
+            border-radius: 5px !important;
+            font-weight: bold !important;
+            text-decoration: none !important;
+            text-transform: uppercase !important;
+            font-size: 14px !important;
+            transition: 0.3s !important;
+            box-shadow: 0 10px 20px rgba(0,7,158,0.2) !important;
+        }
+
+        .btn-secondary-hero {
+            border: 2px solid #00079e !important;
+            color: #00079e !important;
+            padding: 13px 35px !important;
+            border-radius: 5px !important;
+            font-weight: bold !important;
+            text-decoration: none !important;
+            text-transform: uppercase !important;
+            font-size: 14px !important;
+            transition: 0.3s !important;
+        }
+
+        .btn-primary-hero:hover, .btn-secondary-hero:hover {
+            transform: translateY(-3px) !important;
+            background-color: #333333 !important;
+            color: #ffffff !important;
+            border-color: #333333 !important;
+        }
+
+        .hero-image-content {
+            flex: 1 !important;
+            display: flex !important;
+            justify-content: flex-end !important;
+            min-width: 300px !important;
+        }
+
+        .hero-image-content img {
+            max-width: 420px !important;
+            width: 100% !important;
+            filter: drop-shadow(0 35px 35px rgba(0,0,0,0.15)) !important;
+            transition: 0.5s !important;
+        }
+
+        .hero-image-content img:hover {
+            transform: scale(1.05) !important;
+        }
+
+        @media (max-width: 768px) {
+            .hero-locked-section { padding: 40px 0 !important; }
+            .hero-container.row-settings { flex-direction: column !important; text-align: center !important; }
+            .hero-text-content { max-width: 100% !important; order: 1 !important; }
+            .hero-description { margin-left: auto !important; margin-right: auto !important; }
+            .hero-btn-group { justify-content: center !important; }
+            .hero-image-content { order: 2 !important; justify-content: center !important; margin-top: 50px !important; }
+            .hero-main-title { font-size: 35px !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section class="hero-locked-section">
+            <div class="hero-container row-settings">
+                
+                <div class="hero-text-content">
+                    <span class="hero-badge">100% Free & Secure Browser-Based Tools</span>
+                    
+                    <h1 class="hero-main-title">
+                        Professional Tools for <br>
+                        <span>Competitive Exam Forms</span>
+                    </h1>
+                    
+                    <p class="hero-description">
+                        Easily resize photos, merge signatures, and manage PDF documents directly in your browser. No data upload required, ensuring 100% privacy for every candidate.
+                    </p>
+                    
+                    <div class="hero-btn-group">
+                        <a href="#photo-tools" class="btn-primary-hero">Photo Tools</a>
+                        <a href="#pdf-tools" class="btn-secondary-hero">PDF Tools</a>
+                    </div>
+                </div>
+
+                <div class="hero-image-content">
+                    <img src="https://static.vecteezy.com/system/resources/previews/011/153/360/original/3d-web-developer-working-on-project-illustration-png.png" 
+                         alt="Rojgar Sangam Professional Tools">
+                </div>
+                
+            </div>
+        </section>
     </main>
+
     <div id="footer-placeholder"></div>
+
     <script src="js/ad-manager.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
-
-
-
