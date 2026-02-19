@@ -127,6 +127,38 @@
             .hero-image-content { order: 2 !important; justify-content: center !important; margin-top: 25px !important; }
             .hero-main-title { font-size: 30px !important; }
         }
+
+
+
+        /* CSS FOR SECTION 3 */
+.tools-grid-section { padding: 60px 0 !important; background: #f9f9f9 !important; }
+.tools-title-box { text-align: center !important; margin-bottom: 40px !important; }
+.tools-title-box h2 { font-size: 28px !important; color: #222 !important; }
+
+.tools-grid-main { 
+    display: grid !important; 
+    grid-template-columns: repeat(4, 1fr) !important; /* एक लाइन में 4 टूल्स */
+    gap: 20px !important; 
+}
+
+.tool-card-mini {
+    background: #fff !important;
+    padding: 30px 15px !important;
+    border-radius: 12px !important;
+    text-align: center !important;
+    border: 1px solid #eee !important;
+    transition: 0.3s !important;
+    /* आपकी सिग्नेचर बॉटम शैडो */
+    box-shadow: 0 8px 15px -8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.tool-card-mini:hover { transform: translateY(-5px) !important; border-color: #00079e !important; }
+.tool-icon { font-size: 35px !important; margin-bottom: 15px !important; }
+.tool-card-mini h4 { font-size: 16px !important; margin-bottom: 15px !important; color: #333 !important; }
+.tool-link { color: #00079e !important; text-decoration: none !important; font-weight: bold !important; font-size: 14px !important; border-bottom: 1px solid transparent !important; }
+.tool-link:hover { border-bottom: 1px dotted #00079e !important; }
+
+@media (max-width: 768px) { .tools-grid-main { grid-template-columns: repeat(2, 1fr) !important; } }
     </style>
 </head>
 <body>
@@ -151,33 +183,33 @@
         </section>
 
         
-        <section id="pdf-tools" class="tool-list-section">
+        <section id="pdf-tools" class="tools-grid-section">
     <div class="row-settings">
-        <div class="section-header">
-            <h2 class="section-title-main">PDF Management Tools</h2>
-            <div class="title-line"></div>
+        <div class="tools-title-box">
+            <h2>PDF Tools Online</h2>
+            <p>Merge, Split, Compress, and Convert PDF Files</p>
         </div>
 
-        <div class="tools-grid-layout">
-            <div class="tool-item-card">
-                <div class="tool-icon-circle pdf-bg">📂</div>
+        <div class="tools-grid-main">
+            <div class="tool-card-mini">
+                <div class="tool-icon">📂</div>
                 <h4>Merge PDF</h4>
-                <p>Combine multiple PDF files into one single document quickly.</p>
-                <a href="#" class="btn-tool-start">Merge Now</a>
+                <a href="#" class="tool-link">Start Now</a>
             </div>
-
-            <div class="tool-item-card">
-                <div class="tool-icon-circle pdf-bg">📉</div>
+            <div class="tool-card-mini">
+                <div class="tool-icon">📉</div>
                 <h4>Compress PDF</h4>
-                <p>Reduce PDF file size without losing quality for online uploads.</p>
-                <a href="#" class="btn-tool-start">Compress Now</a>
+                <a href="#" class="tool-link">Start Now</a>
             </div>
-
-            <div class="tool-item-card">
-                <div class="tool-icon-circle pdf-bg">🖼️</div>
-                <h4>Image to PDF</h4>
-                <p>Convert JPG or PNG images into a professional PDF document.</p>
-                <a href="#" class="btn-tool-start">Convert Now</a>
+            <div class="tool-card-mini">
+                <div class="tool-icon">🖼️</div>
+                <h4>JPG to PDF</h4>
+                <a href="#" class="tool-link">Start Now</a>
+            </div>
+            <div class="tool-card-mini">
+                <div class="tool-icon">🔐</div>
+                <h4>Unlock PDF</h4>
+                <a href="#" class="tool-link">Start Now</a>
             </div>
         </div>
     </div>
@@ -188,6 +220,7 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
