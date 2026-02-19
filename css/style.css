@@ -13,12 +13,12 @@ header, .header-main {
     display: flex !important;
     position: relative !important;
     background-color: #ffffff!important;
+    margin: 0 auto !important;
     padding-top: 0!important;
     padding-bottom: 0!important;
     height: 70px !important;
     justify-content: center !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.09)!important;
-    transition: all 0.3s ease!important;
 }
 section, .section-main, .section-custom {
     width: 100% !important;
