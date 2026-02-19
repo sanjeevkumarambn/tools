@@ -9,36 +9,35 @@
     --white: #ffffff;
 }
 header, .header-main {
-    width: 100%!important;
-    display: flex!important;
-    flex-direction: column!important;
+    width: 100% !important;
+    max-width: 1080px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
     background-color: #ffffff!important;
     padding-top: 0!important;
     padding-bottom: 0!important;
-    height: 100%!important;
-    max-height: 70px!important;
-    justify-content: space-between !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06)!important;
-    transition: all 0.3s ease!important;
+    height: 100% !important;
+    max-height: 70px !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.09)!important;
+    transition: all 0.3s ease!important;    
 }
 section, .section-main, .section-custom {
-    width: 100%!important;
-    display: flex!important;
-    flex-direction: column!important;
-    position: relative!important;
-    padding-top: 10px!important;
-    padding-bottom: 10px!important;
-    height:100%!important;
-    justify-content: center!important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+    padding: 0px 0px !important;
+    justify-content: center !important;
 }
 .row-settings, .row-container {
-    margin: auto!important;
-    position: relative!important;
-    width: 1080px!important;
-    max-width: 95%!important;
-    padding-bottom: 10px!important;
-    padding-top: 10px!important;
-    align-items: center!important;
+    margin: 0px 0px !important;
+    position: relative !important;
+    max-width: 1080px !important;
+    width: 95% !important;
+    padding: 0px 0px !important;
+    align-items: center !important;
 }
 @media screen and (max-width: 1080px) {
     .row-settings, .row-container {
