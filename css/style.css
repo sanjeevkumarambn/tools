@@ -17,7 +17,7 @@ header, .header-main {
     width: 100% !important;
     height: 100% !important;
     max-height: 70px !important;
-    justify-content: center !important;
+    justify-content: space-between !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.09) !important;
 }
 section, .section-main, .section-custom {
@@ -34,6 +34,7 @@ section, .section-main, .section-custom {
     max-width: 1080px !important;
     width: 98% !important;
     padding: 10px 5px !important;
+    justify-content: space-between !important;
     align-items: center !important;
 }
 @media screen and (max-width: 1080px) {
