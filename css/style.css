@@ -17,24 +17,27 @@ header, .header-main {
     width: 100% !important;
     height: 100% !important;
     max-height: 70px !important;
-    justify-content: center!important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.09)!important;
+    justify-content: center !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.09) !important;
 }
 section, .section-main, .section-custom {
-    width: 100%!important;
-    display: flex!important;
-    flex-direction: column!important;
-    position: relative!important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
     padding: 5px 0px !important;
-    justify-content: center!important;
+    justify-content: center !important;
 }
 .row-settings, .row-container {
     margin: 0px 0px !important;
-    position: relative!important;
-    max-width: 1080px!important;
-    width: 98%!important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    position: relative !important;
+    max-width: 1080px !important;
+    width: 98% !important;
     padding: 10px 5px !important;
-    align-items: center!important;
+    align-items: center !important;
 }
 @media screen and (max-width: 1080px) {
     .row-settings, .row-container {
