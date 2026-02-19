@@ -97,13 +97,12 @@ h1, h2, h3, h4, h5, h6 {
     .ad-leaderboard { width: 320px !important; height: 50px !important; }
 }
 .nav-link {
-    color: var(--brand-blue);
-    font-size: 15px!important;
-    text-decoration: none!important;
-    transition: 0.3s!important;
+    color: #00079e !important;
+    font-size: 15px !important;
+    text-decoration: none !important;
 }
 .nav-link:hover {
-    color: var(--text-main);
+    color: #333333 !important;
 }
 .ad-placeholder {
     border-radius: 8px;
