@@ -66,13 +66,9 @@ html, body {
 }
 body {
     font-family: 'Lora', serif !important;
-    padding: 0px 0px !important;
-    margin: 5px 0px !important;
     -webkit-font-smoothing: antialiased;
 }
 h1, h2, h3, h4, h5, h6 {
-    padding: 0px 0px !important;
-    margin: 5px 0px !important;
 }
 .btn-brand {
     background: #eff6ef !important;
