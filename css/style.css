@@ -19,7 +19,7 @@ header, .header-main {
     max-width: 95% !important;
     height: 70px !important;
     max-height: 100% !important;
-    justify-content: space-between!important;
+    justify-content: center!important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 09.09)!important;
 }
 section, .section-main, .section-custom {
