@@ -33,7 +33,6 @@ section, .section-main, .section-custom {
     max-width: 1080px !important;
     width: 95% !important;
     padding: 0px 0px !important;
-    justify-content: space-between !important;
     align-items: center !important;
 }
 @media screen and (max-width: 1080px) {
