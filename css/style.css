@@ -23,6 +23,7 @@ section, .section-main, .section-custom {
     width: 100% !important;
     display: flex !important;
     position: relative !important;
+    margin: 0px 0px 0px 0px !important;
     padding: 0px 0px 0px 0px !important;
     justify-content: center !important;
 }
@@ -36,11 +37,9 @@ section, .section-main, .section-custom {
     align-items: center !important;
 }
 html, body {
-    max-width: 100% !important;
     overflow-x: hidden !important;
     margin: 0 !important;
     padding: 0 !important;
-    box-sizing: border-box !important;
 }
 *, *:before, *:after {
     box-sizing: border-box !important;
