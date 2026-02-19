@@ -19,7 +19,7 @@ header, .header-main {
     justify-content: center !important;
     box-shadow: 0 8px 15px -5px rgba(0, 0, 0, 0.08) !important;
 }
-section, .section-main, .section-custom {
+section, .section-main, .section-custom, .section-container {
     width: 100% !important;
     display: flex !important;
     position: relative !important;
@@ -27,7 +27,7 @@ section, .section-main, .section-custom {
     padding: 0px 0px 0px 0px !important;
     justify-content: center !important;
 }
-.row-settings, .row-container {
+.row-settings, .row-container, .row-custom {
     margin: 0px auto 0px auto !important;
     position: relative !important;
     display: block !important;
