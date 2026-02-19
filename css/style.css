@@ -10,32 +10,28 @@
 }
 header, .header-main {
     width: 100% !important;
-    max-width: 1080px !important;
     display: flex !important;
-    flex-direction: column !important;
     position: relative !important;
     background-color: #ffffff!important;
     padding-top: 0!important;
     padding-bottom: 0!important;
-    height: 100% !important;
-    max-height: 70px !important;
+    height: 70px !important;
     justify-content: center !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.09)!important;
-    transition: all 0.3s ease!important;    
+    transition: all 0.3s ease!important;
 }
 section, .section-main, .section-custom {
     width: 100% !important;
     display: flex !important;
-    flex-direction: column !important;
     position: relative !important;
     padding: 0px 0px !important;
     justify-content: center !important;
 }
 .row-settings, .row-container {
-    margin: 0px 0px !important;
+    margin: 0 auto !important;
     position: relative !important;
-    max-width: 1080px !important;
-    width: 95% !important;
+    max-width: 95% !important;
+    width: 1080px !important;
     padding: 0px 0px !important;
     align-items: center !important;
 }
