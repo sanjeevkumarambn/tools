@@ -128,37 +128,106 @@
             .hero-main-title { font-size: 30px !important; }
         }
 
-
-
-        /* CSS FOR SECTION 3 */
-.tools-grid-section { padding: 60px 0 !important; background: #f9f9f9 !important; }
-.tools-title-box { text-align: center !important; margin-bottom: 40px !important; }
-.tools-title-box h2 { font-size: 28px !important; color: #222 !important; }
-
-.tools-grid-main { 
-    display: grid !important; 
-    grid-template-columns: repeat(4, 1fr) !important; /* एक लाइन में 4 टूल्स */
-    gap: 20px !important; 
+.section {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    justify-content: flex-end !important;
 }
 
-.tool-card-mini {
-    background: #fff !important;
-    padding: 30px 15px !important;
-    border-radius: 12px !important;
-    text-align: center !important;
-    border: 1px solid #eee !important;
-    transition: 0.3s !important;
-    /* आपकी सिग्नेचर बॉटम शैडो */
-    box-shadow: 0 8px 15px -8px rgba(0, 0, 0, 0.1) !important;
+.row {
+    margin: auto !important;
+    max-width: 95% !important;
+    position: relative !important;
+    width: 1080px !important;
+    justify-content: center !important;
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
 }
 
-.tool-card-mini:hover { transform: translateY(-5px) !important; border-color: #00079e !important; }
-.tool-icon { font-size: 35px !important; margin-bottom: 15px !important; }
-.tool-card-mini h4 { font-size: 16px !important; margin-bottom: 15px !important; color: #333 !important; }
-.tool-link { color: #00079e !important; text-decoration: none !important; font-weight: bold !important; font-size: 14px !important; border-bottom: 1px solid transparent !important; }
-.tool-link:hover { border-bottom: 1px dotted #00079e !important; }
+h2 {
+    color: #333333;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
 
-@media (max-width: 768px) { .tools-grid-main { grid-template-columns: repeat(2, 1fr) !important; } }
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.tool-card {
+    border: 1px solid #667799;
+    border-radius: 8px;
+    padding: 20px;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(102, 119, 153, 0.2);
+}
+
+.card-peach { background-color: #fdece5; }
+.card-mint { background-color: #eff6ef; }
+.card-lavender { background-color: #f8f8ff; }
+
+.tool-name {
+    display: block;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.tool-card p {
+    color: #333333;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.feature-card {
+    grid-column: span 1;
+    background-color: #00079e;
+    border-radius: 8px;
+    padding: 20px;
+    min-height: 200px;
+    display: flex;
+    align-items: flex-end;
+    text-decoration: none;
+}
+
+.feature-text .tool-name, .feature-text p {
+    color: #ffffff;
+}
+
+.icon-placeholder {
+    width: 40px;
+    height: 40px;
+    background-color: #bdbdbd;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.ad-slot {
+    width: 100%;
+    min-height: 100px;
+    background-color: #ffffff;
+    border: 1px solid #bdbdbd;
+    margin: 20px 0;
+}
+
+@media (min-width: 768px) {
+    .feature-card {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+}
     </style>
 </head>
 <body>
@@ -183,69 +252,78 @@
         </section>
 
         
-        <section id="pdf-tools" class="tools-grid-section">
-    <div class="row-settings">
-        <div class="tools-title-box">
-            <h2>PDF Tools Online</h2>
-            <p>Merge, Split, Compress, and Convert PDF Files</p>
-        </div>
-
-        <div class="tools-grid-main">
-            <div class="tool-card-mini">
-                <div class="tool-icon">📂</div>
-                <h4>Merge PDF</h4>
-                <a href="#" class="tool-link">Start Now</a>
-            </div>
-            <div class="tool-card-mini">
-                <div class="tool-icon">📉</div>
-                <h4>Compress PDF</h4>
-                <a href="#" class="tool-link">Start Now</a>
-            </div>
-            <div class="tool-card-mini">
-                <div class="tool-icon">🖼️</div>
-                <h4>JPG to PDF</h4>
-                <a href="#" class="tool-link">Start Now</a>
-            </div>
-            <div class="tool-card-mini">
-                <div class="tool-icon">🔐</div>
-                <h4>Unlock PDF</h4>
-                <a href="#" class="tool-link">Start Now</a>
-            </div>
+        <section class="section">
+    <div class="row">
+        <h2>PDF Tools</h2>
+        <div class="tools-grid">
+            <a href="tools/merge-pdf.html" class="tool-card card-peach">
+                <div class="icon-placeholder"></div>
+                <span class="tool-name">Merge PDF</span>
+                <p>Combine PDFs in the order you want with the easiest PDF merger available.</p>
+            </a>
+            <a href="tools/split-pdf.html" class="tool-card card-peach">
+                <div class="icon-placeholder"></div>
+                <span class="tool-name">Split PDF</span>
+                <p>Separate one page or a whole set for easy conversion into independent PDF files.</p>
+            </a>
+            <a href="tools/compress-pdf.html" class="tool-card card-mint">
+                <div class="icon-placeholder"></div>
+                <span class="tool-name">Compress PDF</span>
+                <p>Reduce file size while optimizing for maximal PDF quality.</p>
+            </a>
+            <a href="tools/word-to-pdf.html" class="tool-card card-lavender">
+                <div class="icon-placeholder"></div>
+                <span class="tool-name">WORD to PDF</span>
+                <p>Make DOC and DOCX files easy to read by converting them to PDF.</p>
+            </a>
+            <a href="tools/jpg-to-pdf.html" class="tool-card card-peach">
+                <div class="icon-placeholder"></div>
+                <span class="tool-name">JPG to PDF</span>
+                <p>Convert JPG images to PDF in seconds. Easily adjust orientation and margins.</p>
+            </a>
+            <a href="tools/pdf-to-jpg.html" class="tool-card card-peach">
+                <div class="icon-placeholder"></div>
+                <span class="tool-name">PDF to JPG</span>
+                <p>Convert each PDF page into a JPG or extract all images contained in a PDF.</p>
+            </a>
         </div>
     </div>
 </section>
 
+<div class="row">
+    <div class="ad-slot"></div>
+</div>
 
-
-
-        <section id="photo-tools" class="tools-grid-section" style="background: #ffffff !important;">
-    <div class="row-settings">
-        <div class="tools-title-box">
-            <h2>Photo & Image Tools</h2>
-            <p>Professional Image Editing for Online Forms</p>
-        </div>
-
-        <div class="tools-grid-main">
-            <div class="tool-card-mini">
-                <div class="tool-icon">📐</div>
-                <h4>Resize Photo</h4>
-                <a href="#" class="tool-link">Start Now</a>
-            </div>
-            <div class="tool-card-mini">
-                <div class="tool-icon">✍️</div>
-                <h4>Merge Photo & Sign</h4>
-                <a href="#" class="tool-link">Start Now</a>
-            </div>
-            <div class="tool-card-mini">
-                <div class="tool-icon">🎨</div>
-                <h4>Image Converter</h4>
-                <a href="#" class="tool-link">Start Now</a>
-            </div>
-            <div class="tool-card-mini">
-                <div class="tool-icon">✂️</div>
-                <h4>Crop Image</h4>
-                <a href="#" class="tool-link">Start Now</a>
-            </div>
+<section class="section">
+    <div class="row">
+        <h2>Other Tools</h2>
+        <div class="tools-grid">
+            <a href="tools/remove-bg.html" class="feature-card">
+                <div class="feature-text">
+                    <span class="tool-name">Remove Background</span>
+                    <p>100% Automatically and Free</p>
+                </div>
+            </a>
+            <a href="tools/image-resizer.html" class="tool-card card-mint">
+                <div class="icon-placeholder"></div>
+                <span class="tool-name">Image Resizer</span>
+                <p>Resize your photos to exact pixel dimensions for online forms.</p>
+            </a>
+            <a href="tools/age-calculator.html" class="tool-card card-lavender">
+                <div class="icon-placeholder"></div>
+                <span class="tool-name">Age Calculator</span>
+                <p>Calculate your exact age by date of birth for job applications.</p>
+            </a>
+            <a href="tools/name-dob-on-photo.html" class="tool-card card-peach">
+                <div class="icon-placeholder"></div>
+                <span class="tool-name">Name & DOB on Photo</span>
+                <p>Add your name and date of birth on photos easily.</p>
+            </a>
+            <a href="tools/photo-signature-joiner.html" class="tool-card card-mint">
+                <div class="icon-placeholder"></div>
+                <span class="tool-name">Photo & Signature</span>
+                <p>Resize and join photo and signature for online forms.</p>
+            </a>
         </div>
     </div>
 </section>
@@ -255,6 +333,7 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
