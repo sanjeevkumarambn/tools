@@ -30,9 +30,6 @@ section, .section-main, .section-custom {
 }
 .row-settings, .row-container {
     margin: 0px 0px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
     position: relative !important;
     max-width: 1080px !important;
     width: 98% !important;
