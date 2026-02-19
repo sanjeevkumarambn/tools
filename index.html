@@ -127,26 +127,15 @@
             .hero-image-content { order: 2 !important; justify-content: center !important; margin-top: 25px !important; }
             .hero-main-title { font-size: 30px !important; }
         }
-
-.section {
-    width: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    position: relative !important;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
-    justify-content: flex-end !important;
-}
-
-.row {
-    margin: auto !important;
-    max-width: 95% !important;
-    position: relative !important;
-    width: 1080px !important;
-    justify-content: center !important;
-    padding-bottom: 10px !important;
-    padding-top: 10px !important;
-}
+        .section {
+            flex-direction: column !important;
+            padding-top: 20px 0px 20px 0px !important;
+            justify-content: flex-end !important;
+        }
+        .row-container {
+            justify-content: center !important;
+            padding: 10px 0px 10px 0px !important;
+        }
 
 h2 {
     color: #333333;
@@ -253,7 +242,7 @@ h2 {
 
         
         <section class="section">
-    <div class="row">
+    <div class="row-container">
         <h2>PDF Tools</h2>
         <div class="tools-grid">
             <a href="tools/merge-pdf.html" class="tool-card">
@@ -308,7 +297,7 @@ h2 {
 </section>
 
 <section class="section">
-    <div class="row">
+    <div class="row-container">
         <h2>Other Tools</h2>
         <div class="tools-grid">
             <a href="tools/remove-bg.html" class="feature-card">
@@ -370,6 +359,7 @@ h2 {
     <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
