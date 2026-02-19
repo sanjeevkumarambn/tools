@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage and CGPA Converter - Rojgar Sangam Tools</title>
+    <meta name="description" content="Use Percentage and CGPA Converter on Rojgar Sangam Tools. Easily convert CGPA to percentage or percentage to CGPA for government job forms online.">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <header>
+        <div class="row nav-bar">
+            <div class="logo"><a href="../index.html">Rojgar Sangam Tools</a></div>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="row">
+            
+            <div class="ad-slot"></div>
+
+            <article class="content-box">
+                <h1>Percentage and CGPA Converter</h1>
+                <p>Calculations for academic marks are essential for every student. If you are using <strong>rojgar sangam tools</strong>, you can easily manage your data. Many students look for an <strong>age calculator by date of birth</strong> or <strong>compress pdf online free</strong> while filling forms, but converting grades is equally important.</p>
+                
+                <div class="converter-container" style="max-width: 600px; margin: 30px auto; padding: 25px; background: #ffffff; border: 1px solid #667799; border-radius: 12px;">
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label for="calc-type" style="display: block; font-weight: bold; margin-bottom: 8px;">Select Conversion Type:</label>
+                        <select id="calc-type" style="width: 100%; padding: 12px; border: 1px solid #bdbdbd; border-radius: 6px;" onchange="toggleInputs()">
+                            <option value="cgpa-to-percent">CGPA to Percentage</option>
+                            <option value="percent-to-cgpa">Percentage to CGPA</option>
+                        </select>
+                    </div>
+
+                    <div id="cgpa-input-div" class="input-group" style="margin-bottom: 20px;">
+                        <label for="cgpa-val" style="display: block; font-weight: bold; margin-bottom: 8px;">Enter CGPA:</label>
+                        <input type="number" id="cgpa-val" step="0.01" placeholder="e.g. 9.5" style="width: 100%; padding: 12px; border: 1px solid #bdbdbd; border-radius: 6px;">
+                    </div>
+
+                    <div id="percent-input-div" class="input-group" style="margin-bottom: 20px; display: none;">
+                        <label for="percent-val" style="display: block; font-weight: bold; margin-bottom: 8px;">Enter Percentage:</label>
+                        <input type="number" id="percent-val" step="0.01" placeholder="e.g. 85" style="width: 100%; padding: 12px; border: 1px solid #bdbdbd; border-radius: 6px;">
+                    </div>
+
+                    <button class="btn-primary" onclick="convertGrades()" style="width: 100%; background-color: #00079e; color: #ffffff; padding: 14px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold;">Calculate Result</button>
+                    
+                    <div id="conversion-result" style="margin-top: 25px; padding: 15px; background: #eff6ef; border-radius: 6px; text-align: center; font-size: 20px; font-weight: bold; color: #333333; display: none;"></div>
+                </div>
+            </article>
+
+            <section class="content-box">
+                <h2>Why use this Grade Converter?</h2>
+                <p>Academic standards vary across different boards. Most online portals require a specific format for marks. Using this simple tool helps you avoid manual errors. Whether you are using a <strong>word to pdf converter online</strong> or a <strong>jpg to pdf converter</strong>, accuracy is key to a successful application.</p>
+                
+                <h3>How to Convert CGPA to Percentage</h3>
+                <p>The standard formula for CBSE and many other boards is multiplying the CGPA by 9.5. For example, if your CGPA is 10, your percentage would be 95%. This tool automates that process for you instantly.</p>
+
+                <h3>How to Convert Percentage to CGPA</h3>
+                <p>To find your CGPA from a percentage, you simply divide the percentage by 9.5. This is very helpful when a recruitment notification asks for your grade point average instead of a total percentage.</p>
+            </section>
+
+            <div class="ad-slot"></div>
+
+        </div>
+    </main>
+
+    <footer class="footer-section">
+        <div class="row footer-grid">
+            <div class="footer-links">
+                <h3>Support Tools</h3>
+                <ul>
+                    <li><a href="age-calculator.html">Age Calculator</a></li>
+                    <li><a href="compress-pdf.html">Compress PDF</a></li>
+                </ul>
+            </div>
+            </div>
+    </footer>
+
+    <script>
+        function toggleInputs() {
+            const type = document.getElementById('calc-type').value;
+            const cgpaDiv = document.getElementById('cgpa-input-div');
+            const percentDiv = document.getElementById('percent-input-div');
+            const resultDiv = document.getElementById('conversion-result');
+            
+            resultDiv.style.display = 'none';
+            if (type === 'cgpa-to-percent') {
+                cgpaDiv.style.display = 'block';
+                percentDiv.style.display = 'none';
+            } else {
+                cgpaDiv.style.display = 'none';
+                percentDiv.style.display = 'block';
+            }
+        }
+
+        function convertGrades() {
+            const type = document.getElementById('calc-type').value;
+            const resultDiv = document.getElementById('conversion-result');
+            let resultText = "";
+
+            if (type === 'cgpa-to-percent') {
+                const cgpa = parseFloat(document.getElementById('cgpa-val').value);
+                if (!cgpa || cgpa > 10) {
+                    alert("Please enter a valid CGPA between 0 and 10.");
+                    return;
+                }
+                const percentage = (cgpa * 9.5).toFixed(2);
+                resultText = "Your Percentage: " + percentage + "%";
+            } else {
+                const percent = parseFloat(document.getElementById('percent-val').value);
+                if (!percent || percent > 100) {
+                    alert("Please enter a valid Percentage between 0 and 100.");
+                    return;
+                }
+                const cgpaResult = (percent / 9.5).toFixed(2);
+                resultText = "Your CGPA: " + cgpaResult;
+            }
+
+            resultDiv.innerHTML = resultText;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
