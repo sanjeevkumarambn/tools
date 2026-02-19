@@ -10,30 +10,29 @@
 }
 header, .header-main {
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: row !important;
     position: relative !important;
     background-color: #ffffff !important;
-    padding: 5px 0px !important;
     width: 100% !important;
     height: 100% !important;
     max-height: 70px !important;
-    justify-content: space-between !important;
+    justify-content: center !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.09) !important;
 }
 section, .section-main, .section-custom {
     width: 100% !important;
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: row !important;
     position: relative !important;
-    padding: 5px 0px !important;
+    padding: 0px 0px !important;
     justify-content: center !important;
 }
 .row-settings, .row-container {
     margin: 0px 0px !important;
     position: relative !important;
     max-width: 1080px !important;
-    width: 98% !important;
-    padding: 10px 5px !important;
+    width: 95% !important;
+    padding: 0px 0px !important;
     justify-content: space-between !important;
     align-items: center !important;
 }
