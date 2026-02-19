@@ -38,8 +38,8 @@ section, .section-main, .section-custom {
 }
 html, body {
     overflow-x: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0px 0px 0px 0px !important;
+    padding: 0px 0px 0px 0px !important;
 }
 *, *:before, *:after {
     box-sizing: border-box !important;
