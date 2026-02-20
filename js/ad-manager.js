@@ -4,7 +4,7 @@ const AdConfig = {
     rectangleSlot: "1111111111",   
     responsiveSlot: "2222222222",  
     showAds: true,
-    isDemo: true 
+    isDemo: false 
 };
 
 const AdManager = {
