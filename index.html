@@ -383,6 +383,63 @@
             display: block;
             position: relative;
         }
+        .faq-list {
+    width: 100% !important;
+    max-width: 900px !important;
+    margin: 30px auto 0 auto !important;
+}
+
+.faq-item {
+    background: #ffffff !important;
+    border: 1px solid #bdbdbd !important;
+    border-radius: 8px !important;
+    margin-bottom: 15px !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+}
+
+.faq-item:hover {
+    border-color: #00079e !important;
+}
+
+.faq-question {
+    padding: 20px 25px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    font-weight: bold !important;
+    color: #333333 !important;
+    font-size: 16px !important;
+}
+
+.faq-icon {
+    font-size: 24px !important;
+    color: #00079e !important;
+    font-style: normal !important;
+    transition: transform 0.3s ease !important;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg) !important;
+}
+
+.faq-answer {
+    max-height: 0 !important;
+    overflow: hidden !important;
+    transition: max-height 0.3s ease !important;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px !important;
+    padding: 0 25px 20px 25px !important;
+}
+
+.faq-answer p {
+    color: #333333 !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+}
 </style>
 </head>
     <body>
@@ -524,10 +581,72 @@
                 <div class="ad-manager-placeholder" data-ad-type="responsive"></div>
             </div>
         </section>
+            <section class="section-container" id="faq-section">
+                <div class="row-container">
+                    <h2>Why Choose Rojgar Sangam Tools?</h2>
+                    <p>Rojgar Sangam Tools provides free online PDF and image tools for students and job seekers. No software download, no signup, no fees — just fast and simple tools. Compress PDF, convert files, resize photos, and prepare job application forms easily from any device.</p>       
+                    <div class="faq-list">
+                        <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Q1. What is Rojgar Sangam Tools?</span>
+                    <i class="faq-icon">+</i>
+                </div>
+                <div class="faq-answer">
+                    <p>Rojgar Sangam Tools is a free online platform offering PDF tools and image tools for students and job seekers. No signup or software needed — use all tools free from any device.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Q2. Are Rojgar Sangam Tools free to use?</span>
+                    <i class="faq-icon">+</i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, all tools on Rojgar Sangam Tools are completely free. No hidden charges, no registration required — just open and use instantly.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Q3. Which PDF tools are available on Rojgar Sangam Tools?</span>
+                    <i class="faq-icon">+</i>
+                </div>
+                <div class="faq-answer">
+                    <p>Rojgar Sangam Tools offers Compress PDF online free, Word to PDF converter online, JPG to PDF converter, PDF to image converter, Merge PDF, and Split PDF — all free.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Q4. Which image tools are available on Rojgar Sangam Tools?</span>
+                    <i class="faq-icon">+</i>
+                </div>
+                <div class="faq-answer">
+                    <p>Rojgar Sangam Tools provides photo background remover online, image resizer, name and date of birth on photo maker, and photo and signature resizer for online form — all free.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Q5. Is Rojgar Sangam Tools safe to use?</span>
+                    <i class="faq-icon">+</i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, Rojgar Sangam Tools is completely safe. Your files are processed instantly and not stored on any server — your data stays private and secure.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+        </section>
         </main>
         <div id="footer-placeholder"></div>
         <script src="js/ad-manager.js"></script>
         <script src="js/main.js"></script>
+        <script>
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+        </script>
     </body>
 </html>
-
