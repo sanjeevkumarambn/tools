@@ -6,7 +6,6 @@ const AdConfig = {
     showAds: true,
     isDemo: false 
 };
-
 const AdManager = {
     init() {
         if (!AdConfig.showAds) return;
@@ -15,7 +14,6 @@ const AdManager = {
         }
         this.renderAds();
     },
-
     loadAdSenseScript() {
         const script = document.createElement('script');
         script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AdConfig.publisherId}`;
@@ -23,36 +21,29 @@ const AdManager = {
         script.crossOrigin = "anonymous";
         document.head.appendChild(script);
     },
-
     renderAds() {
         const slots = document.querySelectorAll('.ad-manager-placeholder');
         const isMobile = window.innerWidth < 768;
-
         slots.forEach(slot => {
-            const type = slot.dataset.adType; 
-            
+            const type = slot.dataset.adType;
             if (type === 'leaderboard' && isMobile) {
                 slot.style.setProperty('display', 'none', 'important');
                 return;
             }
-            
             if (type === 'rectangle' && !isMobile) {
                 slot.style.setProperty('setProperty', 'display', 'none', 'important');
                 slot.style.setProperty('display', 'none', 'important');
                 return;
             }
-
             if (AdConfig.isDemo) {
                 this.showDemoPlaceholder(slot, type);
                 return;
             }
-
             const ins = document.createElement('ins');
             ins.className = "adsbygoogle";
             ins.style.display = "block";
             ins.style.margin = "15px auto";
             ins.dataset.adClient = AdConfig.publisherId;
-
             if (type === 'leaderboard') {
                 ins.dataset.adSlot = AdConfig.leaderboardSlot;
                 ins.dataset.adFormat = "horizontal";
@@ -69,20 +60,16 @@ const AdManager = {
                 ins.dataset.fullWidthResponsive = "true";
                 ins.style.minHeight = "250px";
             }
-
             slot.innerHTML = '';
             slot.appendChild(ins);
-
             try {
                 (adsbygoogle = window.adsbygoogle || []).push({});
             } catch (e) {}
         });
     },
-
     showDemoPlaceholder(slot, type) {
         let size = type === 'leaderboard' ? '728x90' : (type === 'rectangle' ? '300x250' : 'Responsive');
         slot.innerHTML = `<div style="color:#667799; font-size:12px; font-weight:bold;">DEMO AD BOX (${size})</div>`;
     }
 };
-
 document.addEventListener('DOMContentLoaded', () => AdManager.init());
