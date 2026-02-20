@@ -3,13 +3,16 @@ const AdConfig = {
     leaderboardSlot: "0000000000", 
     rectangleSlot: "1111111111",   
     responsiveSlot: "2222222222",  
-    showAds: true
+    showAds: true,
+    isDemo: true // Set to false when your AdSense is active
 };
 
 const AdManager = {
     init() {
         if (!AdConfig.showAds) return;
-        this.loadAdSenseScript();
+        if (!AdConfig.isDemo) {
+            this.loadAdSenseScript();
+        }
         this.renderAds();
     },
 
@@ -35,6 +38,11 @@ const AdManager = {
             
             if (type === 'rectangle' && !isMobile) {
                 slot.style.display = 'none';
+                return;
+            }
+
+            if (AdConfig.isDemo) {
+                this.showDemoPlaceholder(slot, type);
                 return;
             }
 
@@ -68,6 +76,11 @@ const AdManager = {
                 (adsbygoogle = window.adsbygoogle || []).push({});
             } catch (e) {}
         });
+    },
+
+    showDemoPlaceholder(slot, type) {
+        let size = type === 'leaderboard' ? '728x90' : (type === 'rectangle' ? '300x250' : 'Responsive');
+        slot.innerHTML = `<div style="color:#667799; font-size:12px;">Demo Ad Box (${size})</div>`;
     }
 };
 
