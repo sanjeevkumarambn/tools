@@ -4,7 +4,7 @@ const AdConfig = {
     rectangleSlot: "1111111111",   
     responsiveSlot: "2222222222",  
     showAds: true,
-    isDemo: true // Set to false when your AdSense is active
+    isDemo: true 
 };
 
 const AdManager = {
@@ -32,12 +32,13 @@ const AdManager = {
             const type = slot.dataset.adType; 
             
             if (type === 'leaderboard' && isMobile) {
-                slot.style.display = 'none';
+                slot.style.setProperty('display', 'none', 'important');
                 return;
             }
             
             if (type === 'rectangle' && !isMobile) {
-                slot.style.display = 'none';
+                slot.style.setProperty('setProperty', 'display', 'none', 'important');
+                slot.style.setProperty('display', 'none', 'important');
                 return;
             }
 
@@ -80,7 +81,7 @@ const AdManager = {
 
     showDemoPlaceholder(slot, type) {
         let size = type === 'leaderboard' ? '728x90' : (type === 'rectangle' ? '300x250' : 'Responsive');
-        slot.innerHTML = `<div style="color:#667799; font-size:12px;">Demo Ad Box (${size})</div>`;
+        slot.innerHTML = `<div style="color:#667799; font-size:12px; font-weight:bold;">DEMO AD BOX (${size})</div>`;
     }
 };
 
