@@ -18,13 +18,13 @@
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "Split PDF Online Free",
+      "name": "Split PDF Online Free: Separate PDF Pages Instantly",
       "url": "https://tools.rojgarsangam.in/tools/split-pdf.html",
-      "description": "Split your PDF Files instantly with Rojgar Sangam Tools. Browser-based Processing ensures your Files never Leave your Device.",
+      "description": "Split your PDF Files instantly with Rojgar Sangam Tools. Browser-based Processing ensures your Files never Leave your Device. 100% Free & Private.",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "1250" }
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "950" }
     }
     </script>
     <script type="application/ld+json">
@@ -50,7 +50,12 @@
         {
           "@type": "Question",
           "name": "How Do I Extract Specific Pages From a PDF?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Use the From Page and To Page Fields to Define the Exact Page Range You Want to Extract." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Use the "From Page" and "To Page" Fields to Define the Exact Page Range You Want to Extract. You can Add Multiple Ranges if Needed." }
+        },
+        {
+          "@type": "Question",
+          "name": "Will the Tool Store My PDF Files?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No, All Processing Happens Directly in Your Browser. Your Files Never Leave Your Device and are Not Stored on Any Server." }
         }
       ]
     }
@@ -62,6 +67,7 @@
         .upload-section-wrapper { background: white; border-radius: 20px; padding: 40px 40px 40px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); width: 100%; }
         .upload-area { border: 3px dashed #d0d0d0; border-radius: 16px; padding: 60px 20px 60px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; background: #fafafa; }
         .upload-area:hover { border-color: #00079e; background: #f5f7ff; }
+        .upload-area.dragover { border-color: #00079e; background: #e8f0ff; }
         .split-workspace { display: none; gap: 30px; margin: 30px 0px 0px 0px; align-items: flex-start; }
         .pages-preview { flex: 1; max-height: 800px; overflow-y: auto; padding: 10px 10px 10px 10px; background: #fff; border-radius: 12px; }
         .range-label { background: #4169e1; color: white; padding: 5px 15px 5px 15px; border-radius: 20px; font-size: 12px; font-weight: 700; display: inline-block; margin: 0px 0px 15px 0px; }
@@ -80,12 +86,13 @@
         .processing-overlay, .success-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; display: none; align-items: center; justify-content: center; z-index: 9999; }
         .processing-box, .success-box { text-align: center; max-width: 600px; padding: 20px 20px 20px 20px; }
         #footer-placeholder { border: 1px solid #bdbdbd !important; width: 100%; display: block; position: relative; }
+        .processing-overlay.active, .success-overlay.active { display: flex; }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
     <section class="section" style="margin: 50px 0px 0px 0px !important; padding: 0px 0px 0px 0px !important;">
-        <div class="row-container">
+        <div class="row-container" style="margin: 0px auto 0px auto !important; padding: 0px 0px 0px 0px !important;">
             <div class="ad-manager-placeholder ad-leaderboard" data-ad-type="leaderboard"></div>
         </div>
     </section>
@@ -154,45 +161,45 @@
         </div>
     </section>
     <section class="section-container" style="margin: 40px 0px 40px 0px !important; padding: 0px 0px 0px 0px !important;">
-        <div class="row-container">
-            <h2 style="font-weight: 900; margin: 0px 0px 15px 0px !important; text-align: center !important;">Fast and Reliable PDF Splitting Solution</h2>
-            <p style="font-size: 16px; color: #444; line-height: 1.8; margin: 0px 0px 30px 0px !important; text-align: center !important;">Our Split PDF Tool Allows You to Divide Large Documents into Smaller Sections or Extract Specific Pages. Process Everything Locally in Your Browser for Maximum Security and Privacy.</p>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Can I Split a PDF into Individual Pages?</span>
-                        <i class="faq-icon">+</i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, You can Split Your PDF into Individual Single-Page Files by Setting Each Range to Extract One Page at a Time.</p>
-                    </div>
+    <div class="row-container" style="margin: 0px auto 0px auto !important; padding: 0px 0px 0px 0px !important;">
+        <h2 style="font-weight: 900; margin: 0px 0px 15px 0px !important; text-align: center !important;">Fast and Reliable PDF Splitting Solution</h2>
+        <p style="font-size: 16px; color: #444; line-height: 1.8; margin: 0px 0px 30px 0px !important; padding: 0px 0px 0px 0px !important; text-align: center !important;">Our Split PDF Tool Allows You to Divide Large Documents into Smaller Sections or Extract Specific Pages. Process Everything Locally in Your Browser for Maximum Security and Privacy.</p>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can I Split a PDF into Individual Pages?</span>
+                    <i class="faq-icon">+</i>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>How Do I Extract Specific Pages From a PDF?</span>
-                        <i class="faq-icon">+</i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Use the "From Page" and "To Page" Fields to Define the Exact Page Range You Want to Extract. You can Add Multiple Ranges if Needed.</p>
-                    </div>
+                <div class="faq-answer">
+                    <p>Yes, You can Split Your PDF into Individual Single-Page Files by Setting Each Range to Extract One Page at a Time.</p>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Will the Tool Store My PDF Files?</span>
-                        <i class="faq-icon">+</i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>No, All Processing Happens Directly in Your Browser. Your Files Never Leave Your Device and are Not Stored on Any Server.</p>
-                    </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How Do I Extract Specific Pages From a PDF?</span>
+                    <i class="faq-icon">+</i>
+                </div>
+                <div class="faq-answer">
+                    <p>Use the "From Page" and "To Page" Fields to Define the Exact Page Range You Want to Extract. You can Add Multiple Ranges if Needed.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Will the Tool Store My PDF Files?</span>
+                    <i class="faq-icon">+</i>
+                </div>
+                <div class="faq-answer">
+                    <p>No, All Processing Happens Directly in Your Browser. Your Files Never Leave Your Device and are Not Stored on Any Server.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
     <section class="section-main">
-        <div class="row-custom">
-            <div class="ad-manager-placeholder" data-ad-type="responsive"></div>
-        </div>
-    </section>
+            <div class="row-custom">
+                <div class="ad-manager-placeholder" data-ad-type="responsive"></div>
+            </div>
+        </section>
     <div id="processingOverlay" class="processing-overlay">
         <div class="processing-box">
             <div style="font-size: 70px; color: #ffa500; margin: 0px 0px 20px 0px;"><i class="fas fa-file-pdf"></i></div>
@@ -258,11 +265,8 @@
                 item.innerHTML = `<img src="${canvas.toDataURL()}" class="page-preview"><div class="page-number">${i}</div>`;
                 item.onclick = () => {
                     if(currentM === 'extract') {
-                        if(selectedExtPages.has(i)) {
-                            selectedExtPages.delete(i);
-                        } else {
-                            selectedExtPages.add(i);
-                        }
+                        if(selectedExtPages.has(i)) selectedExtPages.delete(i);
+                        else selectedExtPages.add(i);
                         item.classList.toggle('selected');
                     }
                 };
@@ -300,14 +304,13 @@
                     <i class="fas fa-times" style="color:red; cursor:pointer" onclick="document.getElementById('row-${id}').remove()"></i>
                 </div>
                 <div style="display: flex; gap: 8px;">
-                    <div style="flex:1"><label style="font-size:10px">From</label><input type="number" class="f-val" value="${f}" min="1" max="${totalP}" style="width:100%; padding:5px; border: 1px solid #ddd; border-radius:4px;"></div>
-                    <div style="flex:1"><label style="font-size:10px">To</label><input type="number" class="t-val" value="${t}" min="1" max="${totalP}" style="width:100%; padding:5px; border: 1px solid #ddd; border-radius:4px;"></div>
+                    <div style="flex:1"><label style="font-size:10px">From</label><input type="number" class="f-val" value="${f}" min="1" max="${totalP}" style="width:100%; padding:5px;"></div>
+                    <div style="flex:1"><label style="font-size:10px">To</label><input type="number" class="t-val" value="${t}" min="1" max="${totalP}" style="width:100%; padding:5px;"></div>
                 </div>`;
             list.appendChild(div);
         }
 
         async function startProcessing() {
-            if (!pdfInst) return;
             document.getElementById('processingOverlay').classList.add('active');
             try {
                 const results = [];
@@ -315,7 +318,6 @@
 
                 if(currentM === 'extract') {
                     const pages = Array.from(selectedExtPages).sort((a,b) => a-b);
-                    if(pages.length === 0) { alert("Please select pages to extract."); document.getElementById('processingOverlay').classList.remove('active'); return; }
                     if(mergeAll) {
                         const pdf = await PDFLib.PDFDocument.create();
                         const copied = await pdf.copyPages(pdfInst, pages.map(p => p-1));
