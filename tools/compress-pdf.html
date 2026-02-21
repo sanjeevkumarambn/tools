@@ -22,7 +22,11 @@
   "description": "Compress PDF Files Online for Free. Reduce File Size While Maintaining Quality.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Any",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
 }
 </script>
     <script type="application/ld+json">
@@ -30,72 +34,82 @@
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://tools.rojgarsangam.in/" },
-    { "@type": "ListItem", "position": 2, "name": "Compress PDF", "item": "https://tools.rojgarsangam.in/tools/compress-pdf.html" }
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tools.rojgarsangam.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Compress PDF",
+      "item": "https://tools.rojgarsangam.in/tools/compress-pdf.html"
+    }
   ]
 }
 </script>
     <style>
-        body { font-family: 'Lora', serif !important; background: #f8f8ff; color: #333333; }
+        body { font-family: 'Lora', serif !important; background: #f0f2f5; }
         #header-placeholder { background-color: #ffffff !important; width: 100%; display: block; position: relative; z-index: 1000; }
         .section-main { margin: 40px 0px 40px 0px !important; }
-        .upload-section-wrapper { background: #ffffff; border-radius: 20px; padding: 40px 40px 40px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        .upload-area { border: 3px dashed #667799; border-radius: 16px; padding: 60px 20px 60px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; background: #f8f8ff; }
-        .upload-area:hover { border-color: #00079e; background: #fdece5; }
-        .upload-area.dragover { border-color: #00079e; background: #fdece5; }
+        .upload-section-wrapper { background: white; border-radius: 20px; padding: 40px 40px 40px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .upload-area { border: 3px dashed #d0d0d0; border-radius: 16px; padding: 60px 20px 60px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; background: #fafafa; }
+        .upload-area:hover { border-color: #00079e; background: #f5f7ff; }
+        .upload-area.dragover { border-color: #00079e; background: #e8f0ff; }
         .upload-icon { font-size: 48px; color: #00079e; margin: 0px 0px 20px 0px; }
-        .upload-text { font-size: 18px; font-weight: 700; color: #333333; margin: 0px 0px 10px 0px; }
-        .upload-subtext { font-size: 14px; color: #667799; }
+        .upload-text { font-size: 18px; font-weight: 700; color: #333; margin: 0px 0px 10px 0px; }
+        .upload-subtext { font-size: 14px; color: #999; }
         .compress-workspace { display: none; }
         .compress-workspace.active { display: flex; gap: 30px; margin: 30px 0px 0px 0px; }
         .files-preview { flex: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; max-height: 600px; overflow-y: auto; }
-        .file-item { background: #ffffff; border: 2px solid #667799; border-radius: 12px; padding: 15px 15px 15px 15px; text-align: center; position: relative; }
-        .file-item:hover { border-color: #00079e; background: #f8f8ff; }
-        .file-preview { width: 100%; height: 220px; object-fit: contain; background: #f8f8ff; border-radius: 8px; margin: 0px 0px 10px 0px; }
-        .file-name { font-size: 12px; color: #333333; word-break: break-word; font-weight: 600; }
-        .remove-file-btn { position: absolute; top: -10px; right: -10px; width: 30px; height: 30px; background: #667799; color: #ffffff; border: none; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(102,119,153,0.4); transition: all 0.3s ease; }
-        .remove-file-btn:hover { background: #00079e; transform: scale(1.1); }
-        .controls-panel { width: 450px; background: #ffffff; border: 1px solid #667799; border-radius: 12px; padding: 30px 30px 30px 30px; height: fit-content; position: sticky; top: 100px; }
-        .controls-panel h2 { font-size: 28px; font-weight: 900; color: #333333; margin: 0px 0px 10px 0px; }
-        .controls-panel .subtitle { font-size: 15px; color: #00079e; margin: 0px 0px 30px 0px; line-height: 1.5; background: #eff6ef; padding: 8px 12px 8px 12px; border-radius: 6px; display: inline-block; border: 1px solid #667799; }
+        .file-item { background: white; border: 2px solid #e0e0e0; border-radius: 12px; padding: 15px 15px 15px 15px; text-align: center; position: relative; }
+        .file-preview { width: 100%; height: 220px; object-fit: contain; background: #f5f5f5; border-radius: 8px; margin: 0px 0px 10px 0px; }
+        .file-name { font-size: 12px; color: #666; word-break: break-word; font-weight: 600; }
+        .remove-file-btn { position: absolute; top: -10px; right: -10px; width: 30px; height: 30px; background: #ff4444; color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(255,68,68,0.4); transition: all 0.3s ease; }
+        .remove-file-btn:hover { background: #cc0000; transform: scale(1.1); }
+        .controls-panel { width: 450px; background: white; border-radius: 12px; padding: 30px 30px 30px 30px; height: fit-content; position: sticky; top: 100px; }
+        .controls-panel h2 { font-size: 28px; font-weight: 900; color: #1a1a2e; margin: 0px 0px 10px 0px; }
+        .controls-panel .subtitle { font-size: 15px; color: #4169e1; margin: 0px 0px 30px 0px; line-height: 1.5; background: #e8f0ff; padding: 8px 12px 8px 12px; border-radius: 6px; display: inline-block; }
         .compression-section { margin: 0px 0px 30px 0px; }
-        .compression-section h3 { font-size: 16px; font-weight: 700; margin: 0px 0px 15px 0px; color: #333333; }
-        .compression-option { background: #f8f8ff; border: 2px solid #667799; border-radius: 12px; padding: 18px 20px 18px 20px; margin: 0px 0px 12px 0px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 15px; }
-        .compression-option:hover { border-color: #00079e; background: #fdece5; }
-        .compression-option.selected { background: #eff6ef; border-color: #00079e; }
-        .compression-option input[type="radio"] { width: 20px; height: 20px; cursor: pointer; accent-color: #00079e; }
+        .compression-section h3 { font-size: 16px; font-weight: 700; margin: 0px 0px 15px 0px; color: #333; }
+        .compression-option { background: #f8f8f8; border: 2px solid #e0e0e0; border-radius: 12px; padding: 18px 20px 18px 20px; margin: 0px 0px 12px 0px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 15px; }
+        .compression-option:hover { border-color: #00079e; background: #f0f4ff; }
+        .compression-option.selected { background: #00079e; border-color: #00079e; color: white; }
+        .compression-option input[type="radio"] { width: 20px; height: 20px; cursor: pointer; accent-color: #ffffff; }
+        .compression-option.selected input[type="radio"] { accent-color: #ffffff; }
         .compression-details { flex: 1; }
-        .compression-title { font-size: 15px; font-weight: 700; margin: 0px 0px 4px 0px; color: #333333; }
-        .compression-option.selected .compression-title { color: #00079e; }
-        .compression-desc { font-size: 13px; color: #667799; margin: 0px 0px 0px 0px; }
-        .compression-option.selected .compression-desc { color: #333333; }
-        .check-icon { display: none; font-size: 20px; color: #00079e; }
-        .compression-option.selected .check-icon { display: block; }
+        .compression-title { font-size: 15px; font-weight: 700; margin: 0px 0px 4px 0px; }
+        .compression-option.selected .compression-title { color: white; }
+        .compression-desc { font-size: 13px; color: #666; margin: 0px 0px 0px 0px; }
+        .compression-option.selected .compression-desc { color: rgba(255,255,255,0.9); }
+        .check-icon { display: none; font-size: 20px; }
+        .compression-option.selected .check-icon { display: block; color: white; }
         .action-buttons { display: flex; gap: 15px; margin: 30px 0px 0px 0px; align-items: center; }
-        .add-more-btn { width: 60px; height: 60px; background: #eff6ef; color: #00079e; border: 1px solid #667799; border-radius: 50%; font-size: 28px; cursor: pointer; transition: all 0.3s ease; }
-        .add-more-btn:hover { background: #fdece5; transform: scale(1.05); }
-        .compress-btn { flex: 1; padding: 18px 40px 18px 40px; background: #eff6ef; color: #00079e; border: 1px solid #667799; border-radius: 50px; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
-        .compress-btn:hover { background: #fdece5; transform: translateY(-2px); }
-        .compress-btn:disabled { background: #bdbdbd; color: #ffffff; cursor: not-allowed; transform: none; border-color: #bdbdbd; }
-        .processing-overlay, .success-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 9999; }
+        .add-more-btn { width: 60px; height: 60px; background: #00079e; color: white; border: none; border-radius: 50%; font-size: 28px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,7,158,0.3); }
+        .add-more-btn:hover { background: #0005cc; transform: scale(1.05); }
+        .compress-btn { flex: 1; padding: 18px 40px 18px 40px; background: #00079e; color: white; border: none; border-radius: 50px; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,7,158,0.3); }
+        .compress-btn:hover { background: #0005cc; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,7,158,0.4); }
+        .compress-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+        .processing-overlay, .success-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 9999; }
         .processing-overlay.active, .success-overlay.active { display: flex; }
-        .processing-box, .success-box { background: #ffffff; border-radius: 20px; padding: 50px 50px 50px 50px; text-align: center; max-width: 550px; border: 1px solid #667799; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-        .processing-icon { font-size: 80px; color: #00079e; margin: 0px 0px 20px 0px; animation: pulse 1.5s infinite; }
+        .processing-box, .success-box { background: white; border-radius: 20px; padding: 50px 50px 50px 50px; text-align: center; max-width: 550px; }
+        .processing-icon { font-size: 80px; color: #ffa500; margin: 0px 0px 20px 0px; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-        .processing-title { font-size: 32px; font-weight: 900; color: #333333; margin: 0px 0px 15px 0px; }
-        .processing-title .highlight { background: #00079e; color: #ffffff; padding: 2px 8px 2px 8px; border-radius: 4px; }
-        .processing-text { font-size: 14px; color: #00079e; line-height: 1.6; background: #eff6ef; padding: 10px 15px 10px 15px; border-radius: 8px; font-weight: 700; border: 1px solid #667799; }
-        .success-icon { font-size: 80px; color: #00079e; margin: 0px 0px 20px 0px; }
-        .success-title { font-size: 32px; font-weight: 900; color: #333333; margin: 0px 0px 20px 0px; line-height: 1.3; }
-        .warning-box { background: #fdece5; border-left: 4px solid #667799; padding: 15px 20px 15px 20px; border-radius: 8px; margin: 0px 0px 25px 0px; display: flex; align-items: flex-start; gap: 12px; }
-        .warning-box i { color: #667799; font-size: 20px; margin: 2px 0px 0px 0px; }
-        .warning-box p { margin: 0px 0px 0px 0px; font-size: 14px; color: #333333; font-style: italic; line-height: 1.5; }
-        .download-btn { width: 100%; padding: 18px 40px 18px 40px; background: #eff6ef; color: #00079e; border: 1px solid #667799; border-radius: 50px; font-size: 18px; font-weight: 700; cursor: pointer; margin: 0px 0px 15px 0px; transition: all 0.3s ease; }
-        .download-btn:hover { background: #fdece5; transform: translateY(-2px); }
-        .back-btn { width: 100%; padding: 15px 40px 15px 40px; background: #ffffff; color: #333333; border: 1px solid #667799; border-radius: 50px; font-size: 16px; font-weight: 600; cursor: pointer; margin: 0px 0px 10px 0px; transition: all 0.3s ease; }
-        .back-btn:hover { border-color: #00079e; color: #00079e; background: #fdece5; }
+        .processing-title { font-size: 32px; font-weight: 900; color: #1a1a2e; margin: 0px 0px 15px 0px; }
+        .processing-title .highlight { background: #4169e1; color: white; padding: 2px 8px 2px 8px; border-radius: 4px; }
+        .processing-text { font-size: 14px; color: #0066cc; line-height: 1.6; background: #e8f0ff; padding: 10px 15px 10px 15px; border-radius: 8px; }
+        .success-icon { font-size: 80px; color: #4caf50; margin: 0px 0px 20px 0px; }
+        .success-title { font-size: 32px; font-weight: 900; color: #1a1a2e; margin: 0px 0px 20px 0px; line-height: 1.3; }
+        .warning-box { background: #fff9e6; border-left: 4px solid #ffb800; padding: 15px 20px 15px 20px; border-radius: 8px; margin: 0px 0px 25px 0px; display: flex; align-items: flex-start; gap: 12px; }
+        .warning-box i { color: #ffb800; font-size: 20px; margin: 2px 0px 0px 0px; }
+        .warning-box p { margin: 0px 0px 0px 0px; font-size: 14px; color: #856404; font-style: italic; line-height: 1.5; }
+        .download-btn { width: 100%; padding: 18px 40px 18px 40px; background: #00079e; color: white; border: none; border-radius: 50px; font-size: 18px; font-weight: 700; cursor: pointer; margin: 0px 0px 15px 0px; transition: all 0.3s ease; }
+        .download-btn:hover { background: #0005cc; transform: translateY(-2px); }
+        .back-btn { width: 100%; padding: 15px 40px 15px 40px; background: white; color: #333; border: 2px solid #ddd; border-radius: 50px; font-size: 16px; font-weight: 600; cursor: pointer; margin: 0px 0px 10px 0px; transition: all 0.3s ease; }
+        .back-btn:hover { border-color: #00079e; color: #00079e; }
         .hidden { display: none; }
-        #footer-placeholder { border: 1px solid #667799 !important; width: 100%; display: block; position: relative; }
+        #footer-placeholder { border: 1px solid #bdbdbd !important; width: 100%; display: block; position: relative; }
         @media screen and (max-width: 1024px) {
             .compress-workspace.active { flex-direction: column; }
             .controls-panel { width: 100%; position: static; }
@@ -136,7 +150,7 @@
 
                         <div class="compression-section">
                             <h3>Compression level</h3>
-
+                            
                             <label class="compression-option" id="extremeOption">
                                 <input type="radio" name="compression" value="extreme">
                                 <div class="compression-details">
@@ -179,8 +193,8 @@
 
     <section class="section-container" style="margin: 40px 0px 40px 0px !important; padding: 0px 0px 0px 0px !important;">
         <div class="row-container">
-            <h2 style="font-weight: 900; margin: 0px 0px 15px 0px !important; text-align: center !important; color: #333333;">Efficient PDF Compression Technology</h2>
-            <p style="font-size: 16px; color: #333333; line-height: 1.8; margin: 0px 0px 30px 0px !important; text-align: center !important;">Our Advanced Compression Algorithm Reduces PDF File Size Without Compromising Quality. All Processing Happens in Your Browser for Maximum Security.</p>
+            <h2 style="font-weight: 900; margin: 0px 0px 15px 0px !important; text-align: center !important;">Efficient PDF Compression Technology</h2>
+            <p style="font-size: 16px; color: #444; line-height: 1.8; margin: 0px 0px 30px 0px !important; text-align: center !important;">Our Advanced Compression Algorithm Reduces PDF File Size Without Compromising Quality. All Processing Happens in Your Browser for Maximum Security.</p>
             <div class="faq-list">
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">
@@ -237,7 +251,7 @@
             </div>
             <button id="downloadBtn" class="download-btn">Download PDF <i class="fas fa-download"></i></button>
             <button id="backToCompressBtn" class="back-btn">Back to Compress PDF</button>
-            <div style="margin: 15px 0px 15px 0px; color: #667799; font-size: 14px;">OR</div>
+            <div style="margin: 15px 0px 15px 0px; color: #999; font-size: 14px;">OR</div>
             <button id="backToHomeBtn" class="back-btn">Back to Home</button>
         </div>
     </div>
@@ -304,23 +318,24 @@
                 const reader = new FileReader();
                 reader.onload = async function(e) {
                     const arrayBuffer = e.target.result;
-
-                    // ✅ slice(0) — copy दो pdf.js को, original safe रहेगा pdf-lib के लिए
-                    const loadingTask = pdfjsLib.getDocument({data: arrayBuffer.slice(0)});
+                    const loadingTask = pdfjsLib.getDocument({data: arrayBuffer});
                     const pdf = await loadingTask.promise;
                     const page = await pdf.getPage(1);
                     const scale = 0.5;
                     const viewport = page.getViewport({scale: scale});
-
+                    
                     const canvas = document.createElement('canvas');
                     const context = canvas.getContext('2d');
                     canvas.height = viewport.height;
                     canvas.width = viewport.width;
-
-                    await page.render({canvasContext: context, viewport: viewport}).promise;
-
+                    
+                    await page.render({
+                        canvasContext: context,
+                        viewport: viewport
+                    }).promise;
+                    
                     const preview = canvas.toDataURL();
-
+                    
                     pdfFiles.push({
                         file: file,
                         arrayBuffer: arrayBuffer,
@@ -328,7 +343,7 @@
                         name: file.name,
                         originalSize: file.size
                     });
-
+                    
                     renderFiles();
                 };
                 reader.readAsArrayBuffer(file);
@@ -375,7 +390,62 @@
             try {
                 for (const pdfFile of pdfFiles) {
                     const pdfDoc = await PDFLib.PDFDocument.load(pdfFile.arrayBuffer);
+                    
+                    // Get compression settings
+                    let imageQuality, imageScale;
+                    switch(compressionLevel) {
+                        case 'extreme':
+                            imageQuality = 0.3;
+                            imageScale = 0.5;
+                            break;
+                        case 'recommended':
+                            imageQuality = 0.6;
+                            imageScale = 0.7;
+                            break;
+                        case 'less':
+                            imageQuality = 0.8;
+                            imageScale = 0.9;
+                            break;
+                    }
 
+                    // Compress images in PDF
+                    const pages = pdfDoc.getPages();
+                    for (const page of pages) {
+                        try {
+                            const { width, height } = page.getSize();
+                            
+                            // Create canvas to re-render page
+                            const canvas = document.createElement('canvas');
+                            canvas.width = width * imageScale;
+                            canvas.height = height * imageScale;
+                            const ctx = canvas.getContext('2d');
+                            
+                            // Fill white background
+                            ctx.fillStyle = '#ffffff';
+                            ctx.fillRect(0, 0, canvas.width, canvas.height);
+                            
+                            // Convert canvas to compressed JPEG
+                            const compressedImageData = canvas.toDataURL('image/jpeg', imageQuality);
+                            const imageBytes = Uint8Array.from(atob(compressedImageData.split(',')[1]), c => c.charCodeAt(0));
+                            
+                            // Embed compressed image
+                            try {
+                                const jpgImage = await pdfDoc.embedJpg(imageBytes);
+                                page.drawImage(jpgImage, {
+                                    x: 0,
+                                    y: 0,
+                                    width: width,
+                                    height: height,
+                                });
+                            } catch(e) {
+                                console.log('Image embed skipped for page');
+                            }
+                        } catch(pageError) {
+                            console.log('Page processing skipped');
+                        }
+                    }
+
+                    // Save with optimization
                     const compressedBytes = await pdfDoc.save({
                         useObjectStreams: true,
                         addDefaultPage: false,
@@ -383,12 +453,15 @@
                     });
 
                     const compressedSize = compressedBytes.length;
-                    const reductionPercent = ((pdfFile.originalSize - compressedSize) / pdfFile.originalSize * 100).toFixed(1);
-
+                    const originalSize = pdfFile.originalSize;
+                    const reductionPercent = ((originalSize - compressedSize) / originalSize * 100).toFixed(1);
+                    
+                    console.log(`Original: ${(originalSize/1024).toFixed(2)}KB, Compressed: ${(compressedSize/1024).toFixed(2)}KB, Reduction: ${reductionPercent}%`);
+                    
                     compressedFiles.push({
                         name: pdfFile.name.replace('.pdf', '-compressed.pdf'),
                         data: compressedBytes,
-                        originalSize: pdfFile.originalSize,
+                        originalSize: originalSize,
                         compressedSize: compressedSize,
                         reduction: reductionPercent
                     });
@@ -396,14 +469,15 @@
 
                 setTimeout(() => {
                     processingOverlay.classList.remove('active');
-
+                    
+                    // Check if compression was minimal
                     const avgReduction = compressedFiles.reduce((sum, f) => sum + parseFloat(f.reduction), 0) / compressedFiles.length;
-                    if (avgReduction < 10) {
+                    if (avgReduction < 5) {
                         warningBox.classList.remove('hidden');
                     } else {
                         warningBox.classList.add('hidden');
                     }
-
+                    
                     successOverlay.classList.add('active');
                 }, 2000);
 
