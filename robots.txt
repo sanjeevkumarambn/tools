@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /css/
+Allow: /js/
+
+Sitemap: https://tools.rojgarsangam.in/sitemap.xml
