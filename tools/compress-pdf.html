@@ -282,21 +282,14 @@
                     const loadingTask = pdfjsLib.getDocument({data: arrayBuffer.slice(0)});
                     const pdf = await loadingTask.promise;
                     const page = await pdf.getPage(1);
-                    const scale = 0.5;
-                    const viewport = page.getViewport({scale: scale});
+                    const viewport = page.getViewport({scale: 0.5});
                     const canvas = document.createElement('canvas');
                     const context = canvas.getContext('2d');
                     canvas.height = viewport.height;
                     canvas.width = viewport.width;
                     await page.render({canvasContext: context, viewport: viewport}).promise;
                     const preview = canvas.toDataURL();
-                    pdfFiles.push({
-                        file: file,
-                        arrayBuffer: arrayBuffer,
-                        preview: preview,
-                        name: file.name,
-                        originalSize: file.size
-                    });
+                    pdfFiles.push({ file: file, arrayBuffer: arrayBuffer, preview: preview, name: file.name, originalSize: file.size });
                     renderFiles();
                 };
                 reader.readAsArrayBuffer(file);
@@ -330,37 +323,57 @@
             compressedFiles = [];
             try {
                 for (const pdfFile of pdfFiles) {
-                    const pdfDoc = await PDFLib.PDFDocument.load(pdfFile.arrayBuffer);
-                    const compressedBytes = await pdfDoc.save({
-                        useObjectStreams: true,
-                        addDefaultPage: false,
-                        objectsPerTick: 50,
-                        updateFieldAppearances: false
-                    });
+                    let renderScale, jpegQuality;
+                    switch(compressionLevel) {
+                        case 'extreme':
+                            renderScale = 1.0;
+                            jpegQuality = 0.4;
+                            break;
+                        case 'recommended':
+                            renderScale = 1.5;
+                            jpegQuality = 0.72;
+                            break;
+                        case 'less':
+                            renderScale = 2.0;
+                            jpegQuality = 0.88;
+                            break;
+                    }
+                    const loadingTask = pdfjsLib.getDocument({data: pdfFile.arrayBuffer.slice(0)});
+                    const pdfJsDoc = await loadingTask.promise;
+                    const totalPages = pdfJsDoc.numPages;
+                    const newPdfDoc = await PDFLib.PDFDocument.create();
+                    for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+                        const page = await pdfJsDoc.getPage(pageNum);
+                        const originalViewport = page.getViewport({scale: 1.0});
+                        const renderViewport = page.getViewport({scale: renderScale});
+                        const canvas = document.createElement('canvas');
+                        canvas.width = renderViewport.width;
+                        canvas.height = renderViewport.height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        await page.render({canvasContext: ctx, viewport: renderViewport}).promise;
+                        const jpegDataUrl = canvas.toDataURL('image/jpeg', jpegQuality);
+                        const jpegBytes = Uint8Array.from(atob(jpegDataUrl.split(',')[1]), c => c.charCodeAt(0));
+                        const jpgImage = await newPdfDoc.embedJpg(jpegBytes);
+                        const pdfPage = newPdfDoc.addPage([originalViewport.width, originalViewport.height]);
+                        pdfPage.drawImage(jpgImage, { x: 0, y: 0, width: originalViewport.width, height: originalViewport.height });
+                    }
+                    const compressedBytes = await newPdfDoc.save();
                     const compressedSize = compressedBytes.length;
                     const originalSize = pdfFile.originalSize;
                     const reductionPercent = ((originalSize - compressedSize) / originalSize * 100).toFixed(1);
-                    console.log(`Original: ${(originalSize/1024).toFixed(2)}KB → Compressed: ${(compressedSize/1024).toFixed(2)}KB (${reductionPercent}% reduction)`);
-                    compressedFiles.push({
-                        name: pdfFile.name.replace('.pdf', '-compressed.pdf'),
-                        data: compressedBytes,
-                        originalSize: originalSize,
-                        compressedSize: compressedSize,
-                        reduction: reductionPercent
-                    });
+                    console.log(`Original: ${(originalSize/1024).toFixed(1)}KB → Compressed: ${(compressedSize/1024).toFixed(1)}KB (${reductionPercent}% reduced)`);
+                    compressedFiles.push({ name: pdfFile.name.replace('.pdf', '-compressed.pdf'), data: compressedBytes, originalSize: originalSize, compressedSize: compressedSize, reduction: reductionPercent });
                 }
                 setTimeout(() => {
                     processingOverlay.classList.remove('active');
                     const avgReduction = compressedFiles.reduce((sum, f) => sum + parseFloat(f.reduction), 0) / compressedFiles.length;
-                    if (avgReduction < 5) {
-                        warningBox.classList.remove('hidden');
-                    } else {
-                        warningBox.classList.add('hidden');
-                    }
+                    warningBox.classList.toggle('hidden', avgReduction >= 5);
                     successOverlay.classList.add('active');
-                }, 2000);
+                }, 1500);
             } catch (error) {
-                console.error('Error compressing PDF:', error);
+                console.error('Compression error:', error);
                 alert('Error compressing PDF. Please try again.');
                 processingOverlay.classList.remove('active');
             }
@@ -378,9 +391,7 @@
                 URL.revokeObjectURL(url);
             } else {
                 const zip = new JSZip();
-                compressedFiles.forEach(file => {
-                    zip.file(file.name, file.data);
-                });
+                compressedFiles.forEach(file => { zip.file(file.name, file.data); });
                 const zipBlob = await zip.generateAsync({ type: 'blob' });
                 const url = URL.createObjectURL(zipBlob);
                 const a = document.createElement('a');
