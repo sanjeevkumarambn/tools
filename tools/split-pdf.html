@@ -4,123 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Split PDF Online Free: Separate PDF Pages Instantly</title>
-    <meta name="description" content="Split PDF Files into Multiple Documents or Extract Specific Pages. 100% Free, Secure, Browser-Based Tool. No Upload to Server Required.">
-    <meta name="keywords" content="split pdf, separate pdf pages, extract pdf pages, pdf splitter online free">
+    <meta name="description" content="Split your PDF Files into separate Pages or specific Ranges instantly with Rojgar Sangam Tools. 100% Free, Secure Browser-Based Processing.">
     <link rel="canonical" href="https://tools.rojgarsangam.in/tools/split-pdf.html">
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Split PDF Online Free",
-  "url": "https://tools.rojgarsangam.in/tools/split-pdf.html",
-  "description": "Split PDF Files into Multiple Documents or Extract Specific Pages Instantly.",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
-}
-</script>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://tools.rojgarsangam.in/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Split PDF",
-      "item": "https://tools.rojgarsangam.in/tools/split-pdf.html"
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Split PDF Online Free",
+      "url": "https://tools.rojgarsangam.in/tools/split-pdf.html",
+      "description": "Extract specific Pages or Split PDF into Multiple Files securely in your Browser.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
     }
-  ]
-}
-</script>
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://tools.rojgarsangam.in/" },
+        { "@type": "ListItem", "position": 2, "name": "Split PDF", "item": "https://tools.rojgarsangam.in/tools/split-pdf.html" }
+      ]
+    }
+    </script>
     <style>
-        body { font-family: 'Lora', serif !important; background: #f0f2f5; }
-        #header-placeholder { background-color: #ffffff !important; width: 100%; display: block; position: relative; z-index: 1000; }
+        body { font-family: 'Lora', serif !important; background: #f0f2f5; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px; }
         .section-main { margin: 40px 0px 40px 0px !important; }
-        .upload-section-wrapper { background: white; border-radius: 20px; padding: 40px 40px 40px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        .upload-area { border: 3px dashed #d0d0d0; border-radius: 16px; padding: 60px 20px 60px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; background: #fafafa; }
-        .upload-area:hover { border-color: #00079e; background: #f5f7ff; }
-        .upload-area.dragover { border-color: #00079e; background: #e8f0ff; }
-        .upload-icon { font-size: 48px; color: #00079e; margin: 0px 0px 20px 0px; }
-        .upload-text { font-size: 18px; font-weight: 700; color: #333; margin: 0px 0px 10px 0px; }
-        .upload-subtext { font-size: 14px; color: #999; }
-        .split-workspace { display: none; }
-        .split-workspace.active { display: flex; gap: 30px; margin: 30px 0px 0px 0px; }
-        .pages-preview { flex: 1; max-height: 600px; overflow-y: auto; }
-        .range-label { background: #4169e1; color: white; padding: 5px 15px 5px 15px; border-radius: 20px; font-size: 12px; font-weight: 700; display: inline-block; margin: 0px 0px 15px 0px; }
-        .pages-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
-        .page-item { background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 10px 10px 10px 10px; text-align: center; }
-        .page-item.selected { border-color: #00079e; background: #f0f4ff; }
-        .page-preview { width: 100%; height: 180px; object-fit: contain; background: #f5f5f5; border-radius: 6px; margin: 0px 0px 8px 0px; }
-        .page-number { font-size: 12px; color: #666; font-weight: 600; }
-        .controls-panel { width: 400px; background: white; border-radius: 12px; padding: 25px 25px 25px 25px; height: fit-content; }
-        .controls-panel h2 { font-size: 24px; font-weight: 900; color: #1a1a2e; margin: 0px 0px 10px 0px; }
-        .controls-panel > p { font-size: 14px; color: #666; margin: 0px 0px 20px 0px; line-height: 1.5; }
-        .option-tabs { display: flex; gap: 10px; margin: 0px 0px 20px 0px; }
-        .tab-btn { flex: 1; padding: 12px 20px 12px 20px; border: 2px solid #e0e0e0; background: white; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .tab-btn.active { background: #00079e; color: white; border-color: #00079e; }
-        .mode-tabs { display: flex; gap: 10px; margin: 0px 0px 20px 0px; }
-        .mode-btn { flex: 1; padding: 10px 15px 10px 15px; border: 2px solid #e0e0e0; background: white; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.3s ease; }
-        .mode-btn.active { background: #00079e; color: white; border-color: #00079e; }
-        .range-section-header { display: flex; justify-content: space-between; align-items: center; margin: 0px 0px 15px 0px; }
-        .range-section-header h3 { font-size: 16px; font-weight: 700; margin: 0px 0px 0px 0px; }
-        .add-range-btn { background: none; border: none; color: #00079e; font-weight: 600; cursor: pointer; font-size: 14px; }
-        .range-item { background: #f8f8f8; border-radius: 8px; padding: 15px 15px 15px 15px; margin: 0px 0px 10px 0px; position: relative; }
-        .range-header { display: flex; justify-content: space-between; align-items: center; margin: 0px 0px 10px 0px; }
-        .range-header span { font-weight: 700; font-size: 14px; }
-        .remove-range-btn { background: none; border: none; color: #ff4444; cursor: pointer; font-size: 16px; }
-        .range-inputs { display: flex; gap: 10px; }
-        .input-group { flex: 1; }
-        .input-group label { display: block; font-size: 12px; color: #666; margin: 0px 0px 5px 0px; }
-        .input-group input { width: 100%; padding: 8px 10px 8px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
-        .merge-checkbox { margin: 20px 0px 0px 0px; }
-        .merge-checkbox label { display: flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; }
-        .merge-checkbox input { width: 18px; height: 18px; cursor: pointer; }
-        .split-btn { width: 100%; padding: 15px 30px 15px 30px; background: #00079e; color: white; border: none; border-radius: 50px; font-size: 16px; font-weight: 700; cursor: pointer; margin: 20px 0px 0px 0px; transition: all 0.3s ease; }
-        .split-btn:hover { background: #0005cc; transform: translateY(-2px); }
-        .split-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
-        .processing-overlay, .success-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 9999; }
-        .processing-overlay.active, .success-overlay.active { display: flex; }
-        .processing-box, .success-box { background: white; border-radius: 20px; padding: 50px 50px 50px 50px; text-align: center; max-width: 500px; }
-        .processing-icon { font-size: 80px; color: #ffa500; margin: 0px 0px 20px 0px; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-        .processing-title { font-size: 32px; font-weight: 900; color: #1a1a2e; margin: 0px 0px 15px 0px; }
-        .processing-title .highlight { background: #4169e1; color: white; padding: 2px 8px 2px 8px; }
-        .processing-text { font-size: 14px; color: #0066cc; line-height: 1.6; }
-        .success-icon { font-size: 80px; color: #4caf50; margin: 0px 0px 20px 0px; }
-        .success-title { font-size: 32px; font-weight: 900; color: #1a1a2e; margin: 0px 0px 30px 0px; }
-        .success-title .highlight { background: #4169e1; color: white; padding: 2px 8px 2px 8px; }
-        .download-btn { width: 100%; padding: 18px 40px 18px 40px; background: #00079e; color: white; border: none; border-radius: 50px; font-size: 18px; font-weight: 700; cursor: pointer; margin: 0px 0px 20px 0px; transition: all 0.3s ease; }
-        .download-btn:hover { background: #0005cc; transform: translateY(-2px); }
-        .back-btn { width: 100%; padding: 15px 40px 15px 40px; background: white; color: #333; border: 2px solid #ddd; border-radius: 50px; font-size: 16px; font-weight: 600; cursor: pointer; margin: 0px 0px 10px 0px; transition: all 0.3s ease; }
-        .back-btn:hover { border-color: #00079e; color: #00079e; }
+        .tool-wrapper { display: flex; gap: 30px; align-items: flex-start; display: none; }
+        .preview-side { flex: 1; background: #fff; border-radius: 12px; padding: 30px 30px 30px 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .settings-side { width: 380px; background: #fff; border-radius: 12px; padding: 30px 30px 30px 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: sticky; top: 20px; }
+        .upload-card { background: white; border: 3px dashed #d0d0d0; border-radius: 16px; padding: 80px 20px 80px 20px; text-align: center; cursor: pointer; transition: 0.3s; }
+        .upload-card:hover { border-color: #00079e; background: #f5f7ff; }
+        .split-tabs { display: flex; gap: 10px; margin: 0px 0px 25px 0px; }
+        .tab-btn { flex: 1; padding: 12px 10px 12px 10px; border: 1px solid #ddd; border-radius: 8px; background: #f8f9fa; cursor: pointer; font-weight: bold; font-size: 14px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .tab-btn.active { border-color: #00079e; background: #f0f4ff; color: #00079e; }
+        .tab-btn i { font-size: 18px; }
+        .range-box { border: 1px solid #eee; border-radius: 8px; padding: 15px 15px 15px 15px; margin: 0px 0px 15px 0px; background: #fafafa; }
+        .range-header { display: flex; justify-content: space-between; margin: 0px 0px 10px 0px; font-weight: bold; font-size: 13px; }
+        .input-group { display: flex; gap: 10px; align-items: center; }
+        .input-group input { width: 100%; padding: 8px 8px 8px 8px; border: 1px solid #ddd; border-radius: 5px; text-align: center; }
+        .add-range-btn { color: #00079e; background: none; border: none; font-weight: bold; cursor: pointer; float: right; margin: -10px 0px 10px 0px; font-size: 13px; }
+        .btn-primary { width: 100%; padding: 15px 15px 15px 15px; background: #00079e; color: #fff; border: none; border-radius: 50px; font-weight: bold; font-size: 16px; cursor: pointer; margin: 20px 0px 0px 0px; box-shadow: 0 5px 15px rgba(0,7,158,0.2); }
+        .thumb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px; }
+        .thumb-item { border: 1px solid #ddd; padding: 10px 10px 10px 10px; border-radius: 5px; text-align: center; position: relative; }
+        .thumb-item canvas { width: 100%; height: auto; background: #eee; }
+        .page-num { font-size: 12px; margin: 5px 0px 0px 0px; display: block; }
+        .loading-overlay, .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; }
+        .loading-overlay i { font-size: 60px; color: #f1c40f; margin: 0px 0px 20px 0px; }
+        .success-overlay i { font-size: 70px; color: #27ae60; margin: 0px 0px 20px 0px; }
         .hidden { display: none; }
         #footer-placeholder { border: 1px solid #bdbdbd !important; width: 100%; display: block; position: relative; }
-        @media screen and (max-width: 1024px) {
-            .split-workspace.active { flex-direction: column; }
-            .controls-panel { width: 100%; }
-        }
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
-    <section class="section" style="margin: 50px 0px 0px 0px !important;">
+    <section class="section" style="margin: 20px 0px 0px 0px !important;">
         <div class="row-container">
             <div class="ad-manager-placeholder ad-leaderboard" data-ad-type="leaderboard"></div>
         </div>
@@ -128,126 +72,88 @@
 
     <section class="section-main">
         <div class="row-container">
-            <div style="text-align: center; margin: 0px 0px 30px 0px;">
+            <div id="introHeader" style="text-align: center; margin: 0px 0px 30px 0px;">
                 <h1 style="font-size: 36px; font-weight: 900; color: #333333; margin: 0px 0px 10px 0px;">Split PDF Online Free: Separate PDF Pages Instantly</h1>
-                <p style="font-size: 16px; color: #333333; margin: 0px 0px 0px 0px;">Separate One Page or a Whole Set for Easy Conversion Into Independent PDF Files.</p>
+                <p style="font-size: 16px; color: #333333; margin: 0px 0px 0px 0px;">Extract specific Pages or Split PDF into Multiple Files Securely in your Browser. No Signup Needed!</p>
             </div>
 
-            <div class="upload-section-wrapper">
-                <div id="uploadArea" class="upload-area">
-                    <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                    <div class="upload-text">+ Upload PDF</div>
-                    <div class="upload-subtext">or Drop file here</div>
-                    <input type="file" id="fileInput" accept=".pdf" style="display: none;">
+            <div id="uploadBox" class="upload-card" onclick="document.getElementById('pdfInput').click()">
+                <div style="font-size: 50px; color: #00079e; margin: 0px 0px 20px 0px;"><i class="fas fa-cloud-upload-alt"></i></div>
+                <div style="font-size: 20px; font-weight: 900; color: #333;">+ Upload PDF</div>
+                <div style="color: #999; margin: 10px 0px 0px 0px;">or Drop file here</div>
+                <input type="file" id="pdfInput" accept=".pdf" style="display: none;">
+            </div>
+
+            <div id="toolUI" class="tool-wrapper">
+                <div class="preview-side">
+                    <h3 id="rangeLabel" style="margin: 0px 0px 20px 0px; font-weight: 900;">Range 1</h3>
+                    <div id="thumbnailContainer" class="thumb-grid"></div>
                 </div>
 
-                <div id="splitWorkspace" class="split-workspace">
-                    <div class="pages-preview">
-                        <div class="range-label">Range 1</div>
-                        <div id="pagesGrid" class="pages-grid"></div>
+                <div class="settings-side">
+                    <div style="font-weight: 900; margin: 0px 0px 15px 0px; font-size: 14px; color: #666;">Split options</div>
+                    <div class="split-tabs">
+                        <div class="tab-btn active" onclick="switchMode('range')"><i class="fas fa-layer-group"></i><span>Split by range</span></div>
+                        <div class="tab-btn" onclick="switchMode('extract')"><i class="fas fa-file-export"></i><span>Extract Pages</span></div>
                     </div>
 
-                    <div class="controls-panel">
-                        <h2>Split PDF file</h2>
-                        <p>Separate one page or a whole set for easy conversion into independent PDF files.</p>
-
-                        <div style="margin: 0px 0px 15px 0px; font-weight: 700; font-size: 14px;">Split options</div>
-                        <div class="option-tabs">
-                            <button class="tab-btn active" id="rangeTab">
-                                <i class="fas fa-th-large"></i>
-                                Split by range
-                            </button>
-                            <button class="tab-btn" id="extractTab">
-                                <i class="fas fa-hand-pointer"></i>
-                                Extract Pages
-                            </button>
+                    <div id="rangeSettings">
+                        <div style="margin: 0px 0px 15px 0px;">
+                            <label style="font-size: 12px; font-weight: bold; color: #888;">Range mode</label>
+                            <div style="display: flex; gap: 5px; margin: 5px 0px 0px 0px;">
+                                <button class="tab-btn active" style="font-size: 11px; padding: 8px 5px 8px 5px;">Custom Range</button>
+                                <button class="tab-btn" style="font-size: 11px; padding: 8px 5px 8px 5px;">Fixed</button>
+                            </div>
                         </div>
-
-                        <div style="margin: 0px 0px 15px 0px; font-weight: 700; font-size: 14px;">Range mode</div>
-                        <div class="mode-tabs">
-                            <button class="mode-btn active" id="customMode">Custom Range</button>
-                            <button class="mode-btn" id="fixedMode">Fixed</button>
+                        
+                        <button class="add-range-btn" onclick="addRangeRow()">+ Add Range</button>
+                        <div id="rangeList">
+                            <div class="range-box">
+                                <div class="range-header"><span>Range 1</span></div>
+                                <div class="input-group">
+                                    <div style="flex:1"><label style="font-size:10px; display:block">From Page</label><input type="number" class="from-p" value="1"></div>
+                                    <div style="flex:1"><label style="font-size:10px; display:block">To Page</label><input type="number" class="to-p" value="1"></div>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="range-section-header">
-                            <h3>Range</h3>
-                            <button class="add-range-btn" id="addRangeBtn">+Add Range</button>
-                        </div>
-
-                        <div id="rangesContainer"></div>
-
-                        <div class="merge-checkbox">
-                            <label>
-                                <input type="checkbox" id="mergeCheckbox">
-                                Merge all ranges in one PDF file.
-                            </label>
-                        </div>
-
-                        <button class="split-btn" id="splitBtn" disabled>Split PDF →</button>
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; margin: 15px 0px 0px 0px;">
+                            <input type="checkbox" id="mergeCheckbox"> Merge all ranges in one PDF file
+                        </label>
                     </div>
+
+                    <button class="btn-primary" onclick="processSplit()">Split PDF <i class="fas fa-arrow-right" style="margin-left:5px"></i></button>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="section-container" style="margin: 40px 0px 40px 0px !important; padding: 0px 0px 0px 0px !important;">
-        <div class="row-container">
-            <h2 style="font-weight: 900; margin: 0px 0px 15px 0px !important; text-align: center !important;">Fast and Reliable PDF Splitting Solution</h2>
-            <p style="font-size: 16px; color: #444; line-height: 1.8; margin: 0px 0px 30px 0px !important; text-align: center !important;">Our Split PDF Tool Allows You to Divide Large Documents into Smaller Sections or Extract Specific Pages. Process Everything Locally in Your Browser for Maximum Security and Privacy.</p>
+        <div class="row-container" style="margin: 0px auto 0px auto !important; padding: 0px 0px 0px 0px !important;">
+            <h2 style="font-weight: 900; margin: 0px 0px 15px 0px !important; text-align: left !important;">Accurate and Secure PDF Splitting Tool</h2>
+            <p style="font-size: 16px; color: #444; line-height: 1.8; margin: 0px 0px 30px 0px !important; padding: 0px 0px 0px 0px !important;">Our Split PDF Utility is a High-Performance Tool Designed for Students and Professionals who Need to Extract Specific Pages or Divide Documents into Smaller Parts. It Works Directly in Your Browser and Ensures that Your Data is Never Uploaded to Any External Server.</p>
+            <blockquote style="border-left: 5px solid #00079e !important; padding: 20px 20px 20px 20px !important; margin: 0px 0px 40px 0px !important; background: #f8f9fa !important; font-style: italic !important; color: #444 !important; line-height: 1.8 !important;">Process Your Documents Safely on 21 Feb 2026. All Splitting Happens Locally in Your Browser, Ensuring that Your Sensitive Files Never Touch Our Servers.</blockquote>
             <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Can I Split a PDF into Individual Pages?</span>
-                        <i class="faq-icon">+</i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, You can Split Your PDF into Individual Single-Page Files by Setting Each Range to Extract One Page at a Time.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>How Do I Extract Specific Pages From a PDF?</span>
-                        <i class="faq-icon">+</i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Use the "From Page" and "To Page" Fields to Define the Exact Page Range You Want to Extract. You can Add Multiple Ranges if Needed.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Will the Tool Store My PDF Files?</span>
-                        <i class="faq-icon">+</i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>No, All Processing Happens Directly in Your Browser. Your Files Never Leave Your Device and are Not Stored on Any Server.</p>
-                    </div>
-                </div>
+                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>How Many PDF Files can I Split Together?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>You can Split or Extract Pages from Your PDF as Much as You Want. There is no Strict Limit on the Operations You can Perform on 21 Feb 2026.</p></div></div>
+                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>is This Service Completely Free to Use?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Yes, Rojgar Sangam Tools Provides This PDF Splitting Utility 100% Free of Cost. There are no Hidden Charges or Registration Required.</p></div></div>
             </div>
         </div>
     </section>
 
-    <section class="section-main">
-        <div class="row-custom">
-            <div class="ad-manager-placeholder" data-ad-type="responsive"></div>
-        </div>
-    </section>
-
-    <div id="processingOverlay" class="processing-overlay">
-        <div class="processing-box">
-            <div class="processing-icon"><i class="fas fa-file-alt"></i></div>
-            <div class="processing-title"><span class="highlight">Splitting</span> PDF</div>
-            <div class="processing-text">Do not close your browser. Wait until your files are uploaded and processed!<br>This might take a few minutes.</div>
-        </div>
+    <div id="loadingOverlay" class="loading-overlay">
+        <i class="fas fa-file-pdf"></i>
+        <h1 style="font-weight: 900; color: #00079e;">SPLITTING PDF</h1>
+        <p style="color: #666; font-weight: bold; margin: 10px 0px 0px 0px;">Do not close your browser. Wait until your files are uploaded and processed!</p>
+        <p style="color: #999; font-size: 13px;">This might take a few minutes.</p>
     </div>
 
     <div id="successOverlay" class="success-overlay">
-        <div class="success-box">
-            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-            <div class="success-title"><span class="highlight">PDFs</span> have been split</div>
-            <button id="downloadBtn" class="download-btn">Download PDF <i class="fas fa-download"></i></button>
-            <button id="backToSplitBtn" class="back-btn">Back to Split PDF</button>
-            <div style="margin: 15px 0px 15px 0px; color: #999; font-size: 14px;">OR</div>
-            <button id="backToHomeBtn" class="back-btn">Back to Home</button>
+        <i class="fas fa-check-circle"></i>
+        <h2 style="font-weight: 900; color: #333;">PDFs have been split</h2>
+        <a id="dlBtn" class="btn-primary" style="text-decoration: none; width: auto; padding: 15px 40px 15px 40px;">Download PDF <i class="fas fa-download" style="margin-left:5px"></i></a>
+        <div style="margin: 25px 0px 0px 0px;">
+            <button onclick="location.reload()" style="background:none; border:none; color:#00079e; font-weight:bold; cursor:pointer;">Back to Split PDF</button>
+            <span style="margin: 0px 15px 0px 15px; color: #ccc;">OR</span>
+            <a href="../index.html" style="color:#666; text-decoration:none; font-weight:bold;">Back to Home</a>
         </div>
     </div>
 
@@ -256,214 +162,99 @@
     <script src="../js/ad-manager.js"></script>
     <script src="../js/main.js"></script>
     <script>
-        let pdfDoc = null;
+        let originalPdfDoc = null;
         let pdfBytes = null;
-        let totalPages = 0;
-        let ranges = [];
-        let splitFiles = [];
+        let rangeCount = 1;
 
-        const uploadArea = document.getElementById('uploadArea');
-        const fileInput = document.getElementById('fileInput');
-        const splitWorkspace = document.getElementById('splitWorkspace');
-        const pagesGrid = document.getElementById('pagesGrid');
-        const rangesContainer = document.getElementById('rangesContainer');
-        const addRangeBtn = document.getElementById('addRangeBtn');
-        const splitBtn = document.getElementById('splitBtn');
-        const processingOverlay = document.getElementById('processingOverlay');
-        const successOverlay = document.getElementById('successOverlay');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const backToSplitBtn = document.getElementById('backToSplitBtn');
-        const backToHomeBtn = document.getElementById('backToHomeBtn');
-        const mergeCheckbox = document.getElementById('mergeCheckbox');
-
-        uploadArea.addEventListener('click', () => fileInput.click());
-        fileInput.addEventListener('change', handleFileSelect);
-        uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('dragover'); });
-        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            if (e.dataTransfer.files[0]?.type === 'application/pdf') {
-                handleFile(e.dataTransfer.files[0]);
-            }
+        document.getElementById('pdfInput').addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            pdfBytes = await file.arrayBuffer();
+            originalPdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
+            const pageCount = originalPdfDoc.getPageCount();
+            
+            document.getElementById('uploadBox').style.display = 'none';
+            document.getElementById('introHeader').style.display = 'none';
+            document.getElementById('toolUI').style.display = 'flex';
+            
+            const toInputs = document.querySelectorAll('.to-p');
+            toInputs.forEach(i => i.value = pageCount);
+            renderThumbs();
         });
 
-        addRangeBtn.addEventListener('click', () => addRange());
-        splitBtn.addEventListener('click', processSplit);
-        downloadBtn.addEventListener('click', downloadFiles);
-        backToSplitBtn.addEventListener('click', reset);
-        backToHomeBtn.addEventListener('click', () => window.location.href = '../index.html');
-
-        function handleFileSelect(e) {
-            if (e.target.files[0]) handleFile(e.target.files[0]);
-        }
-
-        async function handleFile(file) {
-            const reader = new FileReader();
-            reader.onload = async function(e) {
-                pdfBytes = e.target.result;
-                pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
-                totalPages = pdfDoc.getPageCount();
-                
-                uploadArea.style.display = 'none';
-                splitWorkspace.classList.add('active');
-                
-                await renderPages();
-                addRange(1, totalPages);
-            };
-            reader.readAsArrayBuffer(file);
-        }
-
-        async function renderPages() {
-            pagesGrid.innerHTML = '';
-            for (let i = 0; i < totalPages; i++) {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                canvas.width = 150;
-                canvas.height = 180;
-                ctx.fillStyle = '#f5f5f5';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = '#999';
-                ctx.font = '14px Arial';
-                ctx.textAlign = 'center';
-                ctx.fillText(`Page ${i + 1}`, canvas.width/2, canvas.height/2);
-
-                const pageItem = document.createElement('div');
-                pageItem.className = 'page-item';
-                pageItem.innerHTML = `
-                    <img src="${canvas.toDataURL()}" class="page-preview">
-                    <div class="page-number">${i + 1}</div>
-                `;
-                pagesGrid.appendChild(pageItem);
+        async function renderThumbs() {
+            const container = document.getElementById('thumbnailContainer');
+            container.innerHTML = '';
+            const pageCount = originalPdfDoc.getPageCount();
+            for(let i=0; i<pageCount; i++) {
+                const item = document.createElement('div');
+                item.className = 'thumb-item';
+                item.innerHTML = `<div style="height:140px; background:#f0f0f0; display:flex; align-items:center; justify-content:center; color:#ccc;"><i class="fas fa-file-pdf fa-2x"></i></div><span class="page-num">${i+1}</span>`;
+                container.appendChild(item);
             }
         }
 
-        function addRange(from = 1, to = totalPages) {
-            const rangeId = Date.now();
-            const rangeItem = document.createElement('div');
-            rangeItem.className = 'range-item';
-            rangeItem.dataset.id = rangeId;
-            rangeItem.innerHTML = `
-                <div class="range-header">
-                    <span>Range ${ranges.length + 1}</span>
-                    <button class="remove-range-btn" onclick="removeRange(${rangeId})">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="range-inputs">
-                    <div class="input-group">
-                        <label>From Page</label>
-                        <input type="number" class="from-page" min="1" max="${totalPages}" value="${from}">
-                    </div>
-                    <div class="input-group">
-                        <label>To Page</label>
-                        <input type="number" class="to-page" min="1" max="${totalPages}" value="${to}">
-                    </div>
-                </div>
-            `;
-            rangesContainer.appendChild(rangeItem);
-            ranges.push({ id: rangeId, from, to });
-            updateSplitButton();
+        function addRangeRow() {
+            rangeCount++;
+            const list = document.getElementById('rangeList');
+            const row = document.createElement('div');
+            row.className = 'range-box';
+            row.innerHTML = `<div class="range-header"><span>Range ${rangeCount}</span><i class="fas fa-times" style="cursor:pointer" onclick="this.parentElement.parentElement.remove()"></i></div><div class="input-group"><div style="flex:1"><input type="number" class="from-p" value="1"></div><div style="flex:1"><input type="number" class="to-p" value="${originalPdfDoc.getPageCount()}"></div></div>`;
+            list.appendChild(row);
         }
 
-        function removeRange(id) {
-            const element = document.querySelector(`[data-id="${id}"]`);
-            if (element) element.remove();
-            ranges = ranges.filter(r => r.id !== id);
-            updateSplitButton();
-        }
-
-        function updateSplitButton() {
-            splitBtn.disabled = ranges.length === 0;
+        function switchMode(mode) {
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(t => t.classList.remove('active'));
+            event.currentTarget.classList.add('active');
         }
 
         async function processSplit() {
-            const rangeElements = document.querySelectorAll('.range-item');
-            const extractedRanges = Array.from(rangeElements).map(el => ({
-                from: parseInt(el.querySelector('.from-page').value),
-                to: parseInt(el.querySelector('.to-page').value)
-            }));
-
-            processingOverlay.classList.add('active');
-            splitFiles = [];
-
+            document.getElementById('loadingOverlay').style.display = 'flex';
             try {
-                if (mergeCheckbox.checked) {
-                    const mergedPdf = await PDFLib.PDFDocument.create();
-                    for (const range of extractedRanges) {
-                        for (let i = range.from - 1; i < range.to; i++) {
-                            const [copiedPage] = await mergedPdf.copyPages(pdfDoc, [i]);
-                            mergedPdf.addPage(copiedPage);
-                        }
+                const ranges = [];
+                const froms = document.querySelectorAll('.from-p');
+                const tos = document.querySelectorAll('.to-p');
+                for(let i=0; i<froms.length; i++) {
+                    ranges.push({ from: parseInt(froms[i].value)-1, to: parseInt(tos[i].value)-1 });
+                }
+
+                const mergeAll = document.getElementById('mergeCheckbox').checked;
+                let finalBlob;
+
+                if(mergeAll) {
+                    const newPdf = await PDFLib.PDFDocument.create();
+                    for(const r of ranges) {
+                        const indices = Array.from({length: r.to - r.from + 1}, (_, i) => r.from + i);
+                        const pages = await newPdf.copyPages(originalPdfDoc, indices);
+                        pages.forEach(p => newPdf.addPage(p));
                     }
-                    const mergedBytes = await mergedPdf.save();
-                    splitFiles.push({ name: 'split-merged.pdf', data: mergedBytes });
+                    const bytes = await newPdf.save();
+                    finalBlob = new Blob([bytes], {type: 'application/pdf'});
                 } else {
-                    for (let i = 0; i < extractedRanges.length; i++) {
-                        const range = extractedRanges[i];
-                        const newPdf = await PDFLib.PDFDocument.create();
-                        for (let j = range.from - 1; j < range.to; j++) {
-                            const [copiedPage] = await newPdf.copyPages(pdfDoc, [j]);
-                            newPdf.addPage(copiedPage);
-                        }
-                        const pdfBytes = await newPdf.save();
-                        splitFiles.push({ name: `split-range-${i + 1}.pdf`, data: pdfBytes });
-                    }
+                    const firstRange = ranges[0];
+                    const newPdf = await PDFLib.PDFDocument.create();
+                    const indices = Array.from({length: firstRange.to - firstRange.from + 1}, (_, i) => firstRange.from + i);
+                    const pages = await newPdf.copyPages(originalPdfDoc, indices);
+                    pages.forEach(p => newPdf.addPage(p));
+                    const bytes = await newPdf.save();
+                    finalBlob = new Blob([bytes], {type: 'application/pdf'});
                 }
 
                 setTimeout(() => {
-                    processingOverlay.classList.remove('active');
-                    successOverlay.classList.add('active');
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                    document.getElementById('toolUI').style.display = 'none';
+                    document.getElementById('successOverlay').style.display = 'flex';
+                    const url = URL.createObjectURL(finalBlob);
+                    const dl = document.getElementById('dlBtn');
+                    dl.href = url;
+                    dl.download = `split-rojgar-sangam-${Date.now()}.pdf`;
                 }, 2000);
-            } catch (error) {
-                console.error('Error splitting PDF:', error);
-                alert('Error splitting PDF. Please try again.');
-                processingOverlay.classList.remove('active');
+            } catch(e) {
+                alert("Error splitting PDF");
+                document.getElementById('loadingOverlay').style.display = 'none';
             }
         }
-
-        async function downloadFiles() {
-            if (splitFiles.length === 1) {
-                const blob = new Blob([splitFiles[0].data], { type: 'application/pdf' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = splitFiles[0].name;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            } else {
-                const zip = new JSZip();
-                splitFiles.forEach(file => {
-                    zip.file(file.name, file.data);
-                });
-                const zipBlob = await zip.generateAsync({ type: 'blob' });
-                const url = URL.createObjectURL(zipBlob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'split-pdfs.zip';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            }
-        }
-
-        function reset() {
-            successOverlay.classList.remove('active');
-            uploadArea.style.display = 'block';
-            splitWorkspace.classList.remove('active');
-            pdfDoc = null;
-            pdfBytes = null;
-            ranges = [];
-            splitFiles = [];
-            rangesContainer.innerHTML = '';
-            pagesGrid.innerHTML = '';
-            fileInput.value = '';
-        }
-
-        window.removeRange = removeRange;
     </script>
 </body>
 </html>
