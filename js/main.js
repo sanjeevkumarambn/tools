@@ -74,5 +74,8 @@ const RojgarTools = {
         });
     }
 };
-
+    function toggleFAQ(element) {
+        const faqItem = element.parentElement;
+        faqItem.classList.toggle('active');
+    }
 document.addEventListener('DOMContentLoaded', () => RojgarTools.init());
