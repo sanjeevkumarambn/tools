@@ -217,39 +217,39 @@
         </div>
     </div>
     <div id="footer-placeholder"></div>
-    <script src="../js/ad-manager.js"></script>
+<script src="../js/ad-manager.js"></script>
     <script src="../js/main.js"></script>
     <script>
-        let pdfInst = null;
-        let fileBytes = null;
-        let totalP = 0;
-        let selectedExtPages = new Set();
-        let currentM = 'range';
-        let currentRM = 'custom';
+        let pdfDoc = null;
+        let pdfBytes = null;
+        let totalPages = 0;
+        let selectedPages = new Set();
+        let currentMode = 'range';
+        let currentRangeMode = 'custom';
 
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
         document.getElementById('fileInput').onchange = async (e) => {
             const file = e.target.files[0];
             if(!file) return;
-            fileBytes = await file.arrayBuffer();
-            pdfInst = await PDFLib.PDFDocument.load(fileBytes);
-            totalP = pdfInst.getPageCount();
+            pdfBytes = await file.arrayBuffer();
+            pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
+            totalPages = pdfDoc.getPageCount();
 
             document.getElementById('uploadArea').style.display = 'none';
             document.getElementById('heroHeader').style.display = 'none';
             document.getElementById('workspace').style.display = 'flex';
             
             renderThumbs();
-            addNewRangeRow(1, totalP);
+            addNewRangeRow(1, totalPages);
         };
 
         async function renderThumbs() {
             const grid = document.getElementById('pagesGrid');
             grid.innerHTML = '';
-            const loadingTask = pdfjsLib.getDocument({data: fileBytes});
+            const loadingTask = pdfjsLib.getDocument({data: pdfBytes});
             const pdf = await loadingTask.promise;
-            for(let i=1; i<=totalP; i++) {
+            for(let i=1; i<=totalPages; i++) {
                 const page = await pdf.getPage(i);
                 const viewport = page.getViewport({scale: 0.3});
                 const canvas = document.createElement('canvas');
@@ -260,12 +260,11 @@
                 
                 const item = document.createElement('div');
                 item.className = 'page-item';
-                item.dataset.idx = i;
                 item.innerHTML = `<img src="${canvas.toDataURL()}" class="page-preview"><div class="page-number">${i}</div>`;
                 item.onclick = () => {
-                    if(currentM === 'extract') {
-                        if(selectedExtPages.has(i)) selectedExtPages.delete(i);
-                        else selectedExtPages.add(i);
+                    if(currentMode === 'extract') {
+                        if(selectedPages.has(i)) selectedPages.delete(i);
+                        else selectedPages.add(i);
                         item.classList.toggle('selected');
                     }
                 };
@@ -274,17 +273,17 @@
         }
 
         function switchMode(m) {
-            currentM = m;
+            currentMode = m;
             document.getElementById('rangeModeBtn').classList.toggle('active', m==='range');
             document.getElementById('extractModeBtn').classList.toggle('active', m==='extract');
             document.getElementById('rangeOptions').style.display = m==='range' ? 'block' : 'none';
             document.getElementById('extractOptions').style.display = m==='extract' ? 'block' : 'none';
             document.querySelectorAll('.page-item').forEach(el => el.classList.remove('selected'));
-            selectedExtPages.clear();
+            selectedPages.clear();
         }
 
         function switchRangeMode(rm) {
-            currentRM = rm;
+            currentRangeMode = rm;
             document.getElementById('customRangeBtn').classList.toggle('active', rm==='custom');
             document.getElementById('fixedRangeBtn').classList.toggle('active', rm==='fixed');
             document.getElementById('dynamicRangeControls').style.display = rm==='custom' ? 'block' : 'none';
@@ -303,8 +302,8 @@
                     <i class="fas fa-times" style="color:red; cursor:pointer" onclick="document.getElementById('row-${id}').remove()"></i>
                 </div>
                 <div style="display: flex; gap: 8px;">
-                    <div style="flex:1"><label style="font-size:10px">From</label><input type="number" class="f-val" value="${f}" min="1" max="${totalP}" style="width:100%; padding:5px;"></div>
-                    <div style="flex:1"><label style="font-size:10px">To</label><input type="number" class="t-val" value="${t}" min="1" max="${totalP}" style="width:100%; padding:5px;"></div>
+                    <div style="flex:1"><label style="font-size:10px">From</label><input type="number" class="f-val" value="${f}" min="1" max="${totalPages}" style="width:100%; padding:5px;"></div>
+                    <div style="flex:1"><label style="font-size:10px">To</label><input type="number" class="t-val" value="${t}" min="1" max="${totalPages}" style="width:100%; padding:5px;"></div>
                 </div>`;
             list.appendChild(div);
         }
@@ -315,27 +314,27 @@
                 const results = [];
                 const mergeAll = document.getElementById('mergeCheck').checked;
 
-                if(currentM === 'extract') {
-                    const pages = Array.from(selectedExtPages).sort((a,b) => a-b);
+                if(currentMode === 'extract') {
+                    const pages = Array.from(selectedPages).sort((a,b) => a-b);
                     if(mergeAll) {
                         const pdf = await PDFLib.PDFDocument.create();
-                        const copied = await pdf.copyPages(pdfInst, pages.map(p => p-1));
+                        const copied = await pdf.copyPages(pdfDoc, pages.map(p => p-1));
                         copied.forEach(p => pdf.addPage(p));
                         results.push({ name: 'extracted_merged.pdf', data: await pdf.save() });
                     } else {
                         for(let p of pages) {
                             const pdf = await PDFLib.PDFDocument.create();
-                            const [cp] = await pdf.copyPages(pdfInst, [p-1]);
+                            const [cp] = await pdf.copyPages(pdfDoc, [p-1]);
                             pdf.addPage(cp);
                             results.push({ name: `page_${p}.pdf`, data: await pdf.save() });
                         }
                     }
-                } else if(currentRM === 'fixed') {
+                } else if(currentRangeMode === 'fixed') {
                     const interval = parseInt(document.getElementById('fixedInterval').value);
-                    for(let i=0; i<totalP; i+=interval) {
+                    for(let i=0; i<totalPages; i+=interval) {
                         const pdf = await PDFLib.PDFDocument.create();
-                        const range = Array.from({length: Math.min(interval, totalP-i)}, (_, k) => i+k);
-                        const copied = await pdf.copyPages(pdfInst, range);
+                        const range = Array.from({length: Math.min(interval, totalPages-i)}, (_, k) => i+k);
+                        const copied = await pdf.copyPages(pdfDoc, range);
                         copied.forEach(p => pdf.addPage(p));
                         results.push({ name: `part_${Math.floor(i/interval)+1}.pdf`, data: await pdf.save() });
                     }
@@ -347,11 +346,11 @@
                         const t = parseInt(row.querySelector('.t-val').value);
                         const range = Array.from({length: t-f+1}, (_, k) => f+k-1);
                         if(mergeAll) {
-                            const copied = await pdfForMerge.copyPages(pdfInst, range);
+                            const copied = await pdfForMerge.copyPages(pdfDoc, range);
                             copied.forEach(p => pdfForMerge.addPage(p));
                         } else {
                             const pdf = await PDFLib.PDFDocument.create();
-                            const copied = await pdf.copyPages(pdfInst, range);
+                            const copied = await pdf.copyPages(pdfDoc, range);
                             copied.forEach(p => pdf.addPage(p));
                             results.push({ name: `range_${f}-${t}.pdf`, data: await pdf.save() });
                         }
