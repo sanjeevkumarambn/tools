@@ -266,7 +266,6 @@
             processingText.innerHTML = 'Loading AI Model...<br>First Time May Take 1-2 Minutes.';
             const mod = await import('https://esm.sh/@imgly/background-removal@1.4.0');
             removeBg = file => mod.removeBackground(file, {
-                publicPath : 'https://unpkg.com/@imgly/background-removal@1.4.0/dist/',
                 model      : 'medium',
                 debug      : false
             });
