@@ -348,7 +348,6 @@
             else if(sizeVal==='custom'){canvasW=parseInt(document.getElementById('customW').value);canvasH=parseInt(document.getElementById('customH').value);}
             else{[canvasW,canvasH]=sizeVal.split('x').map(Number);}
 
-            const borderSize=3;
             const signAreaH=Math.round(canvasH*0.20);
             const photoAreaH=canvasH-signAreaH;
 
@@ -362,10 +361,6 @@
             ctx.fillStyle='#ffffff';
             ctx.fillRect(0,photoAreaH,canvasW,signAreaH);
             ctx.drawImage(signImg,0,photoAreaH,canvasW,signAreaH);
-
-            ctx.strokeStyle='#00079e';
-            ctx.lineWidth=borderSize;
-            ctx.strokeRect(borderSize/2,borderSize/2,canvasW-borderSize,canvasH-borderSize);
 
             ctx.strokeStyle='#cccccc';
             ctx.lineWidth=1;
