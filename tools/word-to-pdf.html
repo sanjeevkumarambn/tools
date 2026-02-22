@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js"></script>
+    <script src="https://unpkg.com/mammoth@1.6.0/mammoth.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 
     <!-- WebApplication Schema -->
@@ -103,7 +103,7 @@
           "name": "Is There a File Size Limit for Word to PDF Conversion?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "There is No Strict File Size Limit. However, Very Large Files May Take More Time to Process Depending on Your Device Performance."
+            "text": "There is No Strict File Size Limit. However, Very Large Files May Take More Time to Process Depending on Your Device Performance and Available Memory."
           }
         },
         {
@@ -158,7 +158,6 @@
         body { font-family: 'Lora', serif !important; background: #f8f8ff; color: #333333; }
         #header-placeholder { background-color: #ffffff !important; width: 100%; display: block; position: relative; z-index: 1000; }
         .section-main { margin: 40px 0px 40px 0px !important; }
-
         .upload-section-wrapper { background: #ffffff; border-radius: 20px; padding: 40px 40px 40px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
         .upload-area { border: 3px dashed #667799; border-radius: 16px; padding: 60px 20px 60px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; background: #f8f8ff; max-width: 700px; margin: 0px auto 0px auto; }
         .upload-area:hover { border-color: #00079e; background: #fdece5; }
@@ -166,10 +165,8 @@
         .upload-icon { font-size: 48px; color: #00079e; margin: 0px 0px 20px 0px; }
         .upload-text { font-size: 18px; font-weight: 700; color: #333333; margin: 0px 0px 10px 0px; }
         .upload-subtext { font-size: 14px; color: #667799; }
-
         .workspace-container { display: none; }
         .workspace-container.active { display: flex; gap: 30px; margin: 30px 0px 0px 0px; align-items: flex-start; }
-
         .preview-panel { flex: 1; background: #ffffff; border: 2px solid #667799; border-radius: 12px; padding: 20px 20px 20px 20px; text-align: center; position: relative; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; }
         .word-icon-box { background: #f8f8ff; border: 1px solid #bdbdbd; border-radius: 8px; width: 100%; height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; }
         .word-icon { font-size: 80px; color: #00079e; }
@@ -177,14 +174,11 @@
         .file-name-display { font-size: 13px; font-weight: 700; color: #333333; word-break: break-all; text-align: center; padding: 0px 10px 0px 10px; }
         .remove-file-btn { position: absolute; top: -12px; right: -12px; width: 32px; height: 32px; background: #667799; color: #ffffff; border: none; border-radius: 50%; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(102,119,153,0.4); transition: all 0.3s ease; }
         .remove-file-btn:hover { background: #00079e; transform: scale(1.1); }
-
         .controls-panel { width: 450px; background: #ffffff; border: 1px solid #667799; border-radius: 12px; padding: 30px 30px 30px 30px; height: fit-content; position: sticky; top: 100px; }
         .controls-panel h2 { font-size: 28px; font-weight: 900; color: #333333; margin: 0px 0px 10px 0px; }
         .controls-panel .subtitle { font-size: 15px; color: #00079e; margin: 0px 0px 30px 0px; line-height: 1.5; background: #eff6ef; padding: 8px 12px 8px 12px; border-radius: 6px; display: inline-block; border: 1px solid #667799; }
-
         .convert-btn { width: 100%; padding: 18px 40px 18px 40px; background: #eff6ef; color: #00079e; border: 1px solid #667799; border-radius: 50px; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; font-family: 'Lora', serif; }
         .convert-btn:hover { background: #fdece5; transform: translateY(-2px); }
-
         .processing-overlay, .success-overlay { position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 9999; }
         .processing-overlay.active, .success-overlay.active { display: flex; }
         .processing-box, .success-box { background: #ffffff; border-radius: 20px; padding: 50px 50px 50px 50px; text-align: center; max-width: 550px; width: 90%; border: 1px solid #667799; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
@@ -199,9 +193,7 @@
         .download-btn:hover { background: #fdece5; transform: translateY(-2px); }
         .back-btn { width: 100%; padding: 15px 40px 15px 40px; background: #ffffff; color: #333333; border: 1px solid #667799; border-radius: 50px; font-size: 16px; font-weight: 600; cursor: pointer; margin: 0px 0px 10px 0px; transition: all 0.3s ease; font-family: 'Lora', serif; }
         .back-btn:hover { border-color: #00079e; color: #00079e; background: #fdece5; }
-
         #footer-placeholder { border: 1px solid #667799 !important; width: 100%; display: block; position: relative; }
-
         @media screen and (max-width: 1024px) {
             .workspace-container.active { flex-direction: column; }
             .controls-panel { width: 100%; position: static; }
@@ -219,7 +211,7 @@
 
     <section class="section-main">
         <div class="row-container">
-            <div id="heroHeader" style="text-align: center; margin: 0px 0px 30px 0px;">
+            <div style="text-align: center; margin: 0px 0px 30px 0px;">
                 <h1 style="font-size: 36px; font-weight: 900; color: #333333; margin: 0px 0px 10px 0px;">Word to PDF Online Free: Convert DOC to PDF Instantly</h1>
                 <p style="font-size: 16px; color: #333333; margin: 0px 0px 0px 0px;">Make DOC and DOCX Files Easy to Read by Converting Them to PDF.</p>
             </div>
@@ -372,20 +364,18 @@
     <script src="../js/main.js"></script>
 
     <script>
-        let currentFile      = null;
+        let currentFile       = null;
         let convertedPdfBytes = null;
 
         const uploadArea        = document.getElementById('uploadArea');
         const fileInput         = document.getElementById('fileInput');
         const workspace         = document.getElementById('workspace');
-        const heroHeader        = document.getElementById('heroHeader');
         const displayFileName   = document.getElementById('displayFileName');
         const convertBtn        = document.getElementById('convertBtn');
         const processingOverlay = document.getElementById('processingOverlay');
         const successOverlay    = document.getElementById('successOverlay');
         const downloadBtn       = document.getElementById('downloadBtn');
 
-        // ── Upload Click ──
         uploadArea.addEventListener('click', () => fileInput.click());
         fileInput.addEventListener('change', e => {
             const file = e.target.files[0];
@@ -393,7 +383,6 @@
             fileInput.value = '';
         });
 
-        // ── Drag & Drop ──
         uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
         uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
         uploadArea.addEventListener('drop', e => {
@@ -407,19 +396,15 @@
             }
         });
 
-        // ── File Selection ──
         function handleFileSelection(file) {
             currentFile = file;
             displayFileName.textContent = file.name;
             uploadArea.style.display = 'none';
-            heroHeader.style.display = 'none';
             workspace.classList.add('active');
         }
 
-        // ── Convert Button ──
         convertBtn.addEventListener('click', startConversion);
 
-        // ── Main Conversion Logic ──
         async function startConversion() {
             if (!currentFile) return;
             processingOverlay.classList.add('active');
@@ -427,57 +412,51 @@
 
             try {
                 const arrayBuffer = await currentFile.arrayBuffer();
-
-                // mammoth.js: DOCX → HTML
-                const result = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
+                const result      = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
                 const htmlContent = result.value || '';
 
-                // Parse HTML and extract structured text
-                const parser = new DOMParser();
+                const parser  = new DOMParser();
                 const htmlDoc = parser.parseFromString(htmlContent, 'text/html');
 
-                // Build PDF using pdf-lib
-                const pdfDoc = await PDFLib.PDFDocument.create();
+                const pdfDoc      = await PDFLib.PDFDocument.create();
                 const fontRegular = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
                 const fontBold    = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
 
-                const pageWidth  = 595.28;
-                const pageHeight = 841.89;
-                const marginLeft = 50;
-                const marginRight = 50;
-                const marginTop  = 50;
+                const pageWidth    = 595.28;
+                const pageHeight   = 841.89;
+                const marginLeft   = 50;
+                const marginRight  = 50;
+                const marginTop    = 50;
                 const marginBottom = 50;
-                const maxWidth = pageWidth - marginLeft - marginRight;
+                const maxWidth     = pageWidth - marginLeft - marginRight;
 
-                let page = pdfDoc.addPage([pageWidth, pageHeight]);
+                let page     = pdfDoc.addPage([pageWidth, pageHeight]);
                 let currentY = pageHeight - marginTop;
 
                 function addNewPage() {
-                    page = pdfDoc.addPage([pageWidth, pageHeight]);
+                    page     = pdfDoc.addPage([pageWidth, pageHeight]);
                     currentY = pageHeight - marginTop;
                 }
 
                 function checkPageBreak(lineHeight) {
-                    if (currentY - lineHeight < marginBottom) {
-                        addNewPage();
-                    }
+                    if (currentY - lineHeight < marginBottom) addNewPage();
                 }
 
                 function drawWrappedText(text, font, fontSize, lineHeight, indent) {
                     if (!text || !text.trim()) return;
-                    const x = marginLeft + (indent || 0);
+                    const x          = marginLeft + (indent || 0);
                     const availWidth = maxWidth - (indent || 0);
-                    const words = text.trim().split(/\s+/);
-                    let line = '';
+                    const words      = text.trim().split(/\s+/);
+                    let line         = '';
 
                     for (let i = 0; i < words.length; i++) {
                         const testLine = line + (line ? ' ' : '') + words[i];
-                        const w = font.widthOfTextAtSize(testLine, fontSize);
+                        const w        = font.widthOfTextAtSize(testLine, fontSize);
                         if (w > availWidth && line) {
                             checkPageBreak(lineHeight);
                             page.drawText(line, { x, y: currentY, size: fontSize, font, color: PDFLib.rgb(0.13, 0.13, 0.13) });
                             currentY -= lineHeight;
-                            line = words[i];
+                            line      = words[i];
                         } else {
                             line = testLine;
                         }
@@ -489,16 +468,14 @@
                     }
                 }
 
-                // Process each HTML element
                 const elements = htmlDoc.body.children;
                 for (const el of elements) {
-                    const tag     = el.tagName.toLowerCase();
-                    const text    = el.textContent.trim();
+                    const tag  = el.tagName.toLowerCase();
+                    const text = el.textContent.trim();
                     if (!text) continue;
 
                     if (tag === 'h1') {
                         currentY -= 8;
-                        checkPageBreak(30);
                         drawWrappedText(text, fontBold, 20, 28, 0);
                         currentY -= 6;
                     } else if (tag === 'h2') {
@@ -516,15 +493,14 @@
                         const items = el.querySelectorAll('li');
                         items.forEach((li, idx) => {
                             const bullet = tag === 'ol' ? `${idx + 1}. ` : '• ';
-                            const liText = bullet + li.textContent.trim();
-                            drawWrappedText(liText, fontRegular, 12, 20, 15);
+                            drawWrappedText(bullet + li.textContent.trim(), fontRegular, 12, 20, 15);
                         });
                         currentY -= 4;
                     } else if (tag === 'table') {
                         const rows = el.querySelectorAll('tr');
                         rows.forEach(row => {
-                            const cells = row.querySelectorAll('td, th');
-                            let rowText = '';
+                            const cells   = row.querySelectorAll('td, th');
+                            let rowText   = '';
                             cells.forEach((cell, i) => {
                                 rowText += (i > 0 ? '  |  ' : '') + cell.textContent.trim();
                             });
@@ -551,7 +527,6 @@
             }
         }
 
-        // ── Download PDF ──
         downloadBtn.addEventListener('click', () => {
             if (!convertedPdfBytes) return;
             const blob = new Blob([convertedPdfBytes], { type: 'application/pdf' });
@@ -565,7 +540,6 @@
             URL.revokeObjectURL(url);
         });
 
-        // ── Reset Tool ──
         function resetTool() {
             currentFile       = null;
             convertedPdfBytes = null;
@@ -574,7 +548,6 @@
             successOverlay.classList.remove('active');
             processingOverlay.classList.remove('active');
             uploadArea.style.display = 'block';
-            heroHeader.style.display = 'block';
         }
     </script>
 </body>
