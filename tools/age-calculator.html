@@ -1,62 +1,319 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Age Calculator - Rojgar Sangam Tools</title>
+    <title>Age Calculator Online - Calculate Exact Age in Years Months Days</title>
+    <meta name="description" content="Age Calculator Online Free. Calculate Your Exact Age in Years, Months, Days, Weeks, Hours. Find Next Birthday, Day of Birth and Total Days Lived.">
+    <meta name="keywords" content="age calculator, exact age calculator, date of birth calculator, how old am i, age in days calculator, birthday calculator">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://tools.rojgarsangam.in/tools/age-calculator.html">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Age Calculator Online","url":"https://tools.rojgarsangam.in/tools/age-calculator.html","description":"Calculate Your Exact Age in Years, Months and Days Online Free.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.rojgarsangam.in/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://tools.rojgarsangam.in/tools/"},{"@type":"ListItem","position":3,"name":"Age Calculator","item":"https://tools.rojgarsangam.in/tools/age-calculator.html"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How to Calculate Exact Age?","acceptedAnswer":{"@type":"Answer","text":"Enter your Date of Birth and the target date, then click Calculate Age. The tool shows your exact age in years, months and days."}},{"@type":"Question","name":"Can I Calculate Age for Any Past or Future Date?","acceptedAnswer":{"@type":"Answer","text":"Yes, you can set any date in the Age as on Date field to calculate age on a past or future date."}},{"@type":"Question","name":"How Many Days Have I Lived?","acceptedAnswer":{"@type":"Answer","text":"After calculating your age, the tool shows your total days, weeks, months and hours lived."}},{"@type":"Question","name":"When is My Next Birthday?","acceptedAnswer":{"@type":"Answer","text":"The result screen shows exactly how many days are left until your next birthday."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to Use Age Calculator","step":[{"@type":"HowToStep","position":1,"name":"Enter Date of Birth","text":"Select your date of birth from the date picker."},{"@type":"HowToStep","position":2,"name":"Select Target Date","text":"Select the date you want to calculate age as on. Default is today."},{"@type":"HowToStep","position":3,"name":"Click Calculate","text":"Click the Calculate Age button to get your exact age."},{"@type":"HowToStep","position":4,"name":"View Results","text":"See your exact age in years, months, days, weeks, hours and more."}]}</script>
+
+    <style>
+        body{font-family:'Lora',serif!important;background:#f8f8ff;color:#333}
+        #header-placeholder{background-color:#fff!important;width:100%;display:block;position:relative;z-index:1000}
+        .section-main{margin:40px 0px 40px 0px!important}
+
+        .tool-wrapper{background:#fff;border-radius:20px;padding:40px 40px 40px 40px;box-shadow:0px 4px 20px rgba(0,0,0,0.08);border:1px solid #667799;max-width:780px;margin:0px auto 0px auto}
+
+        .tool-screen{display:none}
+        .tool-screen.active{display:block}
+
+        .screen-title{font-size:32px;font-weight:900;color:#333;text-align:center;margin:0px 0px 6px 0px}
+        .screen-subtitle{font-size:15px;color:#667799;text-align:center;margin:0px 0px 32px 0px}
+
+        .input-group{margin:0px 0px 22px 0px}
+        .input-group label{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#333;margin:0px 0px 8px 0px}
+        .input-group label i{color:#00079e;font-size:15px}
+        .date-input{width:100%;padding:14px 16px 14px 16px;border:2px solid #bdbdbd;border-radius:10px;font-size:15px;font-family:'Lora',serif;color:#333;background:#f8f8ff;box-sizing:border-box;transition:border .2s;cursor:pointer}
+        .date-input:focus{outline:none;border-color:#00079e;background:#fff}
+
+        .calc-btn{width:100%;padding:18px 0px 18px 0px;background:#00079e;color:#fff;border:none;border-radius:50px;font-size:17px;font-weight:700;cursor:pointer;margin:10px 0px 0px 0px;transition:all .3s;font-family:'Lora',serif;display:flex;align-items:center;justify-content:center;gap:10px}
+        .calc-btn:hover{background:#333;transform:translateY(-2px)}
+
+        .result-hero{background:linear-gradient(135deg,#00079e 0%,#333 100%);border-radius:16px;padding:36px 30px 36px 30px;text-align:center;margin:0px 0px 28px 0px}
+        .result-hero-label{font-size:13px;font-weight:700;color:rgba(255,255,255,0.7);letter-spacing:2px;text-transform:uppercase;margin:0px 0px 12px 0px}
+        .result-hero-value{font-size:34px;font-weight:900;color:#fff;margin:0px 0px 0px 0px;line-height:1.3}
+        .result-hero-value span{color:#fdece5}
+
+        .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0px 0px 28px 0px}
+        .stat-card{background:#f8f8ff;border:1px solid #667799;border-radius:12px;padding:18px 14px 18px 14px;text-align:center;transition:all .2s}
+        .stat-card:hover{background:#eff6ef;border-color:#00079e}
+        .stat-card-icon{font-size:24px;color:#00079e;margin:0px 0px 8px 0px}
+        .stat-card-value{font-size:20px;font-weight:900;color:#333;margin:0px 0px 4px 0px}
+        .stat-card-label{font-size:11px;font-weight:700;color:#667799;text-transform:uppercase;letter-spacing:1px}
+
+        .info-row{display:flex;gap:14px;margin:0px 0px 28px 0px}
+        .info-card{flex:1;background:#eff6ef;border:1px solid #667799;border-radius:12px;padding:16px 14px 16px 14px;display:flex;align-items:center;gap:12px}
+        .info-card-icon{width:40px;height:40px;background:#00079e;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .info-card-icon i{color:#fff;font-size:16px}
+        .info-card-label{font-size:11px;font-weight:700;color:#667799;text-transform:uppercase;letter-spacing:1px;margin:0px 0px 3px 0px}
+        .info-card-value{font-size:15px;font-weight:900;color:#00079e}
+
+        .again-btn{width:100%;padding:16px 0px 16px 0px;background:#eff6ef;color:#00079e;border:1px solid #667799;border-radius:50px;font-size:16px;font-weight:700;cursor:pointer;transition:all .3s;font-family:'Lora',serif;display:flex;align-items:center;justify-content:center;gap:8px}
+        .again-btn:hover{background:#fdece5;transform:translateY(-2px)}
+
+        .error-msg{display:none;background:#fdece5;border:1px solid #e53935;border-radius:8px;padding:10px 16px 10px 16px;font-size:13px;font-weight:700;color:#e53935;margin:0px 0px 16px 0px}
+        .error-msg.show{display:block}
+
+        #footer-placeholder{border:1px solid #667799!important;width:100%;display:block;position:relative}
+
+        @media(max-width:600px){
+            .tool-wrapper{padding:24px 18px 24px 18px}
+            .stats-grid{grid-template-columns:repeat(2,1fr)}
+            .info-row{flex-direction:column}
+            .result-hero-value{font-size:24px}
+        }
+    </style>
 </head>
 <body>
-    <header class="header-main">
-        <div class="row-settings flex justify-between items-center px-4">
-            <a href="../index.html"><img src="https://raw.githubusercontent.com/sanjeevkumarambn/tools/main/Rojgar%20Sangam%20HD%20Logo.png" class="h-12"></a>
+    <div id="header-placeholder"></div>
+
+    <section class="section" style="margin:50px 0px 0px 0px!important">
+        <div class="row-container">
+            <div class="ad-manager-placeholder ad-leaderboard" data-ad-type="leaderboard"></div>
         </div>
-    </header>
+    </section>
 
-    <main class="min-h-screen">
-        <section id="screen-1" class="section-custom">
-            <div class="row-settings text-center">
-                <h1 class="text-3xl font-bold mb-8">Exact Age Calculator</h1>
-                <div class="bg-white p-8 rounded-xl border border-[#bdbdbd] max-w-lg mx-auto text-left">
-                    <label class="block font-bold mb-1">Date of Birth:</label>
-                    <input type="date" id="dob" class="w-full border p-2 mb-4 rounded">
-                    <label class="block font-bold mb-1">Age as of (Date):</label>
-                    <input type="date" id="target" class="w-full border p-2 mb-6 rounded">
-                    <button onclick="calculate()" class="btn-brand w-full">Calculate Age</button>
-                </div>
-            </div>
-        </section>
+    <section class="section-main">
+        <div class="row-container">
 
-        <section id="screen-2" class="section-custom hidden">
-            <div class="row-settings text-center">
-                <div class="bg-white p-10 rounded-xl border border-[#bdbdbd] max-w-lg mx-auto">
-                    <h2 class="text-xl font-bold text-gray-500 mb-2">YOUR EXACT AGE IS:</h2>
-                    <div id="result" class="text-3xl font-black text-[#00079e] mb-8"></div>
-                    <button onclick="location.reload()" class="btn-brand">Calculate Again</button>
-                </div>
+            <div style="text-align:center;margin:0px 0px 30px 0px">
+                <h1 style="font-size:36px;font-weight:900;color:#333;margin:0px 0px 10px 0px">Age Calculator Online Free</h1>
+                <p style="font-size:16px;color:#333;margin:0px 0px 0px 0px">Calculate Your Exact Age in Years, Months, Days, Weeks and Hours. Find Next Birthday and Day of Birth Instantly.</p>
             </div>
-        </section>
-    </main>
+
+            <div class="tool-wrapper">
+
+                <!-- SCREEN 1: INPUT -->
+                <div id="screen1" class="tool-screen active">
+                    <p class="screen-title">Exact Age Calculator</p>
+                    <p class="screen-subtitle">Enter your date of birth and calculate your exact age instantly.</p>
+
+                    <div id="errorMsg" class="error-msg"><i class="fas fa-exclamation-circle"></i> <span id="errorText"></span></div>
+
+                    <div class="input-group">
+                        <label><i class="fas fa-birthday-cake"></i> Date of Birth</label>
+                        <input type="date" id="dobInput" class="date-input">
+                    </div>
+
+                    <div class="input-group">
+                        <label><i class="fas fa-calendar-check"></i> Age as on Date</label>
+                        <input type="date" id="targetInput" class="date-input">
+                    </div>
+
+                    <button class="calc-btn" id="calcBtn">
+                        <i class="fas fa-calculator"></i> Calculate Age
+                    </button>
+                </div>
+
+                <!-- SCREEN 2: RESULT -->
+                <div id="screen2" class="tool-screen">
+
+                    <div class="result-hero">
+                        <div class="result-hero-label">Your Exact Age Is</div>
+                        <div class="result-hero-value" id="heroResult">—</div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-card-icon"><i class="fas fa-calendar-alt"></i></div>
+                            <div class="stat-card-value" id="totalMonths">—</div>
+                            <div class="stat-card-label">Total Months</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon"><i class="fas fa-calendar-week"></i></div>
+                            <div class="stat-card-value" id="totalWeeks">—</div>
+                            <div class="stat-card-label">Total Weeks</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon"><i class="fas fa-sun"></i></div>
+                            <div class="stat-card-value" id="totalDays">—</div>
+                            <div class="stat-card-label">Total Days</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon"><i class="fas fa-clock"></i></div>
+                            <div class="stat-card-value" id="totalHours">—</div>
+                            <div class="stat-card-label">Total Hours</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon"><i class="fas fa-stopwatch"></i></div>
+                            <div class="stat-card-value" id="totalMinutes">—</div>
+                            <div class="stat-card-label">Total Minutes</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon"><i class="fas fa-hourglass-half"></i></div>
+                            <div class="stat-card-value" id="totalSeconds">—</div>
+                            <div class="stat-card-label">Total Seconds</div>
+                        </div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="info-card">
+                            <div class="info-card-icon"><i class="fas fa-calendar-day" style="color:#fff"></i></div>
+                            <div>
+                                <div class="info-card-label">Day of Birth</div>
+                                <div class="info-card-value" id="dayOfBirth">—</div>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-icon"><i class="fas fa-gift" style="color:#fff"></i></div>
+                            <div>
+                                <div class="info-card-label">Next Birthday</div>
+                                <div class="info-card-value" id="nextBirthday">—</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="again-btn" id="againBtn">
+                        <i class="fas fa-redo"></i> Calculate Again
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" style="margin:40px 0px 40px 0px!important;padding:0px 0px 0px 0px!important">
+        <div class="row-container">
+            <h2 style="font-weight:900;margin:0px 0px 25px 0px!important;text-align:center!important;color:#333">How to Calculate Exact Age Online</h2>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin:0px 0px 0px 0px">
+                <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px 24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-birthday-cake"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 1: Enter DOB</div><div style="font-size:13px;color:#667799">Select your Date of Birth from the date picker.</div></div>
+                <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px 24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-calendar-check"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 2: Set Target Date</div><div style="font-size:13px;color:#667799">Select the date to calculate age as on. Default is today's date.</div></div>
+                <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px 24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-calculator"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 3: Calculate</div><div style="font-size:13px;color:#667799">Click Calculate Age to get your exact age instantly.</div></div>
+                <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px 24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-poll"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 4: View Results</div><div style="font-size:13px;color:#667799">See age in years, months, days, weeks, hours and next birthday details.</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" style="margin:40px 0px 40px 0px!important;padding:0px 0px 0px 0px!important">
+        <div class="row-container">
+            <h2 style="font-weight:900;margin:0px 0px 25px 0px!important;text-align:center!important;color:#333">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>How to Calculate Exact Age?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Enter your Date of Birth and the target date, then click Calculate Age. The tool shows your exact age in years, months and days along with total days, weeks and hours lived.</p></div></div>
+                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Can I Calculate Age for Any Past or Future Date?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Yes, you can set any date in the Age as on Date field to calculate your age on any past or future date.</p></div></div>
+                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>How Many Days Have I Lived?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>After calculating your age, the result screen shows your total days, total weeks, total months and total hours lived from your date of birth.</p></div></div>
+                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>When is My Next Birthday?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>The result screen shows exactly how many days are left until your next birthday from the target date you selected.</p></div></div>
+                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Is This Age Calculator Free to Use?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Yes, this Age Calculator is completely free to use with no login, no registration and no limits on the number of calculations.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-main">
+        <div class="row-custom">
+            <div class="ad-manager-placeholder" data-ad-type="responsive"></div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+    <script src="../js/ad-manager.js"></script>
+    <script src="../js/main.js"></script>
 
     <script>
-        document.getElementById('target').valueAsDate = new Date();
-        function calculate() {
-            const d1 = new Date(document.getElementById('dob').value);
-            const d2 = new Date(document.getElementById('target').value);
-            if(!d1) return;
+    const dobInput    = document.getElementById('dobInput');
+    const targetInput = document.getElementById('targetInput');
+    const screen1     = document.getElementById('screen1');
+    const screen2     = document.getElementById('screen2');
+    const errorMsg    = document.getElementById('errorMsg');
+    const errorText   = document.getElementById('errorText');
 
-            let y = d2.getFullYear() - d1.getFullYear();
-            let m = d2.getMonth() - d1.getMonth();
-            let d = d2.getDate() - d1.getDate();
+    const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const MONTHS_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-            if (d < 0) { m--; d += new Date(d2.getFullYear(), d2.getMonth(), 0).getDate(); }
-            if (m < 0) { y--; m += 12; }
+    const today = new Date();
+    targetInput.valueAsDate = today;
 
-            document.getElementById('result').innerText = `${y} Years, ${m} Months, ${d} Days`;
-            document.getElementById('screen-1').classList.add('hidden');
-            document.getElementById('screen-2').classList.remove('hidden');
+    function showError(msg) {
+        errorText.textContent = msg;
+        errorMsg.classList.add('show');
+    }
+    function hideError() {
+        errorMsg.classList.remove('show');
+    }
+
+    function formatNum(n) {
+        if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+        if (n >= 100000)  return (n / 100000).toFixed(1) + 'L';
+        return n.toLocaleString('en-IN');
+    }
+
+    document.getElementById('calcBtn').addEventListener('click', () => {
+        hideError();
+        const dobVal    = dobInput.value;
+        const targetVal = targetInput.value;
+
+        if (!dobVal)    { showError('Please enter your Date of Birth.'); return; }
+        if (!targetVal) { showError('Please enter the target date.'); return; }
+
+        const dob    = new Date(dobVal);
+        const target = new Date(targetVal);
+
+        if (dob > target) { showError('Date of Birth cannot be after the target date.'); return; }
+        if (dob > today && target <= today) { showError('Date of Birth cannot be in the future.'); return; }
+
+        let years  = target.getFullYear() - dob.getFullYear();
+        let months = target.getMonth()    - dob.getMonth();
+        let days   = target.getDate()     - dob.getDate();
+
+        if (days < 0) {
+            months--;
+            const prevMonth = new Date(target.getFullYear(), target.getMonth(), 0);
+            days += prevMonth.getDate();
         }
+        if (months < 0) { years--; months += 12; }
+
+        const diffMs      = target - dob;
+        const totalDays   = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        const totalWeeks  = Math.floor(totalDays / 7);
+        const totalMonths = years * 12 + months;
+        const totalHours  = totalDays * 24;
+        const totalMins   = totalHours * 60;
+        const totalSecs   = totalMins * 60;
+
+        const dobDay  = DAYS[dob.getDay()];
+        const dobDate = dob.getDate() + ' ' + MONTHS_FULL[dob.getMonth()] + ' ' + dob.getFullYear();
+
+        let nextBday = new Date(target.getFullYear(), dob.getMonth(), dob.getDate());
+        if (nextBday <= target) nextBday.setFullYear(nextBday.getFullYear() + 1);
+        const daysToNext = Math.ceil((nextBday - target) / (1000 * 60 * 60 * 24));
+
+        const yStr = years  + (years  === 1 ? ' Year'  : ' Years');
+        const mStr = months + (months === 1 ? ' Month' : ' Months');
+        const dStr = days   + (days   === 1 ? ' Day'   : ' Days');
+
+        document.getElementById('heroResult').innerHTML =
+            '<span>' + yStr + '</span>, ' + mStr + ', ' + dStr;
+
+        document.getElementById('totalMonths').textContent  = formatNum(totalMonths);
+        document.getElementById('totalWeeks').textContent   = formatNum(totalWeeks);
+        document.getElementById('totalDays').textContent    = formatNum(totalDays);
+        document.getElementById('totalHours').textContent   = formatNum(totalHours);
+        document.getElementById('totalMinutes').textContent = formatNum(totalMins);
+        document.getElementById('totalSeconds').textContent = formatNum(totalSecs);
+        document.getElementById('dayOfBirth').textContent   = dobDay + ', ' + dobDate;
+        document.getElementById('nextBirthday').textContent = daysToNext === 0 ? 'Today!' : daysToNext + ' Days Left';
+
+        screen1.classList.remove('active');
+        screen2.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.getElementById('againBtn').addEventListener('click', () => {
+        dobInput.value          = '';
+        targetInput.valueAsDate = today;
+        hideError();
+        screen2.classList.remove('active');
+        screen1.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
     </script>
 </body>
 </html>
