@@ -300,7 +300,10 @@
                 const tmpCtx    = tmpCanvas.getContext('2d');
                 tmpCtx.drawImage(originalImg, 0, 0);
                 const imgData   = tmpCtx.getImageData(0, 0, W, H);
-                for (let i = 0; i < mask.data.length; i++) imgData.data[4 * i + 3] = mask.data[i];
+                for (let i = 0; i < mask.data.length; i++) {
+    const v = mask.data[i];
+    imgData.data[4 * i + 3] = v > 200 ? 255 : v < 80 ? 0 : Math.round((v - 80) * (255 / 120));
+}
                 tmpCtx.putImageData(imgData, 0, 0);
 
                 fgCtx.clearRect(0, 0, W, H);
