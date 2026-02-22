@@ -15,7 +15,6 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.rojgarsangam.in/"},{"@type":"ListItem","position":2,"name":"Image Tools","item":"https://tools.rojgarsangam.in/tools/"},{"@type":"ListItem","position":3,"name":"Remove Background","item":"https://tools.rojgarsangam.in/tools/remove-bg.html"}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is This Background Removal Tool Free?","acceptedAnswer":{"@type":"Answer","text":"Yes, Completely Free with No Limitations."}},{"@type":"Question","name":"Which Image Formats are Supported?","acceptedAnswer":{"@type":"Answer","text":"JPG, PNG and WebP are Supported."}},{"@type":"Question","name":"Is My Image Safe?","acceptedAnswer":{"@type":"Answer","text":"Yes, All Processing Happens Locally in Your Browser."}},{"@type":"Question","name":"Can I Add a Custom Background?","acceptedAnswer":{"@type":"Answer","text":"Yes, Add Solid Color, Photo Background, or Blur Effect."}}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to Remove Image Background Online Free","step":[{"@type":"HowToStep","position":1,"name":"Upload Image","text":"Click Upload or drag and drop your image."},{"@type":"HowToStep","position":2,"name":"AI Removes Background","text":"AI automatically removes the background in your browser."},{"@type":"HowToStep","position":3,"name":"Edit and Enhance","text":"Add custom background color or photo."},{"@type":"HowToStep","position":4,"name":"Download Image","text":"Click Download to save your image."}]}</script>
-
     <style>
         body{font-family:'Lora',serif!important;background:#f8f8ff;color:#333}
         #header-placeholder{background-color:#fff!important;width:100%;display:block;position:relative;z-index:1000}
@@ -29,14 +28,16 @@
         .workspace-container{display:none}
         .workspace-container.active{display:flex;gap:30px;margin:30px 0 0;align-items:flex-start}
         .preview-panel{flex:1;background:#fff;border-radius:12px;border:1px solid #667799;padding:20px;display:flex;flex-direction:column;align-items:center}
-        .canvas-wrapper{width:100%;overflow:hidden;border-radius:8px;border:1px solid #bdbdbd;background-image:linear-gradient(45deg,#bdbdbd 25%,transparent 25%),linear-gradient(-45deg,#bdbdbd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#bdbdbd 75%),linear-gradient(-45deg,transparent 75%,#bdbdbd 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0;background-color:#f8f8ff;cursor:grab;position:relative;height:480px;display:flex;align-items:center;justify-content:center}
-        .canvas-wrapper:active{cursor:grabbing}
-        #editorCanvas{max-width:100%;max-height:480px;display:block;transform-origin:0 0;touch-action:none}
-        .zoom-controls{display:flex;gap:8px;margin:12px 0 0;align-items:center;justify-content:center}
-        .zoom-btn{width:36px;height:36px;background:#eff6ef;border:1px solid #667799;border-radius:8px;font-size:14px;cursor:pointer;color:#00079e;display:flex;align-items:center;justify-content:center;transition:all .2s}
-        .zoom-btn:hover{background:#fdece5}
+        .canvas-wrapper{width:100%;overflow:hidden;border-radius:8px;border:1px solid #bdbdbd;background-image:linear-gradient(45deg,#bdbdbd 25%,transparent 25%),linear-gradient(-45deg,#bdbdbd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#bdbdbd 75%),linear-gradient(-45deg,transparent 75%,#bdbdbd 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0;background-color:#f8f8ff;position:relative;height:480px;display:flex;align-items:center;justify-content:center;touch-action:none}
+        #editorCanvas{max-width:100%;max-height:480px;display:block;transform-origin:0 0;cursor:none}
+        #cursorCircle{position:fixed;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);display:none;border:2px solid #e53935;background:rgba(229,57,53,0.08)}
+        .toolbar{display:flex;gap:8px;margin:12px 0 0;align-items:center;justify-content:center;flex-wrap:wrap}
+        .tool-icon-btn{height:36px;min-width:36px;padding:0 10px;background:#eff6ef;border:1px solid #667799;border-radius:8px;font-size:13px;cursor:pointer;color:#00079e;display:flex;align-items:center;justify-content:center;gap:5px;font-weight:700;font-family:'Lora',serif;transition:all .2s;white-space:nowrap}
+        .tool-icon-btn:hover{background:#fdece5}
+        .tool-icon-btn:disabled{opacity:.4;cursor:not-allowed}
         .zoom-label{font-size:13px;font-weight:700;color:#333;min-width:52px;text-align:center;background:#f8f8ff;border:1px solid #667799;border-radius:6px;padding:4px 8px}
-        .add-more-btn{width:50px;height:50px;background:#eff6ef;color:#00079e;border:2px solid #667799;border-radius:50%;font-size:22px;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;margin:12px 0 0}
+        .toolbar-sep{width:1px;height:28px;background:#bdbdbd;margin:0 2px}
+        .add-more-btn{width:50px;height:50px;background:#eff6ef;color:#00079e;border:2px solid #667799;border-radius:50%;font-size:22px;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;margin:10px 0 0}
         .add-more-btn:hover{background:#fdece5;border-color:#00079e}
         .controls-panel{width:380px;background:#fff;border:1px solid #667799;border-radius:12px;padding:25px;height:fit-content;position:sticky;top:100px;display:flex;flex-direction:column}
         .controls-panel h2{font-size:24px;font-weight:900;color:#333;margin:0 0 5px}
@@ -82,24 +83,22 @@
         .processing-text{font-size:14px;color:#00079e;background:#eff6ef;padding:10px 15px;border-radius:8px;border:1px solid #667799;font-weight:700;line-height:1.6}
         #footer-placeholder{border:1px solid #667799!important;width:100%;display:block;position:relative}
         @media(max-width:1024px){.workspace-container.active{flex-direction:column}.controls-panel{width:100%;position:static}}
+        @media(max-width:600px){.toolbar{gap:5px}.tool-icon-btn{font-size:12px;min-width:32px;height:32px;padding:0 7px}.zoom-label{min-width:44px;font-size:12px}}
     </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
-
     <section class="section" style="margin:50px 0 0!important">
         <div class="row-container">
             <div class="ad-manager-placeholder ad-leaderboard" data-ad-type="leaderboard"></div>
         </div>
     </section>
-
     <section class="section-main">
         <div class="row-container">
             <div id="heroHeader" style="text-align:center;margin:0 0 30px">
                 <h1 style="font-size:36px;font-weight:900;color:#333;margin:0 0 10px">Remove Image Background Online Free</h1>
                 <p style="font-size:16px;color:#333;margin:0">100% Automatically. Edit, Erase, Restore and Add Custom Backgrounds. JPG, PNG, WebP Supported.</p>
             </div>
-
             <div class="upload-section-wrapper">
                 <div id="uploadArea" class="upload-area">
                     <div class="upload-icon"><i class="fas fa-image"></i></div>
@@ -107,21 +106,22 @@
                     <div class="upload-subtext">or Drop file here — JPG, PNG, WebP Supported</div>
                     <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" style="display:none">
                 </div>
-
                 <div id="workspace" class="workspace-container">
                     <div class="preview-panel">
                         <div class="canvas-wrapper" id="canvasWrapper">
                             <canvas id="editorCanvas"></canvas>
                         </div>
-                        <div class="zoom-controls">
-                            <button class="zoom-btn" id="zoomOutBtn" title="Zoom Out (-)"><i class="fas fa-minus"></i></button>
+                        <div class="toolbar">
+                            <button class="tool-icon-btn" id="undoBtn" title="Undo (Ctrl+Z)" disabled><i class="fas fa-undo"></i></button>
+                            <button class="tool-icon-btn" id="redoBtn" title="Redo (Ctrl+Y)" disabled><i class="fas fa-redo"></i></button>
+                            <div class="toolbar-sep"></div>
+                            <button class="tool-icon-btn" id="zoomOutBtn" title="Zoom Out (-)"><i class="fas fa-minus"></i></button>
                             <span class="zoom-label" id="zoomLabel">100%</span>
-                            <button class="zoom-btn" id="zoomInBtn" title="Zoom In (+)"><i class="fas fa-plus"></i></button>
-                            <button class="zoom-btn" id="zoomResetBtn" title="Reset Zoom (0)"><i class="fas fa-compress-arrows-alt"></i></button>
+                            <button class="tool-icon-btn" id="zoomInBtn" title="Zoom In (+)"><i class="fas fa-plus"></i></button>
+                            <button class="tool-icon-btn" id="zoomResetBtn" title="Reset Zoom (0)"><i class="fas fa-compress-arrows-alt"></i> Fit</button>
                         </div>
                         <button class="add-more-btn" id="addMoreBtn" title="Upload New Image"><i class="fas fa-plus"></i></button>
                     </div>
-
                     <div class="controls-panel">
                         <h2>Remove Background</h2>
                         <div class="controls-subtitle">Edit Your Image Below</div>
@@ -130,7 +130,6 @@
                             <button class="tab-btn" data-tab="tabErase">Erase / Restore</button>
                             <button class="tab-btn" data-tab="tabAdjust">Adjust</button>
                         </div>
-
                         <div id="tabBackground" class="tab-content active">
                             <div class="bg-mode-wrap">
                                 <button class="bg-mode-btn active" id="btnBgColor">Color</button>
@@ -161,7 +160,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div id="tabErase" class="tab-content">
                             <div class="tool-mode-wrap">
                                 <button class="tool-btn active" id="btnErase"><i class="fas fa-eraser"></i> Erase</button>
@@ -172,21 +170,18 @@
                                 <input type="range" id="brushSize" min="5" max="100" value="30">
                             </div>
                         </div>
-
                         <div id="tabAdjust" class="tab-content">
                             <div class="slider-section">
                                 <label>Background Blur <span id="blurVal">0</span></label>
                                 <input type="range" id="blurAmount" min="0" max="20" value="0">
                             </div>
                         </div>
-
                         <button class="download-btn" id="downloadBtn">Download Image <i class="fas fa-download"></i></button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <section class="section-container" style="margin:40px 0!important;padding:0!important">
         <div class="row-container">
             <h2 style="font-weight:900;margin:0 0 25px!important;text-align:center!important;color:#333">How to Remove Image Background Online Free</h2>
@@ -198,7 +193,6 @@
             </div>
         </div>
     </section>
-
     <section class="section-container" style="margin:40px 0!important;padding:0!important">
         <div class="row-container">
             <h2 style="font-weight:900;margin:0 0 25px!important;text-align:center!important;color:#333">Frequently Asked Questions</h2>
@@ -210,13 +204,12 @@
             </div>
         </div>
     </section>
-
     <section class="section-main">
         <div class="row-custom">
             <div class="ad-manager-placeholder" data-ad-type="responsive"></div>
         </div>
     </section>
-
+    <div id="cursorCircle"></div>
     <div id="processingOverlay" class="processing-overlay">
         <div class="processing-box">
             <div class="processing-icon"><i class="fas fa-magic"></i></div>
@@ -224,333 +217,361 @@
             <div class="processing-text" id="processingText">Please Wait. AI is Processing Your Image Locally.<br>Do Not Close Your Browser.</div>
         </div>
     </div>
-
     <div id="footer-placeholder"></div>
     <script src="../js/ad-manager.js"></script>
     <script src="../js/main.js"></script>
-
     <script>
-        /* ── STATE ── */
-        let originalImg = null;
-        let fgCanvas    = document.createElement('canvas');
-        let fgCtx       = fgCanvas.getContext('2d');
-        let bgColor     = 'transparent';
-        let bgPhotoImg  = null;
-        let bgType      = 'color';
-        let currentTool = 'erase';
-        let isDrawing   = false;
-        let blurValue   = 0;
-        let tfModule    = null;
-        let bgModel     = null;
-        let bgProc      = null;
+    let originalImg = null;
+    let fgCanvas    = document.createElement('canvas');
+    let fgCtx       = fgCanvas.getContext('2d');
+    let bgColor     = 'transparent';
+    let bgPhotoImg  = null;
+    let bgType      = 'color';
+    let currentTool = 'erase';
+    let isDrawing   = false;
+    let blurValue   = 0;
+    let tfModule    = null;
+    let bgModel     = null;
+    let bgProc      = null;
 
-        /* ── ZOOM STATE ── */
-        let zoom      = 1, panX = 0, panY = 0;
-        let isPanning = false, panSX = 0, panSY = 0;
-        let spaceHeld = false;
-        const MIN_Z   = 0.25, MAX_Z = 8;
+    const undoStack = [], redoStack = [];
+    const MAX_HIST  = 20;
 
-        /* ── DOM ── */
-        const uploadArea        = document.getElementById('uploadArea');
-        const fileInput         = document.getElementById('fileInput');
-        const workspace         = document.getElementById('workspace');
-        const processingOverlay = document.getElementById('processingOverlay');
-        const processingText    = document.getElementById('processingText');
-        const editorCanvas      = document.getElementById('editorCanvas');
-        const eCtx              = editorCanvas.getContext('2d');
-        const cWrap             = document.getElementById('canvasWrapper');
-        const addMoreBtn        = document.getElementById('addMoreBtn');
-        const downloadBtn       = document.getElementById('downloadBtn');
-        const brushSizeInput    = document.getElementById('brushSize');
-        const blurInput         = document.getElementById('blurAmount');
-        const bgPhotoInput      = document.getElementById('bgPhotoInput');
-        const customColorInput  = document.getElementById('customColorInput');
+    function saveState() {
+        if (!fgCanvas.width) return;
+        if (undoStack.length >= MAX_HIST) undoStack.shift();
+        undoStack.push(fgCtx.getImageData(0, 0, fgCanvas.width, fgCanvas.height));
+        redoStack.length = 0;
+        updateHistoryBtns();
+    }
+    function undo() {
+        if (!undoStack.length) return;
+        redoStack.push(fgCtx.getImageData(0, 0, fgCanvas.width, fgCanvas.height));
+        fgCtx.putImageData(undoStack.pop(), 0, 0);
+        renderCanvas();
+        updateHistoryBtns();
+    }
+    function redo() {
+        if (!redoStack.length) return;
+        undoStack.push(fgCtx.getImageData(0, 0, fgCanvas.width, fgCanvas.height));
+        fgCtx.putImageData(redoStack.pop(), 0, 0);
+        renderCanvas();
+        updateHistoryBtns();
+    }
+    function updateHistoryBtns() {
+        document.getElementById('undoBtn').disabled = undoStack.length === 0;
+        document.getElementById('redoBtn').disabled = redoStack.length === 0;
+    }
 
-        /* ── UPLOAD TRIGGERS ── */
-        uploadArea.addEventListener('click',     () => fileInput.click());
-        addMoreBtn.addEventListener('click',     resetTool);
-        fileInput.addEventListener('change',     e => { if (e.target.files[0]) handleUpload(e.target.files[0]); fileInput.value = ''; });
-        uploadArea.addEventListener('dragover',  e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
-        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
-        uploadArea.addEventListener('drop', e => {
+    let zoom = 1, panX = 0, panY = 0;
+    let isPanning = false, panSX = 0, panSY = 0;
+    let spaceHeld = false, pinchDist = null;
+    const MIN_Z = 0.1, MAX_Z = 10;
+
+    const editorCanvas = document.getElementById('editorCanvas');
+    const eCtx         = editorCanvas.getContext('2d');
+    const cWrap        = document.getElementById('canvasWrapper');
+    const cursorCircle = document.getElementById('cursorCircle');
+
+    function applyZoom() {
+        editorCanvas.style.transform       = `translate(${panX}px,${panY}px) scale(${zoom})`;
+        editorCanvas.style.transformOrigin = '0 0';
+        document.getElementById('zoomLabel').textContent = Math.round(zoom * 100) + '%';
+    }
+    function setZoom(val, cx, cy) {
+        const rect = cWrap.getBoundingClientRect();
+        const ox   = cx !== undefined ? cx - rect.left : rect.width  / 2;
+        const oy   = cy !== undefined ? cy - rect.top  : rect.height / 2;
+        const nz   = Math.min(MAX_Z, Math.max(MIN_Z, val));
+        panX = ox - (ox - panX) * (nz / zoom);
+        panY = oy - (oy - panY) * (nz / zoom);
+        zoom = nz;
+        applyZoom();
+    }
+    function resetZoom() { zoom = 1; panX = 0; panY = 0; applyZoom(); }
+
+    document.getElementById('zoomInBtn').addEventListener('click',    () => setZoom(zoom + 0.25));
+    document.getElementById('zoomOutBtn').addEventListener('click',   () => setZoom(zoom - 0.25));
+    document.getElementById('zoomResetBtn').addEventListener('click', resetZoom);
+    document.getElementById('undoBtn').addEventListener('click', undo);
+    document.getElementById('redoBtn').addEventListener('click', redo);
+
+    cWrap.addEventListener('wheel', e => {
+        e.preventDefault();
+        setZoom(zoom * (e.deltaY < 0 ? 1.1 : 0.9), e.clientX, e.clientY);
+    }, { passive: false });
+
+    cWrap.addEventListener('touchstart', e => {
+        if (e.touches.length === 2) { pinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); e.preventDefault(); }
+    }, { passive: false });
+    cWrap.addEventListener('touchmove', e => {
+        if (e.touches.length === 2 && pinchDist !== null) {
+            const d   = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+            const mx  = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+            const my  = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+            setZoom(zoom * (d / pinchDist), mx, my);
+            pinchDist = d;
             e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            const f = Array.from(e.dataTransfer.files).find(f => /^image\/(jpeg|png|webp)$/.test(f.type));
-            if (f) handleUpload(f);
-            else alert('Please Upload a Valid JPG, PNG or WebP File.');
-        });
-
-        /* ── ZOOM FUNCTIONS ── */
-        function applyZoom() {
-            editorCanvas.style.transform       = `translate(${panX}px,${panY}px) scale(${zoom})`;
-            editorCanvas.style.transformOrigin = '0 0';
-            document.getElementById('zoomLabel').textContent = Math.round(zoom * 100) + '%';
         }
+    }, { passive: false });
+    cWrap.addEventListener('touchend', e => { if (e.touches.length < 2) pinchDist = null; });
 
-        function setZoom(val, cx, cy) {
-            const rect = cWrap.getBoundingClientRect();
-            const ox   = (cx !== undefined) ? cx - rect.left : rect.width  / 2;
-            const oy   = (cy !== undefined) ? cy - rect.top  : rect.height / 2;
-            const nz   = Math.min(MAX_Z, Math.max(MIN_Z, val));
-            panX = ox - (ox - panX) * (nz / zoom);
-            panY = oy - (oy - panY) * (nz / zoom);
-            zoom = nz;
-            applyZoom();
+    cWrap.addEventListener('mousedown', e => {
+        if (e.button === 1 || spaceHeld) {
+            isPanning = true; panSX = e.clientX - panX; panSY = e.clientY - panY; e.preventDefault();
         }
+    });
+    window.addEventListener('mousemove', e => { if (!isPanning) return; panX = e.clientX - panSX; panY = e.clientY - panSY; applyZoom(); });
+    window.addEventListener('mouseup',   () => { isPanning = false; });
 
-        document.getElementById('zoomInBtn').addEventListener('click',    () => setZoom(zoom + 0.25));
-        document.getElementById('zoomOutBtn').addEventListener('click',   () => setZoom(zoom - 0.25));
-        document.getElementById('zoomResetBtn').addEventListener('click', () => { zoom = 1; panX = 0; panY = 0; applyZoom(); });
+    document.addEventListener('keydown', e => {
+        if (!workspace.classList.contains('active')) return;
+        if (e.key === '+' || e.key === '=')                          { e.preventDefault(); setZoom(zoom + 0.25); }
+        if (e.key === '-')                                           { e.preventDefault(); setZoom(zoom - 0.25); }
+        if (e.key === '0')                                           { e.preventDefault(); resetZoom(); }
+        if (e.code === 'Space')                                      { e.preventDefault(); spaceHeld = true; cWrap.style.cursor = 'grab'; cursorCircle.style.display = 'none'; }
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z'){ e.preventDefault(); undo(); }
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'y'){ e.preventDefault(); redo(); }
+    });
+    document.addEventListener('keyup', e => {
+        if (e.code === 'Space') { spaceHeld = false; cWrap.style.cursor = ''; }
+    });
 
-        cWrap.addEventListener('wheel', e => {
-            e.preventDefault();
-            setZoom(zoom * (e.deltaY < 0 ? 1.1 : 0.9), e.clientX, e.clientY);
-        }, { passive: false });
+    function updateCursor(e) {
+        if (!workspace.classList.contains('active')) return;
+        const cx = e.touches ? e.touches[0].clientX : e.clientX;
+        const cy = e.touches ? e.touches[0].clientY : e.clientY;
+        const rect = editorCanvas.getBoundingClientRect();
+        const onCanvas = cx >= rect.left && cx <= rect.right && cy >= rect.top && cy <= rect.bottom;
+        if (!onCanvas || spaceHeld || isPanning) { cursorCircle.style.display = 'none'; return; }
+        const brushPx = parseInt(brushSizeInput.value) * (rect.width / editorCanvas.width);
+        const size    = brushPx * 2;
+        cursorCircle.style.display     = 'block';
+        cursorCircle.style.left        = cx + 'px';
+        cursorCircle.style.top         = cy + 'px';
+        cursorCircle.style.width       = size + 'px';
+        cursorCircle.style.height      = size + 'px';
+        cursorCircle.style.borderColor = currentTool === 'erase' ? '#e53935' : '#00c853';
+        cursorCircle.style.background  = currentTool === 'erase' ? 'rgba(229,57,53,0.08)' : 'rgba(0,200,83,0.08)';
+    }
 
-        /* ── KEYBOARD SHORTCUTS ── */
-        document.addEventListener('keydown', e => {
-            if (!workspace.classList.contains('active')) return;
-            if (e.key === '+' || e.key === '=') { e.preventDefault(); setZoom(zoom + 0.25); }
-            if (e.key === '-')                  { e.preventDefault(); setZoom(zoom - 0.25); }
-            if (e.key === '0')                  { e.preventDefault(); zoom = 1; panX = 0; panY = 0; applyZoom(); }
-            if (e.code === 'Space')             { e.preventDefault(); spaceHeld = true; cWrap.style.cursor = 'grab'; }
-        });
-        document.addEventListener('keyup', e => {
-            if (e.code === 'Space') { spaceHeld = false; cWrap.style.cursor = 'grab'; }
-        });
+    const uploadArea        = document.getElementById('uploadArea');
+    const fileInput         = document.getElementById('fileInput');
+    const workspace         = document.getElementById('workspace');
+    const processingOverlay = document.getElementById('processingOverlay');
+    const processingText    = document.getElementById('processingText');
+    const addMoreBtn        = document.getElementById('addMoreBtn');
+    const downloadBtn       = document.getElementById('downloadBtn');
+    const brushSizeInput    = document.getElementById('brushSize');
+    const blurInput         = document.getElementById('blurAmount');
+    const bgPhotoInput      = document.getElementById('bgPhotoInput');
+    const customColorInput  = document.getElementById('customColorInput');
 
-        /* ── PAN ── */
-        cWrap.addEventListener('mousedown', e => {
-            if (e.button === 1 || spaceHeld) {
-                isPanning = true;
-                panSX = e.clientX - panX;
-                panSY = e.clientY - panY;
-                e.preventDefault();
-            }
-        });
-        window.addEventListener('mousemove', e => {
-            if (!isPanning) return;
-            panX = e.clientX - panSX;
-            panY = e.clientY - panSY;
-            applyZoom();
-        });
-        window.addEventListener('mouseup', e => {
-            if (e.button === 1 || spaceHeld) isPanning = false;
-        });
+    uploadArea.addEventListener('click',     () => fileInput.click());
+    addMoreBtn.addEventListener('click',     resetTool);
+    fileInput.addEventListener('change',     e => { if (e.target.files[0]) handleUpload(e.target.files[0]); fileInput.value = ''; });
+    uploadArea.addEventListener('dragover',  e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+    uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+    uploadArea.addEventListener('drop', e => {
+        e.preventDefault(); uploadArea.classList.remove('dragover');
+        const f = Array.from(e.dataTransfer.files).find(f => /^image\/(jpeg|png|webp)$/.test(f.type));
+        if (f) handleUpload(f); else alert('Please Upload a Valid JPG, PNG or WebP File.');
+    });
 
-        /* ── LOAD AI ── */
-        async function loadAI() {
-            if (bgModel && bgProc) return;
-            processingText.innerHTML = 'Loading AI Model...<br>First Time May Take 1-2 Minutes.';
-            tfModule = await import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/transformers.min.js');
-            tfModule.env.allowLocalModels = false;
-            tfModule.env.useBrowserCache  = true;
-            [bgProc, bgModel] = await Promise.all([
-                tfModule.AutoProcessor.from_pretrained('briaai/RMBG-1.4'),
-                tfModule.AutoModel.from_pretrained('briaai/RMBG-1.4', { config: { model_type: 'custom' } })
-            ]);
+    async function loadAI() {
+        if (bgModel && bgProc) return;
+        processingText.innerHTML = 'Loading AI Model...<br>First Time May Take 1-2 Minutes.';
+        tfModule = await import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/transformers.min.js');
+        tfModule.env.allowLocalModels = false;
+        tfModule.env.useBrowserCache  = true;
+        [bgProc, bgModel] = await Promise.all([
+            tfModule.AutoProcessor.from_pretrained('briaai/RMBG-1.4'),
+            tfModule.AutoModel.from_pretrained('briaai/RMBG-1.4', { config: { model_type: 'custom' } })
+        ]);
+    }
+
+    async function handleUpload(file) {
+        processingOverlay.classList.add('active');
+        processingText.innerHTML = 'Please Wait. AI is Processing Your Image Locally.<br>Do Not Close Your Browser.';
+        try {
+            const objUrl = URL.createObjectURL(file);
+            originalImg  = new Image();
+            await new Promise((res, rej) => { originalImg.onload = res; originalImg.onerror = rej; originalImg.src = objUrl; });
+            const W = originalImg.naturalWidth, H = originalImg.naturalHeight;
+            editorCanvas.width = fgCanvas.width = W;
+            editorCanvas.height = fgCanvas.height = H;
+            await loadAI();
+            processingText.innerHTML = 'Removing Background...<br>Please Wait.';
+            const image            = await tfModule.RawImage.fromURL(objUrl);
+            const { pixel_values } = await bgProc(image);
+            const { output }       = await bgModel({ input: pixel_values });
+            const mask             = await tfModule.RawImage.fromTensor(output[0].mul(255).to('uint8')).resize(W, H);
+            const tmp = document.createElement('canvas');
+            tmp.width = W; tmp.height = H;
+            const tmpCtx  = tmp.getContext('2d');
+            tmpCtx.drawImage(originalImg, 0, 0);
+            const imgData = tmpCtx.getImageData(0, 0, W, H);
+            for (let i = 0; i < mask.data.length; i++) imgData.data[4 * i + 3] = mask.data[i];
+            tmpCtx.putImageData(imgData, 0, 0);
+            fgCtx.clearRect(0, 0, W, H);
+            fgCtx.drawImage(tmp, 0, 0);
+            URL.revokeObjectURL(objUrl);
+            undoStack.length = 0; redoStack.length = 0;
+            updateHistoryBtns();
+            resetZoom();
+            uploadArea.style.display = 'none';
+            workspace.classList.add('active');
+            renderCanvas();
+        } catch (err) {
+            console.error(err);
+            alert('Error: ' + err.message);
+        } finally {
+            processingOverlay.classList.remove('active');
         }
+    }
 
-        /* ── MAIN HANDLER ── */
-        async function handleUpload(file) {
-            processingOverlay.classList.add('active');
-            processingText.innerHTML = 'Please Wait. AI is Processing Your Image Locally.<br>Do Not Close Your Browser.';
-            try {
-                const objUrl = URL.createObjectURL(file);
-                originalImg  = new Image();
-                await new Promise((res, rej) => { originalImg.onload = res; originalImg.onerror = rej; originalImg.src = objUrl; });
-
-                const W = originalImg.naturalWidth;
-                const H = originalImg.naturalHeight;
-                editorCanvas.width  = fgCanvas.width  = W;
-                editorCanvas.height = fgCanvas.height = H;
-
-                await loadAI();
-                processingText.innerHTML = 'Removing Background...<br>Please Wait.';
-
-                const image            = await tfModule.RawImage.fromURL(objUrl);
-                const { pixel_values } = await bgProc(image);
-                const { output }       = await bgModel({ input: pixel_values });
-                const mask             = await tfModule.RawImage.fromTensor(output[0].mul(255).to('uint8')).resize(W, H);
-
-                const tmp     = document.createElement('canvas');
-                tmp.width     = W; tmp.height = H;
-                const tmpCtx  = tmp.getContext('2d');
-                tmpCtx.drawImage(originalImg, 0, 0);
-                const imgData = tmpCtx.getImageData(0, 0, W, H);
-                for (let i = 0; i < mask.data.length; i++) imgData.data[4 * i + 3] = mask.data[i];
-                tmpCtx.putImageData(imgData, 0, 0);
-
-                fgCtx.clearRect(0, 0, W, H);
-                fgCtx.drawImage(tmp, 0, 0);
-                URL.revokeObjectURL(objUrl);
-
-                /* Reset zoom on new image */
-                zoom = 1; panX = 0; panY = 0; applyZoom();
-
-                uploadArea.style.display = 'none';
-                workspace.classList.add('active');
-                renderCanvas();
-            } catch (err) {
-                console.error('Error:', err);
-                alert('Error: ' + err.message);
-            } finally {
-                processingOverlay.classList.remove('active');
-            }
+    function renderCanvas() {
+        if (!originalImg) return;
+        eCtx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
+        eCtx.save();
+        if (blurValue > 0) eCtx.filter = `blur(${blurValue}px)`;
+        if (bgType === 'color' && bgColor !== 'transparent') {
+            eCtx.fillStyle = bgColor; eCtx.fillRect(0, 0, editorCanvas.width, editorCanvas.height);
+        } else if (bgType === 'photo' && bgPhotoImg) {
+            const sc = Math.max(editorCanvas.width / bgPhotoImg.naturalWidth, editorCanvas.height / bgPhotoImg.naturalHeight);
+            const x  = (editorCanvas.width  - bgPhotoImg.naturalWidth  * sc) / 2;
+            const y  = (editorCanvas.height - bgPhotoImg.naturalHeight * sc) / 2;
+            eCtx.drawImage(bgPhotoImg, x, y, bgPhotoImg.naturalWidth * sc, bgPhotoImg.naturalHeight * sc);
         }
+        eCtx.restore();
+        eCtx.drawImage(fgCanvas, 0, 0);
+    }
 
-        /* ── RENDER ── */
-        function renderCanvas() {
-            if (!originalImg) return;
-            eCtx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
-            eCtx.save();
-            if (blurValue > 0) eCtx.filter = `blur(${blurValue}px)`;
-            if (bgType === 'color' && bgColor !== 'transparent') {
-                eCtx.fillStyle = bgColor;
-                eCtx.fillRect(0, 0, editorCanvas.width, editorCanvas.height);
-            } else if (bgType === 'photo' && bgPhotoImg) {
-                const sc = Math.max(editorCanvas.width / bgPhotoImg.naturalWidth, editorCanvas.height / bgPhotoImg.naturalHeight);
-                const x  = (editorCanvas.width  - bgPhotoImg.naturalWidth  * sc) / 2;
-                const y  = (editorCanvas.height - bgPhotoImg.naturalHeight * sc) / 2;
-                eCtx.drawImage(bgPhotoImg, x, y, bgPhotoImg.naturalWidth * sc, bgPhotoImg.naturalHeight * sc);
-            }
-            eCtx.restore();
-            eCtx.drawImage(fgCanvas, 0, 0);
-        }
+    function getPos(e) {
+        const rect = editorCanvas.getBoundingClientRect();
+        const cx = e.touches ? e.touches[0].clientX : e.clientX;
+        const cy = e.touches ? e.touches[0].clientY : e.clientY;
+        return { x: (cx - rect.left) * (editorCanvas.width / rect.width), y: (cy - rect.top) * (editorCanvas.height / rect.height) };
+    }
 
-        /* ── BRUSH — coordinates corrected for zoom/pan ── */
-        function getPos(e) {
-            const rect = editorCanvas.getBoundingClientRect();
-            const cx   = e.touches ? e.touches[0].clientX : e.clientX;
-            const cy   = e.touches ? e.touches[0].clientY : e.clientY;
-            return {
-                x: (cx - rect.left) * (editorCanvas.width  / rect.width),
-                y: (cy - rect.top)  * (editorCanvas.height / rect.height)
-            };
-        }
-
-        function applyBrush(e) {
-            if (!isDrawing || spaceHeld || isPanning) return;
-            e.preventDefault();
-            const { x, y } = getPos(e);
-            const r = parseInt(brushSizeInput.value) / zoom;
-            if (currentTool === 'erase') {
-                fgCtx.globalCompositeOperation = 'destination-out';
-                fgCtx.beginPath(); fgCtx.arc(x, y, r, 0, Math.PI * 2); fgCtx.fill();
-            } else {
-                fgCtx.globalCompositeOperation = 'source-over';
-                fgCtx.save();
-                fgCtx.beginPath(); fgCtx.arc(x, y, r, 0, Math.PI * 2); fgCtx.clip();
-                fgCtx.drawImage(originalImg, 0, 0);
-                fgCtx.restore();
-            }
+    function applyBrush(e) {
+        if (!isDrawing || spaceHeld || isPanning || (e.touches && e.touches.length > 1)) return;
+        e.preventDefault();
+        const { x, y } = getPos(e);
+        const r = parseInt(brushSizeInput.value) / zoom;
+        if (currentTool === 'erase') {
+            fgCtx.globalCompositeOperation = 'destination-out';
+            fgCtx.beginPath(); fgCtx.arc(x, y, r, 0, Math.PI * 2); fgCtx.fill();
+        } else {
             fgCtx.globalCompositeOperation = 'source-over';
-            renderCanvas();
+            fgCtx.save(); fgCtx.beginPath(); fgCtx.arc(x, y, r, 0, Math.PI * 2); fgCtx.clip();
+            fgCtx.drawImage(originalImg, 0, 0); fgCtx.restore();
         }
+        fgCtx.globalCompositeOperation = 'source-over';
+        renderCanvas();
+    }
 
-        editorCanvas.addEventListener('mousedown',  e => { if (!spaceHeld && e.button === 0) { isDrawing = true; applyBrush(e); } });
-        editorCanvas.addEventListener('mousemove',  applyBrush);
-        window.addEventListener('mouseup',          () => isDrawing = false);
-        editorCanvas.addEventListener('touchstart', e => { isDrawing = true; applyBrush(e); }, { passive: false });
-        editorCanvas.addEventListener('touchmove',  applyBrush, { passive: false });
-        window.addEventListener('touchend',         () => isDrawing = false);
+    editorCanvas.addEventListener('mousedown', e => {
+        if (!spaceHeld && e.button === 0) { saveState(); isDrawing = true; applyBrush(e); }
+    });
+    editorCanvas.addEventListener('mousemove', e => { updateCursor(e); applyBrush(e); });
+    editorCanvas.addEventListener('mouseleave',  () => cursorCircle.style.display = 'none');
+    window.addEventListener('mouseup',           () => { isDrawing = false; });
 
-        /* ── TABS ── */
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                document.getElementById(this.dataset.tab).classList.add('active');
-            });
+    editorCanvas.addEventListener('touchstart', e => {
+        if (e.touches.length === 1) { saveState(); isDrawing = true; applyBrush(e); }
+    }, { passive: false });
+    editorCanvas.addEventListener('touchmove', e => { updateCursor(e); applyBrush(e); }, { passive: false });
+    window.addEventListener('touchend', () => { isDrawing = false; cursorCircle.style.display = 'none'; });
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById(this.dataset.tab).classList.add('active');
         });
+    });
 
-        /* ── BACKGROUND ── */
-        document.getElementById('btnBgColor').addEventListener('click', () => switchBgMode('color'));
-        document.getElementById('btnBgPhoto').addEventListener('click', () => switchBgMode('photo'));
+    document.getElementById('btnBgColor').addEventListener('click', () => switchBgMode('color'));
+    document.getElementById('btnBgPhoto').addEventListener('click', () => switchBgMode('photo'));
 
-        function switchBgMode(mode) {
-            bgType = mode;
-            document.getElementById('btnBgColor').classList.toggle('active', mode === 'color');
-            document.getElementById('btnBgPhoto').classList.toggle('active', mode === 'photo');
-            document.getElementById('bgColorSection').style.display = mode === 'color' ? 'block' : 'none';
-            document.getElementById('bgPhotoSection').style.display = mode === 'photo' ? 'block' : 'none';
-            renderCanvas();
-        }
+    function switchBgMode(mode) {
+        bgType = mode;
+        document.getElementById('btnBgColor').classList.toggle('active', mode === 'color');
+        document.getElementById('btnBgPhoto').classList.toggle('active', mode === 'photo');
+        document.getElementById('bgColorSection').style.display = mode === 'color' ? 'block' : 'none';
+        document.getElementById('bgPhotoSection').style.display = mode === 'photo' ? 'block' : 'none';
+        renderCanvas();
+    }
 
-        document.querySelectorAll('.color-swatch[data-color]').forEach(s => {
-            s.addEventListener('click', function () {
-                document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
-                this.classList.add('active');
-                bgColor = this.dataset.color;
-                renderCanvas();
-            });
-        });
-
-        customColorInput.addEventListener('input', e => {
+    document.querySelectorAll('.color-swatch[data-color]').forEach(s => {
+        s.addEventListener('click', function () {
             document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
-            bgColor = e.target.value;
-            renderCanvas();
+            this.classList.add('active'); bgColor = this.dataset.color; renderCanvas();
         });
+    });
 
-        document.getElementById('uploadBgArea').addEventListener('click', () => bgPhotoInput.click());
-        bgPhotoInput.addEventListener('change', e => {
-            const f = e.target.files[0]; if (!f) return;
-            bgPhotoImg        = new Image();
-            bgPhotoImg.onload = renderCanvas;
-            bgPhotoImg.src    = URL.createObjectURL(f);
-        });
+    customColorInput.addEventListener('input', e => {
+        document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+        bgColor = e.target.value; renderCanvas();
+    });
 
-        /* ── ERASE / RESTORE ── */
-        document.getElementById('btnErase').addEventListener('click',   () => setTool('erase'));
-        document.getElementById('btnRestore').addEventListener('click', () => setTool('restore'));
+    document.getElementById('uploadBgArea').addEventListener('click', () => bgPhotoInput.click());
+    bgPhotoInput.addEventListener('change', e => {
+        const f = e.target.files[0]; if (!f) return;
+        bgPhotoImg = new Image(); bgPhotoImg.onload = renderCanvas; bgPhotoImg.src = URL.createObjectURL(f);
+    });
 
-        function setTool(tool) {
-            currentTool = tool;
-            document.getElementById('btnErase').classList.toggle('active',   tool === 'erase');
-            document.getElementById('btnRestore').classList.toggle('active', tool === 'restore');
-        }
+    document.getElementById('btnErase').addEventListener('click',   () => setTool('erase'));
+    document.getElementById('btnRestore').addEventListener('click', () => setTool('restore'));
 
-        brushSizeInput.addEventListener('input', () => {
-            document.getElementById('brushSizeVal').textContent = brushSizeInput.value;
-        });
+    function setTool(tool) {
+        currentTool = tool;
+        document.getElementById('btnErase').classList.toggle('active',   tool === 'erase');
+        document.getElementById('btnRestore').classList.toggle('active', tool === 'restore');
+    }
 
-        /* ── BLUR ── */
-        blurInput.addEventListener('input', () => {
-            blurValue = parseInt(blurInput.value);
-            document.getElementById('blurVal').textContent = blurValue;
-            renderCanvas();
-        });
+    brushSizeInput.addEventListener('input', () => {
+        document.getElementById('brushSizeVal').textContent = brushSizeInput.value;
+        cursorCircle.style.display = 'none';
+    });
 
-        /* ── DOWNLOAD ── */
-        downloadBtn.addEventListener('click', () => {
-            const isTransparent = bgType === 'color' && bgColor === 'transparent';
-            const mime = isTransparent ? 'image/png' : 'image/jpeg';
-            const ext  = isTransparent ? 'png'       : 'jpeg';
-            const a    = document.createElement('a');
-            a.href     = editorCanvas.toDataURL(mime, 1.0);
-            a.download = `removed-bg-rojgarsangam.${ext}`;
-            document.body.appendChild(a); a.click(); document.body.removeChild(a);
-        });
+    blurInput.addEventListener('input', () => {
+        blurValue = parseInt(blurInput.value);
+        document.getElementById('blurVal').textContent = blurValue;
+        renderCanvas();
+    });
 
-        /* ── RESET ── */
-        function resetTool() {
-            originalImg  = null; bgPhotoImg = null;
-            bgColor      = 'transparent'; bgType = 'color';
-            currentTool  = 'erase'; blurValue = 0;
-            blurInput.value = 0; brushSizeInput.value = 30;
-            document.getElementById('blurVal').textContent      = '0';
-            document.getElementById('brushSizeVal').textContent = '30';
-            fgCtx.clearRect(0, 0, fgCanvas.width, fgCanvas.height);
-            eCtx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
-            workspace.classList.remove('active');
-            uploadArea.style.display = 'block';
-            zoom = 1; panX = 0; panY = 0; applyZoom();
-            switchBgMode('color');
-            document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
-            document.querySelector('.swatch-transparent').classList.add('active');
-            setTool('erase');
-        }
+    downloadBtn.addEventListener('click', () => {
+        const isTransp = bgType === 'color' && bgColor === 'transparent';
+        const mime = isTransp ? 'image/png' : 'image/jpeg';
+        const ext  = isTransp ? 'png' : 'jpeg';
+        const a    = document.createElement('a');
+        a.href = editorCanvas.toDataURL(mime, 1.0);
+        a.download = `removed-bg-rojgarsangam.${ext}`;
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    });
+
+    function resetTool() {
+        originalImg = null; bgPhotoImg = null;
+        bgColor = 'transparent'; bgType = 'color';
+        currentTool = 'erase'; blurValue = 0;
+        blurInput.value = 0; brushSizeInput.value = 30;
+        document.getElementById('blurVal').textContent      = '0';
+        document.getElementById('brushSizeVal').textContent = '30';
+        fgCtx.clearRect(0, 0, fgCanvas.width, fgCanvas.height);
+        eCtx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
+        undoStack.length = 0; redoStack.length = 0;
+        updateHistoryBtns();
+        workspace.classList.remove('active');
+        uploadArea.style.display = 'block';
+        resetZoom();
+        switchBgMode('color');
+        document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+        document.querySelector('.swatch-transparent').classList.add('active');
+        setTool('erase');
+    }
     </script>
 </body>
 </html>
