@@ -451,11 +451,25 @@
                     if (currentY - lineHeight < marginBottom) addNewPage();
                 }
 
+                function sanitizeText(text) {
+                    return text
+                        .replace(/[\u200B\u200C\u200D\u200E\u200F\uFEFF\u00AD]/g, '')
+                        .replace(/[\u2018\u2019]/g, "'")
+                        .replace(/[\u201C\u201D]/g, '"')
+                        .replace(/[\u2013\u2014]/g, '-')
+                        .replace(/[\u2026]/g, '...')
+                        .replace(/[\u2022\u2023\u25E6\u2043]/g, '*')
+                        .replace(/[\u00A0]/g, ' ')
+                        .replace(/[^\x00-\x7F]/g, '?');
+                }
+
                 function drawWrappedText(text, font, fontSize, lineHeight, indent) {
                     if (!text || !text.trim()) return;
+                    const clean = sanitizeText(text);
+                    if (!clean || !clean.trim()) return;
                     const x          = marginLeft + (indent || 0);
                     const availWidth = maxWidth - (indent || 0);
-                    const words      = text.trim().split(/\s+/);
+                    const words      = clean.trim().split(/\s+/);
                     let line         = '';
                     for (let i = 0; i < words.length; i++) {
                         const testLine = line + (line ? ' ' : '') + words[i];
@@ -499,7 +513,7 @@
                     } else if (tag === 'ul' || tag === 'ol') {
                         const items = el.querySelectorAll('li');
                         items.forEach((li, idx) => {
-                            const bullet = tag === 'ol' ? `${idx + 1}. ` : '• ';
+                            const bullet = tag === 'ol' ? `${idx + 1}. ` : '* ';
                             drawWrappedText(bullet + li.textContent.trim(), fontRegular, 12, 20, 15);
                         });
                         currentY -= 4;
