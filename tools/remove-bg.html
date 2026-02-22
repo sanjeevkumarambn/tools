@@ -30,9 +30,14 @@
         .workspace-container{display:none}
         .workspace-container.active{display:flex;gap:30px;margin:30px 0 0;align-items:flex-start}
         .preview-panel{flex:1;background:#fff;border-radius:12px;border:1px solid #667799;padding:20px;display:flex;flex-direction:column;align-items:center}
-        .canvas-wrapper{width:100%;display:flex;justify-content:center;align-items:center;border-radius:8px;border:1px solid #bdbdbd;overflow:hidden;background-image:linear-gradient(45deg,#bdbdbd 25%,transparent 25%),linear-gradient(-45deg,#bdbdbd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#bdbdbd 75%),linear-gradient(-45deg,transparent 75%,#bdbdbd 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0;background-color:#f8f8ff}
-        #editorCanvas{max-width:100%;max-height:480px;cursor:crosshair;touch-action:none;display:block}
-        .add-more-btn{width:50px;height:50px;background:#eff6ef;color:#00079e;border:2px solid #667799;border-radius:50%;font-size:22px;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;margin:15px 0 0}
+        .canvas-wrapper{width:100%;overflow:hidden;border-radius:8px;border:1px solid #bdbdbd;background-image:linear-gradient(45deg,#bdbdbd 25%,transparent 25%),linear-gradient(-45deg,#bdbdbd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#bdbdbd 75%),linear-gradient(-45deg,transparent 75%,#bdbdbd 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0;background-color:#f8f8ff;cursor:grab;position:relative;height:480px;display:flex;align-items:center;justify-content:center}
+        .canvas-wrapper:active{cursor:grabbing}
+        #editorCanvas{max-width:100%;max-height:480px;display:block;transform-origin:0 0;touch-action:none}
+        .zoom-controls{display:flex;gap:8px;margin:12px 0 0;align-items:center;justify-content:center}
+        .zoom-btn{width:36px;height:36px;background:#eff6ef;border:1px solid #667799;border-radius:8px;font-size:14px;cursor:pointer;color:#00079e;display:flex;align-items:center;justify-content:center;transition:all .2s}
+        .zoom-btn:hover{background:#fdece5}
+        .zoom-label{font-size:13px;font-weight:700;color:#333;min-width:52px;text-align:center;background:#f8f8ff;border:1px solid #667799;border-radius:6px;padding:4px 8px}
+        .add-more-btn{width:50px;height:50px;background:#eff6ef;color:#00079e;border:2px solid #667799;border-radius:50%;font-size:22px;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;margin:12px 0 0}
         .add-more-btn:hover{background:#fdece5;border-color:#00079e}
         .controls-panel{width:380px;background:#fff;border:1px solid #667799;border-radius:12px;padding:25px;height:fit-content;position:sticky;top:100px;display:flex;flex-direction:column}
         .controls-panel h2{font-size:24px;font-weight:900;color:#333;margin:0 0 5px}
@@ -106,8 +111,16 @@
 
                 <div id="workspace" class="workspace-container">
                     <div class="preview-panel">
-                        <div class="canvas-wrapper"><canvas id="editorCanvas"></canvas></div>
-                        <button class="add-more-btn" id="addMoreBtn"><i class="fas fa-plus"></i></button>
+                        <div class="canvas-wrapper" id="canvasWrapper">
+                            <canvas id="editorCanvas"></canvas>
+                        </div>
+                        <div class="zoom-controls">
+                            <button class="zoom-btn" id="zoomOutBtn" title="Zoom Out (-)"><i class="fas fa-minus"></i></button>
+                            <span class="zoom-label" id="zoomLabel">100%</span>
+                            <button class="zoom-btn" id="zoomInBtn" title="Zoom In (+)"><i class="fas fa-plus"></i></button>
+                            <button class="zoom-btn" id="zoomResetBtn" title="Reset Zoom (0)"><i class="fas fa-compress-arrows-alt"></i></button>
+                        </div>
+                        <button class="add-more-btn" id="addMoreBtn" title="Upload New Image"><i class="fas fa-plus"></i></button>
                     </div>
 
                     <div class="controls-panel">
@@ -232,6 +245,12 @@
         let bgModel     = null;
         let bgProc      = null;
 
+        /* ── ZOOM STATE ── */
+        let zoom      = 1, panX = 0, panY = 0;
+        let isPanning = false, panSX = 0, panSY = 0;
+        let spaceHeld = false;
+        const MIN_Z   = 0.25, MAX_Z = 8;
+
         /* ── DOM ── */
         const uploadArea        = document.getElementById('uploadArea');
         const fileInput         = document.getElementById('fileInput');
@@ -240,6 +259,7 @@
         const processingText    = document.getElementById('processingText');
         const editorCanvas      = document.getElementById('editorCanvas');
         const eCtx              = editorCanvas.getContext('2d');
+        const cWrap             = document.getElementById('canvasWrapper');
         const addMoreBtn        = document.getElementById('addMoreBtn');
         const downloadBtn       = document.getElementById('downloadBtn');
         const brushSizeInput    = document.getElementById('brushSize');
@@ -259,6 +279,64 @@
             const f = Array.from(e.dataTransfer.files).find(f => /^image\/(jpeg|png|webp)$/.test(f.type));
             if (f) handleUpload(f);
             else alert('Please Upload a Valid JPG, PNG or WebP File.');
+        });
+
+        /* ── ZOOM FUNCTIONS ── */
+        function applyZoom() {
+            editorCanvas.style.transform       = `translate(${panX}px,${panY}px) scale(${zoom})`;
+            editorCanvas.style.transformOrigin = '0 0';
+            document.getElementById('zoomLabel').textContent = Math.round(zoom * 100) + '%';
+        }
+
+        function setZoom(val, cx, cy) {
+            const rect = cWrap.getBoundingClientRect();
+            const ox   = (cx !== undefined) ? cx - rect.left : rect.width  / 2;
+            const oy   = (cy !== undefined) ? cy - rect.top  : rect.height / 2;
+            const nz   = Math.min(MAX_Z, Math.max(MIN_Z, val));
+            panX = ox - (ox - panX) * (nz / zoom);
+            panY = oy - (oy - panY) * (nz / zoom);
+            zoom = nz;
+            applyZoom();
+        }
+
+        document.getElementById('zoomInBtn').addEventListener('click',    () => setZoom(zoom + 0.25));
+        document.getElementById('zoomOutBtn').addEventListener('click',   () => setZoom(zoom - 0.25));
+        document.getElementById('zoomResetBtn').addEventListener('click', () => { zoom = 1; panX = 0; panY = 0; applyZoom(); });
+
+        cWrap.addEventListener('wheel', e => {
+            e.preventDefault();
+            setZoom(zoom * (e.deltaY < 0 ? 1.1 : 0.9), e.clientX, e.clientY);
+        }, { passive: false });
+
+        /* ── KEYBOARD SHORTCUTS ── */
+        document.addEventListener('keydown', e => {
+            if (!workspace.classList.contains('active')) return;
+            if (e.key === '+' || e.key === '=') { e.preventDefault(); setZoom(zoom + 0.25); }
+            if (e.key === '-')                  { e.preventDefault(); setZoom(zoom - 0.25); }
+            if (e.key === '0')                  { e.preventDefault(); zoom = 1; panX = 0; panY = 0; applyZoom(); }
+            if (e.code === 'Space')             { e.preventDefault(); spaceHeld = true; cWrap.style.cursor = 'grab'; }
+        });
+        document.addEventListener('keyup', e => {
+            if (e.code === 'Space') { spaceHeld = false; cWrap.style.cursor = 'grab'; }
+        });
+
+        /* ── PAN ── */
+        cWrap.addEventListener('mousedown', e => {
+            if (e.button === 1 || spaceHeld) {
+                isPanning = true;
+                panSX = e.clientX - panX;
+                panSY = e.clientY - panY;
+                e.preventDefault();
+            }
+        });
+        window.addEventListener('mousemove', e => {
+            if (!isPanning) return;
+            panX = e.clientX - panSX;
+            panY = e.clientY - panSY;
+            applyZoom();
+        });
+        window.addEventListener('mouseup', e => {
+            if (e.button === 1 || spaceHeld) isPanning = false;
         });
 
         /* ── LOAD AI ── */
@@ -296,9 +374,9 @@
                 const { output }       = await bgModel({ input: pixel_values });
                 const mask             = await tfModule.RawImage.fromTensor(output[0].mul(255).to('uint8')).resize(W, H);
 
-                const tmp    = document.createElement('canvas');
-                tmp.width    = W; tmp.height = H;
-                const tmpCtx = tmp.getContext('2d');
+                const tmp     = document.createElement('canvas');
+                tmp.width     = W; tmp.height = H;
+                const tmpCtx  = tmp.getContext('2d');
                 tmpCtx.drawImage(originalImg, 0, 0);
                 const imgData = tmpCtx.getImageData(0, 0, W, H);
                 for (let i = 0; i < mask.data.length; i++) imgData.data[4 * i + 3] = mask.data[i];
@@ -307,6 +385,9 @@
                 fgCtx.clearRect(0, 0, W, H);
                 fgCtx.drawImage(tmp, 0, 0);
                 URL.revokeObjectURL(objUrl);
+
+                /* Reset zoom on new image */
+                zoom = 1; panX = 0; panY = 0; applyZoom();
 
                 uploadArea.style.display = 'none';
                 workspace.classList.add('active');
@@ -338,21 +419,22 @@
             eCtx.drawImage(fgCanvas, 0, 0);
         }
 
-        /* ── BRUSH ── */
+        /* ── BRUSH — coordinates corrected for zoom/pan ── */
         function getPos(e) {
             const rect = editorCanvas.getBoundingClientRect();
-            const scX  = editorCanvas.width  / rect.width;
-            const scY  = editorCanvas.height / rect.height;
             const cx   = e.touches ? e.touches[0].clientX : e.clientX;
             const cy   = e.touches ? e.touches[0].clientY : e.clientY;
-            return { x: (cx - rect.left) * scX, y: (cy - rect.top) * scY };
+            return {
+                x: (cx - rect.left) * (editorCanvas.width  / rect.width),
+                y: (cy - rect.top)  * (editorCanvas.height / rect.height)
+            };
         }
 
         function applyBrush(e) {
-            if (!isDrawing) return;
+            if (!isDrawing || spaceHeld || isPanning) return;
             e.preventDefault();
             const { x, y } = getPos(e);
-            const r = parseInt(brushSizeInput.value) * (editorCanvas.width / 600);
+            const r = parseInt(brushSizeInput.value) / zoom;
             if (currentTool === 'erase') {
                 fgCtx.globalCompositeOperation = 'destination-out';
                 fgCtx.beginPath(); fgCtx.arc(x, y, r, 0, Math.PI * 2); fgCtx.fill();
@@ -367,7 +449,7 @@
             renderCanvas();
         }
 
-        editorCanvas.addEventListener('mousedown',  e => { isDrawing = true; applyBrush(e); });
+        editorCanvas.addEventListener('mousedown',  e => { if (!spaceHeld && e.button === 0) { isDrawing = true; applyBrush(e); } });
         editorCanvas.addEventListener('mousemove',  applyBrush);
         window.addEventListener('mouseup',          () => isDrawing = false);
         editorCanvas.addEventListener('touchstart', e => { isDrawing = true; applyBrush(e); }, { passive: false });
@@ -415,12 +497,12 @@
         document.getElementById('uploadBgArea').addEventListener('click', () => bgPhotoInput.click());
         bgPhotoInput.addEventListener('change', e => {
             const f = e.target.files[0]; if (!f) return;
-            bgPhotoImg = new Image();
+            bgPhotoImg        = new Image();
             bgPhotoImg.onload = renderCanvas;
-            bgPhotoImg.src = URL.createObjectURL(f);
+            bgPhotoImg.src    = URL.createObjectURL(f);
         });
 
-        /* ── ERASE/RESTORE ── */
+        /* ── ERASE / RESTORE ── */
         document.getElementById('btnErase').addEventListener('click',   () => setTool('erase'));
         document.getElementById('btnRestore').addEventListener('click', () => setTool('restore'));
 
@@ -430,7 +512,9 @@
             document.getElementById('btnRestore').classList.toggle('active', tool === 'restore');
         }
 
-        brushSizeInput.addEventListener('input', () => { document.getElementById('brushSizeVal').textContent = brushSizeInput.value; });
+        brushSizeInput.addEventListener('input', () => {
+            document.getElementById('brushSizeVal').textContent = brushSizeInput.value;
+        });
 
         /* ── BLUR ── */
         blurInput.addEventListener('input', () => {
@@ -442,8 +526,8 @@
         /* ── DOWNLOAD ── */
         downloadBtn.addEventListener('click', () => {
             const isTransparent = bgType === 'color' && bgColor === 'transparent';
-            const ext  = isTransparent ? 'png'       : 'jpeg';
             const mime = isTransparent ? 'image/png' : 'image/jpeg';
+            const ext  = isTransparent ? 'png'       : 'jpeg';
             const a    = document.createElement('a');
             a.href     = editorCanvas.toDataURL(mime, 1.0);
             a.download = `removed-bg-rojgarsangam.${ext}`;
@@ -462,6 +546,7 @@
             eCtx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
             workspace.classList.remove('active');
             uploadArea.style.display = 'block';
+            zoom = 1; panX = 0; panY = 0; applyZoom();
             switchBgMode('color');
             document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
             document.querySelector('.swatch-transparent').classList.add('active');
