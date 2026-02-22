@@ -374,7 +374,7 @@
 
         async function loadLibrary() {
             if (removeBackground) return;
-            const mod = await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.0/+esm');
+            const mod = await import('https://esm.sh/@imgly/background-removal@1.4.0');
             removeBackground = mod.removeBackground;
         }
 
