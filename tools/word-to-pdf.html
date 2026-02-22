@@ -11,10 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://unpkg.com/mammoth@1.6.0/mammoth.browser.min.js"></script>
-    <script src="https://unpkg.com/textract@2.5.0/lib/textract.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-    <!-- WebApplication Schema -->
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -39,7 +38,7 @@
       ]
     }
     </script>
-    <!-- BreadcrumbList Schema -->
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -66,7 +65,7 @@
       ]
     }
     </script>
-    <!-- FAQPage Schema -->
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -115,7 +114,7 @@
       ]
     }
     </script>
-    <!-- HowTo Schema -->
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -150,6 +149,7 @@
       ]
     }
     </script>
+
     <style>
         body { font-family: 'Lora', serif !important; background: #f8f8ff; color: #333333; }
         #header-placeholder { background-color: #ffffff !important; width: 100%; display: block; position: relative; z-index: 1000; }
@@ -237,7 +237,6 @@
         </div>
     </section>
 
-    <!-- How to Use Section -->
     <section class="section-container" style="margin: 40px 0px 0px 0px !important; padding: 0px 0px 0px 0px !important;">
         <div class="row-container">
             <h2 style="font-weight: 900; margin: 0px 0px 25px 0px !important; text-align: center !important; color: #333333;">How to Convert Word to PDF Online Free</h2>
@@ -266,7 +265,6 @@
         </div>
     </section>
 
-    <!-- Info Section -->
     <section class="section-container" style="margin: 40px 0px 0px 0px !important; padding: 0px 0px 0px 0px !important;">
         <div class="row-container">
             <h2 style="font-weight: 900; margin: 0px 0px 15px 0px !important; text-align: center !important; color: #333333;">Fast and Secure Word to PDF Converter</h2>
@@ -274,7 +272,6 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
     <section class="section-container" style="margin: 40px 0px 40px 0px !important; padding: 0px 0px 0px 0px !important;">
         <div class="row-container">
             <h2 style="font-weight: 900; margin: 0px 0px 25px 0px !important; text-align: center !important; color: #333333;">Frequently Asked Questions</h2>
@@ -334,7 +331,6 @@
         </div>
     </section>
 
-    <!-- Processing Overlay -->
     <div id="processingOverlay" class="processing-overlay">
         <div class="processing-box">
             <div class="processing-icon"><i class="fas fa-file-export"></i></div>
@@ -343,7 +339,6 @@
         </div>
     </div>
 
-    <!-- Success Overlay -->
     <div id="successOverlay" class="success-overlay">
         <div class="success-box">
             <div class="success-icon"><i class="fas fa-check-circle"></i></div>
@@ -407,25 +402,26 @@
             convertedPdfBytes = null;
 
             try {
+                if (typeof mammoth === 'undefined') {
+                    throw new Error('Mammoth library not loaded. Please refresh the page and try again.');
+                }
+
                 const arrayBuffer = await currentFile.arrayBuffer();
                 let htmlContent   = '';
 
-                // DOCX format - Mammoth use karo
                 if (currentFile.name.toLowerCase().endsWith('.docx')) {
                     const result = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
                     htmlContent  = result.value || '';
-                }
-                // DOC format - Plain text extract karo
-                else if (currentFile.name.toLowerCase().endsWith('.doc')) {
+                } else if (currentFile.name.toLowerCase().endsWith('.doc')) {
                     const decoder  = new TextDecoder('windows-1252');
                     const rawText  = decoder.decode(arrayBuffer);
                     const cleaned  = rawText.replace(/[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, '');
-                    const lines    = cleaned.split(/[\r\n]+/).filter(l => l.trim().length > 0);
+                    const lines    = cleaned.split(/[\r\n]+/).filter(l => l.trim().length > 2);
                     htmlContent    = lines.map(line => `<p>${line.trim()}</p>`).join('');
                 }
 
                 if (!htmlContent || htmlContent.trim().length === 0) {
-                    throw new Error('Unable to extract text from document');
+                    throw new Error('No text content found in the document.');
                 }
 
                 const parser  = new DOMParser();
@@ -461,7 +457,6 @@
                     const availWidth = maxWidth - (indent || 0);
                     const words      = text.trim().split(/\s+/);
                     let line         = '';
-
                     for (let i = 0; i < words.length; i++) {
                         const testLine = line + (line ? ' ' : '') + words[i];
                         const w        = font.widthOfTextAtSize(testLine, fontSize);
@@ -486,7 +481,6 @@
                     const tag  = el.tagName.toLowerCase();
                     const text = el.textContent.trim();
                     if (!text) continue;
-
                     if (tag === 'h1') {
                         currentY -= 8;
                         drawWrappedText(text, fontBold, 20, 28, 0);
@@ -512,11 +506,9 @@
                     } else if (tag === 'table') {
                         const rows = el.querySelectorAll('tr');
                         rows.forEach(row => {
-                            const cells   = row.querySelectorAll('td, th');
-                            let rowText   = '';
-                            cells.forEach((cell, i) => {
-                                rowText += (i > 0 ? '  |  ' : '') + cell.textContent.trim();
-                            });
+                            const cells = row.querySelectorAll('td, th');
+                            let rowText  = '';
+                            cells.forEach((cell, i) => { rowText += (i > 0 ? '  |  ' : '') + cell.textContent.trim(); });
                             drawWrappedText(rowText, fontRegular, 11, 18, 0);
                         });
                         currentY -= 6;
@@ -535,7 +527,7 @@
 
             } catch (error) {
                 console.error('Conversion Error:', error);
-                alert('Error Converting Document. Please Ensure it is a Valid DOC or DOCX File.');
+                alert('Error: ' + error.message);
                 processingOverlay.classList.remove('active');
             }
         }
