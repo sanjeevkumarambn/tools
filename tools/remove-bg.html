@@ -218,23 +218,24 @@
     <script src="../js/main.js"></script>
 
     <script>
-        /* ───── STATE ───── */
-        let originalImg  = null;
-        let fgCanvas     = document.createElement('canvas');
-        let fgCtx        = fgCanvas.getContext('2d');
-        let bgColor      = 'transparent';
-        let bgPhotoImg   = null;
-        let bgType       = 'color';
-        let currentTool  = 'erase';
-        let isDrawing    = false;
-        let blurValue    = 0;
-        let removeBg     = null;   // @imgly function (cached after first load)
+        /* ── STATE ── */
+        let originalImg = null;
+        let fgCanvas    = document.createElement('canvas');
+        let fgCtx       = fgCanvas.getContext('2d');
+        let bgColor     = 'transparent';
+        let bgPhotoImg  = null;
+        let bgType      = 'color';
+        let currentTool = 'erase';
+        let isDrawing   = false;
+        let blurValue   = 0;
+        let tfModule    = null;
+        let bgModel     = null;
+        let bgProc      = null;
 
-        /* ───── DOM ───── */
+        /* ── DOM ── */
         const uploadArea        = document.getElementById('uploadArea');
         const fileInput         = document.getElementById('fileInput');
         const workspace         = document.getElementById('workspace');
-        const heroHeader        = document.getElementById('heroHeader');
         const processingOverlay = document.getElementById('processingOverlay');
         const processingText    = document.getElementById('processingText');
         const editorCanvas      = document.getElementById('editorCanvas');
@@ -246,7 +247,7 @@
         const bgPhotoInput      = document.getElementById('bgPhotoInput');
         const customColorInput  = document.getElementById('customColorInput');
 
-        /* ───── UPLOAD TRIGGERS ───── */
+        /* ── UPLOAD TRIGGERS ── */
         uploadArea.addEventListener('click',     () => fileInput.click());
         addMoreBtn.addEventListener('click',     resetTool);
         fileInput.addEventListener('change',     e => { if (e.target.files[0]) handleUpload(e.target.files[0]); fileInput.value = ''; });
@@ -260,52 +261,65 @@
             else alert('Please Upload a Valid JPG, PNG or WebP File.');
         });
 
-        /* ───── LOAD AI LIBRARY ───── */
+        /* ── LOAD AI ── */
         async function loadAI() {
-            if (removeBg) return;
+            if (bgModel && bgProc) return;
             processingText.innerHTML = 'Loading AI Model...<br>First Time May Take 1-2 Minutes.';
-            const mod = await import('https://esm.sh/@imgly/background-removal@1.4.0');
-            removeBg = file => mod.removeBackground(file, {
-                model      : 'medium',
-                debug      : false
-            });
+            tfModule = await import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/transformers.min.js');
+            tfModule.env.allowLocalModels = false;
+            tfModule.env.useBrowserCache  = true;
+            [bgProc, bgModel] = await Promise.all([
+                tfModule.AutoProcessor.from_pretrained('briaai/RMBG-1.4'),
+                tfModule.AutoModel.from_pretrained('briaai/RMBG-1.4', { config: { model_type: 'custom' } })
+            ]);
         }
 
-        /* ───── MAIN UPLOAD HANDLER ───── */
+        /* ── MAIN HANDLER ── */
         async function handleUpload(file) {
             processingOverlay.classList.add('active');
             processingText.innerHTML = 'Please Wait. AI is Processing Your Image Locally.<br>Do Not Close Your Browser.';
             try {
-                await loadAI();
-                processingText.innerHTML = 'Removing Background...<br>Please Wait.';
-
-                const fgBlob  = await removeBg(file);
-                const blobUrl = URL.createObjectURL(fgBlob);
-
-                originalImg = new Image();
-                await new Promise((res, rej) => { originalImg.onload = res; originalImg.onerror = rej; originalImg.src = blobUrl; });
+                const objUrl = URL.createObjectURL(file);
+                originalImg  = new Image();
+                await new Promise((res, rej) => { originalImg.onload = res; originalImg.onerror = rej; originalImg.src = objUrl; });
 
                 const W = originalImg.naturalWidth;
                 const H = originalImg.naturalHeight;
                 editorCanvas.width  = fgCanvas.width  = W;
                 editorCanvas.height = fgCanvas.height = H;
 
+                await loadAI();
+                processingText.innerHTML = 'Removing Background...<br>Please Wait.';
+
+                const image            = await tfModule.RawImage.fromURL(objUrl);
+                const { pixel_values } = await bgProc(image);
+                const { output }       = await bgModel({ input: pixel_values });
+                const mask             = await tfModule.RawImage.fromTensor(output[0].mul(255).to('uint8')).resize(W, H);
+
+                const tmp    = document.createElement('canvas');
+                tmp.width    = W; tmp.height = H;
+                const tmpCtx = tmp.getContext('2d');
+                tmpCtx.drawImage(originalImg, 0, 0);
+                const imgData = tmpCtx.getImageData(0, 0, W, H);
+                for (let i = 0; i < mask.data.length; i++) imgData.data[4 * i + 3] = mask.data[i];
+                tmpCtx.putImageData(imgData, 0, 0);
+
                 fgCtx.clearRect(0, 0, W, H);
-                fgCtx.drawImage(originalImg, 0, 0);
-                URL.revokeObjectURL(blobUrl);
+                fgCtx.drawImage(tmp, 0, 0);
+                URL.revokeObjectURL(objUrl);
 
                 uploadArea.style.display = 'none';
                 workspace.classList.add('active');
                 renderCanvas();
             } catch (err) {
-                console.error('BG Removal Error:', err);
+                console.error('Error:', err);
                 alert('Error: ' + err.message);
             } finally {
                 processingOverlay.classList.remove('active');
             }
         }
 
-        /* ───── RENDER ───── */
+        /* ── RENDER ── */
         function renderCanvas() {
             if (!originalImg) return;
             eCtx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
@@ -324,7 +338,7 @@
             eCtx.drawImage(fgCanvas, 0, 0);
         }
 
-        /* ───── BRUSH ───── */
+        /* ── BRUSH ── */
         function getPos(e) {
             const rect = editorCanvas.getBoundingClientRect();
             const scX  = editorCanvas.width  / rect.width;
@@ -341,15 +355,11 @@
             const r = parseInt(brushSizeInput.value) * (editorCanvas.width / 600);
             if (currentTool === 'erase') {
                 fgCtx.globalCompositeOperation = 'destination-out';
-                fgCtx.beginPath();
-                fgCtx.arc(x, y, r, 0, Math.PI * 2);
-                fgCtx.fill();
+                fgCtx.beginPath(); fgCtx.arc(x, y, r, 0, Math.PI * 2); fgCtx.fill();
             } else {
                 fgCtx.globalCompositeOperation = 'source-over';
                 fgCtx.save();
-                fgCtx.beginPath();
-                fgCtx.arc(x, y, r, 0, Math.PI * 2);
-                fgCtx.clip();
+                fgCtx.beginPath(); fgCtx.arc(x, y, r, 0, Math.PI * 2); fgCtx.clip();
                 fgCtx.drawImage(originalImg, 0, 0);
                 fgCtx.restore();
             }
@@ -364,7 +374,7 @@
         editorCanvas.addEventListener('touchmove',  applyBrush, { passive: false });
         window.addEventListener('touchend',         () => isDrawing = false);
 
-        /* ───── TABS ───── */
+        /* ── TABS ── */
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', function () {
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -374,7 +384,7 @@
             });
         });
 
-        /* ───── BACKGROUND CONTROLS ───── */
+        /* ── BACKGROUND ── */
         document.getElementById('btnBgColor').addEventListener('click', () => switchBgMode('color'));
         document.getElementById('btnBgPhoto').addEventListener('click', () => switchBgMode('photo'));
 
@@ -387,8 +397,8 @@
             renderCanvas();
         }
 
-        document.querySelectorAll('.color-swatch[data-color]').forEach(swatch => {
-            swatch.addEventListener('click', function () {
+        document.querySelectorAll('.color-swatch[data-color]').forEach(s => {
+            s.addEventListener('click', function () {
                 document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
                 this.classList.add('active');
                 bgColor = this.dataset.color;
@@ -404,14 +414,13 @@
 
         document.getElementById('uploadBgArea').addEventListener('click', () => bgPhotoInput.click());
         bgPhotoInput.addEventListener('change', e => {
-            const f = e.target.files[0];
-            if (!f) return;
+            const f = e.target.files[0]; if (!f) return;
             bgPhotoImg = new Image();
             bgPhotoImg.onload = renderCanvas;
             bgPhotoImg.src = URL.createObjectURL(f);
         });
 
-        /* ───── ERASE / RESTORE ───── */
+        /* ── ERASE/RESTORE ── */
         document.getElementById('btnErase').addEventListener('click',   () => setTool('erase'));
         document.getElementById('btnRestore').addEventListener('click', () => setTool('restore'));
 
@@ -421,18 +430,16 @@
             document.getElementById('btnRestore').classList.toggle('active', tool === 'restore');
         }
 
-        brushSizeInput.addEventListener('input', () => {
-            document.getElementById('brushSizeVal').textContent = brushSizeInput.value;
-        });
+        brushSizeInput.addEventListener('input', () => { document.getElementById('brushSizeVal').textContent = brushSizeInput.value; });
 
-        /* ───── BLUR ───── */
+        /* ── BLUR ── */
         blurInput.addEventListener('input', () => {
             blurValue = parseInt(blurInput.value);
             document.getElementById('blurVal').textContent = blurValue;
             renderCanvas();
         });
 
-        /* ───── DOWNLOAD ───── */
+        /* ── DOWNLOAD ── */
         downloadBtn.addEventListener('click', () => {
             const isTransparent = bgType === 'color' && bgColor === 'transparent';
             const ext  = isTransparent ? 'png'       : 'jpeg';
@@ -440,21 +447,15 @@
             const a    = document.createElement('a');
             a.href     = editorCanvas.toDataURL(mime, 1.0);
             a.download = `removed-bg-rojgarsangam.${ext}`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
         });
 
-        /* ───── RESET ───── */
+        /* ── RESET ── */
         function resetTool() {
-            originalImg  = null;
-            bgPhotoImg   = null;
-            bgColor      = 'transparent';
-            bgType       = 'color';
-            currentTool  = 'erase';
-            blurValue    = 0;
-            blurInput.value      = 0;
-            brushSizeInput.value = 30;
+            originalImg  = null; bgPhotoImg = null;
+            bgColor      = 'transparent'; bgType = 'color';
+            currentTool  = 'erase'; blurValue = 0;
+            blurInput.value = 0; brushSizeInput.value = 30;
             document.getElementById('blurVal').textContent      = '0';
             document.getElementById('brushSizeVal').textContent = '30';
             fgCtx.clearRect(0, 0, fgCanvas.width, fgCanvas.height);
