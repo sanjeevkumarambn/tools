@@ -267,7 +267,7 @@
             const mod = await import('https://esm.sh/@imgly/background-removal@1.4.0');
             removeBg = file => mod.removeBackground(file, {
                 publicPath : 'https://unpkg.com/@imgly/background-removal@1.4.0/dist/',
-                model      : 'isnet',
+                model      : 'medium',
                 debug      : false
             });
         }
