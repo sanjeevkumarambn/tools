@@ -11,49 +11,25 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body{font-family:'Lora',serif!important;background:#f8f8ff;color:#333333;min-height:100vh;display:flex;flex-direction:column}
+        body{font-family:'Lora',serif!important;background:#f8f8ff;color:#333333}
         #header-placeholder{background-color:#ffffff!important;width:100%;display:block;position:relative;z-index:1000}
         #footer-placeholder{border:1px solid #667799!important;width:100%;display:block;position:relative}
-        .section-main{margin:40px 0px 40px 0px!important;flex:1}
+        .section-main{margin:40px 0px 40px 0px!important}
 
-        /* HERO */
-        .error-hero{background:linear-gradient(135deg,#00079e 0%,#1a237e 60%,#283593 100%);border-radius:20px;padding:70px 40px 70px 40px;text-align:center;color:#ffffff;margin:0px 0px 40px 0px;position:relative;overflow:hidden}
+        .error-hero{background:linear-gradient(135deg,#00079e 0%,#1a237e 60%,#283593 100%);border-radius:20px;padding:80px 40px 80px 40px;text-align:center;color:#ffffff;position:relative;overflow:hidden}
         .error-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;background:rgba(255,255,255,0.05);border-radius:50%}
         .error-hero::after{content:'';position:absolute;bottom:-80px;left:-40px;width:200px;height:200px;background:rgba(255,255,255,0.04);border-radius:50%}
-        .error-number{font-size:120px;font-weight:900;margin:0px 0px 10px 0px;line-height:1;opacity:0.95;letter-spacing:-4px}
-        .error-icon{font-size:52px;margin:0px 0px 16px 0px;opacity:0.9}
-        .error-title{font-size:32px;font-weight:900;margin:0px 0px 12px 0px;line-height:1.2}
-        .error-sub{font-size:17px;opacity:0.88;margin:0px auto 30px auto;max-width:560px;line-height:1.6}
-        .error-hero-badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:0px 0px 30px 0px}
+        .error-number{font-size:130px;font-weight:900;margin:0px 0px 10px 0px;line-height:1;letter-spacing:-4px;opacity:0.95}
+        .error-icon{font-size:48px;margin:0px 0px 16px 0px;opacity:0.9}
+        .error-title{font-size:32px;font-weight:900;margin:0px 0px 14px 0px;line-height:1.2}
+        .error-sub{font-size:17px;opacity:0.88;margin:0px auto 28px auto;max-width:560px;line-height:1.6}
+        .error-badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:0px 0px 32px 0px}
         .hero-badge{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:7px 16px 7px 16px;font-size:13px;font-weight:700;color:#ffffff;display:flex;align-items:center;gap:6px}
-
-        /* BUTTONS */
         .error-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
         .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:16px 36px 16px 36px;background:#ffffff;color:#00079e;border:none;border-radius:50px;font-size:16px;font-weight:900;font-family:'Lora',serif;cursor:pointer;text-decoration:none;transition:all 0.3s ease}
         .btn-primary:hover{background:#fdece5;transform:translateY(-2px)}
         .btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:16px 36px 16px 36px;background:transparent;color:#ffffff;border:2px solid rgba(255,255,255,0.5);border-radius:50px;font-size:16px;font-weight:700;font-family:'Lora',serif;cursor:pointer;text-decoration:none;transition:all 0.3s ease}
         .btn-secondary:hover{background:rgba(255,255,255,0.15);border-color:#ffffff}
-
-        /* POPULAR TOOLS */
-        .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;margin:0px 0px 0px 0px}
-        .tool-card{background:#ffffff;border:2px solid #667799;border-radius:14px;padding:24px 20px 24px 20px;text-align:center;text-decoration:none;transition:all 0.3s ease;display:block}
-        .tool-card:hover{border-color:#00079e;background:#fdece5;transform:translateY(-3px);box-shadow:0px 8px 24px rgba(0,7,158,0.12)}
-        .tool-card-icon{font-size:36px;color:#00079e;margin:0px 0px 14px 0px}
-        .tool-card-title{font-size:15px;font-weight:900;color:#333333;margin:0px 0px 6px 0px}
-        .tool-card-desc{font-size:12px;color:#667799;line-height:1.5}
-
-        /* SECTION TITLE */
-        .section-title{font-size:24px;font-weight:900;color:#333333;margin:0px 0px 8px 0px;text-align:center}
-        .section-sub{font-size:15px;color:#667799;text-align:center;margin:0px 0px 28px 0px}
-        .section-line{height:3px;width:60px;background:#00079e;border-radius:2px;margin:0px auto 28px auto}
-
-        /* SEARCH */
-        .search-wrap{background:#ffffff;border:2px solid #667799;border-radius:16px;padding:32px 32px 32px 32px;margin:0px 0px 40px 0px;text-align:center}
-        .search-box{display:flex;gap:12px;max-width:560px;margin:0px auto 0px auto}
-        .search-input{flex:1;padding:14px 18px 14px 18px;border:1px solid #667799;border-radius:50px;font-size:15px;color:#333333;background:#f8f8ff;font-family:'Lora',serif;outline:none;transition:all 0.3s ease}
-        .search-input:focus{border-color:#00079e;background:#ffffff;box-shadow:0px 0px 0px 3px rgba(0,7,158,0.08)}
-        .search-btn{padding:14px 28px 14px 28px;background:#eff6ef;color:#00079e;border:1px solid #667799;border-radius:50px;font-size:15px;font-weight:700;font-family:'Lora',serif;cursor:pointer;transition:all 0.3s ease;white-space:nowrap}
-        .search-btn:hover{background:#fdece5;border-color:#00079e}
 
         @media(max-width:768px){
             .error-number{font-size:80px}
@@ -61,8 +37,6 @@
             .error-hero{padding:50px 20px 50px 20px}
             .error-btns{flex-direction:column;align-items:center}
             .btn-primary,.btn-secondary{width:100%;max-width:300px;justify-content:center}
-            .search-box{flex-direction:column}
-            .search-wrap{padding:22px 18px 22px 18px}
         }
     </style>
 </head>
@@ -71,91 +45,24 @@
 
     <section class="section-main">
         <div class="row-container">
-
-            <!-- HERO -->
             <div class="error-hero">
                 <div class="error-number">404</div>
                 <div class="error-icon"><i class="fas fa-search"></i></div>
                 <h1 class="error-title">Oops! Page Not Found</h1>
                 <p class="error-sub">The Page You are Looking for Does Not Exist, Has Been Moved or the URL is Incorrect. But Don't Worry — Our Free Tools are Still Here for You!</p>
-                <div class="error-hero-badges">
+                <div class="error-badges">
                     <div class="hero-badge"><i class="fas fa-tools"></i> 20+ Free Tools</div>
                     <div class="hero-badge"><i class="fas fa-lock"></i> No Data Uploaded</div>
                     <div class="hero-badge"><i class="fas fa-rupee-sign"></i> Always Free</div>
                 </div>
                 <div class="error-btns">
-                    <a href="./index.html" class="btn-primary"><i class="fas fa-home"></i> Go to Homepage</a>
+                    <a href="https://tools.rojgarsangam.in/" class="btn-primary"><i class="fas fa-home"></i> Go to Homepage</a>
                     <a href="javascript:history.back()" class="btn-secondary"><i class="fas fa-arrow-left"></i> Go Back</a>
                 </div>
             </div>
-
-            <!-- SEARCH -->
-            <div class="search-wrap">
-                <h2 class="section-title">Search for a Tool</h2>
-                <p class="section-sub">Looking for a Specific Tool? Search Below or Browse Our Popular Tools.</p>
-                <div class="search-box">
-                    <input type="text" class="search-input" id="searchInput" placeholder="e.g. Merge PDF, Image Resizer..." onkeydown="if(event.key==='Enter')searchTool()">
-                    <button class="search-btn" onclick="searchTool()"><i class="fas fa-search"></i> Search</button>
-                </div>
-            </div>
-
-            <!-- POPULAR TOOLS -->
-            <div style="margin:0px 0px 0px 0px">
-                <h2 class="section-title">Our Most Popular Tools</h2>
-                <div class="section-line"></div>
-                <div class="tools-grid">
-                    <a href="./tools/merge-pdf.html" class="tool-card">
-                        <div class="tool-card-icon"><i class="fas fa-object-group"></i></div>
-                        <div class="tool-card-title">Merge PDF</div>
-                        <div class="tool-card-desc">Combine Multiple PDF Files into One Document Instantly</div>
-                    </a>
-                    <a href="./tools/split-pdf.html" class="tool-card">
-                        <div class="tool-card-icon"><i class="fas fa-cut"></i></div>
-                        <div class="tool-card-title">Split PDF</div>
-                        <div class="tool-card-desc">Split PDF into Separate Pages or Custom Ranges</div>
-                    </a>
-                    <a href="./tools/compress-pdf.html" class="tool-card">
-                        <div class="tool-card-icon"><i class="fas fa-compress-alt"></i></div>
-                        <div class="tool-card-title">Compress PDF</div>
-                        <div class="tool-card-desc">Reduce PDF File Size Without Losing Quality</div>
-                    </a>
-                    <a href="./tools/image-resizer.html" class="tool-card">
-                        <div class="tool-card-icon"><i class="fas fa-expand-arrows-alt"></i></div>
-                        <div class="tool-card-title">Image Resizer</div>
-                        <div class="tool-card-desc">Resize Images to Any Dimension in Seconds</div>
-                    </a>
-                    <a href="./tools/photo-signature-joiner.html" class="tool-card">
-                        <div class="tool-card-icon"><i class="fas fa-id-card"></i></div>
-                        <div class="tool-card-title">Photo Signature Joiner</div>
-                        <div class="tool-card-desc">Combine Photo and Signature for Job Applications</div>
-                    </a>
-                    <a href="./tools/image-converter.html" class="tool-card">
-                        <div class="tool-card-icon"><i class="fas fa-exchange-alt"></i></div>
-                        <div class="tool-card-title">Image Converter</div>
-                        <div class="tool-card-desc">Convert Images Between JPG, PNG, WebP and More</div>
-                    </a>
-                    <a href="./tools/pdf-to-image.html" class="tool-card">
-                        <div class="tool-card-icon"><i class="fas fa-file-image"></i></div>
-                        <div class="tool-card-title">PDF to Image</div>
-                        <div class="tool-card-desc">Convert PDF Pages to High Quality Images</div>
-                    </a>
-                    <a href="./tools/word-counter.html" class="tool-card">
-                        <div class="tool-card-icon"><i class="fas fa-font"></i></div>
-                        <div class="tool-card-title">Word Counter</div>
-                        <div class="tool-card-desc">Count Words, Characters and Paragraphs Instantly</div>
-                    </a>
-                </div>
-            </div>
-
         </div>
     </section>
     <div id="footer-placeholder"></div>
     <script src="./js/main.js"></script>
-    <script>
-        function searchTool(){
-            const q=document.getElementById('searchInput').value.trim();
-            if(q){window.location.href='./index.html?search='+encodeURIComponent(q);}
-        }
-    </script>
 </body>
 </html>
