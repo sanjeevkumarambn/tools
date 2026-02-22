@@ -22,16 +22,7 @@
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any",
       "browserRequirements": "Requires JavaScript",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "featureList": [
-        "AI Background Removal in Browser",
-        "JPG PNG WebP Support",
-        "Custom Background Color",
-        "Custom Background Photo",
-        "Erase and Restore Brush",
-        "Background Blur Effect",
-        "No Server Upload - 100% Private"
-      ]
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
     }
     </script>
 
@@ -72,21 +63,6 @@
           "name": "Can I Add a Custom Background After Removing?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes, After Background Removal You Can Add a Solid Color, Upload a Custom Photo Background, or Apply a Blur Effect." }
         }
-      ]
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": "How to Remove Image Background Online Free",
-      "description": "Step by step guide to remove image background online for free.",
-      "step": [
-        { "@type": "HowToStep", "position": 1, "name": "Upload Image", "text": "Click Upload or drag and drop your JPG, PNG or WebP image." },
-        { "@type": "HowToStep", "position": 2, "name": "AI Removes Background", "text": "Our AI automatically detects and removes the background in your browser." },
-        { "@type": "HowToStep", "position": 3, "name": "Edit and Enhance", "text": "Add custom background color or photo, erase or restore areas, add blur." },
-        { "@type": "HowToStep", "position": 4, "name": "Download Image", "text": "Click Download to save your image as PNG (transparent) or JPG." }
       ]
     }
     </script>
@@ -279,7 +255,7 @@
                 <div style="background: #ffffff; border: 1px solid #667799; border-radius: 12px; padding: 24px 20px 24px 20px; text-align: center;">
                     <div style="font-size: 36px; color: #00079e; margin: 0px 0px 12px 0px;"><i class="fas fa-magic"></i></div>
                     <div style="font-size: 16px; font-weight: 700; color: #333333; margin: 0px 0px 8px 0px;">Step 2: AI Removes BG</div>
-                    <div style="font-size: 13px; color: #667799;">AI automatically detects and removes the background inside your browser.</div>
+                    <div style="font-size: 13px; color: #667799;">AI automatically detects and removes background inside your browser.</div>
                 </div>
                 <div style="background: #ffffff; border: 1px solid #667799; border-radius: 12px; padding: 24px 20px 24px 20px; text-align: center;">
                     <div style="font-size: 36px; color: #00079e; margin: 0px 0px 12px 0px;"><i class="fas fa-sliders-h"></i></div>
@@ -289,7 +265,7 @@
                 <div style="background: #ffffff; border: 1px solid #667799; border-radius: 12px; padding: 24px 20px 24px 20px; text-align: center;">
                     <div style="font-size: 36px; color: #00079e; margin: 0px 0px 12px 0px;"><i class="fas fa-download"></i></div>
                     <div style="font-size: 16px; font-weight: 700; color: #333333; margin: 0px 0px 8px 0px;">Step 4: Download</div>
-                    <div style="font-size: 13px; color: #667799;">Click Download to save your image as PNG (transparent) or JPG.</div>
+                    <div style="font-size: 13px; color: #667799;">Click Download to save your image as PNG or JPG.</div>
                 </div>
             </div>
         </div>
@@ -357,9 +333,7 @@
     <script src="../js/ad-manager.js"></script>
     <script src="../js/main.js"></script>
 
-    <script type="module">
-        import { removeBackground } from 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.0/+esm';
-
+    <script>
         let originalImg  = null;
         let fgCanvas     = document.createElement('canvas');
         let fgCtx        = fgCanvas.getContext('2d');
@@ -369,6 +343,7 @@
         let currentTool  = 'erase';
         let isDrawing    = false;
         let blurValue    = 0;
+        let removeBackground = null;
 
         const uploadArea        = document.getElementById('uploadArea');
         const fileInput         = document.getElementById('fileInput');
@@ -384,10 +359,10 @@
         const bgPhotoInput      = document.getElementById('bgPhotoInput');
         const customColorInput  = document.getElementById('customColorInput');
 
-        uploadArea.addEventListener('click',    () => fileInput.click());
-        addMoreBtn.addEventListener('click',    resetTool);
-        fileInput.addEventListener('change',    e => { if (e.target.files[0]) handleUpload(e.target.files[0]); fileInput.value = ''; });
-        uploadArea.addEventListener('dragover',  e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+        uploadArea.addEventListener('click',     () => fileInput.click());
+        addMoreBtn.addEventListener('click',     resetTool);
+        fileInput.addEventListener('change',     e  => { if (e.target.files[0]) handleUpload(e.target.files[0]); fileInput.value = ''; });
+        uploadArea.addEventListener('dragover',  e  => { e.preventDefault(); uploadArea.classList.add('dragover'); });
         uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
         uploadArea.addEventListener('drop', e => {
             e.preventDefault();
@@ -397,9 +372,17 @@
             else alert('Please Upload a Valid JPG, PNG or WebP File.');
         });
 
+        async function loadLibrary() {
+            if (removeBackground) return;
+            const mod = await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.0/+esm');
+            removeBackground = mod.removeBackground;
+        }
+
         async function handleUpload(file) {
             processingOverlay.classList.add('active');
             try {
+                await loadLibrary();
+
                 const objUrl = URL.createObjectURL(file);
                 originalImg  = new Image();
                 await new Promise((res, rej) => { originalImg.onload = res; originalImg.onerror = rej; originalImg.src = objUrl; });
