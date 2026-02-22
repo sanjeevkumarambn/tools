@@ -137,7 +137,7 @@
                 <div class="settings-wrapper">
                     <div class="settings-title"><i class="fas fa-sliders-h"></i> Final Output Size Settings</div>
                     <div style="background:#eff6ef;border:1px solid #667799;border-radius:8px;padding:10px 14px;font-size:13px;color:#333;font-weight:700;margin:0px 0px 20px 0px">
-                        <i class="fas fa-info-circle" style="color:#00079e"></i> Output will be <strong>exactly</strong> the selected size. Signature centered in bottom white area with border.
+                        <i class="fas fa-info-circle" style="color:#00079e"></i> Output will be <strong>exactly</strong> the selected size. Signature fills full white strip — no margin, no padding.
                     </div>
                     <div class="form-group" style="margin:0px">
                         <label><i class="fas fa-image"></i> Select Final Output Size</label>
@@ -208,7 +208,7 @@
             <h2 style="font-weight:900;margin:0px 0px 25px 0px!important;text-align:center!important;color:#333">How to Join Photo and Signature Online</h2>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
                 <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-portrait"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 1: Upload Photo</div><div style="font-size:13px;color:#667799">Upload your photo and crop if needed.</div></div>
-                <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-pen-nib"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 2: Upload Signature</div><div style="font-size:13px;color:#667799">Upload signature — white space will be auto removed.</div></div>
+                <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-pen-nib"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 2: Upload Signature</div><div style="font-size:13px;color:#667799">Upload signature — fills full white strip.</div></div>
                 <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-sliders-h"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 3: Select Output Size</div><div style="font-size:13px;color:#667799">Select the exact final size required by the form.</div></div>
                 <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-download"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 4: Download</div><div style="font-size:13px;color:#667799">Click Join Now and download your merged image.</div></div>
             </div>
@@ -220,7 +220,7 @@
             <h2 style="font-weight:900;margin:0px 0px 25px 0px!important;text-align:center!important;color:#333">Frequently Asked Questions</h2>
             <div class="faq-list">
                 <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Will the Final Image Be Exactly the Selected Size?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Yes. If you select 413×531 px then the final output will be exactly 413×531 px.</p></div></div>
-                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Where Is the Signature Placed?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Signature is auto-trimmed, centered in bottom white area with aspect ratio maintained.</p></div></div>
+                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Where Is the Signature Placed?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Signature fills the full bottom white strip — no margin, no padding.</p></div></div>
                 <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Can I Crop Before Joining?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Yes, crop tool opens automatically after upload. You can also re-crop anytime.</p></div></div>
                 <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Can I Set a Target File Size in KB?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Yes, select from preset KB buttons or enter a custom value.</p></div></div>
                 <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Is My Data Safe?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Yes, everything is processed locally in your browser. Nothing is uploaded to any server.</p></div></div>
@@ -269,25 +269,6 @@
     function fmtKB(kb){return kb>=1024?(kb/1024).toFixed(2)+' MB':kb.toFixed(1)+' KB';}
     function b64KB(b64){return(b64.split(',')[1].length*0.75)/1024;}
     function imgFromSrc(s){return new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=s;});}
-
-    function getTrimmedBounds(img){
-        const tc=document.createElement('canvas');
-        tc.width=img.naturalWidth;tc.height=img.naturalHeight;
-        const tx=tc.getContext('2d');
-        tx.drawImage(img,0,0);
-        const d=tx.getImageData(0,0,tc.width,tc.height).data;
-        let minX=tc.width,minY=tc.height,maxX=0,maxY=0;
-        for(let y=0;y<tc.height;y++){
-            for(let x=0;x<tc.width;x++){
-                const i=(y*tc.width+x)*4;
-                if(d[i]<230||d[i+1]<230||d[i+2]<230){
-                    if(x<minX)minX=x;if(x>maxX)maxX=x;
-                    if(y<minY)minY=y;if(y>maxY)maxY=y;
-                }
-            }
-        }
-        return{x:minX,y:minY,w:maxX-minX+1,h:maxY-minY+1};
-    }
 
     function openCropModal(src,title,onApply,onSkip){
         document.getElementById('cropModalTitle').textContent=title;
@@ -371,10 +352,6 @@
             const signAreaH=Math.round(canvasH*0.20);
             const photoAreaH=canvasH-signAreaH;
 
-
-            if(sW>maxSW){sH=Math.round(sH*(maxSW/sW));sW=maxSW;}
-            if(sH>maxSH){sW=Math.round(sW*(maxSH/sH));sH=maxSH;}
-
             const canvas=document.getElementById('outputCanvas');
             canvas.width=canvasW;canvas.height=canvasH;
             const ctx=canvas.getContext('2d');
@@ -384,16 +361,15 @@
             ctx.drawImage(photoImg,0,0,canvasW,photoAreaH);
             ctx.fillStyle='#ffffff';
             ctx.fillRect(0,photoAreaH,canvasW,signAreaH);
-            ctx.drawImage(signImg, 0, photoAreaH, canvasW, signAreaH);
+            ctx.drawImage(signImg,0,photoAreaH,canvasW,signAreaH);
 
             ctx.strokeStyle='#00079e';
             ctx.lineWidth=borderSize;
             ctx.strokeRect(borderSize/2,borderSize/2,canvasW-borderSize,canvasH-borderSize);
 
-            const lineY=photoAreaH;
             ctx.strokeStyle='#cccccc';
             ctx.lineWidth=1;
-            ctx.beginPath();ctx.moveTo(0,lineY);ctx.lineTo(canvasW,lineY);ctx.stroke();
+            ctx.beginPath();ctx.moveTo(0,photoAreaH);ctx.lineTo(canvasW,photoAreaH);ctx.stroke();
 
             const targetKB=selectedKB||parseInt(document.getElementById('customKbInput').value)||null;
             let dataURL;
