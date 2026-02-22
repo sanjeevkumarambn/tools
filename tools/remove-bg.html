@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.0/dist/imgly-background-removal.js"></script>
 
     <script type="application/ld+json">
     {
@@ -71,7 +70,7 @@
         {
           "@type": "Question",
           "name": "Can I Add a Custom Background After Removing?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes, After Background Removal You Can Add a Solid Color, Upload a Custom Photo, or Apply a Blur Effect to the Background." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, After Background Removal You Can Add a Solid Color, Upload a Custom Photo Background, or Apply a Blur Effect." }
         }
       ]
     }
@@ -86,56 +85,43 @@
       "step": [
         { "@type": "HowToStep", "position": 1, "name": "Upload Image", "text": "Click Upload or drag and drop your JPG, PNG or WebP image." },
         { "@type": "HowToStep", "position": 2, "name": "AI Removes Background", "text": "Our AI automatically detects and removes the background in your browser." },
-        { "@type": "HowToStep", "position": 3, "name": "Edit and Enhance", "text": "Add custom background color or photo, erase or restore areas using brush tools." },
-        { "@type": "HowToStep", "position": 4, "name": "Download Image", "text": "Click Download to save your image as PNG or JPG." }
+        { "@type": "HowToStep", "position": 3, "name": "Edit and Enhance", "text": "Add custom background color or photo, erase or restore areas, add blur." },
+        { "@type": "HowToStep", "position": 4, "name": "Download Image", "text": "Click Download to save your image as PNG (transparent) or JPG." }
       ]
     }
     </script>
 
     <style>
-        /* Color Palette: #333333, #00079e, #667799, #fdece5, #eff6ef, #f8f8ff, #ffffff, #bdbdbd */
         body { font-family: 'Lora', serif !important; background: #f8f8ff; color: #333333; }
         #header-placeholder { background-color: #ffffff !important; width: 100%; display: block; position: relative; z-index: 1000; }
         .section-main { margin: 40px 0px 40px 0px !important; }
-
         .upload-section-wrapper { background: #ffffff; border-radius: 20px; padding: 40px 40px 40px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #667799; }
-
         .upload-area { border: 3px dashed #667799; border-radius: 16px; padding: 60px 20px 60px 20px; text-align: center; cursor: pointer; background: #f8f8ff; transition: all 0.3s ease; max-width: 700px; margin: 0px auto 0px auto; }
         .upload-area:hover { border-color: #00079e; background: #fdece5; }
         .upload-area.dragover { border-color: #00079e; background: #fdece5; }
         .upload-icon { font-size: 48px; color: #00079e; margin: 0px 0px 20px 0px; }
         .upload-text { font-size: 20px; font-weight: 700; color: #333333; margin: 0px 0px 10px 0px; }
         .upload-subtext { font-size: 14px; color: #667799; margin: 0px 0px 0px 0px; }
-
         .workspace-container { display: none; }
         .workspace-container.active { display: flex; gap: 30px; margin: 30px 0px 0px 0px; align-items: flex-start; }
-
-        /* Preview Panel */
         .preview-panel { flex: 1; background: #ffffff; border-radius: 12px; border: 1px solid #667799; padding: 20px 20px 20px 20px; display: flex; flex-direction: column; align-items: center; }
         .canvas-wrapper { width: 100%; display: flex; justify-content: center; align-items: center; border-radius: 8px; border: 1px solid #bdbdbd; overflow: hidden; background-image: linear-gradient(45deg, #bdbdbd 25%, transparent 25%), linear-gradient(-45deg, #bdbdbd 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #bdbdbd 75%), linear-gradient(-45deg, transparent 75%, #bdbdbd 75%); background-size: 20px 20px; background-position: 0 0, 0 10px, 10px -10px, -10px 0px; background-color: #f8f8ff; }
         #editorCanvas { max-width: 100%; max-height: 480px; cursor: crosshair; touch-action: none; display: block; }
         .add-more-btn { width: 50px; height: 50px; background: #eff6ef; color: #00079e; border: 2px solid #667799; border-radius: 50%; font-size: 22px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; margin: 15px 0px 0px 0px; }
         .add-more-btn:hover { background: #fdece5; border-color: #00079e; }
-
-        /* Controls Panel */
         .controls-panel { width: 380px; background: #ffffff; border: 1px solid #667799; border-radius: 12px; padding: 25px 25px 25px 25px; height: fit-content; position: sticky; top: 100px; display: flex; flex-direction: column; }
         .controls-panel h2 { font-size: 24px; font-weight: 900; color: #333333; margin: 0px 0px 5px 0px; }
         .controls-subtitle { font-size: 14px; color: #00079e; background: #eff6ef; padding: 6px 10px 6px 10px; border-radius: 6px; border: 1px solid #667799; margin: 0px 0px 20px 0px; display: inline-block; }
-
-        /* Tabs */
         .tabs-header { display: flex; gap: 0px; margin: 0px 0px 20px 0px; border-bottom: 2px solid #bdbdbd; }
         .tab-btn { flex: 1; background: transparent; border: none; border-bottom: 3px solid transparent; font-size: 13px; font-weight: 700; color: #667799; cursor: pointer; padding: 10px 5px 10px 5px; transition: all 0.3s ease; font-family: 'Lora', serif; margin: 0px 0px -2px 0px; }
         .tab-btn:hover { color: #00079e; }
         .tab-btn.active { color: #00079e; border-bottom: 3px solid #00079e; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-
-        /* Background Tab */
         .bg-mode-wrap { display: flex; gap: 10px; margin: 0px 0px 15px 0px; }
         .bg-mode-btn { flex: 1; padding: 10px 0px 10px 0px; background: #f8f8ff; border: 1px solid #bdbdbd; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 14px; color: #333333; font-family: 'Lora', serif; transition: all 0.3s ease; }
         .bg-mode-btn.active { background: #eff6ef; border-color: #00079e; color: #00079e; }
         .bg-mode-btn:hover { background: #fdece5; border-color: #00079e; }
-
         .color-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 0px 0px 0px 0px; }
         .color-swatch { width: 100%; aspect-ratio: 1 / 1; border-radius: 8px; cursor: pointer; border: 2px solid #bdbdbd; transition: all 0.2s ease; position: relative; }
         .color-swatch:hover { transform: scale(1.1); border-color: #667799; }
@@ -144,30 +130,22 @@
         .swatch-custom { display: flex; align-items: center; justify-content: center; background: #f8f8ff; border: 2px dashed #667799; overflow: hidden; }
         .swatch-custom input[type="color"] { position: absolute; width: 100%; height: 100%; border: none; padding: 0px 0px 0px 0px; cursor: pointer; opacity: 0; }
         .swatch-custom-icon { font-size: 14px; color: #667799; pointer-events: none; }
-
         .upload-bg-area { border: 2px dashed #667799; border-radius: 10px; padding: 20px 15px 20px 15px; text-align: center; cursor: pointer; background: #f8f8ff; transition: all 0.3s ease; margin: 0px 0px 0px 0px; }
         .upload-bg-area:hover { background: #fdece5; border-color: #00079e; }
         .upload-bg-area i { font-size: 28px; color: #00079e; margin: 0px 0px 8px 0px; display: block; }
         .upload-bg-area span { font-size: 14px; font-weight: 700; color: #333333; }
-
-        /* Erase/Restore Tab */
         .tool-mode-wrap { display: flex; gap: 12px; margin: 0px 0px 20px 0px; }
         .tool-btn { flex: 1; padding: 15px 10px 15px 10px; background: #f8f8ff; border: 2px solid #bdbdbd; border-radius: 10px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px; color: #333333; font-family: 'Lora', serif; transition: all 0.3s ease; font-size: 14px; }
         .tool-btn i { font-size: 22px; color: #667799; }
         .tool-btn:hover { background: #fdece5; border-color: #00079e; }
         .tool-btn.active { background: #eff6ef; border-color: #00079e; color: #00079e; }
         .tool-btn.active i { color: #00079e; }
-
         .slider-section { margin: 0px 0px 0px 0px; }
         .slider-section label { font-size: 14px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; margin: 0px 0px 10px 0px; color: #333333; }
         .slider-section label span { color: #00079e; background: #eff6ef; padding: 2px 8px 2px 8px; border-radius: 4px; font-size: 13px; border: 1px solid #667799; }
         input[type="range"] { width: 100%; accent-color: #00079e; cursor: pointer; }
-
-        /* Download Button */
         .download-btn { width: 100%; padding: 16px 0px 16px 0px; background: #eff6ef; color: #00079e; border: 1px solid #667799; border-radius: 50px; font-size: 16px; font-weight: 700; cursor: pointer; margin: 20px 0px 0px 0px; transition: all 0.3s ease; font-family: 'Lora', serif; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .download-btn:hover { background: #fdece5; transform: translateY(-2px); }
-
-        /* Processing Overlay */
         .processing-overlay { position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background: rgba(248,248,255,0.94); display: none; align-items: center; justify-content: center; z-index: 9999; }
         .processing-overlay.active { display: flex; }
         .processing-box { background: #ffffff; border-radius: 20px; padding: 50px 50px 50px 50px; text-align: center; max-width: 480px; width: 90%; border: 1px solid #667799; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
@@ -176,9 +154,7 @@
         .processing-title { font-size: 28px; font-weight: 900; color: #333333; margin: 0px 0px 12px 0px; }
         .processing-title .highlight { background: #00079e; color: #ffffff; padding: 2px 8px 2px 8px; border-radius: 4px; }
         .processing-text { font-size: 14px; color: #00079e; background: #eff6ef; padding: 10px 15px 10px 15px; border-radius: 8px; border: 1px solid #667799; font-weight: 700; line-height: 1.6; }
-
         #footer-placeholder { border: 1px solid #667799 !important; width: 100%; display: block; position: relative; }
-
         @media screen and (max-width: 1024px) {
             .workspace-container.active { flex-direction: column; }
             .controls-panel { width: 100%; position: static; }
@@ -210,18 +186,15 @@
                 </div>
 
                 <div id="workspace" class="workspace-container">
-
-                    <!-- Left: Preview -->
                     <div class="preview-panel">
                         <div class="canvas-wrapper">
                             <canvas id="editorCanvas"></canvas>
                         </div>
-                        <button class="add-more-btn" id="addMoreBtn" title="Upload New Image">
+                        <button class="add-more-btn" id="addMoreBtn">
                             <i class="fas fa-plus"></i>
                         </button>
                     </div>
 
-                    <!-- Right: Controls -->
                     <div class="controls-panel">
                         <h2>Remove Background</h2>
                         <div class="controls-subtitle">Edit Your Image Below</div>
@@ -232,31 +205,28 @@
                             <button class="tab-btn" data-tab="tabAdjust">Adjust</button>
                         </div>
 
-                        <!-- Tab 1: Background -->
                         <div id="tabBackground" class="tab-content active">
                             <div class="bg-mode-wrap">
                                 <button class="bg-mode-btn active" id="btnBgColor">Color</button>
                                 <button class="bg-mode-btn" id="btnBgPhoto">Photo</button>
                             </div>
-
                             <div id="bgColorSection">
                                 <div class="color-grid">
-                                    <div class="color-swatch swatch-transparent active" data-color="transparent" title="Transparent"></div>
-                                    <div class="color-swatch" style="background: #333333;" data-color="#333333"></div>
-                                    <div class="color-swatch" style="background: #00079e;" data-color="#00079e"></div>
-                                    <div class="color-swatch" style="background: #667799;" data-color="#667799"></div>
-                                    <div class="color-swatch" style="background: #fdece5;" data-color="#fdece5"></div>
-                                    <div class="color-swatch" style="background: #eff6ef;" data-color="#eff6ef"></div>
-                                    <div class="color-swatch" style="background: #f8f8ff;" data-color="#f8f8ff"></div>
-                                    <div class="color-swatch" style="background: #ffffff;" data-color="#ffffff"></div>
-                                    <div class="color-swatch" style="background: #bdbdbd;" data-color="#bdbdbd"></div>
-                                    <div class="color-swatch swatch-custom" title="Custom Color">
+                                    <div class="color-swatch swatch-transparent active" data-color="transparent"></div>
+                                    <div class="color-swatch" style="background:#333333;" data-color="#333333"></div>
+                                    <div class="color-swatch" style="background:#00079e;" data-color="#00079e"></div>
+                                    <div class="color-swatch" style="background:#667799;" data-color="#667799"></div>
+                                    <div class="color-swatch" style="background:#fdece5;" data-color="#fdece5"></div>
+                                    <div class="color-swatch" style="background:#eff6ef;" data-color="#eff6ef"></div>
+                                    <div class="color-swatch" style="background:#f8f8ff;" data-color="#f8f8ff"></div>
+                                    <div class="color-swatch" style="background:#ffffff;" data-color="#ffffff"></div>
+                                    <div class="color-swatch" style="background:#bdbdbd;" data-color="#bdbdbd"></div>
+                                    <div class="color-swatch swatch-custom">
                                         <i class="fas fa-palette swatch-custom-icon"></i>
                                         <input type="color" id="customColorInput" value="#ff6600">
                                     </div>
                                 </div>
                             </div>
-
                             <div id="bgPhotoSection" style="display: none;">
                                 <div class="upload-bg-area" id="uploadBgArea">
                                     <i class="fas fa-cloud-upload-alt"></i>
@@ -266,7 +236,6 @@
                             </div>
                         </div>
 
-                        <!-- Tab 2: Erase / Restore -->
                         <div id="tabErase" class="tab-content">
                             <div class="tool-mode-wrap">
                                 <button class="tool-btn active" id="btnErase">
@@ -282,7 +251,6 @@
                             </div>
                         </div>
 
-                        <!-- Tab 3: Adjust -->
                         <div id="tabAdjust" class="tab-content">
                             <div class="slider-section">
                                 <label>Background Blur <span id="blurVal">0</span></label>
@@ -389,8 +357,9 @@
     <script src="../js/ad-manager.js"></script>
     <script src="../js/main.js"></script>
 
-    <script>
-        // ── State ────────────────────────────────────────────────────
+    <script type="module">
+        import { removeBackground } from 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.0/+esm';
+
         let originalImg  = null;
         let fgCanvas     = document.createElement('canvas');
         let fgCtx        = fgCanvas.getContext('2d');
@@ -401,7 +370,6 @@
         let isDrawing    = false;
         let blurValue    = 0;
 
-        // ── DOM ──────────────────────────────────────────────────────
         const uploadArea        = document.getElementById('uploadArea');
         const fileInput         = document.getElementById('fileInput');
         const workspace         = document.getElementById('workspace');
@@ -416,7 +384,6 @@
         const bgPhotoInput      = document.getElementById('bgPhotoInput');
         const customColorInput  = document.getElementById('customColorInput');
 
-        // ── Upload ───────────────────────────────────────────────────
         uploadArea.addEventListener('click',    () => fileInput.click());
         addMoreBtn.addEventListener('click',    resetTool);
         fileInput.addEventListener('change',    e => { if (e.target.files[0]) handleUpload(e.target.files[0]); fileInput.value = ''; });
@@ -430,7 +397,6 @@
             else alert('Please Upload a Valid JPG, PNG or WebP File.');
         });
 
-        // ── Main AI Processing ───────────────────────────────────────
         async function handleUpload(file) {
             processingOverlay.classList.add('active');
             try {
@@ -445,10 +411,9 @@
                 fgCanvas.width      = W;
                 fgCanvas.height     = H;
 
-                const config  = { publicPath: 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.0/dist/' };
-                const fgBlob  = await imglyRemoveBackground(file, config);
-                const fgUrl   = URL.createObjectURL(fgBlob);
-                const fgImg   = new Image();
+                const fgBlob = await removeBackground(file);
+                const fgUrl  = URL.createObjectURL(fgBlob);
+                const fgImg  = new Image();
                 await new Promise((res, rej) => { fgImg.onload = res; fgImg.onerror = rej; fgImg.src = fgUrl; });
 
                 fgCtx.clearRect(0, 0, W, H);
@@ -462,20 +427,17 @@
                 renderCanvas();
             } catch (err) {
                 console.error('BG Removal Error:', err);
-                alert('Error Removing Background. Please Try Another Image.');
+                alert('Error: ' + err.message);
             } finally {
                 processingOverlay.classList.remove('active');
             }
         }
 
-        // ── Render ───────────────────────────────────────────────────
         function renderCanvas() {
             if (!originalImg) return;
             eCtx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
-
             eCtx.save();
             if (blurValue > 0) eCtx.filter = `blur(${blurValue}px)`;
-
             if (bgType === 'color' && bgColor !== 'transparent') {
                 eCtx.fillStyle = bgColor;
                 eCtx.fillRect(0, 0, editorCanvas.width, editorCanvas.height);
@@ -489,7 +451,6 @@
             eCtx.drawImage(fgCanvas, 0, 0);
         }
 
-        // ── Brush Drawing ────────────────────────────────────────────
         function getPos(e) {
             const rect = editorCanvas.getBoundingClientRect();
             const scX  = editorCanvas.width  / rect.width;
@@ -504,7 +465,6 @@
             e.preventDefault();
             const { x, y } = getPos(e);
             const r = parseInt(brushSizeInput.value) * (editorCanvas.width / 600);
-
             if (currentTool === 'erase') {
                 fgCtx.globalCompositeOperation = 'destination-out';
                 fgCtx.beginPath();
@@ -529,7 +489,6 @@
         editorCanvas.addEventListener('touchmove',  applyBrush, { passive: false });
         window.addEventListener('touchend',         () => isDrawing = false);
 
-        // ── Tabs ─────────────────────────────────────────────────────
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', function () {
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -539,7 +498,6 @@
             });
         });
 
-        // ── Background Tab ───────────────────────────────────────────
         document.getElementById('btnBgColor').addEventListener('click', () => switchBgMode('color'));
         document.getElementById('btnBgPhoto').addEventListener('click', () => switchBgMode('photo'));
 
@@ -577,7 +535,6 @@
             bgPhotoImg.src = url;
         });
 
-        // ── Erase / Restore Tab ──────────────────────────────────────
         document.getElementById('btnErase').addEventListener('click',   () => setTool('erase'));
         document.getElementById('btnRestore').addEventListener('click', () => setTool('restore'));
 
@@ -591,14 +548,12 @@
             document.getElementById('brushSizeVal').textContent = brushSizeInput.value;
         });
 
-        // ── Adjust Tab ───────────────────────────────────────────────
         blurInput.addEventListener('input', () => {
             blurValue = parseInt(blurInput.value);
             document.getElementById('blurVal').textContent = blurValue;
             renderCanvas();
         });
 
-        // ── Download ─────────────────────────────────────────────────
         downloadBtn.addEventListener('click', () => {
             const isTransparent = bgType === 'color' && bgColor === 'transparent';
             const ext  = isTransparent ? 'png' : 'jpeg';
@@ -612,7 +567,6 @@
             document.body.removeChild(a);
         });
 
-        // ── Reset ────────────────────────────────────────────────────
         function resetTool() {
             originalImg  = null;
             bgPhotoImg   = null;
