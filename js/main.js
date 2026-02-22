@@ -4,7 +4,7 @@ const RojgarTools = {
     },
 
     async loadComponents() {
-        const isSubFolder = window.location.pathname.includes('/tools/');
+        const isSubFolder = window.location.pathname.includes('/tools/') || window.location.pathname.includes('/legal/');
         const pathPrefix = isSubFolder ? '../' : '';
 
         try {
