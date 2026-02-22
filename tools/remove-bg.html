@@ -296,7 +296,6 @@
                 URL.revokeObjectURL(blobUrl);
 
                 uploadArea.style.display = 'none';
-                heroHeader.style.display = 'none';
                 workspace.classList.add('active');
                 renderCanvas();
             } catch (err) {
@@ -463,7 +462,6 @@
             eCtx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
             workspace.classList.remove('active');
             uploadArea.style.display = 'block';
-            heroHeader.style.display = 'block';
             switchBgMode('color');
             document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
             document.querySelector('.swatch-transparent').classList.add('active');
