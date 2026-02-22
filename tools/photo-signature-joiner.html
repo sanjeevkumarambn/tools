@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo Signature Joiner Online Free - Merge Photo and Signature</title>
-    <meta name="description" content="Photo Signature Joiner Online Free. Merge Photo and Signature into One Image. Set Standard Sizes, Compress to KB. Perfect for Government Forms. JPG PNG Supported.">
+    <meta name="description" content="Photo Signature Joiner Online Free. Merge Photo and Signature into One Image. Crop, Set Standard Sizes, Compress to KB. Perfect for Government Forms. JPG PNG Supported.">
     <meta name="keywords" content="photo signature joiner, merge photo and signature, join photo signature online, photo sign combiner, government form photo signature">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://tools.rojgarsangam.in/tools/photo-signature-joiner.html">
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
 
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Photo Signature Joiner Online Free","url":"https://tools.rojgarsangam.in/tools/photo-signature-joiner.html","description":"Merge Photo and Signature into One Image Online Free.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.rojgarsangam.in/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://tools.rojgarsangam.in/tools/"},{"@type":"ListItem","position":3,"name":"Photo Signature Joiner","item":"https://tools.rojgarsangam.in/tools/photo-signature-joiner.html"}]}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How to Join Photo and Signature?","acceptedAnswer":{"@type":"Answer","text":"Upload your photo and signature, set sizes, choose target KB if needed and click Join Now. Download the merged image instantly."}},{"@type":"Question","name":"Which Sizes Are Available for Photo?","acceptedAnswer":{"@type":"Answer","text":"Passport Photo, UPSC/SSC/Bank Photo, Railway/Police Photo, Stamp Size, Custom Size and Original Size are available."}},{"@type":"Question","name":"Is My Image Safe?","acceptedAnswer":{"@type":"Answer","text":"Yes, all processing happens locally in your browser. Your images never leave your device."}},{"@type":"Question","name":"Can I Compress the Joined Image to a Specific KB?","acceptedAnswer":{"@type":"Answer","text":"Yes, select a target KB from the buttons or enter a custom value. The tool auto-adjusts quality to match your target."}}]}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to Join Photo and Signature Online","step":[{"@type":"HowToStep","position":1,"name":"Upload Photo","text":"Click Upload and select your photo."},{"@type":"HowToStep","position":2,"name":"Upload Signature","text":"Click Upload and select your signature image."},{"@type":"HowToStep","position":3,"name":"Set Sizes","text":"Choose photo size, signature size and target file size."},{"@type":"HowToStep","position":4,"name":"Download","text":"Click Join Now and download the merged image."}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How to Join Photo and Signature?","acceptedAnswer":{"@type":"Answer","text":"Upload your photo and signature, crop if needed, set sizes, choose target KB if needed and click Join Now."}},{"@type":"Question","name":"Which Sizes Are Available for Photo?","acceptedAnswer":{"@type":"Answer","text":"Passport Photo, UPSC/SSC/Bank Photo, Railway/Police Photo, Stamp Size, Custom Size and Original Size are available."}},{"@type":"Question","name":"Is My Image Safe?","acceptedAnswer":{"@type":"Answer","text":"Yes, all processing happens locally in your browser. Your images never leave your device."}},{"@type":"Question","name":"Can I Crop Photo Before Joining?","acceptedAnswer":{"@type":"Answer","text":"Yes, after uploading the photo or signature a crop tool opens automatically. You can crop and then proceed."}}]}</script>
 
     <style>
         body{font-family:'Lora',serif!important;background:#f8f8ff;color:#333}
@@ -32,11 +32,12 @@
         .upload-box-sub{font-size:12px;color:#667799;margin:0px 0px 0px 0px}
         .upload-thumb{width:100%;max-height:140px;object-fit:contain;border-radius:6px;margin:10px 0px 0px 0px;display:none}
         .upload-badge{display:none;background:#eff6ef;border:1px solid #667799;border-radius:6px;padding:4px 8px 4px 8px;font-size:11px;font-weight:700;color:#00079e;margin:8px 0px 0px 0px}
+        .recrop-btn{display:none;margin:8px 0px 0px 0px;padding:6px 14px 6px 14px;background:#fff;border:2px solid #00079e;border-radius:20px;font-size:12px;font-weight:700;color:#00079e;cursor:pointer;font-family:'Lora',serif;transition:all .2s}
+        .recrop-btn:hover{background:#eff6ef}
 
         .settings-wrapper{background:#f8f8ff;border:1px solid #667799;border-radius:14px;padding:24px 24px 24px 24px;margin:0px 0px 0px 0px}
         .settings-title{font-size:16px;font-weight:900;color:#333;margin:0px 0px 18px 0px;display:flex;align-items:center;gap:8px}
         .settings-title i{color:#00079e}
-
         .settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:0px 0px 20px 0px}
         .form-group{margin:0px 0px 0px 0px}
         .form-group label{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:#333;margin:0px 0px 8px 0px}
@@ -45,13 +46,10 @@
         .form-select:focus{outline:none;border-color:#00079e}
         .form-input{width:100%;padding:10px 12px 10px 12px;border:2px solid #bdbdbd;border-radius:8px;font-size:13px;font-family:'Lora',serif;color:#333;background:#fff;box-sizing:border-box;transition:border .2s}
         .form-input:focus{outline:none;border-color:#00079e;background:#fff}
-
         .custom-row{display:none;margin:10px 0px 0px 0px}
         .custom-row-inner{display:flex;gap:10px}
-        .custom-row-inner .form-input{margin:0px 0px 0px 0px}
 
         .divider{height:1px;background:#bdbdbd;margin:20px 0px 20px 0px}
-
         .gap-options{display:flex;gap:8px;flex-wrap:wrap;margin:0px 0px 0px 0px}
         .gap-btn{padding:8px 14px 8px 14px;background:#f8f8ff;border:2px solid #bdbdbd;border-radius:8px;font-size:13px;font-weight:700;color:#333;cursor:pointer;font-family:'Lora',serif;transition:all .2s}
         .gap-btn:hover,.gap-btn.active{background:#eff6ef;border-color:#00079e;color:#00079e}
@@ -82,7 +80,6 @@
         .stat-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px 10px 14px;background:#f8f8ff;border:1px solid #bdbdbd;border-radius:8px}
         .stat-label{font-size:12px;color:#667799;font-weight:700}
         .stat-value{font-size:12px;color:#00079e;font-weight:700}
-
         .download-btn{width:100%;padding:16px 0px 16px 0px;background:#eff6ef;color:#00079e;border:1px solid #667799;border-radius:50px;font-size:16px;font-weight:700;cursor:pointer;transition:all .3s;font-family:'Lora',serif;display:flex;align-items:center;justify-content:center;gap:8px}
         .download-btn:hover{background:#fdece5;transform:translateY(-2px)}
         .reset-btn{width:100%;padding:12px 0px 12px 0px;background:#f8f8ff;color:#667799;border:1px solid #bdbdbd;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;margin:10px 0px 0px 0px;transition:all .3s;font-family:'Lora',serif;display:flex;align-items:center;justify-content:center;gap:8px}
@@ -91,7 +88,23 @@
         .error-msg{display:none;background:#fdece5;border:1px solid #e53935;border-radius:8px;padding:10px 16px 10px 16px;font-size:13px;font-weight:700;color:#e53935;margin:0px 0px 16px 0px}
         .error-msg.show{display:block}
 
-        .processing-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(248,248,255,0.95);display:none;align-items:center;justify-content:center;z-index:9999}
+        .crop-modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px 20px 20px 20px;box-sizing:border-box}
+        .crop-modal-overlay.active{display:flex}
+        .crop-modal{background:#fff;border-radius:20px;padding:28px 28px 28px 28px;max-width:640px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0px 20px 60px rgba(0,0,0,0.4)}
+        .crop-modal-header{display:flex;align-items:center;justify-content:space-between;margin:0px 0px 18px 0px}
+        .crop-modal-title{font-size:20px;font-weight:900;color:#333}
+        .crop-modal-close{width:36px;height:36px;background:#f8f8ff;border:1px solid #bdbdbd;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:#667799;transition:all .2s}
+        .crop-modal-close:hover{background:#fdece5;color:#e53935;border-color:#e53935}
+        .crop-modal-hint{font-size:13px;color:#667799;background:#eff6ef;border:1px solid #667799;border-radius:8px;padding:8px 14px 8px 14px;margin:0px 0px 16px 0px}
+        .crop-img-wrap{width:100%;max-height:400px;overflow:hidden;border-radius:10px;border:1px solid #bdbdbd;background:#333}
+        .crop-img-wrap img{display:block;max-width:100%}
+        .crop-modal-actions{display:flex;gap:12px;margin:18px 0px 0px 0px}
+        .crop-apply-btn{flex:1;padding:14px 0px 14px 0px;background:#00079e;color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Lora',serif;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px}
+        .crop-apply-btn:hover{background:#333}
+        .crop-skip-btn{flex:1;padding:14px 0px 14px 0px;background:#f8f8ff;color:#667799;border:2px solid #bdbdbd;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Lora',serif;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px}
+        .crop-skip-btn:hover{background:#fdece5;color:#00079e;border-color:#00079e}
+
+        .processing-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(248,248,255,0.95);display:none;align-items:center;justify-content:center;z-index:8888}
         .processing-overlay.active{display:flex}
         .processing-box{background:#fff;border-radius:20px;padding:50px 50px 50px 50px;text-align:center;max-width:420px;width:90%;border:1px solid #667799;box-shadow:0px 20px 60px rgba(0,0,0,0.15)}
         .processing-icon{font-size:60px;color:#00079e;margin:0px 0px 20px 0px;animation:spin 1s linear infinite}
@@ -107,6 +120,7 @@
             .upload-grid{grid-template-columns:1fr}
             .settings-grid{grid-template-columns:1fr}
             .kb-grid{grid-template-columns:repeat(3,1fr)}
+            .crop-modal-actions{flex-direction:column}
         }
     </style>
 </head>
@@ -124,37 +138,36 @@
 
             <div style="text-align:center;margin:0px 0px 30px 0px">
                 <h1 style="font-size:36px;font-weight:900;color:#333;margin:0px 0px 10px 0px">Photo Signature Joiner Online Free</h1>
-                <p style="font-size:16px;color:#333;margin:0px 0px 0px 0px">Merge Photo and Signature into One Image. Set Standard Sizes, Compress to Exact KB. Perfect for Government Forms and Applications.</p>
+                <p style="font-size:16px;color:#333;margin:0px 0px 0px 0px">Upload, Crop, Merge Photo and Signature into One Image. Set Standard Sizes, Compress to Exact KB. Perfect for Government Forms.</p>
             </div>
 
             <div class="tool-wrapper">
 
                 <div id="errorMsg" class="error-msg"><i class="fas fa-exclamation-circle"></i> <span id="errorText"></span></div>
 
-                <!-- UPLOAD GRID -->
                 <div class="upload-grid">
                     <div class="upload-box" id="photoBox">
                         <div class="upload-box-icon"><i class="fas fa-portrait"></i></div>
                         <div class="upload-box-title">Upload Photo</div>
-                        <div class="upload-box-sub">JPG, PNG, WebP</div>
+                        <div class="upload-box-sub">JPG, PNG, WebP — Click to Crop after Upload</div>
                         <img id="photoThumb" class="upload-thumb" alt="Photo Preview">
                         <div id="photoBadge" class="upload-badge"></div>
+                        <button class="recrop-btn" id="photoRecrop"><i class="fas fa-crop-alt"></i> Re-Crop</button>
                         <input type="file" id="photoInput" accept="image/jpeg,image/png,image/webp" style="display:none">
                     </div>
                     <div class="upload-box" id="signBox">
                         <div class="upload-box-icon"><i class="fas fa-pen-nib"></i></div>
                         <div class="upload-box-title">Upload Signature</div>
-                        <div class="upload-box-sub">JPG, PNG, WebP</div>
+                        <div class="upload-box-sub">JPG, PNG, WebP — Click to Crop after Upload</div>
                         <img id="signThumb" class="upload-thumb" alt="Signature Preview">
                         <div id="signBadge" class="upload-badge"></div>
+                        <button class="recrop-btn" id="signRecrop"><i class="fas fa-crop-alt"></i> Re-Crop</button>
                         <input type="file" id="signInput" accept="image/jpeg,image/png,image/webp" style="display:none">
                     </div>
                 </div>
 
-                <!-- SETTINGS -->
                 <div class="settings-wrapper">
                     <div class="settings-title"><i class="fas fa-sliders-h"></i> Size & Output Settings</div>
-
                     <div class="settings-grid">
                         <div>
                             <div class="form-group" style="margin:0px 0px 14px 0px">
@@ -180,7 +193,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div>
                             <div class="form-group" style="margin:0px 0px 14px 0px">
                                 <label><i class="fas fa-pen-nib"></i> Signature Size</label>
@@ -236,7 +248,6 @@
                     <i class="fas fa-link"></i> Join Now
                 </button>
 
-                <!-- RESULT -->
                 <div id="resultSection" class="result-container">
                     <div class="result-canvas-wrap">
                         <canvas id="outputCanvas"></canvas>
@@ -270,8 +281,8 @@
         <div class="row-container">
             <h2 style="font-weight:900;margin:0px 0px 25px 0px!important;text-align:center!important;color:#333">How to Join Photo and Signature Online</h2>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin:0px 0px 0px 0px">
-                <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px 24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-portrait"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 1: Upload Photo</div><div style="font-size:13px;color:#667799">Click the photo box and upload your passport or form photo.</div></div>
-                <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px 24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-pen-nib"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 2: Upload Signature</div><div style="font-size:13px;color:#667799">Click the signature box and upload your scanned signature.</div></div>
+                <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px 24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-portrait"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 1: Upload Photo</div><div style="font-size:13px;color:#667799">Click the photo box, upload your photo and crop it instantly if needed.</div></div>
+                <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px 24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-pen-nib"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 2: Upload Signature</div><div style="font-size:13px;color:#667799">Upload your signature image and crop it to fit perfectly.</div></div>
                 <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px 24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-sliders-h"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 3: Set Sizes</div><div style="font-size:13px;color:#667799">Choose photo and signature sizes. Set gap and target file size in KB if needed.</div></div>
                 <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:24px 20px 24px 20px;text-align:center"><div style="font-size:36px;color:#00079e;margin:0px 0px 12px 0px"><i class="fas fa-download"></i></div><div style="font-size:16px;font-weight:700;color:#333;margin:0px 0px 8px 0px">Step 4: Download</div><div style="font-size:13px;color:#667799">Click Join Now, preview the result and download as JPG.</div></div>
             </div>
@@ -282,11 +293,11 @@
         <div class="row-container">
             <h2 style="font-weight:900;margin:0px 0px 25px 0px!important;text-align:center!important;color:#333">Frequently Asked Questions</h2>
             <div class="faq-list">
-                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>How to Join Photo and Signature Online?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Upload your photo and signature, set the required sizes, choose a target file size in KB if needed and click Join Now. Download the merged image instantly.</p></div></div>
+                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>How to Join Photo and Signature Online?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Upload your photo and signature, crop if needed, set the required sizes, choose a target file size in KB if needed and click Join Now.</p></div></div>
+                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Can I Crop Photo Before Joining?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Yes, after uploading the photo or signature a crop tool opens automatically. You can adjust the crop area and apply. You can also re-crop anytime using the Re-Crop button.</p></div></div>
                 <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Which Photo Sizes Are Available?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Passport Photo, UPSC/SSC/Bank Photo, Railway/Police Photo, Stamp Size, Custom Size and Original Size are available for standard government form requirements.</p></div></div>
                 <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Can I Compress the Joined Image to a Specific KB?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Yes, select a target file size like 20KB, 50KB or 100KB from the buttons or enter a custom KB value. The tool automatically adjusts quality to match your target size.</p></div></div>
                 <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Is My Photo and Signature Safe?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Yes, all processing happens locally in your browser. Your photos and signatures are never uploaded to any server and remain completely private on your device.</p></div></div>
-                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Can I Use This for Government Form Applications?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Yes, this tool is specifically designed for government and job application forms that require a separate photo and signature merged into one single image file.</p></div></div>
             </div>
         </div>
     </section>
@@ -296,6 +307,24 @@
             <div class="ad-manager-placeholder" data-ad-type="responsive"></div>
         </div>
     </section>
+
+    <!-- CROP MODAL -->
+    <div id="cropModal" class="crop-modal-overlay">
+        <div class="crop-modal">
+            <div class="crop-modal-header">
+                <div class="crop-modal-title" id="cropModalTitle">Crop Image</div>
+                <div class="crop-modal-close" id="cropModalClose"><i class="fas fa-times"></i></div>
+            </div>
+            <div class="crop-modal-hint"><i class="fas fa-info-circle"></i> Drag to move, use handles to resize the crop area. Click Apply Crop when done.</div>
+            <div class="crop-img-wrap">
+                <img id="cropImage" src="" alt="Crop Preview">
+            </div>
+            <div class="crop-modal-actions">
+                <button class="crop-apply-btn" id="cropApplyBtn"><i class="fas fa-check"></i> Apply Crop</button>
+                <button class="crop-skip-btn" id="cropSkipBtn"><i class="fas fa-forward"></i> Skip Crop</button>
+            </div>
+        </div>
+    </div>
 
     <div id="processingOverlay" class="processing-overlay">
         <div class="processing-box">
@@ -308,12 +337,17 @@
     <div id="footer-placeholder"></div>
     <script src="../js/ad-manager.js"></script>
     <script src="../js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
 
     <script>
     let photoImg   = null;
     let signImg    = null;
     let selectedKB = null;
     let gapValue   = 0;
+
+    let cropperInstance  = null;
+    let cropTarget       = null;
+    let cropOriginalSrc  = null;
 
     const errorMsg  = document.getElementById('errorMsg');
     const errorText = document.getElementById('errorText');
@@ -327,49 +361,105 @@
     }
     function b64KB(b64) { return (b64.split(',')[1].length * 0.75) / 1024; }
 
-    function loadImgFile(file) {
-        return new Promise((res, rej) => {
-            const reader  = new FileReader();
-            reader.onload = ev => {
-                const img  = new Image();
-                img.onload = () => res(img);
-                img.onerror = rej;
-                img.src    = ev.target.result;
-            };
-            reader.readAsDataURL(file);
+    function imgFromSrc(src) {
+        return new Promise(res => {
+            const img  = new Image();
+            img.onload = () => res(img);
+            img.src    = src;
         });
     }
 
-    function setupUploadBox(boxId, inputId, thumbId, badgeId, onLoad) {
+    function openCropModal(src, title, onApply, onSkip) {
+        cropOriginalSrc = src;
+        document.getElementById('cropModalTitle').textContent = title;
+        const cropImg = document.getElementById('cropImage');
+        cropImg.src   = src;
+        document.getElementById('cropModal').classList.add('active');
+
+        if (cropperInstance) { cropperInstance.destroy(); cropperInstance = null; }
+        cropperInstance = new Cropper(cropImg, {
+            viewMode: 1,
+            autoCropArea: 0.9,
+            movable: true,
+            zoomable: true,
+            scalable: false,
+            rotatable: false,
+            responsive: true
+        });
+
+        document.getElementById('cropApplyBtn').onclick = () => {
+            const canvas = cropperInstance.getCroppedCanvas({ imageSmoothingEnabled: true, imageSmoothingQuality: 'high' });
+            const croppedSrc = canvas.toDataURL('image/jpeg', 0.95);
+            closeCropModal();
+            onApply(croppedSrc);
+        };
+        document.getElementById('cropSkipBtn').onclick = () => {
+            closeCropModal();
+            onSkip(src);
+        };
+        document.getElementById('cropModalClose').onclick = () => {
+            closeCropModal();
+            onSkip(src);
+        };
+    }
+
+    function closeCropModal() {
+        document.getElementById('cropModal').classList.remove('active');
+        if (cropperInstance) { cropperInstance.destroy(); cropperInstance = null; }
+    }
+
+    async function applyImageResult(finalSrc, thumbId, badgeId, boxId, recropBtnId, assignFn) {
+        const img = await imgFromSrc(finalSrc);
+        assignFn(img);
+        const thumb           = document.getElementById(thumbId);
+        thumb.src             = finalSrc;
+        thumb.style.display   = 'block';
+        const badge           = document.getElementById(badgeId);
+        badge.textContent     = img.naturalWidth + '×' + img.naturalHeight + ' px';
+        badge.style.display   = 'block';
+        document.getElementById(boxId).classList.add('has-file');
+        document.getElementById(recropBtnId).style.display = 'inline-block';
+    }
+
+    function setupUpload(boxId, inputId, thumbId, badgeId, recropBtnId, modalTitle, assignFn) {
         const box   = document.getElementById(boxId);
         const input = document.getElementById(inputId);
-        const thumb = document.getElementById(thumbId);
-        const badge = document.getElementById(badgeId);
 
-        box.addEventListener('click', () => input.click());
+        const handleFile = file => {
+            if (!/^image\/(jpeg|png|webp)$/.test(file.type)) { alert('Please Upload a Valid JPG, PNG or WebP File.'); return; }
+            const reader  = new FileReader();
+            reader.onload = ev => {
+                openCropModal(ev.target.result, modalTitle,
+                    async croppedSrc => { await applyImageResult(croppedSrc, thumbId, badgeId, boxId, recropBtnId, assignFn); },
+                    async originalSrc => { await applyImageResult(originalSrc, thumbId, badgeId, boxId, recropBtnId, assignFn); }
+                );
+            };
+            reader.readAsDataURL(file);
+        };
+
+        box.addEventListener('click',    e => { if (e.target.closest('.recrop-btn')) return; input.click(); });
+        input.addEventListener('change', e => { if (e.target.files[0]) handleFile(e.target.files[0]); input.value = ''; });
         box.addEventListener('dragover',  e => { e.preventDefault(); box.classList.add('dragover'); });
         box.addEventListener('dragleave', () => box.classList.remove('dragover'));
         box.addEventListener('drop', e => {
             e.preventDefault(); box.classList.remove('dragover');
             const f = Array.from(e.dataTransfer.files).find(f => /^image\/(jpeg|png|webp)$/.test(f.type));
-            if (f) processFile(f);
+            if (f) handleFile(f);
         });
-        input.addEventListener('change', e => { if (e.target.files[0]) processFile(e.target.files[0]); input.value = ''; });
 
-        async function processFile(file) {
-            const img    = await loadImgFile(file);
-            const sizeKB = file.size / 1024;
-            thumb.src            = img.src;
-            thumb.style.display  = 'block';
-            badge.textContent    = fmtKB(sizeKB) + ' — ' + img.naturalWidth + '×' + img.naturalHeight + ' px';
-            badge.style.display  = 'block';
-            box.classList.add('has-file');
-            onLoad(img);
-        }
+        document.getElementById(recropBtnId).addEventListener('click', e => {
+            e.stopPropagation();
+            const currentSrc = document.getElementById(thumbId).src;
+            if (!currentSrc) return;
+            openCropModal(currentSrc, modalTitle,
+                async croppedSrc => { await applyImageResult(croppedSrc, thumbId, badgeId, boxId, recropBtnId, assignFn); },
+                async originalSrc => { await applyImageResult(originalSrc, thumbId, badgeId, boxId, recropBtnId, assignFn); }
+            );
+        });
     }
 
-    setupUploadBox('photoBox', 'photoInput', 'photoThumb', 'photoBadge', img => { photoImg = img; });
-    setupUploadBox('signBox',  'signInput',  'signThumb',  'signBadge',  img => { signImg  = img; });
+    setupUpload('photoBox', 'photoInput', 'photoThumb', 'photoBadge', 'photoRecrop', 'Crop Photo',     img => { photoImg = img; });
+    setupUpload('signBox',  'signInput',  'signThumb',  'signBadge',  'signRecrop',  'Crop Signature', img => { signImg  = img; });
 
     document.getElementById('photoSize').addEventListener('change', function () {
         document.getElementById('photoCustomRow').style.display = this.value === 'custom' ? 'block' : 'none';
@@ -417,18 +507,15 @@
         if (!photoImg) { showError('Please upload a Photo.'); return; }
         if (!signImg)  { showError('Please upload a Signature.'); return; }
 
-        const photoSizeVal = document.getElementById('photoSize').value;
-        const signSizeVal  = document.getElementById('signSize').value;
-
-        if (photoSizeVal === 'custom') {
-            const pw = parseInt(document.getElementById('photoCustomW').value);
-            const ph = parseInt(document.getElementById('photoCustomH').value);
-            if (!pw || !ph) { showError('Please enter Custom Width and Height for Photo.'); return; }
+        if (document.getElementById('photoSize').value === 'custom') {
+            if (!parseInt(document.getElementById('photoCustomW').value) || !parseInt(document.getElementById('photoCustomH').value)) {
+                showError('Please enter Custom Width and Height for Photo.'); return;
+            }
         }
-        if (signSizeVal === 'custom') {
-            const sw = parseInt(document.getElementById('signCustomW').value);
-            const sh = parseInt(document.getElementById('signCustomH').value);
-            if (!sw || !sh) { showError('Please enter Custom Width and Height for Signature.'); return; }
+        if (document.getElementById('signSize').value === 'custom') {
+            if (!parseInt(document.getElementById('signCustomW').value) || !parseInt(document.getElementById('signCustomH').value)) {
+                showError('Please enter Custom Width and Height for Signature.'); return;
+            }
         }
 
         document.getElementById('processingOverlay').classList.add('active');
@@ -441,7 +528,7 @@
             const canvasW = Math.max(pDims.w, sDims.w);
             const canvasH = pDims.h + gapValue + sDims.h;
 
-            const outputCanvas = document.getElementById('outputCanvas');
+            const outputCanvas  = document.getElementById('outputCanvas');
             outputCanvas.width  = canvasW;
             outputCanvas.height = canvasH;
             const ctx = outputCanvas.getContext('2d');
@@ -480,8 +567,8 @@
 
             const newSizeKB = b64KB(dataURL);
 
-            document.getElementById('outSize').textContent  = fmtKB(newSizeKB);
-            document.getElementById('outDims').textContent  = canvasW + '×' + canvasH + ' px';
+            document.getElementById('outSize').textContent   = fmtKB(newSizeKB);
+            document.getElementById('outDims').textContent   = canvasW + '×' + canvasH + ' px';
             document.getElementById('statPhoto').textContent = pDims.w + '×' + pDims.h + ' px';
             document.getElementById('statSign').textContent  = sDims.w + '×' + sDims.h + ' px';
             document.getElementById('statDims').textContent  = canvasW + '×' + canvasH + ' px';
@@ -508,13 +595,10 @@
     });
 
     document.getElementById('joinAgainBtn').addEventListener('click', () => {
-        photoImg   = null;
-        signImg    = null;
-        selectedKB = null;
-        gapValue   = 0;
-
+        photoImg = null; signImg = null; selectedKB = null; gapValue = 0;
         ['photoThumb','signThumb'].forEach(id => { const el = document.getElementById(id); el.style.display='none'; el.src=''; });
         ['photoBadge','signBadge'].forEach(id => { const el = document.getElementById(id); el.style.display='none'; el.textContent=''; });
+        ['photoRecrop','signRecrop'].forEach(id => { document.getElementById(id).style.display='none'; });
         ['photoBox','signBox'].forEach(id => document.getElementById(id).classList.remove('has-file'));
         document.getElementById('photoSize').value  = 'original';
         document.getElementById('signSize').value   = 'original';
