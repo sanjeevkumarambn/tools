@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/mammoth@1.6.0/mammoth.browser.min.js"></script>
+    <script src="https://unpkg.com/textract@2.5.0/lib/textract.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-
     <!-- WebApplication Schema -->
     <script type="application/ld+json">
     {
@@ -39,7 +39,6 @@
       ]
     }
     </script>
-
     <!-- BreadcrumbList Schema -->
     <script type="application/ld+json">
     {
@@ -67,7 +66,6 @@
       ]
     }
     </script>
-
     <!-- FAQPage Schema -->
     <script type="application/ld+json">
     {
@@ -117,7 +115,6 @@
       ]
     }
     </script>
-
     <!-- HowTo Schema -->
     <script type="application/ld+json">
     {
@@ -153,7 +150,6 @@
       ]
     }
     </script>
-
     <style>
         body { font-family: 'Lora', serif !important; background: #f8f8ff; color: #333333; }
         #header-placeholder { background-color: #ffffff !important; width: 100%; display: block; position: relative; z-index: 1000; }
@@ -412,8 +408,25 @@
 
             try {
                 const arrayBuffer = await currentFile.arrayBuffer();
-                const result      = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
-                const htmlContent = result.value || '';
+                let htmlContent   = '';
+
+                // DOCX format - Mammoth use karo
+                if (currentFile.name.toLowerCase().endsWith('.docx')) {
+                    const result = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
+                    htmlContent  = result.value || '';
+                }
+                // DOC format - Plain text extract karo
+                else if (currentFile.name.toLowerCase().endsWith('.doc')) {
+                    const decoder  = new TextDecoder('windows-1252');
+                    const rawText  = decoder.decode(arrayBuffer);
+                    const cleaned  = rawText.replace(/[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g, '');
+                    const lines    = cleaned.split(/[\r\n]+/).filter(l => l.trim().length > 0);
+                    htmlContent    = lines.map(line => `<p>${line.trim()}</p>`).join('');
+                }
+
+                if (!htmlContent || htmlContent.trim().length === 0) {
+                    throw new Error('Unable to extract text from document');
+                }
 
                 const parser  = new DOMParser();
                 const htmlDoc = parser.parseFromString(htmlContent, 'text/html');
@@ -522,7 +535,7 @@
 
             } catch (error) {
                 console.error('Conversion Error:', error);
-                alert('Error Converting Document. Please Ensure it is a Valid DOCX File.');
+                alert('Error Converting Document. Please Ensure it is a Valid DOC or DOCX File.');
                 processingOverlay.classList.remove('active');
             }
         }
