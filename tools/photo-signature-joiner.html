@@ -371,18 +371,9 @@
             const signAreaH=Math.round(canvasH*0.20);
             const photoAreaH=canvasH-signAreaH;
 
-            const tb=getTrimmedBounds(signImg);
-            const padding=Math.round(signAreaH*0.08);
-            const maxSW=canvasW-(padding*2);
-            const maxSH=signAreaH-(padding*2);
 
-            let sW=tb.w;
-            let sH=tb.h;
             if(sW>maxSW){sH=Math.round(sH*(maxSW/sW));sW=maxSW;}
             if(sH>maxSH){sW=Math.round(sW*(maxSH/sH));sH=maxSH;}
-
-            const sX=Math.round((canvasW-sW)/2);
-            const sY=photoAreaH+Math.round((signAreaH-sH)/2);
 
             const canvas=document.getElementById('outputCanvas');
             canvas.width=canvasW;canvas.height=canvasH;
@@ -393,7 +384,7 @@
             ctx.drawImage(photoImg,0,0,canvasW,photoAreaH);
             ctx.fillStyle='#ffffff';
             ctx.fillRect(0,photoAreaH,canvasW,signAreaH);
-            ctx.drawImage(signImg,tb.x,tb.y,tb.w,tb.h,sX,sY,sW,sH);
+            ctx.drawImage(signImg, 0, photoAreaH, canvasW, signAreaH);
 
             ctx.strokeStyle='#00079e';
             ctx.lineWidth=borderSize;
