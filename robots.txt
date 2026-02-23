@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Allow: /css/
-Allow: /js/
-
+Disallow: /404.html
 Sitemap: https://tools.rojgarsangam.in/sitemap.xml
