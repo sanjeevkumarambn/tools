@@ -1,3 +1,6 @@
+# This file is automatically added by Rojgar Sangam to help a website index better
+# More info: https://rojgarsangam.in/
+# More info: https://tools.rojgarsangam.in/
 User-agent: *
 Allow: /
 Disallow: /404.html
