@@ -4,6 +4,7 @@ const RojgarTools = {
         this.injectSchema();
         this.loadComponents();
     },
+    
     injectMeta() {
         const image = 'https://tools.rojgarsangam.in/rojgar-sangam-online-tools.webp';
         const url = window.location.href;
