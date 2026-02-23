@@ -15,12 +15,12 @@ const RojgarTools = {
         favicon.rel = 'icon';
         favicon.type = 'image/png';
         favicon.sizes = '512x512';
-        favicon.href = '/RGSG-Avtar.png';
+        favicon.href = 'https://tools.rojgarsangam.in//RGSG-Avtar.png';
         document.head.appendChild(favicon);
 
         const appleFavicon = document.createElement('link');
         appleFavicon.rel = 'apple-touch-icon';
-        appleFavicon.href = '/RGSG-Avtar.png';
+        appleFavicon.href = 'https://tools.rojgarsangam.in//RGSG-Avtar.png';
         document.head.appendChild(appleFavicon);
 
         const ogTags = [
@@ -85,7 +85,7 @@ const RojgarTools = {
                 "@type": "Organization",
                 "name": "Rojgar Sangam Tools",
                 "url": base + "/",
-                "logo": base + "/rojgar-sangam-logo.png",
+                "logo": base + "https://tools.rojgarsangam.in/rojgar-sangam-logo.png",
                 "sameAs": ["https://rojgarsangam.in/"]
             },
             {
@@ -104,7 +104,7 @@ const RojgarTools = {
                     "url": base + "/",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": base + "/rojgar-sangam-logo.png"
+                        "url": base + "https://tools.rojgarsangam.in/rojgar-sangam-logo.png"
                     }
                 }
             },
