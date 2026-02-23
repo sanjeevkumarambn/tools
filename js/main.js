@@ -4,8 +4,14 @@ const RojgarTools = {
     },
 
     async loadComponents() {
-        const isSubFolder = window.location.pathname.includes('/tools/') || window.location.pathname.includes('/legal/');
-        const pathPrefix = isSubFolder ? '../' : '';
+        const pathname = window.location.pathname;
+
+        let pathPrefix = '';
+        if (pathname.includes('/tools/') || pathname.includes('/legal/')) {
+            pathPrefix = '../';
+        } else {
+            pathPrefix = '';
+        }
 
         try {
             const headerRes = await fetch(pathPrefix + 'components/header.html');
@@ -64,6 +70,7 @@ const RojgarTools = {
         const i = Math.floor(Math.log(bytes) / Math.log(k));
         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
     },
+
     readFile(file) {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -73,8 +80,10 @@ const RojgarTools = {
         });
     }
 };
-    function toggleFAQ(element) {
-        const faqItem = element.parentElement;
-        faqItem.classList.toggle('active');
-    }
+
+function toggleFAQ(element) {
+    const faqItem = element.parentElement;
+    faqItem.classList.toggle('active');
+}
+
 document.addEventListener('DOMContentLoaded', () => RojgarTools.init());
