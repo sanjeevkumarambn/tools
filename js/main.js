@@ -7,7 +7,6 @@ const RojgarTools = {
     },
     injectCSS() {
         [
-            'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap',
             'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css'
         ].forEach(href => {
             const link = document.createElement('link');
