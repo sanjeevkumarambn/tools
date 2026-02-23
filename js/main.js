@@ -1,9 +1,38 @@
 const RojgarTools = {
     init() {
+        this.injectCSS();
         this.injectMeta();
         this.injectSchema();
         this.loadComponents();
     },
+
+    injectCSS() {
+        [
+            { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+            { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
+            { rel: 'preconnect', href: 'https://cdnjs.cloudflare.com' }
+        ].forEach(({ rel, href, crossorigin }) => {
+            const link = document.createElement('link');
+            link.rel = rel;
+            link.href = href;
+            if (crossorigin) link.crossOrigin = 'anonymous';
+            document.head.appendChild(link);
+        });
+
+        [
+            '/css/style.css',
+            'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap',
+            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css'
+        ].forEach(href => {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = href;
+            link.media = 'print';
+            link.onload = function() { this.media = 'all'; };
+            document.head.appendChild(link);
+        });
+    },
+
     injectMeta() {
         const image = 'https://tools.rojgarsangam.in/rojgar-sangam-online-tools.jpg';
         const url = window.location.href;
@@ -155,8 +184,10 @@ const RojgarTools = {
         });
     }
 };
+
 function toggleFAQ(element) {
     const faqItem = element.parentElement;
     faqItem.classList.toggle('active');
 }
+
 document.addEventListener('DOMContentLoaded', () => RojgarTools.init());
