@@ -10,6 +10,18 @@ const RojgarTools = {
         const title = document.title;
         const description = document.querySelector('meta[name="description"]')?.content || '';
 
+        const favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        favicon.type = 'image/png';
+        favicon.sizes = '512x512';
+        favicon.href = '/RGSG-Avtar.png';
+        document.head.appendChild(favicon);
+
+        const appleFavicon = document.createElement('link');
+        appleFavicon.rel = 'apple-touch-icon';
+        appleFavicon.href = '/RGSG-Avtar.png';
+        document.head.appendChild(appleFavicon);
+
         const ogTags = [
             { property: 'og:type', content: 'website' },
             { property: 'og:url', content: url },
@@ -143,10 +155,8 @@ const RojgarTools = {
         });
     }
 };
-
 function toggleFAQ(element) {
     const faqItem = element.parentElement;
     faqItem.classList.toggle('active');
 }
-
 document.addEventListener('DOMContentLoaded', () => RojgarTools.init());
