@@ -1,24 +1,87 @@
 const RojgarTools = {
     init() {
+        this.injectMeta();
+        this.injectSchema();
         this.loadComponents();
+    },
+    injectMeta() {
+        const image = 'https://tools.rojgarsangam.in/rojgar-sangam-online-tools.jpg';
+        const url = window.location.href;
+        const title = document.title;
+        const description = document.querySelector('meta[name="description"]')?.content || '';
+
+        const ogTags = [
+            { property: 'og:type', content: 'website' },
+            { property: 'og:url', content: url },
+            { property: 'og:title', content: title },
+            { property: 'og:description', content: description },
+            { property: 'og:image', content: image },
+            { property: 'og:image:width', content: '1200' },
+            { property: 'og:image:height', content: '630' },
+            { property: 'og:site_name', content: 'Rojgar Sangam Tools' },
+            { name: 'twitter:card', content: 'summary_large_image' },
+            { name: 'twitter:url', content: url },
+            { name: 'twitter:title', content: title },
+            { name: 'twitter:description', content: description },
+            { name: 'twitter:image', content: image }
+        ];
+
+        ogTags.forEach(tag => {
+            const meta = document.createElement('meta');
+            if (tag.property) meta.setAttribute('property', tag.property);
+            if (tag.name) meta.setAttribute('name', tag.name);
+            meta.setAttribute('content', tag.content);
+            document.head.appendChild(meta);
+        });
+    },
+
+    injectSchema() {
+        const schemas = [
+            {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Rojgar Sangam Tools",
+                "url": "https://tools.rojgarsangam.in/",
+                "logo": "https://tools.rojgarsangam.in/rojgar-sangam-logo.png",
+                "sameAs": ["https://rojgarsangam.in/"]
+            },
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Rojgar Sangam Tools",
+                "url": "https://tools.rojgarsangam.in/",
+                "author": {
+                    "@type": "Organization",
+                    "name": "Rojgar Sangam",
+                    "url": "https://rojgarsangam.in/"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Rojgar Sangam Tools",
+                    "url": "https://tools.rojgarsangam.in/",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://tools.rojgarsangam.in/rojgar-sangam-logo.png"
+                    }
+                }
+            }
+        ];
+
+        schemas.forEach(data => {
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.text = JSON.stringify(data);
+            document.head.appendChild(script);
+        });
     },
 
     async loadComponents() {
-        const pathname = window.location.pathname;
-
-        let pathPrefix = '';
-        if (pathname.includes('/tools/') || pathname.includes('/legal/')) {
-            pathPrefix = '../';
-        } else {
-            pathPrefix = '';
-        }
-
         try {
-            const headerRes = await fetch(pathPrefix + 'components/header.html');
+            const headerRes = await fetch('/components/header.html');
             const headerHtml = await headerRes.text();
             document.getElementById('header-placeholder').innerHTML = headerHtml;
 
-            const footerRes = await fetch(pathPrefix + 'components/footer.html');
+            const footerRes = await fetch('/components/footer.html');
             const footerHtml = await footerRes.text();
             document.getElementById('footer-placeholder').innerHTML = footerHtml;
 
@@ -33,7 +96,7 @@ const RojgarTools = {
     setupMobileMenu() {
         const menuBtn = document.querySelector('.md\\:hidden');
         const navMenu = document.querySelector('nav');
-        
+
         if (menuBtn && navMenu) {
             menuBtn.addEventListener('click', () => {
                 navMenu.classList.toggle('hidden');
@@ -53,7 +116,7 @@ const RojgarTools = {
     setupActiveLinks() {
         const currentPath = window.location.pathname;
         const navLinks = document.querySelectorAll('.nav-link');
-        
+
         navLinks.forEach(link => {
             const linkPath = link.getAttribute('href');
             if (currentPath.endsWith(linkPath) || (currentPath === '/' && linkPath.includes('index.html'))) {
