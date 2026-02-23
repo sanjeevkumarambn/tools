@@ -1,24 +1,9 @@
 const RojgarTools = {
     init() {
-        this.injectCSS();
         this.injectMeta();
         this.injectSchema();
         this.loadComponents();
     },
-
-    injectCSS() {
-        [
-            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css'
-        ].forEach(href => {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = href;
-            link.media = 'print';
-            link.onload = function() { this.media = 'all'; };
-            document.head.appendChild(link);
-        });
-    },
-
     injectMeta() {
         const image = 'https://tools.rojgarsangam.in/rojgar-sangam-online-tools.webp';
         const url = window.location.href;
