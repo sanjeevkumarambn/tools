@@ -5,6 +5,7 @@ const RojgarTools = {
         this.injectSchema();
         this.loadComponents();
     },
+
     injectCSS() {
         [
             'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css'
@@ -17,6 +18,7 @@ const RojgarTools = {
             document.head.appendChild(link);
         });
     },
+
     injectMeta() {
         const image = 'https://tools.rojgarsangam.in/rojgar-sangam-online-tools.webp';
         const url = window.location.href;
@@ -52,6 +54,7 @@ const RojgarTools = {
             { name: 'twitter:description', content: description },
             { name: 'twitter:image', content: image }
         ];
+
         ogTags.forEach(tag => {
             const meta = document.createElement('meta');
             if (tag.property) meta.setAttribute('property', tag.property);
@@ -60,6 +63,7 @@ const RojgarTools = {
             document.head.appendChild(meta);
         });
     },
+
     injectSchema() {
         const base = 'https://tools.rojgarsangam.in';
         const pathname = window.location.pathname;
@@ -73,6 +77,7 @@ const RojgarTools = {
                 "item": base + "/"
             }
         ];
+
         if (pathname !== '/' && pathname !== '/index.html') {
             const segments = pathname.replace(/\.html$/, '').split('/').filter(Boolean);
             let builtPath = base;
@@ -87,6 +92,7 @@ const RojgarTools = {
                 });
             });
         }
+
         const schemas = [
             {
                 "@context": "https://schema.org",
@@ -122,6 +128,7 @@ const RojgarTools = {
                 "itemListElement": breadcrumbItems
             }
         ];
+
         schemas.forEach(data => {
             const script = document.createElement('script');
             script.type = 'application/ld+json';
@@ -129,7 +136,9 @@ const RojgarTools = {
             document.head.appendChild(script);
         });
     },
+
     async loadComponents() {
+        if (document.getElementById('header-placeholder').innerHTML.trim() !== '') return;
         try {
             const headerRes = await fetch('/components/header.html');
             const headerHtml = await headerRes.text();
@@ -146,6 +155,7 @@ const RojgarTools = {
             console.error("Component loading failed:", error);
         }
     },
+
     setupMobileMenu() {
         const menuBtn = document.querySelector('.md\\:hidden');
         const navMenu = document.querySelector('nav');
@@ -165,6 +175,7 @@ const RojgarTools = {
             });
         }
     },
+
     setupActiveLinks() {
         const currentPath = window.location.pathname;
         const navLinks = document.querySelectorAll('.nav-link');
@@ -176,6 +187,7 @@ const RojgarTools = {
             }
         });
     },
+
     formatBytes(bytes, decimals = 2) {
         if (bytes === 0) return '0 Bytes';
         const k = 1024;
@@ -184,6 +196,7 @@ const RojgarTools = {
         const i = Math.floor(Math.log(bytes) / Math.log(k));
         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
     },
+
     readFile(file) {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -193,6 +206,7 @@ const RojgarTools = {
         });
     }
 };
+
 function toggleFAQ(element) {
     const faqItem = element.parentElement;
     faqItem.classList.toggle('active');
