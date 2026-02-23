@@ -129,24 +129,24 @@ html, body {
     box-sizing: border-box !important;
 }
 @media screen and (max-width: 1080px) {
-    .row-settings, .row-container {
-        width: 100% !important;
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-    }
+    .row-settings, .row-container, .row-custom {
+        width: 100% !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
 }
 @media screen and (max-width: 768px) {
-    section, .section-main {
-        padding-top: 15px !important;
-        padding-bottom: 15px !important;
-    }
-    .row-settings, .row-container {
-        flex-direction: column !important;
-        text-align: center;
-    }
-    .grid {
-        grid-template-columns: 1fr !important; 
-    }
+    section, .section-main, .section-custom, .section-container {
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+    }
+    .row-settings, .row-container, .row-custom {
+        flex-direction: column !important;
+        text-align: center;
+    }
+    .grid {
+        grid-template-columns: 1fr !important; 
+    }
 }
 body {
     font-family: 'Lora', serif !important;
