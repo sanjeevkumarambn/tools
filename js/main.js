@@ -5,7 +5,6 @@ const RojgarTools = {
         this.injectSchema();
         this.loadComponents();
     },
-
     injectCSS() {
         [
             { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -18,7 +17,6 @@ const RojgarTools = {
             if (crossorigin) link.crossOrigin = 'anonymous';
             document.head.appendChild(link);
         });
-
         [
             'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap',
             'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css'
@@ -31,9 +29,8 @@ const RojgarTools = {
             document.head.appendChild(link);
         });
     },
-
     injectMeta() {
-        const image = 'https://tools.rojgarsangam.in/rojgar-sangam-online-tools.jpg';
+        const image = 'https://tools.rojgarsangam.in/rojgar-sangam-online-tools.webp';
         const url = window.location.href;
         const title = document.title;
         const description = document.querySelector('meta[name="description"]')?.content || '';
@@ -51,6 +48,7 @@ const RojgarTools = {
         document.head.appendChild(appleFavicon);
 
         const ogTags = [
+            { property: 'og:locale', content: 'en-GB' },
             { property: 'og:type', content: 'website' },
             { property: 'og:url', content: url },
             { property: 'og:title', content: title },
@@ -58,6 +56,7 @@ const RojgarTools = {
             { property: 'og:image', content: image },
             { property: 'og:image:width', content: '1200' },
             { property: 'og:image:height', content: '630' },
+            { property: 'og:image:type', content: 'image/webp' },
             { property: 'og:site_name', content: 'Rojgar Sangam Tools' },
             { name: 'twitter:card', content: 'summary_large_image' },
             { name: 'twitter:url', content: url },
@@ -65,7 +64,6 @@ const RojgarTools = {
             { name: 'twitter:description', content: description },
             { name: 'twitter:image', content: image }
         ];
-
         ogTags.forEach(tag => {
             const meta = document.createElement('meta');
             if (tag.property) meta.setAttribute('property', tag.property);
@@ -74,22 +72,47 @@ const RojgarTools = {
             document.head.appendChild(meta);
         });
     },
-
     injectSchema() {
+        const base = 'https://tools.rojgarsangam.in';
+        const pathname = window.location.pathname;
+        const title = document.title;
+
+        const breadcrumbItems = [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": base + "/"
+            }
+        ];
+        if (pathname !== '/' && pathname !== '/index.html') {
+            const segments = pathname.replace(/\.html$/, '').split('/').filter(Boolean);
+            let builtPath = base;
+            segments.forEach((segment, index) => {
+                builtPath += '/' + segment;
+                const name = segment.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+                breadcrumbItems.push({
+                    "@type": "ListItem",
+                    "position": index + 2,
+                    "name": index === segments.length - 1 ? title : name,
+                    "item": builtPath
+                });
+            });
+        }
         const schemas = [
             {
                 "@context": "https://schema.org",
                 "@type": "Organization",
                 "name": "Rojgar Sangam Tools",
-                "url": "https://tools.rojgarsangam.in/",
-                "logo": "https://tools.rojgarsangam.in/rojgar-sangam-logo.png",
+                "url": base + "/",
+                "logo": base + "/rojgar-sangam-logo.png",
                 "sameAs": ["https://rojgarsangam.in/"]
             },
             {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
                 "name": "Rojgar Sangam Tools",
-                "url": "https://tools.rojgarsangam.in/",
+                "url": base + "/",
                 "author": {
                     "@type": "Organization",
                     "name": "Rojgar Sangam",
@@ -98,15 +121,19 @@ const RojgarTools = {
                 "publisher": {
                     "@type": "Organization",
                     "name": "Rojgar Sangam Tools",
-                    "url": "https://tools.rojgarsangam.in/",
+                    "url": base + "/",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://tools.rojgarsangam.in/rojgar-sangam-logo.png"
+                        "url": base + "/rojgar-sangam-logo.png"
                     }
                 }
+            },
+            {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": breadcrumbItems
             }
         ];
-
         schemas.forEach(data => {
             const script = document.createElement('script');
             script.type = 'application/ld+json';
@@ -114,7 +141,6 @@ const RojgarTools = {
             document.head.appendChild(script);
         });
     },
-
     async loadComponents() {
         try {
             const headerRes = await fetch('/components/header.html');
@@ -132,7 +158,6 @@ const RojgarTools = {
             console.error("Component loading failed:", error);
         }
     },
-
     setupMobileMenu() {
         const menuBtn = document.querySelector('.md\\:hidden');
         const navMenu = document.querySelector('nav');
@@ -152,7 +177,6 @@ const RojgarTools = {
             });
         }
     },
-
     setupActiveLinks() {
         const currentPath = window.location.pathname;
         const navLinks = document.querySelectorAll('.nav-link');
@@ -164,7 +188,6 @@ const RojgarTools = {
             }
         });
     },
-
     formatBytes(bytes, decimals = 2) {
         if (bytes === 0) return '0 Bytes';
         const k = 1024;
@@ -173,7 +196,6 @@ const RojgarTools = {
         const i = Math.floor(Math.log(bytes) / Math.log(k));
         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
     },
-
     readFile(file) {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -183,7 +205,6 @@ const RojgarTools = {
         });
     }
 };
-
 function toggleFAQ(element) {
     const faqItem = element.parentElement;
     faqItem.classList.toggle('active');
