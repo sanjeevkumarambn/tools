@@ -13,21 +13,21 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap !important;
-    src: url('/fonts/lora-v37-latin-regular.woff2') format('woff2');
+    src: url('https://tools.rojgarsangam.in/fonts/lora-v37-latin-regular.woff2') format('woff2');
 }
 @font-face {
     font-family: 'Lora' !important;
     font-style: normal;
     font-weight: 700;
     font-display: swap !important;
-    src: url('/fonts/lora-v37-latin-700.woff2') format('woff2');
+    src: url('https://tools.rojgarsangam.in/fonts/lora-v37-latin-700.woff2') format('woff2');
 }
 @font-face {
     font-family: 'Lora'!important;
     font-style: italic;
     font-weight: 400;
     font-display: swap !important;
-    src: url('/fonts/lora-v37-latin-italic.woff2') format('woff2');
+    src: url('https://tools.rojgarsangam.in/fonts/lora-v37-latin-italic.woff2') format('woff2');
 }
 header, .header-main {
     width: 100% !important;
