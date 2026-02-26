@@ -252,7 +252,6 @@ function toggleFAQ(element) {
     const faqItem = element.parentElement;
     faqItem.classList.toggle('active');
 }
-
 async function loadHomepageBlogPosts() {
     const grid = document.getElementById('homepage-blog-grid');
     if (!grid) return;
@@ -262,47 +261,28 @@ async function loadHomepageBlogPosts() {
         const latest3 = posts
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .slice(0, 3);
-
-        // Override tools-grid to exactly 3 columns for blog section
-        grid.style.cssText = 'display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:20px!important;width:100%!important;';
-
         latest3.forEach(post => {
             const dateFormatted = new Date(post.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
             const card = document.createElement('a');
             card.href = '/blog/' + post.slug + '/';
-            card.className = 'tool-card card-mint';
-            card.style.cssText = 'padding:0!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;';
+            card.className = 'blog-home-card';
             card.innerHTML = `
-                <div style="width:100%;height:180px;overflow:hidden;flex-shrink:0;background:#eff6ef;">
-                    <img src="${post.image}"
-                         alt="${post.title}"
-                         loading="lazy"
-                         width="400"
-                         height="180"
-                         style="width:100%;height:100%;object-fit:cover;display:block;"
-                         onerror="this.style.display='none'">
+                <div class="bhc-image">
+                    <img src="${post.image}" alt="${post.title}" loading="lazy" width="400" height="200" onerror="this.style.display='none'">
+                    <span class="bhc-badge">${post.category}</span>
                 </div>
-                <div style="padding:22px;flex:1;display:flex;flex-direction:column;gap:10px;">
-                    <span style="display:inline-block;background:#eff6ef;color:#00079e;border:1px solid #667799;border-radius:20px;padding:3px 12px;font-size:11px;font-weight:700;">${post.category}</span>
-                    <span class="tool-name" style="font-size:15px!important;line-height:1.5!important;color:#333333!important;">${post.title}</span>
-                    <p style="font-size:13px!important;color:#667799!important;line-height:1.7!important;flex:1!important;">${post.description}</p>
-                    <div style="font-size:12px;color:#667799;font-weight:700;display:flex;align-items:center;gap:6px;">
-                        <i class="fas fa-rotate-right" style="color:#333333;font-size:11px;"></i>
+                <div class="bhc-body">
+                    <h3 class="bhc-title">${post.title}</h3>
+                    <p class="bhc-desc">${post.description}</p>
+                    <div class="bhc-meta">
+                        <i class="fas fa-rotate-right"></i>
                         <span>Last Updated on ${dateFormatted}</span>
                     </div>
-                    <div style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#00079e;">
-                        Read Article <i class="fas fa-arrow-right" style="font-size:11px;"></i>
-                    </div>
+                    <div class="bhc-read">Read Article <i class="fas fa-arrow-right"></i></div>
                 </div>
             `;
             grid.appendChild(card);
         });
-
-        // Responsive: 1 column on mobile
-        const style = document.createElement('style');
-        style.textContent = '@media(max-width:768px){#homepage-blog-grid{grid-template-columns:1fr!important;}}@media(min-width:769px) and (max-width:1080px){#homepage-blog-grid{grid-template-columns:repeat(2,1fr)!important;}}';
-        document.head.appendChild(style);
-
     } catch (e) {
         console.error('Homepage blog load error:', e);
     }
