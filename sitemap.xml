@@ -1,115 +1,219 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://tools.rojgarsangam.in/</loc>
-    <lastmod>2026-02-23</lastmod>
+    <lastmod>2026-02-26</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>1.00</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/rojgar-sangam-tools-free-online-tools.webp</image:loc>
+      <image:title>Free Online Tools - Rojgar Sangam Tools</image:title>
+      <image:caption>Rojgar Sangam Tools - Free Online PDF and Image Tools. 100% Free, No Signup, Browser Based.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://tools.rojgarsangam.in/tools/merge-pdf</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/merge-pdf-online-free-rojgar-sangam.webp</image:loc>
+      <image:title>Merge PDF Online Free - Rojgar Sangam Tools</image:title>
+      <image:caption>Merge PDF Online Free - Combine Multiple PDF Files into One Instantly. 100% Free and Secure. No Upload to Server.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://tools.rojgarsangam.in/tools/split-pdf</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/split-pdf-online-free-rojgar-sangam.webp</image:loc>
+      <image:title>Split PDF Online Free - Rojgar Sangam Tools</image:title>
+      <image:caption>Split PDF Online Free - Separate PDF Pages Instantly. Browser-Based Processing. No File Upload Required.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://tools.rojgarsangam.in/tools/compress-pdf</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/compress-pdf-online-free-rojgar-sangam.webp</image:loc>
+      <image:title>Compress PDF Online Free - Rojgar Sangam Tools</image:title>
+      <image:caption>Compress PDF Online Free - Reduce PDF File Size Instantly Without Losing Quality. 100% Private and Free.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://tools.rojgarsangam.in/tools/word-to-pdf</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/word-to-pdf-converter-online-rojgar-sangam.webp</image:loc>
+      <image:title>Word to PDF Online Free - Rojgar Sangam Tools</image:title>
+      <image:caption>Word to PDF Online Free - Convert DOC DOCX to PDF Instantly. Browser-Based Conversion. No Server Upload.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://tools.rojgarsangam.in/tools/jpg-to-pdf</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/jpg-to-pdf-converter-online-rojgar-sangam.webp</image:loc>
+      <image:title>JPG to PDF Online Free - Rojgar Sangam Tools</image:title>
+      <image:caption>JPG to PDF Online Free - Convert Images to PDF Instantly. Supports JPG, PNG, WebP. 100% Free and Private.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://tools.rojgarsangam.in/tools/pdf-to-jpg</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/pdf-to-jpg-converter-online-rojgar-sangam.webp</image:loc>
+      <image:title>PDF to JPG Online Free - Rojgar Sangam Tools</image:title>
+      <image:caption>PDF to JPG Online Free - Convert PDF Pages to Images Instantly. High Quality Output. No Signup Required.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://tools.rojgarsangam.in/tools/image-resizer</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/image-resizer-online-free-rojgar-sangam.webp</image:loc>
+      <image:title>Image Resizer Online Free - Rojgar Sangam Tools</image:title>
+      <image:caption>Image Resizer Online Free - Resize Images Without Losing Quality. Supports JPG, PNG, WebP. Free and Fast.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://tools.rojgarsangam.in/tools/remove-bg</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/remove-background-online-free-rojgar-sangam.webp</image:loc>
+      <image:title>Remove Background Online Free - Rojgar Sangam Tools</image:title>
+      <image:caption>Remove Image Background Online Free - Automatic AI Background Remover. JPG, PNG, WebP Supported. 100% Private.</image:caption>
+    </image:image>
   </url>
 
   <url>
     <loc>https://tools.rojgarsangam.in/tools/age-calculator</loc>
-    <lastmod>2026-02-23</lastmod>
+    <lastmod>2026-02-26</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/age-calculator-online-free-rojgar-sangam.webp</image:loc>
+      <image:title>Age Calculator Online Free - Rojgar Sangam Tools</image:title>
+      <image:caption>Age Calculator Online Free - Calculate Exact Age from Date of Birth in Years, Months and Days. Instant Result.</image:caption>
+    </image:image>
   </url>
-  <url>
-    <loc>https://tools.rojgarsangam.in/tools/compress-pdf</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tools.rojgarsangam.in/tools/image-resizer</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tools.rojgarsangam.in/tools/jpg-to-pdf</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tools.rojgarsangam.in/tools/merge-pdf</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+
   <url>
     <loc>https://tools.rojgarsangam.in/tools/name-dob-on-photo</loc>
-    <lastmod>2026-02-23</lastmod>
+    <lastmod>2026-02-26</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/name-dob-on-photo-online-rojgar-sangam.webp</image:loc>
+      <image:title>Name DOB on Photo Online Free - Rojgar Sangam Tools</image:title>
+      <image:caption>Add Name and Date of Birth on Photo Online Free - Print Text on Image Instantly. No App Required.</image:caption>
+    </image:image>
   </url>
-  <url>
-    <loc>https://tools.rojgarsangam.in/tools/pdf-to-jpg</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tools.rojgarsangam.in/tools/percentage-cgpa-converter</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+
   <url>
     <loc>https://tools.rojgarsangam.in/tools/photo-signature-joiner</loc>
-    <lastmod>2026-02-23</lastmod>
+    <lastmod>2026-02-26</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/photo-signature-joiner-online-rojgar-sangam.webp</image:loc>
+      <image:title>Photo Signature Joiner Online Free - Rojgar Sangam Tools</image:title>
+      <image:caption>Photo Signature Joiner Online Free - Combine Passport Photo and Signature Side by Side. Free and Instant.</image:caption>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://tools.rojgarsangam.in/tools/remove-bg</loc>
-    <lastmod>2026-02-23</lastmod>
+    <loc>https://tools.rojgarsangam.in/tools/percentage-cgpa-converter</loc>
+    <lastmod>2026-02-26</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tools.rojgarsangam.in/tools/split-pdf</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tools.rojgarsangam.in/tools/word-to-pdf</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/percentage-cgpa-converter-online-rojgar-sangam.webp</image:loc>
+      <image:title>Percentage CGPA Converter Online Free - Rojgar Sangam Tools</image:title>
+      <image:caption>Percentage CGPA Converter Online Free - Convert CGPA to Percentage and Vice Versa Instantly. All Universities Supported.</image:caption>
+    </image:image>
   </url>
 
   <url>
     <loc>https://tools.rojgarsangam.in/legal/about-us</loc>
-    <lastmod>2026-02-23</lastmod>
+    <lastmod>2026-02-26</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://tools.rojgarsangam.in/legal/contact-us</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://tools.rojgarsangam.in/legal/disclaimer</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://tools.rojgarsangam.in/legal/privacy-policy</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://tools.rojgarsangam.in/legal/terms-and-conditions</loc>
-    <lastmod>2026-02-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.60</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp</image:loc>
+      <image:title>About Us - Rojgar Sangam Tools</image:title>
+      <image:caption>About Rojgar Sangam Tools - Free Online PDF and Image Tools Built for Students and Job Seekers in India.</image:caption>
+    </image:image>
   </url>
 
+  <url>
+    <loc>https://tools.rojgarsangam.in/legal/contact-us</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.60</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp</image:loc>
+      <image:title>Contact Us - Rojgar Sangam Tools</image:title>
+      <image:caption>Contact Rojgar Sangam Tools - Get in Touch for Support, Feedback or Suggestions About Our Free Online Tools.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://tools.rojgarsangam.in/legal/privacy-policy</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.50</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp</image:loc>
+      <image:title>Privacy Policy - Rojgar Sangam Tools</image:title>
+      <image:caption>Privacy Policy of Rojgar Sangam Tools - We Do Not Store or Upload Your Files. 100% Browser-Based Processing.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://tools.rojgarsangam.in/legal/terms-and-conditions</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.50</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp</image:loc>
+      <image:title>Terms and Conditions - Rojgar Sangam Tools</image:title>
+      <image:caption>Terms and Conditions of Rojgar Sangam Tools - Free Online PDF and Image Processing Tools.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://tools.rojgarsangam.in/legal/disclaimer</loc>
+    <lastmod>2026-02-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.50</priority>
+    <image:image>
+      <image:loc>https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp</image:loc>
+      <image:title>Disclaimer - Rojgar Sangam Tools</image:title>
+      <image:caption>Disclaimer of Rojgar Sangam Tools - All Tools are Provided Free of Charge for Educational and Personal Use.</image:caption>
+    </image:image>
+  </url>
 </urlset>
