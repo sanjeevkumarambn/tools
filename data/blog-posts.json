@@ -9,15 +9,6 @@
     "readTime": "3 min"
   },
   {
-    "title": "Photo & Signature Size Guide for UPSC SSC Railway Exams",
-    "slug": "photo-signature-size-guide-upsc-ssc",
-    "description": "Exact photo size and signature dimensions for all govt competitive exams. Online joiner tool and complete specifications.",
-    "image": "/images/blog/photo-signature-size.webp",
-    "date": "2026-01-22",
-    "category": "Photo Tools",
-    "readTime": "4 min"
-  },
-  {
     "title": "How to Compress PDF Online Free - Reduce File Size Instantly",
     "slug": "pdf-compress-online-free",
     "description": "Compress PDF up to 50% smaller without quality loss. Perfect for email attachments and online government application forms.",
@@ -27,12 +18,21 @@
     "readTime": "2 min"
   },
   {
-    "title": "Govt Job Form Filling Complete Guide - SSC UPSC Railway Banking",
-    "slug": "govt-job-form-filling-complete-guide",
-    "description": "Complete online form filling guide covering photo specs, signature upload, document size, and payment gateway tips for all govt exams.",
-    "image": "/images/blog/form-filling-guide.webp",
-    "date": "2026-01-28",
-    "category": "Govt Jobs",
-    "readTime": "6 min"
+    "title": "Photo & Signature Size Guide for UPSC SSC Railway Exams",
+    "slug": "photo-signature-size-guide-upsc-ssc",
+    "description": "Exact photo size and signature dimensions for all govt competitive exams. Online joiner tool and complete specifications.",
+    "image": "/images/blog/photo-signature-size.webp",
+    "date": "2026-01-22",
+    "category": "Photo Tools",
+    "readTime": "4 min"
+  },
+  {
+    "title": "How to Remove Background from Photo Online Free",
+    "slug": "remove-background-photo-online-free",
+    "description": "Remove photo background instantly and replace it with white or any color. Perfect for passport photos and govt ID applications.",
+    "image": "/images/blog/remove-bg-guide.webp",
+    "date": "2026-02-01",
+    "category": "Photo Tools",
+    "readTime": "3 min"
   }
 ]
