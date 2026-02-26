@@ -7,12 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const postList     = document.getElementById('postList');
 
     const MAX_GRID = 6;
-    let allPosts     = [];
+    let allPosts      = [];
     let filteredPosts = [];
 
     function formatDate(dateStr) {
         const d = new Date(dateStr);
-        return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+        return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
     }
 
     function createGridCard(post) {
@@ -34,9 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h2>${post.title}</h2>
                 <p>${post.description}</p>
                 <div class="card-meta">
-                    <i class="fas fa-calendar-alt"></i>
-                    <time datetime="${post.date}">${formatDate(post.date)}</time>
-                    <span>•</span>
+                    <i class="fas fa-user-pen"></i>
+                    <span>Published by ${post.author}</span>
+                </div>
+                <div class="card-meta">
+                    <i class="fas fa-rotate-right"></i>
+                    <span>Last Updated on ${formatDate(post.lastUpdated)}</span>
+                </div>
+                <div class="card-meta">
                     <i class="fas fa-clock"></i>
                     <span>${post.readTime} read</span>
                 </div>
@@ -55,7 +60,15 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="list-item-num">${index + 1}.</span>
             <div class="list-item-info">
                 <h4>${post.title}</h4>
-                <span>${post.category} &nbsp;•&nbsp; ${formatDate(post.date)} &nbsp;•&nbsp; ${post.readTime} read</span>
+                <span>
+                    ${post.category}
+                    &nbsp;•&nbsp;
+                    Published by ${post.author}
+                    &nbsp;•&nbsp;
+                    Last Updated on ${formatDate(post.lastUpdated)}
+                    &nbsp;•&nbsp;
+                    ${post.readTime} read
+                </span>
             </div>
             <i class="fas fa-arrow-right list-item-arrow"></i>
         `;
