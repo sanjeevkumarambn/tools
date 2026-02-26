@@ -1,134 +1,136 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const blogGrid = document.getElementById('blogGrid');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const viewMoreContainer = document.getElementById('viewMoreContainer');
-    const viewMoreBtn = document.getElementById('viewMoreBtn');
-    const loadingIndicator = document.getElementById('loadingIndicator');
 
-    let allPosts = [];
-    let currentFilter = 'all';
-    const postsPerPage = 6;
-    let currentlyShown = 0;
+    const blogGrid     = document.getElementById('blogGrid');
+    const blogFilter   = document.getElementById('blogFilter');
+    const viewMoreWrap = document.getElementById('viewMoreWrap');
+    const viewMoreBtn  = document.getElementById('viewMoreBtn');
+    const postList     = document.getElementById('postList');
+
+    const MAX_GRID = 6;
+    let allPosts     = [];
     let filteredPosts = [];
 
-    // Fetch posts from JSON
-    fetch('/data/blog-posts.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Sort by date descending (newest first)
-            allPosts = data.sort((a, b) => new Date(b.date) - new Date(a.date));
-            loadingIndicator.style.display = 'none';
-            applyFilter('all');
-        })
-        .catch(error => {
-            console.error('Error loading blog posts:', error);
-            blogGrid.innerHTML = `
-                <div class="coming-soon-card" style="grid-column: 1 / -1;">
-                    <div class="coming-soon-icon"><i class="fas fa-exclamation-triangle"></i></div>
-                    <h3>Unable to load posts</h3>
-                    <p>Please check your connection and try again later.</p>
-                </div>
-            `;
-        });
-
-    // Format Date from YYYY-MM-DD to Indian format (e.g., 20 January 2025)
-    function formatDate(dateString) {
-        const options = { day: '2-digit', month: 'long', year: 'numeric' };
-        const date = new Date(dateString);
-        return date.toLocaleDateString('en-IN', options);
+    function formatDate(dateStr) {
+        const d = new Date(dateStr);
+        return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     }
 
-    // Create a single blog card HTML string
-    function createBlogCard(post) {
-        // Enforce strict heading structure: Card title is H2.
-        return `
-            <a href="/blog/${post.slug}" class="blog-card blog-item" data-category="${post.category}">
-                <div class="card-image-wrap">
-                    <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.src='/images/placeholder.webp';">
+    function createGridCard(post) {
+        const card = document.createElement('a');
+        card.href = '/blog/' + post.slug + '/';
+        card.className = 'blog-card';
+        card.dataset.category = post.category;
+        card.innerHTML = `
+            <div class="card-image-wrap">
+                <img src="${post.image}"
+                     alt="${post.title}"
+                     loading="lazy"
+                     width="400"
+                     height="200"
+                     onerror="this.style.display='none'">
+                <span class="card-category-badge">${post.category}</span>
+            </div>
+            <div class="card-content">
+                <h2>${post.title}</h2>
+                <p>${post.description}</p>
+                <div class="card-meta">
+                    <i class="fas fa-calendar-alt"></i>
+                    <time datetime="${post.date}">${formatDate(post.date)}</time>
+                    <span>•</span>
+                    <i class="fas fa-clock"></i>
+                    <span>${post.readTime} read</span>
                 </div>
-                <div class="card-content">
-                    <div class="card-meta">
-                        <span class="card-category">${post.category}</span>
-                        <span><i class="far fa-calendar-alt"></i> ${formatDate(post.date)}</span>
-                    </div>
-                    <h2 class="card-title">${post.title}</h2>
-                    <p class="card-excerpt">${post.description}</p>
-                    <div class="read-more">
-                        Read Full Guide <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-            </a>
+                <span class="read-more">Read Article <i class="fas fa-arrow-right"></i></span>
+            </div>
         `;
+        return card;
     }
 
-    // Render Posts based on current state
-    function renderPosts() {
-        blogGrid.innerHTML = ''; // Clear grid
-        
+    function createListItem(post, index) {
+        const item = document.createElement('a');
+        item.href = '/blog/' + post.slug + '/';
+        item.className = 'list-item';
+        item.dataset.category = post.category;
+        item.innerHTML = `
+            <span class="list-item-num">${index + 1}.</span>
+            <div class="list-item-info">
+                <h4>${post.title}</h4>
+                <span>${post.category} &nbsp;•&nbsp; ${formatDate(post.date)} &nbsp;•&nbsp; ${post.readTime} read</span>
+            </div>
+            <i class="fas fa-arrow-right list-item-arrow"></i>
+        `;
+        return item;
+    }
+
+    function renderAll() {
+        blogGrid.innerHTML = '';
+        postList.innerHTML = '';
+        viewMoreWrap.style.display = 'none';
+        postList.classList.remove('visible');
+
         if (filteredPosts.length === 0) {
-            // Strict structure: H3 then H4 for coming soon
             blogGrid.innerHTML = `
-                <div class="coming-soon-card" style="grid-column: 1 / -1;">
-                    <div class="coming-soon-icon"><i class="fas fa-pencil-alt"></i></div>
+                <div class="no-posts">
+                    <i class="fas fa-pen-to-square"></i>
                     <h3>More Guides Coming Soon</h3>
-                    <h4>Topics We Are Working On</h4>
-                    <p>We are currently writing detailed guides for this category. Check back later!</p>
+                    <h4>We are working on guides for this category. Check back later!</h4>
                 </div>
             `;
-            viewMoreContainer.style.display = 'none';
             return;
         }
 
-        // Determine how many to show
-        const postsToRender = filteredPosts.slice(0, currentlyShown);
-        
-        // Build HTML
-        let htmlContent = postsToRender.map(post => createBlogCard(post)).join('');
-        blogGrid.innerHTML = htmlContent;
+        const gridPosts = filteredPosts.slice(0, MAX_GRID);
+        gridPosts.forEach(post => {
+            blogGrid.appendChild(createGridCard(post));
+        });
 
-        // Handle View More button visibility
-        if (currentlyShown < filteredPosts.length) {
-            viewMoreContainer.style.display = 'block';
-        } else {
-            viewMoreContainer.style.display = 'none';
+        if (filteredPosts.length > MAX_GRID) {
+            viewMoreWrap.style.display = 'block';
+            const heading = document.createElement('h3');
+            heading.className = 'post-list-heading';
+            heading.textContent = 'All Blog Posts';
+            postList.appendChild(heading);
+            filteredPosts.forEach((post, i) => {
+                postList.appendChild(createListItem(post, i));
+            });
         }
     }
 
-    // Apply Filter Logic
     function applyFilter(category) {
-        currentFilter = category;
-        currentlyShown = postsPerPage; // Reset to initial 6 on filter change
-
-        if (category === 'all') {
-            filteredPosts = [...allPosts];
-        } else {
-            filteredPosts = allPosts.filter(post => post.category === category);
-        }
-
-        renderPosts();
+        filteredPosts = category === 'all'
+            ? [...allPosts]
+            : allPosts.filter(p => p.category === category);
+        renderAll();
     }
 
-    // Event Listeners for Filter Buttons
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            // Remove active class from all
-            filterBtns.forEach(b => b.classList.remove('active'));
-            // Add active to clicked
-            e.target.classList.add('active');
-            
-            const filterValue = e.target.getAttribute('data-filter');
-            applyFilter(filterValue);
+    blogFilter.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            blogFilter.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            applyFilter(btn.dataset.filter);
         });
     });
 
-    // Event Listener for View More Button
     viewMoreBtn.addEventListener('click', () => {
-        currentlyShown += postsPerPage;
-        renderPosts();
+        viewMoreWrap.style.display = 'none';
+        postList.classList.add('visible');
+        postList.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+
+    fetch('/data/blog-posts.json')
+        .then(r => r.json())
+        .then(data => {
+            allPosts = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+            blogGrid.innerHTML = '';
+            applyFilter('all');
+        })
+        .catch(() => {
+            blogGrid.innerHTML = `
+                <div class="no-posts">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <h3>Unable to Load Posts</h3>
+                    <h4>Please check your connection and try again.</h4>
+                </div>
+            `;
+        });
 });
