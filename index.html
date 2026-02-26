@@ -88,6 +88,8 @@ body { background: #f8f9fa; }
 
 .section-custom { background-color: #f8f8ff !important; padding: 10px 0px 10px 0px !important; width: 100% !important; display: flex !important; align-items: center !important; }
 
+#homepage-blog-grid{display:grid !important;grid-template-columns:repeat(3,1fr) !important;gap:20px !important;width:100% !important;}@media (max-width:1080px){#homepage-blog-grid{grid-template-columns:repeat(2,1fr) !important;}}@media (max-width:768px){#homepage-blog-grid{grid-template-columns:1fr !important;}}
+
 .hero-container.row-settings { display: flex !important; justify-content: space-between !important; align-items: center !important; flex-wrap: wrap !important; }
 
 .hero-text-content { flex: 1 !important; width: 500px !important; max-width: 100% !important; }
@@ -344,17 +346,13 @@ body { background: #f8f9fa; }
 </div>
 </section>
 <section class="section-container" id="blog-section">
-  <div class="row-container">
-    <h2>Latest Guides & Articles</h2>
-    <p>Step-by-step tutorials for PDF and Image tools.</p>
-    <div class="tools-grid" id="homepage-blog-grid">
-      <!-- JS se 3 posts yahan aayengi -->
-    </div>
-    <div style="text-align:center;margin:30px 0 0 0">
-      <a href="/blog/" class="btn-secondary-hero">View All Articles</a>
-    </div>
-  </div>
-</section>  
+<div class="row-container"><h2>Latest Guides & Articles</h2>
+<p>Step-by-step tutorials for PDF and Image tools.</p>
+<div class="tools-grid" id="homepage-blog-grid"></div>
+<div style="text-align:center;margin:30px 0 0 0"><a href="/blog" class="btn-secondary-hero">View All Articles</a>
+</div>
+</div>
+</section>
 <section class="section">
 <div class="row-custom">
 <div class="ad-manager-placeholder" data-ad-type="responsive"></div>
@@ -419,4 +417,5 @@ body { background: #f8f9fa; }
 <script src="/js/main.js"></script>
 </body>
 </html>
+
 
