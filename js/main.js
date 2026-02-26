@@ -202,6 +202,7 @@ const RojgarTools = {
             console.error("Component loading failed:", error);
         }
     },
+    
     setupMobileMenu() {
         const menuBtn = document.querySelector('.md\\:hidden');
         const navMenu = document.querySelector('nav');
@@ -250,5 +251,35 @@ const RojgarTools = {
 function toggleFAQ(element) {
     const faqItem = element.parentElement;
     faqItem.classList.toggle('active');
+}
+
+async function loadHomepageBlogPosts() {
+    const grid = document.getElementById('homepage-blog-grid');
+    if (!grid) return;
+    try {
+        const res = await fetch('/data/blog-posts.json');
+        const posts = await res.json();
+        const latest3 = posts
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, 3);
+        latest3.forEach(post => {
+            const card = document.createElement('a');
+            card.href = '/blog/' + post.slug + '/';
+            card.className = 'tool-card card-mint';
+            card.innerHTML = `
+                <div class="icon-box">
+                    <img src="${post.image}"
+                         alt="${post.title}"
+                         style="width:40px;height:40px;object-fit:cover;border-radius:8px;"
+                         onerror="this.style.display='none'">
+                </div>
+                <span class="tool-name">${post.title}</span>
+                <p>${post.description}</p>
+            `;
+            grid.appendChild(card);
+        });
+    } catch (e) {
+        console.error('Homepage blog load error:', e);
+    }
 }
 document.addEventListener('DOMContentLoaded', () => RojgarTools.init());
