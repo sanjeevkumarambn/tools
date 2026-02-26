@@ -307,4 +307,7 @@ async function loadHomepageBlogPosts() {
         console.error('Homepage blog load error:', e);
     }
 }
-document.addEventListener('DOMContentLoaded', () => RojgarTools.init());
+document.addEventListener('DOMContentLoaded', () => {
+    RojgarTools.init();
+    loadHomepageBlogPosts();
+});
