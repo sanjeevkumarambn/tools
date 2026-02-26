@@ -93,11 +93,11 @@ body { background: #f8f9fa; }
 
 .color-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
 
-.color-swatch { width: 100%; aspect-ratio: 1/1; border-radius: 8px; cursor: pointer; border: 2px solid #bdbdbd; transition: all .2s; position: relative; }
+.color-swatch { width: 100%; aspect-ratio: 1/1; border-radius: 8px; cursor: pointer; border: 1px solid #667799; transition: all .2s; position: relative; }
 
 .color-swatch:hover { transform: scale(1.1); border-color: #667799; }
 
-.color-swatch.active { border: 3px solid #667799; box-shadow: 0px 0px 0px 2px #eff6ef; }
+.color-swatch.active { border: 2px solid #00079e; box-shadow: 0px 0px 0px 2px #eff6ef; }
 
 .swatch-transparent { background-image: linear-gradient(45deg, #bdbdbd 25%, transparent 25%), linear-gradient(-45deg, #bdbdbd 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #bdbdbd 75%), linear-gradient(-45deg, transparent 75%, #bdbdbd 75%); background-size: 10px 10px; background-position: 0 0, 0 5px, 5px -5px, -5px 0; background-color: #f8f8ff; }
 
@@ -210,14 +210,14 @@ input[type="range"] { width: 100%; accent-color: #667799; cursor: pointer; }
 <div id="bgColorSection">
 <div class="color-grid">
 <div class="color-swatch swatch-transparent active" data-color="transparent"></div>
-<div class="color-swatch" style="background:#333" data-color="#333333"></div>
-<div class="color-swatch" style="background:#00079e" data-color="#00079e"></div>
-<div class="color-swatch" style="background:#667799" data-color="#667799"></div>
-<div class="color-swatch" style="background:#fdece5" data-color="#fdece5"></div>
-<div class="color-swatch" style="background:#eff6ef" data-color="#eff6ef"></div>
-<div class="color-swatch" style="background:#f8f8ff" data-color="#f8f8ff"></div>
-<div class="color-swatch" style="background:#fff" data-color="#ffffff"></div>
-<div class="color-swatch" style="background:#bdbdbd" data-color="#bdbdbd"></div>
+<div class="color-swatch" style="background:#E8F4FD" data-color="#E8F4FD"></div>
+<div class="color-swatch" style="background:#F7F7F7" data-color="#F7F7F7"></div>
+<div class="color-swatch" style="background:#D6D6D6" data-color="#D6D6D6"></div>
+<div class="color-swatch" style="background:#C8A882" data-color="#C8A882"></div>
+<div class="color-swatch" style="background:#B8D4E8" data-color="#B8D4E8"></div>
+<div class="color-swatch" style="background:#E8F5E9" data-color="#E8F5E9"></div>
+<div class="color-swatch" style="background:#FDF6EC" data-color="#FDF6EC"></div>
+<div class="color-swatch" style="background:#F0EEF6" data-color="#F0EEF6"></div>
 <div class="color-swatch swatch-custom">
 <i class="fas fa-palette swatch-custom-icon"></i>
 <input type="color" id="customColorInput" value="#ff6600">
