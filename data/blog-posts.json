@@ -1,1 +1,38 @@
-
+[
+  {
+    "title": "How to Merge PDF Online Free - Complete Step by Step Guide",
+    "slug": "pdf-merge-online-free-guide",
+    "description": "Merge multiple PDF files into one instantly. Perfect for govt job forms, applications and certificates. No software or app required.",
+    "image": "/images/blog/pdf-merge-guide.webp",
+    "date": "2026-01-20",
+    "category": "PDF Tools",
+    "readTime": "3 min"
+  },
+  {
+    "title": "Photo & Signature Size Guide for UPSC SSC Railway Exams",
+    "slug": "photo-signature-size-guide-upsc-ssc",
+    "description": "Exact photo size and signature dimensions for all govt competitive exams. Online joiner tool and complete specifications.",
+    "image": "/images/blog/photo-signature-size.webp",
+    "date": "2026-01-22",
+    "category": "Photo Tools",
+    "readTime": "4 min"
+  },
+  {
+    "title": "How to Compress PDF Online Free - Reduce File Size Instantly",
+    "slug": "pdf-compress-online-free",
+    "description": "Compress PDF up to 50% smaller without quality loss. Perfect for email attachments and online government application forms.",
+    "image": "/images/blog/pdf-compress-guide.webp",
+    "date": "2026-01-25",
+    "category": "PDF Tools",
+    "readTime": "2 min"
+  },
+  {
+    "title": "Govt Job Form Filling Complete Guide - SSC UPSC Railway Banking",
+    "slug": "govt-job-form-filling-complete-guide",
+    "description": "Complete online form filling guide covering photo specs, signature upload, document size, and payment gateway tips for all govt exams.",
+    "image": "/images/blog/form-filling-guide.webp",
+    "date": "2026-01-28",
+    "category": "Govt Jobs",
+    "readTime": "6 min"
+  }
+]
