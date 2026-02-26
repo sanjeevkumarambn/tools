@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog - Rojgar Sangam Tools | Free PDF & Image Tools Guides</title>
-<meta name="description" content="Free PDF merge, compress, image resize guides for govt job forms, UPSC SSC applications. Instant tips & tutorials by Rojgar Sangam Tools.">
+<meta name="description" content="Free PDF merge, compress, image resize guides for govt job forms, UPSC SSC applications. Step-by-step tutorials by Rojgar Sangam Tools.">
+<meta name="keywords" content="pdf merge guide, photo signature size, govt job form filling, free tools tutorials, compress pdf guide">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
 <link rel="canonical" href="https://tools.rojgarsangam.in/blog/">
 <link rel="preconnect" href="https://tools.rojgarsangam.in" crossorigin>
@@ -13,7 +14,24 @@
 <link rel="preload" href="/fonts/lora-v37-latin-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" media="print" onload="this.media='all'">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"Rojgar Sangam Tools Blog","url":"https://tools.rojgarsangam.in/blog/","description":"Free tutorials for PDF tools, image processing, govt job form filling guides"}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Rojgar Sangam Tools Blog",
+  "url": "https://tools.rojgarsangam.in/blog/",
+  "description": "Free tutorials for PDF tools, image processing and govt job form filling guides.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rojgar Sangam Tools",
+    "url": "https://tools.rojgarsangam.in",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tools.rojgarsangam.in/rojgar-sangam-logo.png"
+    }
+  }
+}
+</script>
 <style>
 body { font-family: 'Lora', serif !important; background: #f8f8ff; color: #333333; }
 
@@ -21,56 +39,81 @@ body { font-family: 'Lora', serif !important; background: #f8f8ff; color: #33333
 
 #footer-placeholder { border-top: 1px solid rgba(0, 0, 0, 0.06) !important; width: 100%; display: block; position: relative; }
 
-.blog-hero { background: linear-gradient(135deg, #00079e 0%, #1a237e 100%); border-radius: 20px; padding: 60px 40px; text-align: center; margin: 0px 0px 40px 0px; }
+.section-main { margin: 40px 0px 40px 0px !important; }
 
-.blog-hero h1 { font-size: 38px; font-weight: 900; color: #ffffff; margin: 0px 0px 12px 0px; line-height: 1.2; }
+.blog-hero { background: linear-gradient(135deg, #00079e 0%, #1a237e 100%); border-radius: 20px; padding: 60px 40px 60px 40px; text-align: center; margin: 0px 0px 40px 0px; position: relative; overflow: hidden; }
 
-.blog-hero p { font-size: 17px; color: rgba(255,255,255,0.88); margin: 0px auto; max-width: 600px; }
+.blog-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 250px; height: 250px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+
+.blog-hero::after { content: ''; position: absolute; bottom: -70px; left: -40px; width: 200px; height: 200px; background: rgba(255,255,255,0.04); border-radius: 50%; }
+
+.blog-hero-icon { font-size: 48px; color: rgba(255,255,255,0.9); margin: 0px 0px 16px 0px; position: relative; z-index: 1; }
+
+.blog-hero h1 { font-size: 36px; font-weight: 900; color: #ffffff; margin: 0px 0px 12px 0px; line-height: 1.2; position: relative; z-index: 1; }
+
+.blog-hero p { font-size: 16px; color: rgba(255,255,255,0.88); margin: 0px auto 0px auto; max-width: 620px; line-height: 1.7; position: relative; z-index: 1; }
+
+.blog-filter { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 0px 0px 32px 0px; }
+
+.filter-btn { padding: 8px 20px; background: #eff6ef; color: #00079e; border: 1px solid #667799; border-radius: 50px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; font-family: 'Lora', serif; }
+
+.filter-btn:hover { background: #fdece5; color: #333333; border-color: #00079e; }
+
+.filter-btn.active { background: #00079e; color: #ffffff; border-color: #00079e; }
 
 .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
 
 .blog-card { background: #ffffff; border: 1px solid #667799; border-radius: 16px; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; }
 
-.blog-card:hover { border-color: #00079e; box-shadow: 0px 8px 24px rgba(0,7,158,0.12); transform: translateY(-4px); }
+.blog-card:hover { border-color: #00079e; box-shadow: 0px 10px 30px rgba(0,7,158,0.12); transform: translateY(-5px); }
 
-.card-image { width: 100%; height: 200px; overflow: hidden; background: #f8f8ff; }
+.card-image { width: 100%; height: 190px; overflow: hidden; background: #f8f8ff; position: relative; }
 
-.card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+.card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
 
-.blog-card:hover .card-image img { transform: scale(1.05); }
+.blog-card:hover .card-image img { transform: scale(1.06); }
 
-.card-content { padding: 24px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.card-category-badge { position: absolute; top: 12px; left: 12px; background: #eff6ef; color: #00079e; border: 1px solid #667799; border-radius: 20px; padding: 4px 12px; font-size: 11px; font-weight: 700; }
 
-.category { display: inline-block; background: #eff6ef; color: #00079e; border: 1px solid #667799; border-radius: 20px; padding: 4px 14px; font-size: 12px; font-weight: 700; }
+.card-content { padding: 22px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
 
-.card-content h2 { font-size: 17px; font-weight: 900; margin: 0px; line-height: 1.4; }
+.card-content h2 { font-size: 16px; font-weight: 900; margin: 0px; line-height: 1.5; }
 
 .card-content h2 a { color: #333333; text-decoration: none; }
 
 .card-content h2 a:hover { color: #00079e; }
 
-.card-content p { font-size: 14px; color: #667799; line-height: 1.7; margin: 0px; flex: 1; }
+.card-content p { font-size: 13px; color: #667799; line-height: 1.7; margin: 0px; flex: 1; }
 
-.article-meta { font-size: 12px; color: #667799; font-weight: 700; display: flex; gap: 6px; align-items: center; }
+.article-meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #667799; font-weight: 700; }
 
-.article-meta time { color: #667799; }
+.article-meta i { color: #333333; font-size: 11px; }
 
-.coming-soon { background: #f8f8ff; border: 2px dashed #bdbdbd; border-radius: 16px; padding: 40px 24px; display: flex; align-items: center; justify-content: center; text-align: center; min-height: 200px; }
+.read-more { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #00079e; text-decoration: none; transition: color 0.2s; }
 
-.coming-soon h3 { font-size: 18px; font-weight: 900; color: #333333; margin: 0px 0px 16px 0px; }
+.read-more:hover { color: #333333; }
 
-.coming-soon ul { list-style: none; padding: 0px; margin: 0px; display: flex; flex-direction: column; gap: 8px; }
+.read-more i { font-size: 11px; transition: transform 0.2s; }
 
-.coming-soon ul li { font-size: 14px; color: #667799; padding: 6px 14px; background: #ffffff; border: 1px solid #bdbdbd; border-radius: 20px; }
+.read-more:hover i { transform: translateX(4px); }
 
-.loading { text-align: center; padding: 60px 20px; font-size: 16px; color: #667799; font-weight: 700; }
+.coming-soon-card { background: #f8f8ff; border: 2px dashed #bdbdbd; border-radius: 16px; padding: 40px 24px; display: flex; align-items: center; justify-content: center; text-align: center; min-height: 280px; }
 
-.blog-section { margin: 0px 0px 40px 0px; }
+.coming-soon-card h3 { font-size: 17px; font-weight: 900; color: #333333; margin: 0px 0px 18px 0px; }
+
+.coming-soon-card ul { list-style: none; padding: 0px; margin: 0px; display: flex; flex-direction: column; gap: 8px; }
+
+.coming-soon-card ul li { font-size: 13px; color: #667799; padding: 7px 16px; background: #ffffff; border: 1px solid #bdbdbd; border-radius: 20px; }
+
+.blog-loading { text-align: center; padding: 80px 20px; font-size: 16px; color: #667799; font-weight: 700; grid-column: 1 / -1; }
+
+.blog-loading i { font-size: 32px; color: #333333; display: block; margin: 0px 0px 16px 0px; }
 
 @media (max-width: 768px) {
-.blog-hero { padding: 40px 20px; }
+.blog-hero { padding: 40px 20px 40px 20px; }
 .blog-hero h1 { font-size: 26px; }
-.articles-grid { grid-template-columns: 1fr; }
+.articles-grid { grid-template-columns: 1fr; gap: 16px; }
+.blog-filter { gap: 8px; }
 }
 </style>
 </head>
@@ -86,11 +129,21 @@ body { font-family: 'Lora', serif !important; background: #f8f8ff; color: #33333
 <section class="section-main">
 <div class="row-container">
 <div class="blog-hero">
+<div class="blog-hero-icon"><i class="fas fa-blog"></i></div>
 <h1>Blog — Rojgar Sangam Tools</h1>
-<p>Free guides for PDF merge, compress, photo signature size, govt job form filling & exam document preparation</p>
+<p>Free step-by-step guides for PDF merge, compress, photo signature size, govt job form filling and exam document preparation.</p>
+</div>
+<div class="blog-filter" id="blog-filter">
+<button class="filter-btn active" data-filter="all">All Posts</button>
+<button class="filter-btn" data-filter="PDF Tools">PDF Tools</button>
+<button class="filter-btn" data-filter="Photo Tools">Photo Tools</button>
+<button class="filter-btn" data-filter="Govt Jobs">Govt Jobs</button>
 </div>
 <div class="articles-grid" id="blog-posts-container">
-<div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading blog posts...</div>
+<div class="blog-loading">
+<i class="fas fa-circle-notch fa-spin"></i>
+Loading blog posts...
+</div>
 </div>
 </div>
 </section>
