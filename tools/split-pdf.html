@@ -1,262 +1,312 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Split PDF Online Free: Separate PDF Pages Instantly</title>
-    <meta name="description" content="Split your PDF Files instantly with Rojgar Sangam Tools. Browser-based Processing ensures your Files never Leave your Device. 100% Free & Private.">
-    <meta name="keywords" content="split pdf, separate pdf pages, extract pdf pages, pdf splitter online free, split pdf online, pdf page extractor">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <link rel="canonical" href="https://tools.rojgarsangam.in/tools/split-pdf.html">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Split PDF Online Free","url":"https://tools.rojgarsangam.in/tools/split-pdf.html","description":"Split your PDF Files instantly with Rojgar Sangam Tools. Browser-based Processing ensures your Files never Leave your Device. 100% Free & Private.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.rojgarsangam.in/"},{"@type":"ListItem","position":2,"name":"Split PDF","item":"https://tools.rojgarsangam.in/tools/split-pdf.html"}]}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I Split a PDF into Individual Pages?","acceptedAnswer":{"@type":"Answer","text":"Yes, You can Split Your PDF into Individual Single-Page Files by Setting Each Range to Extract One Page at a Time."}},{"@type":"Question","name":"How Do I Extract Specific Pages From a PDF?","acceptedAnswer":{"@type":"Answer","text":"Use the From Page and To Page Fields to Define the Exact Page Range You Want to Extract. You can Add Multiple Ranges if Needed."}},{"@type":"Question","name":"Will the Tool Store My PDF Files?","acceptedAnswer":{"@type":"Answer","text":"No, All Processing Happens Directly in Your Browser. Your Files Never Leave Your Device and are Not Stored on Any Server."}}]}</script>
-    <style>
-        body{font-family:'Lora',serif!important;background:#f8f8ff;margin:0;padding:0;color:#333333}
-        #header-placeholder{background-color:#ffffff!important;width:100%;display:block;position:relative;z-index:1000}
-        #footer-placeholder{border:1px solid #667799!important;width:100%;display:block;position:relative}
-        .section-main{margin:40px 0px 40px 0px!important}
-        .section-container{margin:40px 0px 40px 0px!important}
-        .hidden{display:none}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Split PDF Online Free: Separate PDF Pages Instantly</title>
+<meta name="description" content="Split your PDF Files instantly with Rojgar Sangam Tools. Browser-based Processing ensures your Files never Leave your Device. 100% Free & Private.">
+<meta name="keywords" content="split pdf, separate pdf pages, extract pdf pages, pdf splitter online free, split pdf online, pdf page extractor">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+<link rel="canonical" href="https://tools.rojgarsangam.in/tools/split-pdf">
+<link rel="preconnect" href="https://tools.rojgarsangam.in" crossorigin>
+<link rel="dns-prefetch" href="https://tools.rojgarsangam.in">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preload" href="/fonts/lora-v37-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"></noscript>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Split PDF Online Free","url":"https://tools.rojgarsangam.in/tools/split-pdf","description":"Split your PDF Files instantly with Rojgar Sangam Tools. Browser-based Processing ensures your Files never Leave your Device. 100% Free & Private.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I Split a PDF into Individual Pages?","acceptedAnswer":{"@type":"Answer","text":"Yes, You can Split Your PDF into Individual Single-Page Files by Setting Each Range to Extract One Page at a Time."}},{"@type":"Question","name":"How Do I Extract Specific Pages From a PDF?","acceptedAnswer":{"@type":"Answer","text":"Use the From Page and To Page Fields to Define the Exact Page Range You Want to Extract. You can Add Multiple Ranges if Needed."}},{"@type":"Question","name":"Will the Tool Store My PDF Files?","acceptedAnswer":{"@type":"Answer","text":"No, All Processing Happens Directly in Your Browser. Your Files Never Leave Your Device and are Not Stored on Any Server."}}]}</script>
+<style>
+body { background: #f8f9fa; }
 
-        /* UPLOAD */
-        .upload-section-wrapper{background:#ffffff;border:2px solid #667799;border-radius:20px;padding:40px 40px 40px 40px;width:100%}
-        .upload-area{border:3px dashed #667799;border-radius:16px;padding:60px 20px 60px 20px;text-align:center;cursor:pointer;transition:all 0.3s ease;background:#f8f8ff}
-        .upload-area:hover{border-color:#00079e;background:#fdece5}
-        .upload-area.dragover{border-color:#00079e;background:#fdece5}
-        .upload-icon{font-size:48px;color:#00079e;margin:0px 0px 20px 0px}
-        .upload-text{font-size:18px;font-weight:700;color:#333333;margin:0px 0px 10px 0px}
-        .upload-subtext{font-size:14px;color:#667799;margin:0px 0px 0px 0px}
+#header-placeholder { background-color: #ffffff !important; width: 100%; display: block; position: relative; z-index: 1000; }
 
-        /* WORKSPACE */
-        .split-workspace{display:none;gap:30px;margin:30px 0px 0px 0px;align-items:flex-start}
-        .pages-preview{flex:1;max-height:800px;overflow-y:auto;padding:10px 10px 10px 10px;background:#ffffff;border-radius:12px;border:1px solid #667799}
-        .range-label{background:#eff6ef;color:#00079e;border:1px solid #667799;padding:5px 15px 5px 15px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;margin:0px 0px 15px 0px}
-        .pages-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:15px}
-        .page-item{background:#ffffff;border:2px solid #667799;border-radius:8px;padding:10px 10px 10px 10px;text-align:center;position:relative;cursor:pointer;transition:all 0.3s ease}
-        .page-item:hover{border-color:#00079e;background:#f8f8ff}
-        .page-item.selected{border-color:#00079e;background:#eff6ef}
-        .page-item.selected::after{content:'\f058';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;top:5px;right:5px;color:#00079e;font-size:18px}
-        .page-preview{width:100%;height:160px;object-fit:contain;background:#f8f8ff;border-radius:4px;margin:0px 0px 8px 0px;border:1px solid #667799}
-        .page-number{font-size:12px;color:#333333;font-weight:600}
+#footer-placeholder { border-top: 1px solid rgba(0, 0, 0, 0.06) !important; width: 100%; display: block; position: relative; }
 
-        /* CONTROLS */
-        .controls-panel{width:380px;background:#ffffff;border:1px solid #667799;border-radius:12px;padding:25px 25px 25px 25px;position:sticky;top:20px}
-        .controls-title{font-size:22px;font-weight:900;margin:0px 0px 10px 0px;color:#333333}
-        .tab-row{display:flex;gap:10px;margin:0px 0px 20px 0px}
-        .tab-btn{flex:1;padding:12px 10px 12px 10px;border:1px solid #667799;background:#ffffff;border-radius:8px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:13px;color:#333333;font-family:'Lora',serif;transition:all 0.2s ease}
-        .tab-btn:hover{background:#fdece5;color:#00079e;border-color:#00079e}
-        .tab-btn.active{background:#eff6ef;color:#00079e;border-color:#00079e}
-        .mode-row{display:flex;gap:8px}
-        .mode-btn{flex:1;padding:10px 5px 10px 5px;border:1px solid #667799;background:#ffffff;border-radius:6px;font-weight:600;font-size:12px;cursor:pointer;color:#333333;font-family:'Lora',serif;transition:all 0.2s ease}
-        .mode-btn:hover{background:#fdece5;color:#00079e}
-        .mode-btn.active{background:#eff6ef;color:#00079e;border-color:#00079e}
-        .range-item{background:#f8f8ff;border:1px solid #667799;border-radius:8px;padding:15px 15px 15px 15px;margin:0px 0px 10px 0px}
-        .range-row-header{display:flex;justify-content:space-between;margin:0px 0px 8px 0px}
-        .range-row-title{font-weight:700;font-size:13px;color:#333333}
-        .range-row-close{color:#667799;cursor:pointer;background:none;border:none;font-size:14px;transition:all 0.2s ease}
-        .range-row-close:hover{color:#00079e}
-        .range-inputs{display:flex;gap:8px}
-        .range-input-wrap{flex:1}
-        .range-input-label{font-size:10px;color:#667799;display:block;margin:0px 0px 3px 0px}
-        .range-input{width:100%;padding:5px 5px 5px 5px;border:1px solid #667799;border-radius:4px;color:#333333;background:#ffffff;font-family:'Lora',serif;box-sizing:border-box}
-        .range-input:focus{outline:none;border-color:#00079e}
-        .add-range-btn{background:none;border:none;color:#00079e;font-weight:700;cursor:pointer;font-size:13px;font-family:'Lora',serif}
-        .add-range-btn:hover{text-decoration:underline}
-        .merge-check-wrap{margin:20px 0px 0px 0px}
-        .merge-check-label{display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;color:#333333}
-        .split-btn{width:100%;padding:15px 0px 15px 0px;background:#eff6ef;color:#00079e;border:1px solid #667799;border-radius:50px;font-size:16px;font-weight:700;font-family:'Lora',serif;cursor:pointer;margin:20px 0px 0px 0px;transition:all 0.2s ease}
-        .split-btn:hover{background:#fdece5;border-color:#00079e}
+.section-main { margin: 40px 0px 40px 0px !important; }
 
-        /* HOW GRID */
-        .how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px 20px}
-        .how-card{background:#ffffff;border:1px solid #667799;border-radius:12px;padding:22px 18px 22px 18px;text-align:center;transition:all 0.3s ease}
-        .how-card:hover{border-color:#00079e;background:#fdece5;transform:translateY(-2px)}
-        .how-icon{font-size:32px;color:#00079e;margin:0px 0px 10px 0px}
-        .how-step{font-size:15px;font-weight:700;color:#333333;margin:0px 0px 6px 0px}
-        .how-desc{font-size:13px;color:#667799}
+.section-container { margin: 40px 0px 40px 0px !important; }
 
-        /* OVERLAYS */
-        .processing-overlay,.success-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:9999}
-        .processing-overlay.active,.success-overlay.active{display:flex}
-        .processing-box,.success-box{background:#ffffff;border-radius:20px;text-align:center;max-width:500px;width:90%;padding:50px 40px 50px 40px;box-shadow:0px 20px 60px rgba(0,0,0,0.3);border:1px solid #667799}
-        .processing-icon{font-size:70px;color:#00079e;margin:0px 0px 20px 0px;animation:pulse 1.5s infinite}
-        @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
-        .processing-title,.success-title{font-size:32px;font-weight:900;color:#333333;margin:0px 0px 15px 0px}
-        .processing-text{font-size:14px;color:#00079e;font-weight:700;line-height:1.6}
-        .success-icon{font-size:80px;color:#00079e;margin:0px 0px 20px 0px}
-        .download-btn{width:100%;padding:18px 40px 18px 40px;background:#eff6ef;color:#00079e;border:1px solid #667799;border-radius:50px;font-size:18px;font-weight:700;font-family:'Lora',serif;cursor:pointer;margin:0px 0px 20px 0px;transition:all 0.3s ease}
-        .download-btn:hover{background:#fdece5;transform:translateY(-2px)}
-        .back-btn{width:100%;padding:15px 40px 15px 40px;background:#ffffff;color:#333333;border:1px solid #667799;border-radius:50px;font-size:16px;font-weight:600;font-family:'Lora',serif;cursor:pointer;margin:0px 0px 10px 0px;transition:all 0.3s ease}
-        .back-btn:hover{border-color:#00079e;color:#00079e;background:#fdece5}
-        .or-divider{margin:15px 0px 15px 0px;color:#667799;font-size:14px}
+.hidden { display: none; }
 
-        @media(max-width:900px){.split-workspace{flex-direction:column}.controls-panel{width:100%;position:static}}
-    </style>
+.upload-section-wrapper { background: #ffffff; border: 2px solid #667799; border-radius: 20px; padding: 40px 40px 40px 40px; width: 100%; }
+
+.upload-area { border: 3px dashed #667799; border-radius: 16px; padding: 60px 20px 60px 20px; text-align: center; cursor: pointer; transition: all 0.3s ease; background: #f8f8ff; }
+
+.upload-area:hover { border-color: #667799; background: #fdece5; }
+
+.upload-area.dragover { border-color: #667799; background: #fdece5; }
+
+.upload-icon { font-size: 48px; color: #333333; margin: 0px 0px 20px 0px; }
+
+.upload-text { font-size: 18px; font-weight: 700; color: #333333; margin: 0px 0px 10px 0px; }
+
+.upload-subtext { font-size: 14px; color: #667799; margin: 0px 0px 0px 0px; }
+
+.split-workspace { display: none; gap: 30px; margin: 30px 0px 0px 0px; align-items: flex-start; }
+
+.pages-preview { flex: 1; max-height: 800px; overflow-y: auto; padding: 10px 10px 10px 10px; background: #ffffff; border-radius: 12px; border: 1px solid #667799; }
+
+.range-label { background: #eff6ef; color: #00079e; border: 1px solid #667799; padding: 5px 15px 5px 15px; border-radius: 20px; font-size: 12px; font-weight: 700; display: inline-block; margin: 0px 0px 15px 0px; }
+
+.pages-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
+
+.page-item { background: #ffffff; border: 2px solid #667799; border-radius: 8px; padding: 10px 10px 10px 10px; text-align: center; position: relative; cursor: pointer; transition: all 0.3s ease; }
+
+.page-item:hover { border-color: #667799; background: #f8f8ff; }
+
+.page-item.selected { border-color: #667799; background: #eff6ef; }
+
+.page-item.selected::after { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 5px; right: 5px; color: #00079e; font-size: 18px; }
+
+.page-preview { width: 100%; height: 160px; object-fit: contain; background: #f8f8ff; border-radius: 4px; margin: 0px 0px 8px 0px; border: 1px solid #667799; }
+
+.page-number { font-size: 12px; color: #333333; font-weight: 600; }
+
+.controls-panel { width: 380px; background: #ffffff; border: 1px solid #667799; border-radius: 12px; padding: 25px 25px 25px 25px; position: sticky; top: 20px; }
+
+.controls-title { font-size: 22px; font-weight: 900; margin: 0px 0px 10px 0px; color: #333333; }
+
+.tab-row { display: flex; gap: 10px; margin: 0px 0px 20px 0px; }
+
+.tab-btn { flex: 1; padding: 12px 10px 12px 10px; border: 1px solid #667799; background: #ffffff; border-radius: 8px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 13px; color: #00079e; font-family: 'Lora', serif; transition: all 0.2s ease; }
+
+.tab-btn:hover { background: #fdece5; color: #333333; border-color: #667799; }
+
+.tab-btn.active { background: #eff6ef; color: #00079e; border-color: #667799; }
+
+.mode-row { display: flex; gap: 8px; }
+
+.mode-btn { flex: 1; padding: 10px 5px 10px 5px; border: 1px solid #667799; background: #eff6ef; border-radius: 6px; font-weight: 600; font-size: 12px; cursor: pointer; color: #00079e; font-family: 'Lora', serif; transition: all 0.2s ease; }
+
+.mode-btn:hover { background: #fdece5; color: #333333; }
+
+.mode-btn.active { background: #eff6ef; color: #00079e; border-color: #667799; }
+
+.range-item { background: #f8f8ff; border: 1px solid #667799; border-radius: 8px; padding: 15px 15px 15px 15px; margin: 0px 0px 10px 0px; }
+
+.range-row-header { display: flex; justify-content: space-between; margin: 0px 0px 8px 0px; }
+
+.range-row-title { font-weight: 700; font-size: 13px; color: #333333; }
+
+.range-row-close { color: #667799; cursor: pointer; background: none; border: none; font-size: 14px; transition: all 0.2s ease; }
+
+.range-row-close:hover { color: #333333; }
+
+.range-inputs { display: flex; gap: 8px; }
+
+.range-input-wrap { flex: 1; }
+
+.range-input-label { font-size: 10px; color: #667799; display: block; margin: 0px 0px 3px 0px; }
+
+.range-input { width: 100%; padding: 5px 5px 5px 5px; border: 1px solid #667799; border-radius: 4px; color: #333333; background: #ffffff; font-family: 'Lora', serif; box-sizing: border-box; }
+
+.range-input:focus { outline: none; border-color: #667799; }
+
+.add-range-btn { background: none; border: none; color: #00079e; font-weight: 700; cursor: pointer; font-size: 13px; font-family: 'Lora', serif; }
+
+.add-range-btn:hover { text-decoration: underline; }
+
+.merge-check-wrap { margin: 20px 0px 0px 0px; }
+
+.merge-check-label { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; color: #333333; }
+
+.split-btn { width: 100%; padding: 15px 0px 15px 0px; background: #eff6ef; color: #00079e; border: 1px solid #667799; border-radius: 50px; font-size: 16px; font-weight: 700; font-family: 'Lora', serif; cursor: pointer; margin: 20px 0px 0px 0px; transition: all 0.2s ease; }
+
+.split-btn:hover { background: #fdece5; color: #333333; border-color: #667799; }
+
+.how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px 20px; }
+
+.how-card { background: #ffffff; border: 1px solid #667799; border-radius: 12px; padding: 22px 18px 22px 18px; text-align: center; transition: all 0.3s ease; }
+
+.how-card:hover { border-color: #667799; background: #fdece5; transform: translateY(-2px); }
+
+.how-icon { font-size: 32px; color: #333333; margin: 0px 0px 10px 0px; }
+
+.how-step { font-size: 15px; font-weight: 700; color: #333333; margin: 0px 0px 6px 0px; }
+
+.how-desc { font-size: 13px; color: #667799; }
+
+.processing-overlay, .success-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 9999; }
+
+.processing-overlay.active, .success-overlay.active { display: flex; }
+
+.processing-box, .success-box { background: #ffffff; border-radius: 20px; text-align: center; max-width: 500px; width: 90%; padding: 50px 40px 50px 40px; box-shadow: 0px 20px 60px rgba(0,0,0,0.3); border: 1px solid #667799; }
+
+.processing-icon { font-size: 70px; color: #333333; margin: 0px 0px 20px 0px; animation: pulse 1.5s infinite; }
+
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+.processing-title, .success-title { font-size: 32px; font-weight: 900; color: #333333; margin: 0px 0px 15px 0px; }
+
+.processing-text { font-size: 14px; color: #00079e; font-weight: 700; line-height: 1.6; }
+
+.success-icon { font-size: 80px; color: #90EE90; margin: 0px 0px 20px 0px; }
+
+.download-btn { width: 100%; padding: 18px 40px 18px 40px; background: #eff6ef; color: #00079e; border: 1px solid #667799; border-radius: 50px; font-size: 18px; font-weight: 700; font-family: 'Lora', serif; cursor: pointer; margin: 0px 0px 20px 0px; transition: all 0.3s ease; }
+
+.download-btn:hover { background: #fdece5; color: #333333; transform: translateY(-2px); }
+
+.back-btn { width: 100%; padding: 15px 40px 15px 40px; background: #f8f8ff; color: #00079e; border: 1px solid #667799; border-radius: 50px; font-size: 16px; font-weight: 600; font-family: 'Lora', serif; cursor: pointer; margin: 0px 0px 10px 0px; transition: all 0.3s ease; }
+
+.back-btn:hover { border-color: #667799; color: #333333; background: #fdece5; }
+
+.or-divider { margin: 15px 0px 15px 0px; color: #667799; font-size: 14px; }
+
+@media (max-width: 900px) { .split-workspace { flex-direction: column; } .controls-panel { width: 100%; position: static; } }
+</style>
 </head>
 <body>
-    <div id="header-placeholder"></div>
-
-    <section class="section" style="margin:50px 0px 0px 0px!important;padding:0px 0px 0px 0px!important">
-        <div class="row-container">
-            <div class="ad-manager-placeholder ad-leaderboard" data-ad-type="leaderboard"></div>
-        </div>
-    </section>
-
-    <!-- TOOL SECTION -->
-    <section class="section-main">
-        <div class="row-container">
-            <div style="text-align:center;margin:0px 0px 30px 0px">
-                <h1 style="font-size:36px;font-weight:900;color:#333333;margin:0px 0px 10px 0px">Split PDF Online Free: Separate PDF Pages Instantly</h1>
-                <p style="font-size:16px;color:#333333;margin:0px 0px 0px 0px">Split your PDF Files Instantly with Rojgar Sangam Tools. Browser-based Processing Ensures your Files Never Leave your Device. 100% Free & Private.</p>
-            </div>
-            <div class="upload-section-wrapper">
-                <div id="uploadArea" class="upload-area" onclick="document.getElementById('fileInput').click()">
-                    <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                    <div class="upload-text">+ Upload PDF</div>
-                    <div class="upload-subtext">or Drop File Here</div>
-                    <input type="file" id="fileInput" accept=".pdf" style="display:none">
-                </div>
-                <div id="workspace" class="split-workspace">
-                    <div class="pages-preview">
-                        <div class="range-label" id="rangeDisplay">Range 1</div>
-                        <div id="pagesGrid" class="pages-grid"></div>
-                    </div>
-                    <div class="controls-panel">
-                        <h2 class="controls-title">Split PDF Options</h2>
-                        <div class="tab-row">
-                            <button class="tab-btn active" id="rangeModeBtn" onclick="switchMode('range')"><i class="fas fa-th-large"></i>Split by Range</button>
-                            <button class="tab-btn" id="extractModeBtn" onclick="switchMode('extract')"><i class="fas fa-hand-pointer"></i>Extract Pages</button>
-                        </div>
-                        <div id="rangeOptions">
-                            <div style="margin:0px 0px 15px 0px">
-                                <label style="font-size:12px;font-weight:700;color:#667799;display:block;margin:0px 0px 5px 0px">Range Mode</label>
-                                <div class="mode-row">
-                                    <button class="mode-btn active" id="customRangeBtn" onclick="switchRangeMode('custom')">Custom Range</button>
-                                    <button class="mode-btn" id="fixedRangeBtn" onclick="switchRangeMode('fixed')">Fixed</button>
-                                </div>
-                            </div>
-                            <div id="dynamicRangeControls">
-                                <div style="display:flex;justify-content:space-between;align-items:center;margin:0px 0px 10px 0px">
-                                    <span style="font-weight:700;font-size:14px;color:#333333">Range</span>
-                                    <button class="add-range-btn" id="addRangeBtn" onclick="addNewRangeRow()">+ Add Range</button>
-                                </div>
-                                <div id="rangesList"></div>
-                            </div>
-                            <div id="fixedRangeControls" style="display:none">
-                                <div class="range-item">
-                                    <label style="font-size:13px;font-weight:700;color:#333333">Split Every:</label>
-                                    <div style="display:flex;align-items:center;gap:10px;margin:10px 0px 0px 0px">
-                                        <input type="number" id="fixedInterval" value="1" min="1" style="width:80px;padding:8px 8px 8px 8px;border:1px solid #667799;border-radius:4px;color:#333333;background:#ffffff;font-family:'Lora',serif">
-                                        <span style="font-size:13px;color:#333333">Pages Per File</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="merge-check-wrap">
-                                <label class="merge-check-label">
-                                    <input type="checkbox" id="mergeCheck" style="width:18px;height:18px;accent-color:#00079e">
-                                    Merge All Ranges in One PDF File
-                                </label>
-                            </div>
-                        </div>
-                        <div id="extractOptions" style="display:none">
-                            <p style="font-size:13px;color:#333333;margin:0px 0px 15px 0px">Select Pages to Extract from the PDF File by Clicking on Them.</p>
-                        </div>
-                        <button class="split-btn" id="executeBtn" onclick="startProcessing()">Split PDF <i class="fas fa-arrow-right" style="margin-left:5px"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- HOW TO USE -->
-    <section class="section-container" style="padding:0px 0px 0px 0px!important">
-        <div class="row-container">
-            <h2 style="font-weight:900;margin:0px 0px 25px 0px!important;text-align:center!important;color:#333333">How to Split PDF Files Online</h2>
-            <div class="how-grid">
-                <div class="how-card">
-                    <div class="how-icon"><i class="fas fa-upload"></i></div>
-                    <div class="how-step">Step 1</div>
-                    <div class="how-desc">Click Upload or Drop Your PDF File Directly into the Tool</div>
-                </div>
-                <div class="how-card">
-                    <div class="how-icon"><i class="fas fa-sliders-h"></i></div>
-                    <div class="how-step">Step 2</div>
-                    <div class="how-desc">Choose Split by Range or Select Pages to Extract</div>
-                </div>
-                <div class="how-card">
-                    <div class="how-icon"><i class="fas fa-cut"></i></div>
-                    <div class="how-step">Step 3</div>
-                    <div class="how-desc">Set Your Page Ranges and Click the Split PDF Button</div>
-                </div>
-                <div class="how-card">
-                    <div class="how-icon"><i class="fas fa-download"></i></div>
-                    <div class="how-step">Step 4</div>
-                    <div class="how-desc">Download Your Split PDF Files Instantly — No Watermark</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section-container" style="padding:0px 0px 0px 0px!important">
-        <div class="row-container">
-            <h2 style="font-weight:900;margin:0px 0px 15px 0px!important;text-align:center!important;color:#333333">Fast and Reliable PDF Splitting Solution</h2>
-            <p style="font-size:16px;color:#333333;line-height:1.8;margin:0px 0px 30px 0px!important;text-align:center!important">Our Split PDF Tool Allows You to Divide Large Documents into Smaller Sections or Extract Specific Pages. Process Everything Locally in Your Browser for Maximum Security and Privacy.</p>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)"><span>Can I Split a PDF into Individual Pages?</span><i class="faq-icon">+</i></div>
-                    <div class="faq-answer"><p>Yes, You can Split Your PDF into Individual Single-Page Files by Setting Each Range to Extract One Page at a Time.</p></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)"><span>How Do I Extract Specific Pages From a PDF?</span><i class="faq-icon">+</i></div>
-                    <div class="faq-answer"><p>Use the From Page and To Page Fields to Define the Exact Page Range You Want to Extract. You can Add Multiple Ranges if Needed.</p></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)"><span>Will the Tool Store My PDF Files?</span><i class="faq-icon">+</i></div>
-                    <div class="faq-answer"><p>No, All Processing Happens Directly in Your Browser. Your Files Never Leave Your Device and are Not Stored on Any Server.</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-main">
-        <div class="row-custom">
-            <div class="ad-manager-placeholder" data-ad-type="responsive"></div>
-        </div>
-    </section>
-
-    <!-- PROCESSING OVERLAY -->
-    <div id="processingOverlay" class="processing-overlay">
-        <div class="processing-box">
-            <div class="processing-icon"><i class="fas fa-file-pdf"></i></div>
-            <div class="processing-title">Splitting PDF</div>
-            <div class="processing-text">Do not close your browser. Wait until your files are processed!</div>
-        </div>
-    </div>
-
-    <!-- SUCCESS OVERLAY -->
-    <div id="successOverlay" class="success-overlay">
-        <div class="success-box">
-            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-            <div class="success-title">PDFs have been Split</div>
-            <button id="finalDl" class="download-btn">Download PDF <i class="fas fa-download"></i></button>
-            <button onclick="location.reload()" class="back-btn">Back to Split PDF</button>
-            <div class="or-divider">OR</div>
-            <button onclick="window.location.href='../index.html'" class="back-btn">Back to Home</button>
-        </div>
-    </div>
-
-    <div id="footer-placeholder"></div>
-    <script src="../js/ad-manager.js"></script>
-    <script src="../js/main.js"></script>
-    <script>
+<header id="header-placeholder"></header>
+<main role="main">
+<section class="section" style="margin:40px 0px 0px 0px!important">
+<div class="row-container">
+<div class="ad-manager-placeholder ad-leaderboard" data-ad-type="leaderboard"></div>
+<div class="ad-manager-placeholder ad-rectangle" data-ad-type="rectangle"></div>
+</div>
+</section>
+<section class="section-main">
+<div class="row-container">
+<div style="text-align:center;margin:0px 0px 30px 0px">
+<h1 style="font-size:36px;font-weight:900;color:#333333;margin:0px 0px 10px 0px">Split PDF Online Free: Separate PDF Pages Instantly</h1>
+<p style="font-size:16px;color:#333333;margin:0px 0px 0px 0px">Split your PDF Files Instantly with Rojgar Sangam Tools. Browser-based Processing Ensures your Files Never Leave your Device. 100% Free & Private.</p>
+</div>
+<div class="upload-section-wrapper">
+<div id="uploadArea" class="upload-area" onclick="document.getElementById('fileInput').click()">
+<div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+<div class="upload-text">+ Upload PDF</div>
+<div class="upload-subtext">or Drop File Here</div>
+<input type="file" id="fileInput" accept=".pdf" style="display:none">
+</div>
+<div id="workspace" class="split-workspace">
+<div class="pages-preview">
+<div class="range-label" id="rangeDisplay">Range 1</div>
+<div id="pagesGrid" class="pages-grid"></div>
+</div>
+<div class="controls-panel">
+<h2 class="controls-title">Split PDF Options</h2>
+<div class="tab-row">
+<button class="tab-btn active" id="rangeModeBtn" onclick="switchMode('range')"><i class="fas fa-th-large"></i>Split by Range</button>
+<button class="tab-btn" id="extractModeBtn" onclick="switchMode('extract')"><i class="fas fa-hand-pointer"></i>Extract Pages</button>
+</div>
+<div id="rangeOptions">
+<div style="margin:0px 0px 15px 0px">
+<label style="font-size:12px;font-weight:700;color:#667799;display:block;margin:0px 0px 5px 0px">Range Mode</label>
+<div class="mode-row">
+<button class="mode-btn active" id="customRangeBtn" onclick="switchRangeMode('custom')">Custom Range</button>
+<button class="mode-btn" id="fixedRangeBtn" onclick="switchRangeMode('fixed')">Fixed</button>
+</div>
+</div>
+<div id="dynamicRangeControls">
+<div style="display:flex;justify-content:space-between;align-items:center;margin:0px 0px 10px 0px">
+<span style="font-weight:700;font-size:14px;color:#333333">Range</span>
+<button class="add-range-btn" id="addRangeBtn" onclick="addNewRangeRow()">+ Add Range</button>
+</div>
+<div id="rangesList"></div>
+</div>
+<div id="fixedRangeControls" style="display:none">
+<div class="range-item">
+<label style="font-size:13px;font-weight:700;color:#333333">Split Every:</label>
+<div style="display:flex;align-items:center;gap:10px;margin:10px 0px 0px 0px">
+<input type="number" id="fixedInterval" value="1" min="1" style="width:80px;padding:8px 8px 8px 8px;border:1px solid #667799;border-radius:4px;color:#333333;background:#ffffff;font-family:'Lora',serif">
+<span style="font-size:13px;color:#333333">Pages Per File</span>
+</div>
+</div>
+</div>
+<div class="merge-check-wrap">
+<label class="merge-check-label">
+<input type="checkbox" id="mergeCheck" style="width:18px;height:18px;accent-color:#00079e">
+Merge All Ranges in One PDF File
+</label>
+</div>
+</div>
+<div id="extractOptions" style="display:none">
+<p style="font-size:13px;color:#333333;margin:0px 0px 15px 0px">Select Pages to Extract from the PDF File by Clicking on Them.</p>
+</div>
+<button class="split-btn" id="executeBtn" onclick="startProcessing()">Split PDF <i class="fas fa-arrow-right" style="margin-left:5px"></i></button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section-container" style="padding:0px 0px 0px 0px!important">
+<div class="row-container">
+<h2 style="font-weight:900;margin:0px 0px 25px 0px!important;text-align:center!important;color:#333333">How to Split PDF Files Online</h2>
+<div class="how-grid">
+<div class="how-card">
+<div class="how-icon"><i class="fas fa-upload"></i></div>
+<div class="how-step">Step 1</div>
+<div class="how-desc">Click Upload or Drop Your PDF File Directly into the Tool</div>
+</div>
+<div class="how-card">
+<div class="how-icon"><i class="fas fa-sliders-h"></i></div>
+<div class="how-step">Step 2</div>
+<div class="how-desc">Choose Split by Range or Select Pages to Extract</div>
+</div>
+<div class="how-card">
+<div class="how-icon"><i class="fas fa-cut"></i></div>
+<div class="how-step">Step 3</div>
+<div class="how-desc">Set Your Page Ranges and Click the Split PDF Button</div>
+</div>
+<div class="how-card">
+<div class="how-icon"><i class="fas fa-download"></i></div>
+<div class="how-step">Step 4</div>
+<div class="how-desc">Download Your Split PDF Files Instantly — No Watermark</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section-container" style="padding:0px 0px 0px 0px!important">
+<div class="row-container">
+<h2 style="font-weight:900;margin:0px 0px 15px 0px!important;text-align:center!important;color:#333333">Fast and Reliable PDF Splitting Solution</h2>
+<p style="font-size:16px;color:#333333;line-height:1.8;margin:0px 0px 30px 0px!important;text-align:center!important">Our Split PDF Tool Allows You to Divide Large Documents into Smaller Sections or Extract Specific Pages. Process Everything Locally in Your Browser for Maximum Security and Privacy.</p>
+<div class="faq-list">
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)"><span>Can I Split a PDF into Individual Pages?</span><i class="faq-icon">+</i></div>
+<div class="faq-answer"><p>Yes, You can Split Your PDF into Individual Single-Page Files by Setting Each Range to Extract One Page at a Time.</p></div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)"><span>How Do I Extract Specific Pages From a PDF?</span><i class="faq-icon">+</i></div>
+<div class="faq-answer"><p>Use the From Page and To Page Fields to Define the Exact Page Range You Want to Extract. You can Add Multiple Ranges if Needed.</p></div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)"><span>Will the Tool Store My PDF Files?</span><i class="faq-icon">+</i></div>
+<div class="faq-answer"><p>No, All Processing Happens Directly in Your Browser. Your Files Never Leave Your Device and are Not Stored on Any Server.</p></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="row-custom">
+<div class="ad-manager-placeholder" data-ad-type="responsive"></div>
+</div>
+</section>
+<div id="processingOverlay" class="processing-overlay">
+<div class="processing-box">
+<div class="processing-icon"><i class="fas fa-file-pdf"></i></div>
+<div class="processing-title">Splitting PDF</div>
+<div class="processing-text">Do not close your browser. Wait until your files are processed!</div>
+</div>
+</div>
+<div id="successOverlay" class="success-overlay">
+<div class="success-box">
+<div class="success-icon"><i class="fas fa-check-circle"></i></div>
+<div class="success-title">PDFs have been Split</div>
+<button id="finalDl" class="download-btn">Download PDF <i class="fas fa-download"></i></button>
+<button onclick="location.reload()" class="back-btn">Back to Split PDF</button>
+<div class="or-divider">OR</div>
+<button onclick="window.location.href='https://tools.rojgarsangam.in'" class="back-btn">Back to Home</button>
+</div>
+</div>
+</main>
+<footer id="footer-placeholder"></footer>
+<script src="/js/ad-manager.js" defer></script>
+<script src="/js/main.js"></script>
+<script>
         let pdfInst=null;
         let fileBytes=null;
         let totalP=0;
