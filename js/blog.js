@@ -23,12 +23,14 @@ function renderPosts(posts) {
     const comingSoon = document.createElement('div');
     comingSoon.className = 'coming-soon-card';
     comingSoon.innerHTML = `
-        <div>
+        <div class="cs-inner">
+            <div class="cs-icon"><i class="fas fa-pen-to-square"></i></div>
             <h3>More Guides Coming Soon</h3>
+            <h4>Topics We Are Working On</h4>
             <ul>
                 <li>Age Calculator Complete Guide</li>
-                <li>CGPA to Percentage Converter</li>
-                <li>Image Resize for Govt Forms</li>
+                <li>CGPA to Percentage Converter Guide</li>
+                <li>Image Resize for Govt Forms Guide</li>
             </ul>
         </div>
     `;
@@ -42,8 +44,8 @@ function createPostCard(post) {
     const dateObj = new Date(post.date);
     const dateFormatted = dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     article.innerHTML = `
-        <div class="card-image">
-            <img src="${post.image}" alt="${post.title}" loading="lazy">
+        <div class="card-image-wrap">
+            <img src="${post.image}" alt="${post.title}" loading="lazy" width="400" height="200">
             <span class="card-category-badge">${post.category}</span>
         </div>
         <div class="card-content">
@@ -69,12 +71,9 @@ function setupFilters() {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             const filter = btn.dataset.filter;
-            if (filter === 'all') {
-                renderPosts(allPosts);
-            } else {
-                const filtered = allPosts.filter(p => p.category === filter);
-                renderPosts(filtered);
-            }
+            const filtered = filter === 'all' ? allPosts : allPosts.filter(p => p.category === filter);
+            renderPosts(filtered);
+            setupFilters();
         });
     });
 }
