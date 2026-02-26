@@ -34,16 +34,16 @@ const RojgarTools = {
             '/tools/photo-signature-joiner.html':        { path: '/images/og/photo-signature-joiner.webp', alt: 'Photo Signature Joiner Online Free - Combine Photo and Signature', title: 'Photo Signature Joiner Online Free - Rojgar Sangam Tools' },
             '/tools/percentage-cgpa-converter':          { path: '/images/og/percentage-cgpa-converter.webp', alt: 'Percentage CGPA Converter Online Free - Convert CGPA to Percentage', title: 'Percentage CGPA Converter Online Free - Rojgar Sangam Tools' },
             '/tools/percentage-cgpa-converter.html':     { path: '/images/og/percentage-cgpa-converter.webp', alt: 'Percentage CGPA Converter Online Free - Convert CGPA to Percentage', title: 'Percentage CGPA Converter Online Free - Rojgar Sangam Tools' },
-            '/legal/about-us':                           { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'About Rojgar Sangam Tools - Free Online PDF and Image Tools', title: 'About Us - Rojgar Sangam Tools' },
-            '/legal/about-us.html':                      { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'About Rojgar Sangam Tools - Free Online PDF and Image Tools', title: 'About Us - Rojgar Sangam Tools' },
-            '/legal/privacy-policy':                     { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Privacy Policy - Rojgar Sangam Tools Free Online Tools', title: 'Privacy Policy - Rojgar Sangam Tools' },
-            '/legal/privacy-policy.html':                { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Privacy Policy - Rojgar Sangam Tools Free Online Tools', title: 'Privacy Policy - Rojgar Sangam Tools' },
-            '/legal/terms-and-conditions':               { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Terms and Conditions - Rojgar Sangam Tools Free Online Tools', title: 'Terms and Conditions - Rojgar Sangam Tools' },
-            '/legal/terms-and-conditions.html':          { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Terms and Conditions - Rojgar Sangam Tools Free Online Tools', title: 'Terms and Conditions - Rojgar Sangam Tools' },
-            '/legal/disclaimer':                         { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Disclaimer - Rojgar Sangam Tools Free Online Tools', title: 'Disclaimer - Rojgar Sangam Tools' },
-            '/legal/disclaimer.html':                    { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Disclaimer - Rojgar Sangam Tools Free Online Tools', title: 'Disclaimer - Rojgar Sangam Tools' },
-            '/legal/contact-us':                         { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Contact Us - Rojgar Sangam Tools Free Online Tools', title: 'Contact Us - Rojgar Sangam Tools' },
-            '/legal/contact-us.html':                    { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Contact Us - Rojgar Sangam Tools Free Online Tools', title: 'Contact Us - Rojgar Sangam Tools' },
+            '/legal/about-us':                           { path: 'https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'About Rojgar Sangam Tools - Free Online PDF and Image Tools', title: 'About Us - Rojgar Sangam Tools' },
+            '/legal/about-us.html':                      { path: 'https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'About Rojgar Sangam Tools - Free Online PDF and Image Tools', title: 'About Us - Rojgar Sangam Tools' },
+            '/legal/privacy-policy':                     { path: 'https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Privacy Policy - Rojgar Sangam Tools Free Online Tools', title: 'Privacy Policy - Rojgar Sangam Tools' },
+            '/legal/privacy-policy.html':                { path: 'https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Privacy Policy - Rojgar Sangam Tools Free Online Tools', title: 'Privacy Policy - Rojgar Sangam Tools' },
+            '/legal/terms-and-conditions':               { path: 'https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Terms and Conditions - Rojgar Sangam Tools Free Online Tools', title: 'Terms and Conditions - Rojgar Sangam Tools' },
+            '/legal/terms-and-conditions.html':          { path: 'https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Terms and Conditions - Rojgar Sangam Tools Free Online Tools', title: 'Terms and Conditions - Rojgar Sangam Tools' },
+            '/legal/disclaimer':                         { path: 'https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Disclaimer - Rojgar Sangam Tools Free Online Tools', title: 'Disclaimer - Rojgar Sangam Tools' },
+            '/legal/disclaimer.html':                    { path: 'https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Disclaimer - Rojgar Sangam Tools Free Online Tools', title: 'Disclaimer - Rojgar Sangam Tools' },
+            '/legal/contact-us':                         { path: 'https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Contact Us - Rojgar Sangam Tools Free Online Tools', title: 'Contact Us - Rojgar Sangam Tools' },
+            '/legal/contact-us.html':                    { path: 'https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Contact Us - Rojgar Sangam Tools Free Online Tools', title: 'Contact Us - Rojgar Sangam Tools' },
         };
 
         const imageData = ogImageMap[pathname] || { path: '/images/og/home.webp', alt: 'Rojgar Sangam Tools - Free Online PDF and Image Tools', title: 'Free Online Tools - Rojgar Sangam Tools' };
@@ -56,12 +56,12 @@ const RojgarTools = {
         favicon.rel = 'icon';
         favicon.type = 'image/png';
         favicon.sizes = '512x512';
-        favicon.href = '/images/RGSG-Avtar.png';
+        favicon.href = 'https://tools.rojgarsangam.in/images/RGSG-Avtar.png';
         document.head.appendChild(favicon);
 
         const appleFavicon = document.createElement('link');
         appleFavicon.rel = 'apple-touch-icon';
-        appleFavicon.href = '/images/RGSG-Avtar.png';
+        appleFavicon.href = 'https://tools.rojgarsangam.in/images/RGSG-Avtar.png';
         document.head.appendChild(appleFavicon);
 
         const ogTags = [
@@ -138,7 +138,7 @@ const RojgarTools = {
                 "@type": "Organization",
                 "name": "Rojgar Sangam Tools",
                 "url": base + "/",
-                "logo": base + "/images/rojgar-sangam-logo.png",
+                "logo": base + "https://tools.rojgarsangam.in/images/rojgar-sangam-logo.png",
                 "sameAs": ["https://rojgarsangam.in/"]
             },
             {
@@ -157,7 +157,7 @@ const RojgarTools = {
                     "url": base + "/",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": base + "/images/rojgar-sangam-logo.png"
+                        "url": base + "https://tools.rojgarsangam.in/images/rojgar-sangam-logo.png"
                     }
                 }
             },
