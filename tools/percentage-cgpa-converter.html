@@ -1,284 +1,338 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Percentage CGPA Converter Online Free - SGPA, Marks, Grade Calculator</title>
-    <meta name="description" content="Free Percentage CGPA Converter Online. Convert CGPA to Percentage, Percentage to CGPA, SGPA to CGPA, Marks to Percentage. All Boards and Universities supported.">
-    <meta name="keywords" content="percentage cgpa converter, cgpa to percentage, percentage to cgpa, sgpa to percentage, marks to percentage, grade calculator india">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <link rel="canonical" href="https://tools.rojgarsangam.in/tools/percentage-cgpa-converter.html">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Percentage CGPA Converter Online Free","url":"https://tools.rojgarsangam.in/tools/percentage-cgpa-converter.html","description":"Free Percentage CGPA Converter. All boards and universities supported.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.rojgarsangam.in/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://tools.rojgarsangam.in/tools/"},{"@type":"ListItem","position":3,"name":"Percentage CGPA Converter","item":"https://tools.rojgarsangam.in/tools/percentage-cgpa-converter.html"}]}</script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"CGPA to Percentage CBSE formula kya hai?","acceptedAnswer":{"@type":"Answer","text":"CBSE formula: Percentage = CGPA × 9.5"}},{"@type":"Question","name":"SGPA to CGPA kaise convert karein?","acceptedAnswer":{"@type":"Answer","text":"CGPA = (Sum of SGPA × Credits) / Total Credits"}},{"@type":"Question","name":"Distinction kitne percentage par milta hai?","acceptedAnswer":{"@type":"Answer","text":"75% aur upar Distinction hoti hai."}}]}</script>
-    <style>
-        body{font-family:'Lora',serif!important;background:#f8f8ff;color:#333}
-        #header-placeholder{background-color:#fff!important;width:100%;display:block;position:relative;z-index:1000}
-        .section-main{margin:40px 0px 40px 0px!important}
-        .tool-wrapper{background:#fff;border-radius:20px;padding:40px;box-shadow:0px 4px 20px rgba(0,0,0,0.08);border:1px solid #667799}
-        .mode-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0px 0px 28px 0px}
-        .mode-btn{padding:12px 8px;background:#f8f8ff;border:2px solid #bdbdbd;border-radius:10px;font-size:12px;font-weight:700;color:#333;cursor:pointer;font-family:'Lora',serif;transition:all .2s;text-align:center;line-height:1.4}
-        .mode-btn:hover{border-color:#00079e;background:#eff6ef;color:#00079e}
-        .mode-btn.active{background:#00079e;border-color:#00079e;color:#fff}
-        .mode-btn i{display:block;font-size:20px;margin:0px 0px 6px 0px}
-        .board-wrapper{background:#f8f8ff;border:1px solid #667799;border-radius:14px;padding:22px;margin:0px 0px 22px 0px}
-        .board-title{font-size:14px;font-weight:900;color:#333;margin:0px 0px 12px 0px;display:flex;align-items:center;gap:7px}
-        .board-title i{color:#00079e}
-        .form-select{width:100%;padding:10px 12px;border:2px solid #bdbdbd;border-radius:8px;font-size:13px;font-family:'Lora',serif;color:#333;background:#fff;box-sizing:border-box;cursor:pointer;transition:border .2s}
-        .form-select:focus{outline:none;border-color:#00079e}
-        .form-input{width:100%;padding:10px 12px;border:2px solid #bdbdbd;border-radius:8px;font-size:13px;font-family:'Lora',serif;color:#333;background:#fff;box-sizing:border-box;transition:border .2s}
-        .form-input:focus{outline:none;border-color:#00079e}
-        .input-section{margin:0px 0px 22px 0px}
-        .input-label{font-size:13px;font-weight:700;color:#333;margin:0px 0px 8px 0px;display:flex;align-items:center;gap:6px}
-        .input-label i{color:#00079e;font-size:12px}
-        .input-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-        .calc-btn{width:100%;padding:17px 0px;background:#00079e;color:#fff;border:none;border-radius:50px;font-size:17px;font-weight:700;cursor:pointer;margin:0px 0px 0px 0px;transition:all .3s;font-family:'Lora',serif;display:flex;align-items:center;justify-content:center;gap:10px}
-        .calc-btn:hover{background:#333;transform:translateY(-2px)}
-        .result-box{display:none;margin:22px 0px 0px 0px;background:#fff;border:1px solid #667799;border-radius:16px;overflow:hidden}
-        .result-box.show{display:block}
-        .result-header{background:#00079e;padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
-        .result-header-title{font-size:16px;font-weight:900;color:#fff;display:flex;align-items:center;gap:8px}
-        .result-actions{display:flex;gap:8px}
-        .result-action-btn{padding:7px 14px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.4);border-radius:20px;font-size:12px;font-weight:700;color:#fff;cursor:pointer;font-family:'Lora',serif;transition:all .2s;display:flex;align-items:center;gap:5px}
-        .result-action-btn:hover{background:rgba(255,255,255,0.3)}
-        .result-body{padding:24px}
-        .result-main{text-align:center;margin:0px 0px 20px 0px;padding:20px;background:#f8f8ff;border-radius:12px;border:1px solid #bdbdbd}
-        .result-value{font-size:48px;font-weight:900;color:#00079e;line-height:1}
-        .result-unit{font-size:16px;font-weight:700;color:#667799;margin:6px 0px 0px 0px}
-        .result-badge{display:inline-block;padding:6px 18px;border-radius:20px;font-size:14px;font-weight:700;margin:12px 0px 0px 0px}
-        .badge-distinction{background:#eff6ef;color:#00c853;border:1px solid #00c853}
-        .badge-first{background:#e8f4fd;color:#0277bd;border:1px solid #0277bd}
-        .badge-second{background:#fff8e1;color:#f57f17;border:1px solid #f57f17}
-        .badge-third{background:#fce4ec;color:#c62828;border:1px solid #c62828}
-        .badge-fail{background:#ffebee;color:#b71c1c;border:1px solid #b71c1c}
-        .result-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:0px 0px 16px 0px}
-        .stat-box{background:#f8f8ff;border:1px solid #bdbdbd;border-radius:8px;padding:12px;text-align:center}
-        .stat-label{font-size:11px;color:#667799;font-weight:700;margin:0px 0px 4px 0px}
-        .stat-val{font-size:14px;font-weight:900;color:#333}
-        .formula-box{background:#eff6ef;border:1px solid #667799;border-radius:8px;padding:12px 16px;font-size:13px;color:#333;font-weight:700}
-        .formula-box i{color:#00079e;margin:0px 4px 0px 0px}
-        .history-wrapper{margin:22px 0px 0px 0px;background:#f8f8ff;border:1px solid #667799;border-radius:14px;padding:20px}
-        .history-title{font-size:14px;font-weight:900;color:#333;margin:0px 0px 12px 0px;display:flex;align-items:center;justify-content:space-between}
-        .history-title span{display:flex;align-items:center;gap:7px}
-        .history-title i{color:#00079e}
-        .clear-hist-btn{padding:5px 12px;background:#fff;border:1px solid #e53935;border-radius:20px;font-size:11px;font-weight:700;color:#e53935;cursor:pointer;font-family:'Lora',serif}
-        .history-list{display:flex;flex-direction:column;gap:8px}
-        .history-item{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#fff;border:1px solid #bdbdbd;border-radius:8px;font-size:12px}
-        .history-item-left{font-weight:700;color:#333}
-        .history-item-right{font-weight:900;color:#00079e}
-        .history-empty{font-size:13px;color:#667799;text-align:center;padding:10px 0px}
-        .semester-wrapper{display:none}
-        .semester-row{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:center;margin:0px 0px 10px 0px}
-        .sem-label{font-size:13px;font-weight:700;color:#667799;text-align:center}
-        .add-sem-btn{display:flex;align-items:center;gap:6px;padding:9px 18px;background:#eff6ef;border:2px solid #667799;border-radius:8px;font-size:13px;font-weight:700;color:#00079e;cursor:pointer;font-family:'Lora',serif;margin:0px 0px 16px 0px;width:fit-content}
-        .remove-sem-btn{width:32px;height:32px;background:#fdece5;border:1px solid #e53935;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#e53935;font-size:14px;flex-shrink:0}
-        .custom-mult-row{display:none;margin:10px 0px 0px 0px}
-        .grade-table{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0px 0px 0px}
-        .grade-table th{background:#00079e;color:#fff;padding:8px 10px;text-align:left;font-weight:700}
-        .grade-table td{padding:8px 10px;border-bottom:1px solid #bdbdbd}
-        .grade-table tr:nth-child(even) td{background:#f8f8ff}
-        .grade-highlight{background:#eff6ef!important;font-weight:700}
-        .error-msg{display:none;background:#fdece5;border:1px solid #e53935;border-radius:8px;padding:10px 16px;font-size:13px;font-weight:700;color:#e53935;margin:0px 0px 16px 0px}
-        .error-msg.show{display:block}
-        #footer-placeholder{border:1px solid #667799!important;width:100%;display:block;position:relative}
-        @media(max-width:700px){.mode-grid{grid-template-columns:repeat(2,1fr)}.result-stats{grid-template-columns:1fr 1fr}.input-row{grid-template-columns:1fr}.result-actions{flex-wrap:wrap}}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Percentage CGPA Converter Online Free - SGPA, Marks, Grade Calculator</title>
+<meta name="description" content="Free Percentage CGPA Converter Online. Convert CGPA to Percentage, Percentage to CGPA, SGPA to CGPA, Marks to Percentage. All Boards and Universities supported.">
+<meta name="keywords" content="percentage cgpa converter, cgpa to percentage, percentage to cgpa, sgpa to percentage, marks to percentage, grade calculator india">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+<link rel="canonical" href="https://tools.rojgarsangam.in/tools/percentage-cgpa-converter">
+<link rel="preconnect" href="https://tools.rojgarsangam.in" crossorigin>
+<link rel="dns-prefetch" href="https://tools.rojgarsangam.in">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preload" href="/fonts/lora-v37-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"></noscript>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Percentage CGPA Converter Online Free","url":"https://tools.rojgarsangam.in/tools/percentage-cgpa-converter","description":"Free Percentage CGPA Converter. All boards and universities supported.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"CGPA to Percentage CBSE formula kya hai?","acceptedAnswer":{"@type":"Answer","text":"CBSE formula: Percentage = CGPA × 9.5"}},{"@type":"Question","name":"SGPA to CGPA kaise convert karein?","acceptedAnswer":{"@type":"Answer","text":"CGPA = (Sum of SGPA × Credits) / Total Credits"}},{"@type":"Question","name":"Distinction kitne percentage par milta hai?","acceptedAnswer":{"@type":"Answer","text":"75% aur upar Distinction hoti hai."}}]}</script>
+<style>
+body { background: #f8f9fa; }
+
+#header-placeholder { background-color: #ffffff !important; width: 100%; display: block; position: relative; z-index: 1000; }
+
+#footer-placeholder { border-top: 1px solid rgba(0, 0, 0, 0.06) !important; width: 100%; display: block; position: relative; }
+
+.section-main { margin: 40px 0px 40px 0px !important; }
+
+.tool-wrapper { background: #ffffff; border-radius: 20px; padding: 40px; box-shadow: 0px 4px 20px rgba(0,0,0,0.08); border: 1px solid #667799; }
+
+.mode-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 0px 0px 28px 0px; }
+
+.mode-btn { padding: 12px 8px; background: #f8f8ff; border: 2px solid #bdbdbd; border-radius: 10px; font-size: 12px; font-weight: 700; color: #333333; cursor: pointer; font-family: 'Lora', serif; transition: all .2s; text-align: center; line-height: 1.4; }
+
+.mode-btn:hover { border-color: #667799; background: #eff6ef; color: #00079e; }
+
+.mode-btn.active { background: #00079e; border-color: #00079e; color: #ffffff; }
+
+.mode-btn i { display: block; font-size: 20px; margin: 0px 0px 6px 0px; }
+
+.board-wrapper { background: #f8f8ff; border: 1px solid #667799; border-radius: 14px; padding: 22px; margin: 0px 0px 22px 0px; }
+
+.board-title { font-size: 14px; font-weight: 900; color: #333333; margin: 0px 0px 12px 0px; display: flex; align-items: center; gap: 7px; }
+
+.board-title i { color: #333333; }
+
+.form-select { width: 100%; padding: 10px 12px; border: 2px solid #bdbdbd; border-radius: 8px; font-size: 13px; font-family: 'Lora', serif; color: #333333; background: #ffffff; box-sizing: border-box; cursor: pointer; transition: border .2s; }
+
+.form-select:focus { outline: none; border-color: #667799; }
+
+.form-input { width: 100%; padding: 10px 12px; border: 2px solid #bdbdbd; border-radius: 8px; font-size: 13px; font-family: 'Lora', serif; color: #333333; background: #ffffff; box-sizing: border-box; transition: border .2s; }
+
+.form-input:focus { outline: none; border-color: #667799; }
+
+.input-section { margin: 0px 0px 22px 0px; }
+
+.input-label { font-size: 13px; font-weight: 700; color: #333333; margin: 0px 0px 8px 0px; display: flex; align-items: center; gap: 6px; }
+
+.input-label i { color: #333333; font-size: 12px; }
+
+.input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.calc-btn { width: 100%; padding: 17px 0px; background: #eff6ef; color: #00079e; border: 1px solid #667799; border-radius: 50px; font-size: 17px; font-weight: 700; cursor: pointer; margin: 0px 0px 0px 0px; transition: all .3s; font-family: 'Lora', serif; display: flex; align-items: center; justify-content: center; gap: 10px; }
+
+.calc-btn:hover { background: #fdece5; color: #333333; transform: translateY(-2px); }
+
+.result-box { display: none; margin: 22px 0px 0px 0px; background: #ffffff; border: 1px solid #667799; border-radius: 16px; overflow: hidden; }
+
+.result-box.show { display: block; }
+
+.result-header { background: #00079e; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; }
+
+.result-header-title { font-size: 16px; font-weight: 900; color: #ffffff; display: flex; align-items: center; gap: 8px; }
+
+.result-actions { display: flex; gap: 8px; }
+
+.result-action-btn { padding: 7px 14px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; font-size: 12px; font-weight: 700; color: #ffffff; cursor: pointer; font-family: 'Lora', serif; transition: all .2s; display: flex; align-items: center; gap: 5px; }
+
+.result-action-btn:hover { background: rgba(255,255,255,0.3); }
+
+.result-body { padding: 24px; }
+
+.result-main { text-align: center; margin: 0px 0px 20px 0px; padding: 20px; background: #f8f8ff; border-radius: 12px; border: 1px solid #bdbdbd; }
+
+.result-value { font-size: 48px; font-weight: 900; color: #00079e; line-height: 1; }
+
+.result-unit { font-size: 16px; font-weight: 700; color: #667799; margin: 6px 0px 0px 0px; }
+
+.result-badge { display: inline-block; padding: 6px 18px; border-radius: 20px; font-size: 14px; font-weight: 700; margin: 12px 0px 0px 0px; }
+
+.badge-distinction { background: #eff6ef; color: #00c853; border: 1px solid #00c853; }
+
+.badge-first { background: #e8f4fd; color: #0277bd; border: 1px solid #0277bd; }
+
+.badge-second { background: #fff8e1; color: #f57f17; border: 1px solid #f57f17; }
+
+.badge-third { background: #fce4ec; color: #c62828; border: 1px solid #c62828; }
+
+.badge-fail { background: #ffebee; color: #b71c1c; border: 1px solid #b71c1c; }
+
+.result-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 0px 0px 16px 0px; }
+
+.stat-box { background: #f8f8ff; border: 1px solid #bdbdbd; border-radius: 8px; padding: 12px; text-align: center; }
+
+.stat-label { font-size: 11px; color: #667799; font-weight: 700; margin: 0px 0px 4px 0px; }
+
+.stat-val { font-size: 14px; font-weight: 900; color: #333333; }
+
+.formula-box { background: #eff6ef; border: 1px solid #667799; border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #333333; font-weight: 700; }
+
+.formula-box i { color: #333333; margin: 0px 4px 0px 0px; }
+
+.history-wrapper { margin: 22px 0px 0px 0px; background: #f8f8ff; border: 1px solid #667799; border-radius: 14px; padding: 20px; }
+
+.history-title { font-size: 14px; font-weight: 900; color: #333333; margin: 0px 0px 12px 0px; display: flex; align-items: center; justify-content: space-between; }
+
+.history-title span { display: flex; align-items: center; gap: 7px; }
+
+.history-title i { color: #333333; }
+
+.clear-hist-btn { padding: 5px 12px; background: #ffffff; border: 1px solid #e53935; border-radius: 20px; font-size: 11px; font-weight: 700; color: #e53935; cursor: pointer; font-family: 'Lora', serif; }
+
+.history-list { display: flex; flex-direction: column; gap: 8px; }
+
+.history-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #ffffff; border: 1px solid #bdbdbd; border-radius: 8px; font-size: 12px; }
+
+.history-item-left { font-weight: 700; color: #333333; }
+
+.history-item-right { font-weight: 900; color: #00079e; }
+
+.history-empty { font-size: 13px; color: #667799; text-align: center; padding: 10px 0px; }
+
+.semester-wrapper { display: none; }
+
+.semester-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: center; margin: 0px 0px 10px 0px; }
+
+.sem-label { font-size: 13px; font-weight: 700; color: #667799; text-align: center; }
+
+.add-sem-btn { display: flex; align-items: center; gap: 6px; padding: 9px 18px; background: #eff6ef; border: 2px solid #667799; border-radius: 8px; font-size: 13px; font-weight: 700; color: #00079e; cursor: pointer; font-family: 'Lora', serif; margin: 0px 0px 16px 0px; width: fit-content; }
+
+.remove-sem-btn { width: 32px; height: 32px; background: #fdece5; border: 1px solid #e53935; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #e53935; font-size: 14px; flex-shrink: 0; }
+
+.custom-mult-row { display: none; margin: 10px 0px 0px 0px; }
+
+.grade-table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 10px 0px 0px 0px; }
+
+.grade-table th { background: #00079e; color: #ffffff; padding: 8px 10px; text-align: left; font-weight: 700; }
+
+.grade-table td { padding: 8px 10px; border-bottom: 1px solid #bdbdbd; }
+
+.grade-table tr:nth-child(even) td { background: #f8f8ff; }
+
+.grade-highlight { background: #eff6ef !important; font-weight: 700; }
+
+.error-msg { display: none; background: #fdece5; border: 1px solid #e53935; border-radius: 8px; padding: 10px 16px; font-size: 13px; font-weight: 700; color: #e53935; margin: 0px 0px 16px 0px; }
+
+.error-msg.show { display: block; }
+
+.section-container { margin: 40px 0px 40px 0px !important; }
+
+@media (max-width: 700px) { .mode-grid { grid-template-columns: repeat(2, 1fr); } .result-stats { grid-template-columns: 1fr 1fr; } .input-row { grid-template-columns: 1fr; } .result-actions { flex-wrap: wrap; } }
+</style>
 </head>
 <body>
-    <div id="header-placeholder"></div>
-    <section class="section" style="margin:50px 0px 0px 0px!important">
-        <div class="row-container">
-            <div class="ad-manager-placeholder ad-leaderboard" data-ad-type="leaderboard"></div>
-        </div>
-    </section>
-    <section class="section-main">
-        <div class="row-container">
-            <div style="text-align:center;margin:0px 0px 30px 0px">
-                <h1 style="font-size:36px;font-weight:900;color:#333;margin:0px 0px 10px 0px">Percentage & CGPA Converter Online Free</h1>
-                <p style="font-size:16px;color:#333;margin:0px">CGPA to Percentage, Percentage to CGPA, SGPA, Marks, Grade — All Boards & Universities Supported.</p>
-            </div>
-            <div class="tool-wrapper">
-                <div id="errorMsg" class="error-msg"><i class="fas fa-exclamation-circle"></i> <span id="errorText"></span></div>
-
-                <!-- MODE SELECT -->
-                <div class="mode-grid">
-                    <button class="mode-btn active" data-mode="cgpa-to-percent" onclick="setMode('cgpa-to-percent',this)"><i class="fas fa-graduation-cap"></i>CGPA → %</button>
-                    <button class="mode-btn" data-mode="percent-to-cgpa" onclick="setMode('percent-to-cgpa',this)"><i class="fas fa-percent"></i>% → CGPA</button>
-                    <button class="mode-btn" data-mode="sgpa-to-percent" onclick="setMode('sgpa-to-percent',this)"><i class="fas fa-chart-line"></i>SGPA → %</button>
-                    <button class="mode-btn" data-mode="sgpa-to-cgpa" onclick="setMode('sgpa-to-cgpa',this)"><i class="fas fa-layer-group"></i>SGPA → CGPA</button>
-                    <button class="mode-btn" data-mode="marks-to-percent" onclick="setMode('marks-to-percent',this)"><i class="fas fa-book-open"></i>Marks → %</button>
-                    <button class="mode-btn" data-mode="multi-sem" onclick="setMode('multi-sem',this)"><i class="fas fa-list-ol"></i>Multi Sem</button>
-                    <button class="mode-btn" data-mode="grade-to-percent" onclick="setMode('grade-to-percent',this)"><i class="fas fa-star"></i>Grade → %</button>
-                    <button class="mode-btn" data-mode="gpa4-to-percent" onclick="setMode('gpa4-to-percent',this)"><i class="fas fa-globe"></i>GPA 4.0 → %</button>
-                </div>
-
-                <!-- BOARD SELECT -->
-                <div class="board-wrapper" id="boardWrapper">
-                    <div class="board-title"><i class="fas fa-university"></i> Select Board / University</div>
-                    <select id="boardSelect" class="form-select" onchange="onBoardChange()">
-                        <optgroup label="School Boards">
-                            <option value="cbse">CBSE (Class 10 & 12) — × 9.5</option>
-                            <option value="icse">ICSE Board — × 9.5</option>
-                            <option value="state">State Board — × 9.5</option>
-                        </optgroup>
-                        <optgroup label="Universities">
-                            <option value="ugc">UGC Standard — × 9.5</option>
-                            <option value="vtu">VTU Karnataka — (CGPA−0.5)×10</option>
-                            <option value="sppu">SPPU Pune — (CGPA−0.75)×10</option>
-                            <option value="gtu">GTU Gujarat — × 10</option>
-                            <option value="ktu">KTU Kerala — × 10</option>
-                            <option value="aktu">AKTU UP — (CGPA×10)−7.5</option>
-                            <option value="mumbai">Mumbai University — CGPA×7.1+11</option>
-                            <option value="anna">Anna University — (CGPA−0.5)×10</option>
-                            <option value="du">Delhi University — × 9.5</option>
-                        </optgroup>
-                        <option value="custom">Custom Multiplier</option>
-                    </select>
-                    <div class="custom-mult-row" id="customMultRow">
-                        <div class="input-label" style="margin:10px 0px 8px 0px"><i class="fas fa-times"></i> Enter Custom Multiplier</div>
-                        <input type="number" id="customMult" class="form-input" placeholder="e.g. 9.5 or 10" step="0.01" min="0.01">
-                    </div>
-                </div>
-
-                <!-- INPUT SECTIONS -->
-                <!-- CGPA to % -->
-                <div id="sec-cgpa-to-percent" class="input-section">
-                    <div class="input-label"><i class="fas fa-input-numeric"></i> Enter Your CGPA</div>
-                    <input type="number" id="val-cgpa" class="form-input" placeholder="e.g. 8.5" step="0.01" min="0" max="10">
-                </div>
-                <!-- % to CGPA -->
-                <div id="sec-percent-to-cgpa" class="input-section" style="display:none">
-                    <div class="input-label"><i class="fas fa-percent"></i> Enter Your Percentage</div>
-                    <input type="number" id="val-percent" class="form-input" placeholder="e.g. 85" step="0.01" min="0" max="100">
-                </div>
-                <!-- SGPA to % -->
-                <div id="sec-sgpa-to-percent" class="input-section" style="display:none">
-                    <div class="input-label"><i class="fas fa-chart-line"></i> Enter Your SGPA</div>
-                    <input type="number" id="val-sgpa" class="form-input" placeholder="e.g. 8.2" step="0.01" min="0" max="10">
-                </div>
-                <!-- SGPA to CGPA -->
-                <div id="sec-sgpa-to-cgpa" class="input-section" style="display:none">
-                    <div class="input-label"><i class="fas fa-layer-group"></i> Enter SGPA & Credits per Semester</div>
-                    <div id="sgpaCgpaRows">
-                        <div class="semester-row"><input type="number" class="form-input sgpa-val" placeholder="Sem 1 SGPA" step="0.01" min="0" max="10"><input type="number" class="form-input sgpa-credit" placeholder="Credits" step="1" min="1"><div class="remove-sem-btn" onclick="removeSemRow(this)"><i class="fas fa-times"></i></div></div>
-                        <div class="semester-row"><input type="number" class="form-input sgpa-val" placeholder="Sem 2 SGPA" step="0.01" min="0" max="10"><input type="number" class="form-input sgpa-credit" placeholder="Credits" step="1" min="1"><div class="remove-sem-btn" onclick="removeSemRow(this)"><i class="fas fa-times"></i></div></div>
-                    </div>
-                    <button class="add-sem-btn" onclick="addSemRow()"><i class="fas fa-plus"></i> Add Semester</button>
-                </div>
-                <!-- Marks to % -->
-                <div id="sec-marks-to-percent" class="input-section" style="display:none">
-                    <div class="input-label"><i class="fas fa-book-open"></i> Enter Marks Obtained & Total Marks</div>
-                    <div class="input-row">
-                        <input type="number" id="val-marks-got" class="form-input" placeholder="Marks Obtained e.g. 450" min="0">
-                        <input type="number" id="val-marks-total" class="form-input" placeholder="Total Marks e.g. 600" min="1">
-                    </div>
-                </div>
-                <!-- Multi Sem CGPA -->
-                <div id="sec-multi-sem" class="input-section" style="display:none">
-                    <div class="input-label"><i class="fas fa-list-ol"></i> Enter SGPA & Credits for Each Semester</div>
-                    <div style="background:#eff6ef;border:1px solid #667799;border-radius:8px;padding:10px 14px;font-size:13px;color:#333;font-weight:700;margin:0px 0px 14px 0px"><i class="fas fa-info-circle" style="color:#00079e"></i> Final CGPA will be calculated using weighted average of all semesters.</div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin:0px 0px 8px 0px">
-                        <div class="sem-label">SGPA</div>
-                        <div class="sem-label">Credits</div>
-                        <div style="width:32px"></div>
-                    </div>
-                    <div id="multiSemRows">
-                        <div class="semester-row"><input type="number" class="form-input msem-sgpa" placeholder="Sem 1 SGPA" step="0.01" min="0" max="10"><input type="number" class="form-input msem-credit" placeholder="Credits" step="1" min="1"><div class="remove-sem-btn" onclick="removeMSemRow(this)"><i class="fas fa-times"></i></div></div>
-                        <div class="semester-row"><input type="number" class="form-input msem-sgpa" placeholder="Sem 2 SGPA" step="0.01" min="0" max="10"><input type="number" class="form-input msem-credit" placeholder="Credits" step="1" min="1"><div class="remove-sem-btn" onclick="removeMSemRow(this)"><i class="fas fa-times"></i></div></div>
-                    </div>
-                    <button class="add-sem-btn" onclick="addMSemRow()"><i class="fas fa-plus"></i> Add Semester</button>
-                </div>
-                <!-- Grade to % -->
-                <div id="sec-grade-to-percent" class="input-section" style="display:none">
-                    <div class="input-label"><i class="fas fa-star"></i> Select Your Grade</div>
-                    <select id="val-grade" class="form-select">
-                        <option value="">-- Select Grade --</option>
-                        <option value="O">O — Outstanding (95–100%)</option>
-                        <option value="A+">A+ — Excellent (90–94%)</option>
-                        <option value="A">A — Very Good (80–89%)</option>
-                        <option value="B+">B+ — Good (70–79%)</option>
-                        <option value="B">B — Above Average (60–69%)</option>
-                        <option value="C">C — Average (50–59%)</option>
-                        <option value="D">D — Pass (40–49%)</option>
-                        <option value="F">F — Fail (Below 40%)</option>
-                    </select>
-                    <table class="grade-table" style="margin:16px 0px 0px 0px">
-                        <thead><tr><th>Grade</th><th>Range</th><th>CGPA Points</th><th>Classification</th></tr></thead>
-                        <tbody id="gradeTableBody"></tbody>
-                    </table>
-                </div>
-                <!-- GPA 4.0 to % -->
-                <div id="sec-gpa4-to-percent" class="input-section" style="display:none">
-                    <div class="input-label"><i class="fas fa-globe"></i> Enter GPA (4.0 Scale)</div>
-                    <input type="number" id="val-gpa4" class="form-input" placeholder="e.g. 3.5" step="0.01" min="0" max="4">
-                    <div style="background:#eff6ef;border:1px solid #667799;border-radius:8px;padding:10px 14px;font-size:12px;color:#333;font-weight:700;margin:10px 0px 0px 0px"><i class="fas fa-info-circle" style="color:#00079e"></i> Formula: Percentage = (GPA / 4.0) × 100</div>
-                </div>
-
-                <button class="calc-btn" id="calcBtn" onclick="calculate()"><i class="fas fa-calculator"></i> Calculate Now</button>
-
-                <!-- RESULT BOX -->
-                <div class="result-box" id="resultBox">
-                    <div class="result-header">
-                        <div class="result-header-title"><i class="fas fa-check-circle"></i> Result</div>
-                        <div class="result-actions">
-                            <button class="result-action-btn" onclick="copyResult()"><i class="fas fa-copy"></i> Copy</button>
-                            <button class="result-action-btn" onclick="printResult()"><i class="fas fa-print"></i> Print</button>
-                            <button class="result-action-btn" onclick="resetTool()"><i class="fas fa-redo"></i> Reset</button>
-                        </div>
-                    </div>
-                    <div class="result-body" id="resultBody"></div>
-                </div>
-
-                <!-- HISTORY -->
-                <div class="history-wrapper" id="historyWrapper" style="display:none">
-                    <div class="history-title">
-                        <span><i class="fas fa-history"></i> Recent Calculations</span>
-                        <button class="clear-hist-btn" onclick="clearHistory()">Clear All</button>
-                    </div>
-                    <div class="history-list" id="historyList"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-container" style="margin:40px 0px 40px 0px!important;padding:0px 0px 0px 0px!important">
-        <div class="row-container">
-            <h2 style="font-weight:900;margin:0px 0px 25px 0px!important;text-align:center!important;color:#333">How to Use This Converter</h2>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px">
-                <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:22px 18px;text-align:center"><div style="font-size:32px;color:#00079e;margin:0px 0px 10px 0px"><i class="fas fa-hand-pointer"></i></div><div style="font-size:15px;font-weight:700;color:#333;margin:0px 0px 6px 0px">Step 1</div><div style="font-size:13px;color:#667799">Select Conversion Mode</div></div>
-                <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:22px 18px;text-align:center"><div style="font-size:32px;color:#00079e;margin:0px 0px 10px 0px"><i class="fas fa-university"></i></div><div style="font-size:15px;font-weight:700;color:#333;margin:0px 0px 6px 0px">Step 2</div><div style="font-size:13px;color:#667799">Select Your Board / University</div></div>
-                <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:22px 18px;text-align:center"><div style="font-size:32px;color:#00079e;margin:0px 0px 10px 0px"><i class="fas fa-keyboard"></i></div><div style="font-size:15px;font-weight:700;color:#333;margin:0px 0px 6px 0px">Step 3</div><div style="font-size:13px;color:#667799">Enter Your Value</div></div>
-                <div style="background:#fff;border:1px solid #667799;border-radius:12px;padding:22px 18px;text-align:center"><div style="font-size:32px;color:#00079e;margin:0px 0px 10px 0px"><i class="fas fa-calculator"></i></div><div style="font-size:15px;font-weight:700;color:#333;margin:0px 0px 6px 0px">Step 4</div><div style="font-size:13px;color:#667799">Click Calculate — Get Instant Result</div></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-container" style="margin:0px 0px 40px 0px!important;padding:0px 0px 0px 0px!important">
-        <div class="row-container">
-            <h2 style="font-weight:900;margin:0px 0px 25px 0px!important;text-align:center!important;color:#333">Frequently Asked Questions</h2>
-            <div class="faq-list">
-                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>CBSE CGPA to Percentage Formula Kya Hai?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>CBSE standard formula: Percentage = CGPA × 9.5. Example: CGPA 9.0 = 85.5%.</p></div></div>
-                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>SGPA Aur CGPA Mein Kya Fark Hai?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>SGPA ek semester ka grade point hai. CGPA sabhi semesters ka weighted average hota hai.</p></div></div>
-                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>VTU Ka Formula Kya Hai?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>VTU Karnataka formula: Percentage = (CGPA − 0.5) × 10.</p></div></div>
-                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Distinction Ke Liye Kitna Percentage Chahiye?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Generally 75% aur upar Distinction hoti hai. First Class 60%–74.9%, Second Class 50%–59.9%.</p></div></div>
-                <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>GPA 4.0 Scale Ko Percentage Mein Kaise Convert Karein?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Formula: Percentage = (GPA / 4.0) × 100. Example: GPA 3.5 = 87.5%.</p></div></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-main">
-        <div class="row-custom">
-            <div class="ad-manager-placeholder" data-ad-type="responsive"></div>
-        </div>
-    </section>
-
-    <div id="footer-placeholder"></div>
-    <script src="../js/ad-manager.js"></script>
-    <script src="../js/main.js"></script>
-    <script>
+<header id="header-placeholder"></header>
+<main role="main">
+<section class="section" style="margin:40px 0px 0px 0px!important">
+<div class="row-container">
+<div class="ad-manager-placeholder ad-leaderboard" data-ad-type="leaderboard"></div>
+<div class="ad-manager-placeholder ad-rectangle" data-ad-type="rectangle"></div>
+</div>
+</section>
+<section class="section-main">
+<div class="row-container">
+<div style="text-align:center;margin:0px 0px 30px 0px">
+<h1 style="font-size:36px;font-weight:900;color:#333333;margin:0px 0px 10px 0px">Percentage & CGPA Converter Online Free</h1>
+<p style="font-size:16px;color:#333333;margin:0px">CGPA to Percentage, Percentage to CGPA, SGPA, Marks, Grade — All Boards & Universities Supported.</p>
+</div>
+<div class="tool-wrapper">
+<div id="errorMsg" class="error-msg"><i class="fas fa-exclamation-circle"></i> <span id="errorText"></span></div>
+<div class="mode-grid">
+<button class="mode-btn active" data-mode="cgpa-to-percent" onclick="setMode('cgpa-to-percent',this)"><i class="fas fa-graduation-cap"></i>CGPA → %</button>
+<button class="mode-btn" data-mode="percent-to-cgpa" onclick="setMode('percent-to-cgpa',this)"><i class="fas fa-percent"></i>% → CGPA</button>
+<button class="mode-btn" data-mode="sgpa-to-percent" onclick="setMode('sgpa-to-percent',this)"><i class="fas fa-chart-line"></i>SGPA → %</button>
+<button class="mode-btn" data-mode="sgpa-to-cgpa" onclick="setMode('sgpa-to-cgpa',this)"><i class="fas fa-layer-group"></i>SGPA → CGPA</button>
+<button class="mode-btn" data-mode="marks-to-percent" onclick="setMode('marks-to-percent',this)"><i class="fas fa-book-open"></i>Marks → %</button>
+<button class="mode-btn" data-mode="multi-sem" onclick="setMode('multi-sem',this)"><i class="fas fa-list-ol"></i>Multi Sem</button>
+<button class="mode-btn" data-mode="grade-to-percent" onclick="setMode('grade-to-percent',this)"><i class="fas fa-star"></i>Grade → %</button>
+<button class="mode-btn" data-mode="gpa4-to-percent" onclick="setMode('gpa4-to-percent',this)"><i class="fas fa-globe"></i>GPA 4.0 → %</button>
+</div>
+<div class="board-wrapper" id="boardWrapper">
+<div class="board-title"><i class="fas fa-university"></i> Select Board / University</div>
+<select id="boardSelect" class="form-select" onchange="onBoardChange()">
+<optgroup label="School Boards">
+<option value="cbse">CBSE (Class 10 & 12) — × 9.5</option>
+<option value="icse">ICSE Board — × 9.5</option>
+<option value="state">State Board — × 9.5</option>
+</optgroup>
+<optgroup label="Universities">
+<option value="ugc">UGC Standard — × 9.5</option>
+<option value="vtu">VTU Karnataka — (CGPA−0.5)×10</option>
+<option value="sppu">SPPU Pune — (CGPA−0.75)×10</option>
+<option value="gtu">GTU Gujarat — × 10</option>
+<option value="ktu">KTU Kerala — × 10</option>
+<option value="aktu">AKTU UP — (CGPA×10)−7.5</option>
+<option value="mumbai">Mumbai University — CGPA×7.1+11</option>
+<option value="anna">Anna University — (CGPA−0.5)×10</option>
+<option value="du">Delhi University — × 9.5</option>
+</optgroup>
+<option value="custom">Custom Multiplier</option>
+</select>
+<div class="custom-mult-row" id="customMultRow">
+<div class="input-label" style="margin:10px 0px 8px 0px"><i class="fas fa-times"></i> Enter Custom Multiplier</div>
+<input type="number" id="customMult" class="form-input" placeholder="e.g. 9.5 or 10" step="0.01" min="0.01">
+</div>
+</div>
+<div id="sec-cgpa-to-percent" class="input-section">
+<div class="input-label"><i class="fas fa-input-numeric"></i> Enter Your CGPA</div>
+<input type="number" id="val-cgpa" class="form-input" placeholder="e.g. 8.5" step="0.01" min="0" max="10">
+</div>
+<div id="sec-percent-to-cgpa" class="input-section" style="display:none">
+<div class="input-label"><i class="fas fa-percent"></i> Enter Your Percentage</div>
+<input type="number" id="val-percent" class="form-input" placeholder="e.g. 85" step="0.01" min="0" max="100">
+</div>
+<div id="sec-sgpa-to-percent" class="input-section" style="display:none">
+<div class="input-label"><i class="fas fa-chart-line"></i> Enter Your SGPA</div>
+<input type="number" id="val-sgpa" class="form-input" placeholder="e.g. 8.2" step="0.01" min="0" max="10">
+</div>
+<div id="sec-sgpa-to-cgpa" class="input-section" style="display:none">
+<div class="input-label"><i class="fas fa-layer-group"></i> Enter SGPA & Credits per Semester</div>
+<div id="sgpaCgpaRows">
+<div class="semester-row"><input type="number" class="form-input sgpa-val" placeholder="Sem 1 SGPA" step="0.01" min="0" max="10"><input type="number" class="form-input sgpa-credit" placeholder="Credits" step="1" min="1"><div class="remove-sem-btn" onclick="removeSemRow(this)"><i class="fas fa-times"></i></div></div>
+<div class="semester-row"><input type="number" class="form-input sgpa-val" placeholder="Sem 2 SGPA" step="0.01" min="0" max="10"><input type="number" class="form-input sgpa-credit" placeholder="Credits" step="1" min="1"><div class="remove-sem-btn" onclick="removeSemRow(this)"><i class="fas fa-times"></i></div></div>
+</div>
+<button class="add-sem-btn" onclick="addSemRow()"><i class="fas fa-plus"></i> Add Semester</button>
+</div>
+<div id="sec-marks-to-percent" class="input-section" style="display:none">
+<div class="input-label"><i class="fas fa-book-open"></i> Enter Marks Obtained & Total Marks</div>
+<div class="input-row">
+<input type="number" id="val-marks-got" class="form-input" placeholder="Marks Obtained e.g. 450" min="0">
+<input type="number" id="val-marks-total" class="form-input" placeholder="Total Marks e.g. 600" min="1">
+</div>
+</div>
+<div id="sec-multi-sem" class="input-section" style="display:none">
+<div class="input-label"><i class="fas fa-list-ol"></i> Enter SGPA & Credits for Each Semester</div>
+<div style="background:#eff6ef;border:1px solid #667799;border-radius:8px;padding:10px 14px;font-size:13px;color:#333333;font-weight:700;margin:0px 0px 14px 0px"><i class="fas fa-info-circle" style="color:#333333"></i> Final CGPA will be calculated using weighted average of all semesters.</div>
+<div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin:0px 0px 8px 0px">
+<div class="sem-label">SGPA</div>
+<div class="sem-label">Credits</div>
+<div style="width:32px"></div>
+</div>
+<div id="multiSemRows">
+<div class="semester-row"><input type="number" class="form-input msem-sgpa" placeholder="Sem 1 SGPA" step="0.01" min="0" max="10"><input type="number" class="form-input msem-credit" placeholder="Credits" step="1" min="1"><div class="remove-sem-btn" onclick="removeMSemRow(this)"><i class="fas fa-times"></i></div></div>
+<div class="semester-row"><input type="number" class="form-input msem-sgpa" placeholder="Sem 2 SGPA" step="0.01" min="0" max="10"><input type="number" class="form-input msem-credit" placeholder="Credits" step="1" min="1"><div class="remove-sem-btn" onclick="removeMSemRow(this)"><i class="fas fa-times"></i></div></div>
+</div>
+<button class="add-sem-btn" onclick="addMSemRow()"><i class="fas fa-plus"></i> Add Semester</button>
+</div>
+<div id="sec-grade-to-percent" class="input-section" style="display:none">
+<div class="input-label"><i class="fas fa-star"></i> Select Your Grade</div>
+<select id="val-grade" class="form-select">
+<option value="">-- Select Grade --</option>
+<option value="O">O — Outstanding (95–100%)</option>
+<option value="A+">A+ — Excellent (90–94%)</option>
+<option value="A">A — Very Good (80–89%)</option>
+<option value="B+">B+ — Good (70–79%)</option>
+<option value="B">B — Above Average (60–69%)</option>
+<option value="C">C — Average (50–59%)</option>
+<option value="D">D — Pass (40–49%)</option>
+<option value="F">F — Fail (Below 40%)</option>
+</select>
+<table class="grade-table" style="margin:16px 0px 0px 0px">
+<thead><tr><th>Grade</th><th>Range</th><th>CGPA Points</th><th>Classification</th></tr></thead>
+<tbody id="gradeTableBody"></tbody>
+</table>
+</div>
+<div id="sec-gpa4-to-percent" class="input-section" style="display:none">
+<div class="input-label"><i class="fas fa-globe"></i> Enter GPA (4.0 Scale)</div>
+<input type="number" id="val-gpa4" class="form-input" placeholder="e.g. 3.5" step="0.01" min="0" max="4">
+<div style="background:#eff6ef;border:1px solid #667799;border-radius:8px;padding:10px 14px;font-size:12px;color:#333333;font-weight:700;margin:10px 0px 0px 0px"><i class="fas fa-info-circle" style="color:#333333"></i> Formula: Percentage = (GPA / 4.0) × 100</div>
+</div>
+<button class="calc-btn" id="calcBtn" onclick="calculate()"><i class="fas fa-calculator"></i> Calculate Now</button>
+<div class="result-box" id="resultBox">
+<div class="result-header">
+<div class="result-header-title"><i class="fas fa-check-circle"></i> Result</div>
+<div class="result-actions">
+<button class="result-action-btn" onclick="copyResult()"><i class="fas fa-copy"></i> Copy</button>
+<button class="result-action-btn" onclick="printResult()"><i class="fas fa-print"></i> Print</button>
+<button class="result-action-btn" onclick="resetTool()"><i class="fas fa-redo"></i> Reset</button>
+</div>
+</div>
+<div class="result-body" id="resultBody"></div>
+</div>
+<div class="history-wrapper" id="historyWrapper" style="display:none">
+<div class="history-title">
+<span><i class="fas fa-history"></i> Recent Calculations</span>
+<button class="clear-hist-btn" onclick="clearHistory()">Clear All</button>
+</div>
+<div class="history-list" id="historyList"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section-container" style="margin:40px 0px 40px 0px!important;padding:0px 0px 0px 0px!important">
+<div class="row-container">
+<h2 style="font-weight:900;margin:0px 0px 25px 0px!important;text-align:center!important;color:#333333">How to Use This Converter</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px">
+<div style="background:#ffffff;border:1px solid #667799;border-radius:12px;padding:22px 18px;text-align:center"><div style="font-size:32px;color:#333333;margin:0px 0px 10px 0px"><i class="fas fa-hand-pointer"></i></div><div style="font-size:15px;font-weight:700;color:#333333;margin:0px 0px 6px 0px">Step 1</div><div style="font-size:13px;color:#667799">Select Conversion Mode</div></div>
+<div style="background:#ffffff;border:1px solid #667799;border-radius:12px;padding:22px 18px;text-align:center"><div style="font-size:32px;color:#333333;margin:0px 0px 10px 0px"><i class="fas fa-university"></i></div><div style="font-size:15px;font-weight:700;color:#333333;margin:0px 0px 6px 0px">Step 2</div><div style="font-size:13px;color:#667799">Select Your Board / University</div></div>
+<div style="background:#ffffff;border:1px solid #667799;border-radius:12px;padding:22px 18px;text-align:center"><div style="font-size:32px;color:#333333;margin:0px 0px 10px 0px"><i class="fas fa-keyboard"></i></div><div style="font-size:15px;font-weight:700;color:#333333;margin:0px 0px 6px 0px">Step 3</div><div style="font-size:13px;color:#667799">Enter Your Value</div></div>
+<div style="background:#ffffff;border:1px solid #667799;border-radius:12px;padding:22px 18px;text-align:center"><div style="font-size:32px;color:#333333;margin:0px 0px 10px 0px"><i class="fas fa-calculator"></i></div><div style="font-size:15px;font-weight:700;color:#333333;margin:0px 0px 6px 0px">Step 4</div><div style="font-size:13px;color:#667799">Click Calculate — Get Instant Result</div></div>
+</div>
+</div>
+</section>
+<section class="section-container" style="margin:0px 0px 40px 0px!important;padding:0px 0px 0px 0px!important">
+<div class="row-container">
+<h2 style="font-weight:900;margin:0px 0px 25px 0px!important;text-align:center!important;color:#333333">Frequently Asked Questions</h2>
+<div class="faq-list">
+<div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>CBSE CGPA to Percentage Formula Kya Hai?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>CBSE standard formula: Percentage = CGPA × 9.5. Example: CGPA 9.0 = 85.5%.</p></div></div>
+<div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>SGPA Aur CGPA Mein Kya Fark Hai?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>SGPA ek semester ka grade point hai. CGPA sabhi semesters ka weighted average hota hai.</p></div></div>
+<div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>VTU Ka Formula Kya Hai?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>VTU Karnataka formula: Percentage = (CGPA − 0.5) × 10.</p></div></div>
+<div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>Distinction Ke Liye Kitna Percentage Chahiye?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Generally 75% aur upar Distinction hoti hai. First Class 60%–74.9%, Second Class 50%–59.9%.</p></div></div>
+<div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)"><span>GPA 4.0 Scale Ko Percentage Mein Kaise Convert Karein?</span><i class="faq-icon">+</i></div><div class="faq-answer"><p>Formula: Percentage = (GPA / 4.0) × 100. Example: GPA 3.5 = 87.5%.</p></div></div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="row-custom">
+<div class="ad-manager-placeholder" data-ad-type="responsive"></div>
+</div>
+</section>
+</main>
+<footer id="footer-placeholder"></footer>
+<script src="/js/ad-manager.js" defer></script>
+<script src="/js/main.js"></script>
+<script>
     let currentMode='cgpa-to-percent';
     let calcHistory=JSON.parse(localStorage.getItem('cgpaHistory')||'[]');
 
@@ -389,7 +443,6 @@
     function calculate(){
         hideError();
         const mode=currentMode;
-
         if(mode==='cgpa-to-percent'){
             const cgpa=parseFloat(document.getElementById('val-cgpa').value);
             if(isNaN(cgpa)||cgpa<0||cgpa>10){showError('Please enter a valid CGPA between 0 and 10.');return;}
