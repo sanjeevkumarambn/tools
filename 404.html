@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"></noscript>
 <style>
-body { font-family: 'Lora', serif !important; background: #f8f8ff; color: #333333; }
+body { background: #f8f9fa; }
 
 #header-placeholder { background-color: #ffffff !important; width: 100%; display: block; position: relative; z-index: 1000; }
 
@@ -23,7 +23,7 @@ body { font-family: 'Lora', serif !important; background: #f8f8ff; color: #33333
 
 .section-main { margin: 40px 0px 40px 0px !important; }
 
-.error-hero { background: linear-gradient(135deg, #00079e 0%, #1a237e 60%, #283593 100%); border-radius: 20px; padding: 80px 40px 80px 40px; text-align: center; color: #ffffff; position: relative; overflow: hidden; }
+.error-hero { background: linear-gradient(135deg, #eff6ef 0%, #fdece5 60%, #f8f8ff 100%); border-radius: 20px; padding: 80px 40px 80px 40px; text-align: center; color: #333333; position: relative; overflow: hidden; }
 
 .error-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 260px; height: 260px; background: rgba(255,255,255,0.05); border-radius: 50%; }
 
@@ -39,17 +39,17 @@ body { font-family: 'Lora', serif !important; background: #f8f8ff; color: #33333
 
 .error-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 0px 0px 32px 0px; }
 
-.hero-badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 7px 16px 7px 16px; font-size: 13px; font-weight: 700; color: #ffffff; display: flex; align-items: center; gap: 6px; }
+.hero-badge { background: rgba(255, 255, 255, 0.3); border: 1px solid #bdbdbd; border-radius: 20px; padding: 7px 16px 7px 16px; font-size: 13px; font-weight: 700; color: #333333; display: flex; align-items: center; gap: 6px; }
 
 .error-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-.btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px 16px 36px; background: #ffffff; color: #00079e; border: none; border-radius: 50px; font-size: 16px; font-weight: 900; font-family: 'Lora', serif; cursor: pointer; text-decoration: none; transition: all 0.3s ease; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px 16px 36px; background: #eff6ef; color: #00079e; border: none; border-radius: 50px; font-size: 16px; font-weight: 900; font-family: 'Lora', serif; cursor: pointer; text-decoration: none; transition: all 0.3s ease; }
 
 .btn-primary:hover { background: #fdece5; color: #333333; transform: translateY(-2px); }
 
-.btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px 16px 36px; background: transparent; color: #ffffff; border: 2px solid rgba(255,255,255,0.5); border-radius: 50px; font-size: 16px; font-weight: 700; font-family: 'Lora', serif; cursor: pointer; text-decoration: none; transition: all 0.3s ease; }
+.btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px 16px 36px; background: #fdece5; color: #333333; border: 2px solid rgba(255,255,255,0.5); border-radius: 50px; font-size: 16px; font-weight: 700; font-family: 'Lora', serif; cursor: pointer; text-decoration: none; transition: all 0.3s ease; }
 
-.btn-secondary:hover { background: rgba(255,255,255,0.15); border-color: #ffffff; }
+.btn-secondary:hover { background: #eff6ef; color: #00079e; transform: translateY(-2px); }
 
 @media (max-width: 768px) { .error-number { font-size: 80px; } .error-title { font-size: 24px; } .error-hero { padding: 50px 20px 50px 20px; } .error-btns { flex-direction: column; align-items: center; } .btn-primary, .btn-secondary { width: 100%; max-width: 300px; justify-content: center; } }
 </style>
