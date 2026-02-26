@@ -4,52 +4,50 @@ const RojgarTools = {
         this.injectSchema();
         this.loadComponents();
     },
-
     injectMeta() {
         const base = 'https://tools.rojgarsangam.in';
         const pathname = window.location.pathname;
-
         const ogImageMap = {
-            '/':                                         '/images/og/home.webp',
-            '/index.html':                               '/images/og/home.webp',
-            '/tools/merge-pdf':                          '/images/og/merge-pdf.webp',
-            '/tools/merge-pdf.html':                     '/images/og/merge-pdf.webp',
-            '/tools/split-pdf':                          '/images/og/split-pdf.webp',
-            '/tools/split-pdf.html':                     '/images/og/split-pdf.webp',
-            '/tools/compress-pdf':                       '/images/og/compress-pdf.webp',
-            '/tools/compress-pdf.html':                  '/images/og/compress-pdf.webp',
-            '/tools/word-to-pdf':                        '/images/og/word-to-pdf.webp',
-            '/tools/word-to-pdf.html':                   '/images/og/word-to-pdf.webp',
-            '/tools/jpg-to-pdf':                         '/images/og/jpg-to-pdf.webp',
-            '/tools/jpg-to-pdf.html':                    '/images/og/jpg-to-pdf.webp',
-            '/tools/pdf-to-jpg':                         '/images/og/pdf-to-jpg.webp',
-            '/tools/pdf-to-jpg.html':                    '/images/og/pdf-to-jpg.webp',
-            '/tools/image-resizer':                      '/images/og/image-resizer.webp',
-            '/tools/image-resizer.html':                 '/images/og/image-resizer.webp',
-            '/tools/remove-bg':                          '/images/og/remove-bg.webp',
-            '/tools/remove-bg.html':                     '/images/og/remove-bg.webp',
-            '/tools/age-calculator':                     '/images/og/age-calculator.webp',
-            '/tools/age-calculator.html':                '/images/og/age-calculator.webp',
-            '/tools/name-dob-on-photo':                  '/images/og/name-dob-on-photo.webp',
-            '/tools/name-dob-on-photo.html':             '/images/og/name-dob-on-photo.webp',
-            '/tools/photo-signature-joiner':             '/images/og/photo-signature-joiner.webp',
-            '/tools/photo-signature-joiner.html':        '/images/og/photo-signature-joiner.webp',
-            '/tools/percentage-cgpa-converter':          '/images/og/percentage-cgpa-converter.webp',
-            '/tools/percentage-cgpa-converter.html':     '/images/og/percentage-cgpa-converter.webp',
-            '/legal/about-us':                           '/images/og/about-rojgar-sangam-tools-free-online-tools.webp',
-            '/legal/about-us.html':                      '/images/og/about-rojgar-sangam-tools-free-online-tools.webp',
-            '/legal/privacy-policy':                     '/images/og/about-rojgar-sangam-tools-free-online-tools.webp',
-            '/legal/privacy-policy.html':                '/images/og/about-rojgar-sangam-tools-free-online-tools.webp',
-            '/legal/terms-and-conditions':               '/images/og/about-rojgar-sangam-tools-free-online-tools.webp',
-            '/legal/terms-and-conditions.html':          '/images/og/about-rojgar-sangam-tools-free-online-tools.webp',
-            '/legal/disclaimer':                         '/images/og/about-rojgar-sangam-tools-free-online-tools.webp',
-            '/legal/disclaimer.html':                    '/images/og/about-rojgar-sangam-tools-free-online-tools.webp',
-            '/legal/contact-us':                         '/images/og/about-rojgar-sangam-tools-free-online-tools.webp',
-            '/legal/contact-us.html':                    '/images/og/about-rojgar-sangam-tools-free-online-tools.webp',
+            '/':                                         { path: '/images/og/home.webp', alt: 'Rojgar Sangam Tools - Free Online PDF and Image Tools', title: 'Free Online Tools - Rojgar Sangam Tools' },
+            '/index.html':                               { path: '/images/og/home.webp', alt: 'Rojgar Sangam Tools - Free Online PDF and Image Tools', title: 'Free Online Tools - Rojgar Sangam Tools' },
+            '/tools/merge-pdf':                          { path: '/images/og/merge-pdf.webp', alt: 'Merge PDF Online Free - Combine PDF Files Instantly', title: 'Merge PDF Online Free - Rojgar Sangam Tools' },
+            '/tools/merge-pdf.html':                     { path: '/images/og/merge-pdf.webp', alt: 'Merge PDF Online Free - Combine PDF Files Instantly', title: 'Merge PDF Online Free - Rojgar Sangam Tools' },
+            '/tools/split-pdf':                          { path: '/images/og/split-pdf.webp', alt: 'Split PDF Online Free - Separate PDF Pages Instantly', title: 'Split PDF Online Free - Rojgar Sangam Tools' },
+            '/tools/split-pdf.html':                     { path: '/images/og/split-pdf.webp', alt: 'Split PDF Online Free - Separate PDF Pages Instantly', title: 'Split PDF Online Free - Rojgar Sangam Tools' },
+            '/tools/compress-pdf':                       { path: '/images/og/compress-pdf.webp', alt: 'Compress PDF Online Free - Reduce PDF File Size Instantly', title: 'Compress PDF Online Free - Rojgar Sangam Tools' },
+            '/tools/compress-pdf.html':                  { path: '/images/og/compress-pdf.webp', alt: 'Compress PDF Online Free - Reduce PDF File Size Instantly', title: 'Compress PDF Online Free - Rojgar Sangam Tools' },
+            '/tools/word-to-pdf':                        { path: '/images/og/word-to-pdf.webp', alt: 'Word to PDF Online Free - Convert DOC DOCX to PDF Instantly', title: 'Word to PDF Online Free - Rojgar Sangam Tools' },
+            '/tools/word-to-pdf.html':                   { path: '/images/og/word-to-pdf.webp', alt: 'Word to PDF Online Free - Convert DOC DOCX to PDF Instantly', title: 'Word to PDF Online Free - Rojgar Sangam Tools' },
+            '/tools/jpg-to-pdf':                         { path: '/images/og/jpg-to-pdf.webp', alt: 'JPG to PDF Online Free - Convert Images to PDF Instantly', title: 'JPG to PDF Online Free - Rojgar Sangam Tools' },
+            '/tools/jpg-to-pdf.html':                    { path: '/images/og/jpg-to-pdf.webp', alt: 'JPG to PDF Online Free - Convert Images to PDF Instantly', title: 'JPG to PDF Online Free - Rojgar Sangam Tools' },
+            '/tools/pdf-to-jpg':                         { path: '/images/og/pdf-to-jpg.webp', alt: 'PDF to JPG Online Free - Convert PDF Pages to Images Instantly', title: 'PDF to JPG Online Free - Rojgar Sangam Tools' },
+            '/tools/pdf-to-jpg.html':                    { path: '/images/og/pdf-to-jpg.webp', alt: 'PDF to JPG Online Free - Convert PDF Pages to Images Instantly', title: 'PDF to JPG Online Free - Rojgar Sangam Tools' },
+            '/tools/image-resizer':                      { path: '/images/og/image-resizer.webp', alt: 'Image Resizer Online Free - Resize Images Without Losing Quality', title: 'Image Resizer Online Free - Rojgar Sangam Tools' },
+            '/tools/image-resizer.html':                 { path: '/images/og/image-resizer.webp', alt: 'Image Resizer Online Free - Resize Images Without Losing Quality', title: 'Image Resizer Online Free - Rojgar Sangam Tools' },
+            '/tools/remove-bg':                          { path: '/images/og/remove-bg.webp', alt: 'Remove Image Background Online Free - Automatic Background Remover', title: 'Remove Background Online Free - Rojgar Sangam Tools' },
+            '/tools/remove-bg.html':                     { path: '/images/og/remove-bg.webp', alt: 'Remove Image Background Online Free - Automatic Background Remover', title: 'Remove Background Online Free - Rojgar Sangam Tools' },
+            '/tools/age-calculator':                     { path: '/images/og/age-calculator.webp', alt: 'Age Calculator Online Free - Calculate Exact Age from Date of Birth', title: 'Age Calculator Online Free - Rojgar Sangam Tools' },
+            '/tools/age-calculator.html':                { path: '/images/og/age-calculator.webp', alt: 'Age Calculator Online Free - Calculate Exact Age from Date of Birth', title: 'Age Calculator Online Free - Rojgar Sangam Tools' },
+            '/tools/name-dob-on-photo':                  { path: '/images/og/name-dob-on-photo.webp', alt: 'Add Name and DOB on Photo Online Free - Print Text on Image', title: 'Name DOB on Photo Online Free - Rojgar Sangam Tools' },
+            '/tools/name-dob-on-photo.html':             { path: '/images/og/name-dob-on-photo.webp', alt: 'Add Name and DOB on Photo Online Free - Print Text on Image', title: 'Name DOB on Photo Online Free - Rojgar Sangam Tools' },
+            '/tools/photo-signature-joiner':             { path: '/images/og/photo-signature-joiner.webp', alt: 'Photo Signature Joiner Online Free - Combine Photo and Signature', title: 'Photo Signature Joiner Online Free - Rojgar Sangam Tools' },
+            '/tools/photo-signature-joiner.html':        { path: '/images/og/photo-signature-joiner.webp', alt: 'Photo Signature Joiner Online Free - Combine Photo and Signature', title: 'Photo Signature Joiner Online Free - Rojgar Sangam Tools' },
+            '/tools/percentage-cgpa-converter':          { path: '/images/og/percentage-cgpa-converter.webp', alt: 'Percentage CGPA Converter Online Free - Convert CGPA to Percentage', title: 'Percentage CGPA Converter Online Free - Rojgar Sangam Tools' },
+            '/tools/percentage-cgpa-converter.html':     { path: '/images/og/percentage-cgpa-converter.webp', alt: 'Percentage CGPA Converter Online Free - Convert CGPA to Percentage', title: 'Percentage CGPA Converter Online Free - Rojgar Sangam Tools' },
+            '/legal/about-us':                           { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'About Rojgar Sangam Tools - Free Online PDF and Image Tools', title: 'About Us - Rojgar Sangam Tools' },
+            '/legal/about-us.html':                      { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'About Rojgar Sangam Tools - Free Online PDF and Image Tools', title: 'About Us - Rojgar Sangam Tools' },
+            '/legal/privacy-policy':                     { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Privacy Policy - Rojgar Sangam Tools Free Online Tools', title: 'Privacy Policy - Rojgar Sangam Tools' },
+            '/legal/privacy-policy.html':                { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Privacy Policy - Rojgar Sangam Tools Free Online Tools', title: 'Privacy Policy - Rojgar Sangam Tools' },
+            '/legal/terms-and-conditions':               { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Terms and Conditions - Rojgar Sangam Tools Free Online Tools', title: 'Terms and Conditions - Rojgar Sangam Tools' },
+            '/legal/terms-and-conditions.html':          { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Terms and Conditions - Rojgar Sangam Tools Free Online Tools', title: 'Terms and Conditions - Rojgar Sangam Tools' },
+            '/legal/disclaimer':                         { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Disclaimer - Rojgar Sangam Tools Free Online Tools', title: 'Disclaimer - Rojgar Sangam Tools' },
+            '/legal/disclaimer.html':                    { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Disclaimer - Rojgar Sangam Tools Free Online Tools', title: 'Disclaimer - Rojgar Sangam Tools' },
+            '/legal/contact-us':                         { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Contact Us - Rojgar Sangam Tools Free Online Tools', title: 'Contact Us - Rojgar Sangam Tools' },
+            '/legal/contact-us.html':                    { path: '/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Contact Us - Rojgar Sangam Tools Free Online Tools', title: 'Contact Us - Rojgar Sangam Tools' },
         };
 
-        const imagePath = ogImageMap[pathname] || '/images/og/home.webp';
-        const image = base + imagePath;
+        const imageData = ogImageMap[pathname] || { path: '/images/og/home.webp', alt: 'Rojgar Sangam Tools - Free Online PDF and Image Tools', title: 'Free Online Tools - Rojgar Sangam Tools' };
+        const image = base + imageData.path;
         const url = window.location.href;
         const title = document.title;
         const description = document.querySelector('meta[name="description"]')?.content || '';
@@ -58,12 +56,12 @@ const RojgarTools = {
         favicon.rel = 'icon';
         favicon.type = 'image/png';
         favicon.sizes = '512x512';
-        favicon.href = '/RGSG-Avtar.png';
+        favicon.href = '/images/RGSG-Avtar.png';
         document.head.appendChild(favicon);
 
         const appleFavicon = document.createElement('link');
         appleFavicon.rel = 'apple-touch-icon';
-        appleFavicon.href = '/RGSG-Avtar.png';
+        appleFavicon.href = '/images/RGSG-Avtar.png';
         document.head.appendChild(appleFavicon);
 
         const ogTags = [
@@ -76,14 +74,16 @@ const RojgarTools = {
             { property: 'og:image:width', content: '1200' },
             { property: 'og:image:height', content: '630' },
             { property: 'og:image:type', content: 'image/webp' },
+            { property: 'og:image:alt', content: imageData.alt },
+            { property: 'og:image:secure_url', content: image },
             { property: 'og:site_name', content: 'Rojgar Sangam Tools' },
             { name: 'twitter:card', content: 'summary_large_image' },
             { name: 'twitter:url', content: url },
             { name: 'twitter:title', content: title },
             { name: 'twitter:description', content: description },
-            { name: 'twitter:image', content: image }
+            { name: 'twitter:image', content: image },
+            { name: 'twitter:image:alt', content: imageData.alt }
         ];
-
         ogTags.forEach(tag => {
             const meta = document.createElement('meta');
             if (tag.property) meta.setAttribute('property', tag.property);
@@ -91,13 +91,25 @@ const RojgarTools = {
             meta.setAttribute('content', tag.content);
             document.head.appendChild(meta);
         });
+        const imageSchema = {
+            "@context": "https://schema.org",
+            "@type": "ImageObject",
+            "url": image,
+            "width": 1200,
+            "height": 630,
+            "name": imageData.title,
+            "description": imageData.alt,
+            "contentUrl": image
+        };
+        const imgScript = document.createElement('script');
+        imgScript.type = 'application/ld+json';
+        imgScript.text = JSON.stringify(imageSchema);
+        document.head.appendChild(imgScript);
     },
-
     injectSchema() {
         const base = 'https://tools.rojgarsangam.in';
         const pathname = window.location.pathname;
         const title = document.title;
-
         const breadcrumbItems = [
             {
                 "@type": "ListItem",
@@ -106,7 +118,6 @@ const RojgarTools = {
                 "item": base + "/"
             }
         ];
-
         if (pathname !== '/' && pathname !== '/index.html') {
             const segments = pathname.replace(/\.html$/, '').split('/').filter(Boolean);
             let builtPath = base;
@@ -121,14 +132,13 @@ const RojgarTools = {
                 });
             });
         }
-
         const schemas = [
             {
                 "@context": "https://schema.org",
                 "@type": "Organization",
                 "name": "Rojgar Sangam Tools",
                 "url": base + "/",
-                "logo": base + "/rojgar-sangam-logo.png",
+                "logo": base + "/images/rojgar-sangam-logo.png",
                 "sameAs": ["https://rojgarsangam.in/"]
             },
             {
@@ -147,7 +157,7 @@ const RojgarTools = {
                     "url": base + "/",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": base + "/rojgar-sangam-logo.png"
+                        "url": base + "/images/rojgar-sangam-logo.png"
                     }
                 }
             },
@@ -157,7 +167,6 @@ const RojgarTools = {
                 "itemListElement": breadcrumbItems
             }
         ];
-
         schemas.forEach(data => {
             const script = document.createElement('script');
             script.type = 'application/ld+json';
@@ -165,14 +174,12 @@ const RojgarTools = {
             document.head.appendChild(script);
         });
     },
-
     async loadComponents() {
         const header = document.getElementById('header-placeholder');
         const footer = document.getElementById('footer-placeholder');
         if (!header || !footer) return;
         if (header.dataset.loaded === 'true') return;
         header.dataset.loaded = 'true';
-
         try {
             const [headerRes, footerRes] = await Promise.all([
                 fetch('/components/header.html'),
@@ -190,7 +197,6 @@ const RojgarTools = {
             console.error("Component loading failed:", error);
         }
     },
-
     setupMobileMenu() {
         const menuBtn = document.querySelector('.md\\:hidden');
         const navMenu = document.querySelector('nav');
@@ -209,7 +215,6 @@ const RojgarTools = {
             });
         }
     },
-
     setupActiveLinks() {
         const currentPath = window.location.pathname;
         const navLinks = document.querySelectorAll('.nav-link');
@@ -220,7 +225,6 @@ const RojgarTools = {
             }
         });
     },
-
     formatBytes(bytes, decimals = 2) {
         if (bytes === 0) return '0 Bytes';
         const k = 1024;
@@ -229,7 +233,6 @@ const RojgarTools = {
         const i = Math.floor(Math.log(bytes) / Math.log(k));
         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
     },
-
     readFile(file) {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -239,10 +242,8 @@ const RojgarTools = {
         });
     }
 };
-
 function toggleFAQ(element) {
     const faqItem = element.parentElement;
     faqItem.classList.toggle('active');
 }
-
 document.addEventListener('DOMContentLoaded', () => RojgarTools.init());
