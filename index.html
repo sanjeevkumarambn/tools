@@ -102,9 +102,9 @@ body { background: #f8f9fa; }
 
 .hero-btn-group { width: 540px !important; max-width: 100% !important; display: flex !important; gap: 20px !important; flex-wrap: wrap !important; }
 
-.btn-primary-hero { background-color: #fdece5 !important; color: #333333 !important; padding: 10px 30px !important; border: 2px solid #667799 !important; border-radius: 50px !important; font-weight: bold !important; text-decoration: none !important; text-transform: uppercase !important; font-size: 15px !important; box-shadow: 0 10px 20px rgba(0,7,158,0.2) !important; }
+.btn-primary-hero { background-color: #fdece5 !important; color: #333333 !important; padding: 10px 30px !important; border: 1px solid #667799 !important; border-radius: 50px !important; font-weight: bold !important; text-decoration: none !important; text-transform: uppercase !important; font-size: 15px !important; box-shadow: 0 10px 20px rgba(0,7,158,0.2) !important; }
 
-.btn-secondary-hero { background-color: #eff6ef !important; color: #333333 !important; padding: 10px 30px !important; border-radius: 50px !important; border: 2px solid #667799 !important; font-weight: bold !important; text-decoration: none !important; text-transform: uppercase !important; font-size: 15px !important; box-shadow: 0 10px 20px rgba(0,7,158,0.2) !important; }
+.btn-secondary-hero { background-color: #eff6ef !important; color: #333333 !important; padding: 10px 30px !important; border-radius: 50px !important; border: 1px solid #667799 !important; font-weight: bold !important; text-decoration: none !important; text-transform: uppercase !important; font-size: 15px !important; box-shadow: 0 10px 20px rgba(0,7,158,0.2) !important; }
 
 .btn-primary-hero:hover { background-color: #eff6ef !important; }
 
@@ -207,7 +207,7 @@ body { background: #f8f9fa; }
 
 #homepage-blog-grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 22px !important; width: 100% !important; }
 
-.blog-home-card { background: linear-gradient(135deg, #eff6ef 30%, #fdece5 30%, #f8f8ff 100%); border: 1px solid #bdbdbd; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; text-decoration: none; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 24px rgba(0,0,0,0.06); position: relative; }
+.blog-home-card { background: linear-gradient(135deg, #eff6ef 30%, #fdece5 70%) !important; border: 1px solid #bdbdbd; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; text-decoration: none; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 24px rgba(0,0,0,0.06); position: relative; }
 
 .blog-home-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #667799 0%, #00079e 100%); transform: scaleX(0); transition: transform 0.4s ease; }
 
@@ -225,7 +225,7 @@ body { background: #f8f9fa; }
 
 .bhc-body { padding: 24px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
 
-.bhc-title { font-size: 20px; font-weight: 800; color: #333333; line-height: 1.3; margin: 0; letter-spacing: -0.3px; }
+.bhc-title { font-size: 22px; font-weight: 900; color: #333333; margin: 0px; line-height: 1.3; }
 
 .blog-home-card:hover .bhc-title { color: #00079e; }
 
@@ -235,9 +235,9 @@ body { background: #f8f9fa; }
 
 .bhc-meta i { color: #333333; font-size: 11px; }
 
-.bhc-read { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #00079e; padding: 8px 18px; background: #eff6ef; border: 1px solid #bdbdbd; border-radius: 50px; transition: all 0.2s ease; align-self: flex-start; margin-top: 4px; }
+.bhc-read { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #00079e; padding: 8px 18px; background: #eff6ef; border: 1px solid #667799; border-radius: 50px; transition: all 0.2s ease; align-self: flex-start; margin-top: 4px; }
 
-.blog-home-card:hover .bhc-read { background: #fdece5; color: #333333; border-color: #bdbdbd; }
+.blog-home-card:hover .bhc-read { background: #fdece5; color: #333333; border-color: #667799; }
 
 .bhc-read i { font-size: 11px; transition: transform 0.2s; }
 
@@ -459,6 +459,7 @@ body { background: #f8f9fa; }
 <script src="/js/main.js"></script>
 </body>
 </html>
+
 
 
 
