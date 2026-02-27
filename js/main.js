@@ -14,27 +14,22 @@ const RojgarTools = {
             '/tools/merge-pdf.html':                     { path: 'https://tools.rojgarsangam.in/images/og/merge-pdf-online-free-rojgar-sangam.webp', alt: 'Merge PDF Online Free - Combine PDF Files Instantly', title: 'Merge PDF Online Free - Rojgar Sangam Tools' },
             '/tools/split-pdf':                          { path: 'https://tools.rojgarsangam.in/images/og/split-pdf-online-free-rojgar-sangam.webp', alt: 'Split PDF Online Free - Separate PDF Pages Instantly', title: 'Split PDF Online Free - Rojgar Sangam Tools' },
             '/tools/split-pdf.html':                     { path: 'https://tools.rojgarsangam.in/images/og/split-pdf-online-free-rojgar-sangam.webp', alt: 'Split PDF Online Free - Separate PDF Pages Instantly', title: 'Split PDF Online Free - Rojgar Sangam Tools' },
-           
             '/tools/compress-pdf':                       { path: 'https://tools.rojgarsangam.in/images/og/compress-pdf-online-free-rojgar-sangam.webp', alt: 'Compress PDF Online Free - Reduce PDF File Size Instantly', title: 'Compress PDF Online Free - Rojgar Sangam Tools' },
             '/tools/compress-pdf.html':                  { path: 'https://tools.rojgarsangam.in/images/og/compress-pdf-online-free-rojgar-sangam.webp', alt: 'Compress PDF Online Free - Reduce PDF File Size Instantly', title: 'Compress PDF Online Free - Rojgar Sangam Tools' },
             '/tools/word-to-pdf':                        { path: 'https://tools.rojgarsangam.in/images/og/word-to-pdf-converter-online-rojgar-sangam.webp', alt: 'Word to PDF Online Free - Convert DOC DOCX to PDF Instantly', title: 'Word to PDF Online Free - Rojgar Sangam Tools' },
             '/tools/word-to-pdf.html':                   { path: 'https://tools.rojgarsangam.in/images/og/word-to-pdf-converter-online-rojgar-sangam.webp', alt: 'Word to PDF Online Free - Convert DOC DOCX to PDF Instantly', title: 'Word to PDF Online Free - Rojgar Sangam Tools' },
-           
             '/tools/jpg-to-pdf':                         { path: 'https://tools.rojgarsangam.in/images/og/jpg-to-pdf-converter-online-rojgar-sangam.webp', alt: 'JPG to PDF Online Free - Convert Images to PDF Instantly', title: 'JPG to PDF Online Free - Rojgar Sangam Tools' },
             '/tools/jpg-to-pdf.html':                    { path: 'https://tools.rojgarsangam.in/images/og/jpg-to-pdf-converter-online-rojgar-sangam.webp', alt: 'JPG to PDF Online Free - Convert Images to PDF Instantly', title: 'JPG to PDF Online Free - Rojgar Sangam Tools' },
             '/tools/pdf-to-jpg':                         { path: 'https://tools.rojgarsangam.in/images/og/pdf-to-jpg-converter-online-rojgar-sangam.webp', alt: 'PDF to JPG Online Free - Convert PDF Pages to Images Instantly', title: 'PDF to JPG Online Free - Rojgar Sangam Tools' },
             '/tools/pdf-to-jpg.html':                    { path: 'https://tools.rojgarsangam.in/images/og/pdf-to-jpg-converter-online-rojgar-sangam.webp', alt: 'PDF to JPG Online Free - Convert PDF Pages to Images Instantly', title: 'PDF to JPG Online Free - Rojgar Sangam Tools' },
-            
             '/tools/image-resizer':                      { path: 'https://tools.rojgarsangam.in/images/og/image-resizer-online-free-rojgar-sangam.webp', alt: 'Image Resizer Online Free - Resize Images Without Losing Quality', title: 'Image Resizer Online Free - Rojgar Sangam Tools' },
             '/tools/image-resizer.html':                 { path: 'https://tools.rojgarsangam.in/images/og/image-resizer-online-free-rojgar-sangam.webp', alt: 'Image Resizer Online Free - Resize Images Without Losing Quality', title: 'Image Resizer Online Free - Rojgar Sangam Tools' },
             '/tools/remove-bg':                          { path: 'https://tools.rojgarsangam.in/images/og/remove-background-online-free-rojgar-sangam.webp', alt: 'Remove Image Background Online Free - Automatic Background Remover', title: 'Remove Background Online Free - Rojgar Sangam Tools' },
             '/tools/remove-bg.html':                     { path: 'https://tools.rojgarsangam.in/images/og/remove-background-online-free-rojgar-sangam.webp', alt: 'Remove Image Background Online Free - Automatic Background Remover', title: 'Remove Background Online Free - Rojgar Sangam Tools' },
-  
             '/tools/age-calculator':                     { path: 'https://tools.rojgarsangam.in/images/og/age-calculator-online-free-rojgar-sangam.webp', alt: 'Age Calculator Online Free - Calculate Exact Age from Date of Birth', title: 'Age Calculator Online Free - Rojgar Sangam Tools' },
             '/tools/age-calculator.html':                { path: 'https://tools.rojgarsangam.in/images/og/age-calculator-online-free-rojgar-sangam.webp', alt: 'Age Calculator Online Free - Calculate Exact Age from Date of Birth', title: 'Age Calculator Online Free - Rojgar Sangam Tools' },
             '/tools/name-dob-on-photo':                  { path: 'https://tools.rojgarsangam.in/images/og/name-dob-on-photo-online-rojgar-sangam.webp', alt: 'Add Name and DOB on Photo Online Free - Print Text on Image', title: 'Name DOB on Photo Online Free - Rojgar Sangam Tools' },
             '/tools/name-dob-on-photo.html':             { path: 'https://tools.rojgarsangam.in/images/og/name-dob-on-photo-online-rojgar-sangam.webp', alt: 'Add Name and DOB on Photo Online Free - Print Text on Image', title: 'Name DOB on Photo Online Free - Rojgar Sangam Tools' },
-            
             '/tools/photo-signature-joiner':             { path: 'https://tools.rojgarsangam.in/images/og/photo-signature-joiner-online-rojgar-sangam.webp', alt: 'Photo Signature Joiner Online Free - Combine Photo and Signature', title: 'Photo Signature Joiner Online Free - Rojgar Sangam Tools' },
             '/tools/photo-signature-joiner.html':        { path: 'https://tools.rojgarsangam.in/images/og/photo-signature-joiner-online-rojgar-sangam.webp', alt: 'Photo Signature Joiner Online Free - Combine Photo and Signature', title: 'Photo Signature Joiner Online Free - Rojgar Sangam Tools' },
             '/tools/percentage-cgpa-converter':          { path: 'https://tools.rojgarsangam.in/images/og/percentage-cgpa-converter-online-rojgar-sangam.webp', alt: 'Percentage CGPA Converter Online Free - Convert CGPA to Percentage', title: 'Percentage CGPA Converter Online Free - Rojgar Sangam Tools' },
@@ -51,8 +46,8 @@ const RojgarTools = {
             '/legal/contact-us.html':                    { path: 'https://tools.rojgarsangam.in/images/og/about-rojgar-sangam-tools-free-online-tools.webp', alt: 'Contact Us - Rojgar Sangam Tools Free Online Tools', title: 'Contact Us - Rojgar Sangam Tools' },
         };
 
-        const imageData = ogImageMap[pathname] || { path: '/images/og/home.webp', alt: 'Rojgar Sangam Tools - Free Online PDF and Image Tools', title: 'Free Online Tools - Rojgar Sangam Tools' };
-        const image = base + imageData.path;
+        const imageData = ogImageMap[pathname] || { path: 'https://tools.rojgarsangam.in/images/og/rojgar-sangam-tools-free-online-tools.webp', alt: 'Rojgar Sangam Tools - Free Online PDF and Image Tools', title: 'Free Online Tools - Rojgar Sangam Tools' };
+        const image = imageData.path;
         const url = window.location.href;
         const title = document.title;
         const description = document.querySelector('meta[name="description"]')?.content || '';
@@ -143,7 +138,7 @@ const RojgarTools = {
                 "@type": "Organization",
                 "name": "Rojgar Sangam Tools",
                 "url": base + "/",
-                "logo": base + "https://tools.rojgarsangam.in/images/rojgar-sangam-logo.png",
+                "logo": "https://tools.rojgarsangam.in/images/rojgar-sangam-logo.png",
                 "sameAs": ["https://rojgarsangam.in/"]
             },
             {
@@ -162,7 +157,7 @@ const RojgarTools = {
                     "url": base + "/",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": base + "https://tools.rojgarsangam.in/images/rojgar-sangam-logo.png"
+                        "url": "https://tools.rojgarsangam.in/images/rojgar-sangam-logo.png"
                     }
                 }
             },
@@ -202,7 +197,6 @@ const RojgarTools = {
             console.error("Component loading failed:", error);
         }
     },
-    
     setupMobileMenu() {
         const menuBtn = document.querySelector('.md\\:hidden');
         const navMenu = document.querySelector('nav');
@@ -248,10 +242,12 @@ const RojgarTools = {
         });
     }
 };
+
 function toggleFAQ(element) {
     const faqItem = element.parentElement;
     faqItem.classList.toggle('active');
 }
+
 async function loadHomepageBlogPosts() {
     const grid = document.getElementById('homepage-blog-grid');
     if (!grid) return;
@@ -262,7 +258,7 @@ async function loadHomepageBlogPosts() {
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .slice(0, 3);
         latest3.forEach(post => {
-            const dateFormatted = new Date(post.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
+            const dateFormatted = new Date(post.lastUpdated).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
             const card = document.createElement('a');
             card.href = '/blog/' + post.slug + '/';
             card.className = 'blog-home-card';
@@ -275,8 +271,16 @@ async function loadHomepageBlogPosts() {
                     <h3 class="bhc-title">${post.title}</h3>
                     <p class="bhc-desc">${post.description}</p>
                     <div class="bhc-meta">
+                        <i class="fas fa-user-pen"></i>
+                        <span>Published by ${post.author}</span>
+                    </div>
+                    <div class="bhc-meta">
                         <i class="fas fa-rotate-right"></i>
                         <span>Last Updated on ${dateFormatted}</span>
+                    </div>
+                    <div class="bhc-meta">
+                        <i class="fas fa-clock"></i>
+                        <span>${post.readTime} read</span>
                     </div>
                     <div class="bhc-read">Read Article <i class="fas fa-arrow-right"></i></div>
                 </div>
@@ -287,6 +291,7 @@ async function loadHomepageBlogPosts() {
         console.error('Homepage blog load error:', e);
     }
 }
+
 document.addEventListener('DOMContentLoaded', () => {
     RojgarTools.init();
     loadHomepageBlogPosts();
