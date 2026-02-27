@@ -60,15 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="list-item-num">${index + 1}.</span>
             <div class="list-item-info">
                 <h4>${post.title}</h4>
-                <span>
-                    ${post.category}
-                    &nbsp;•&nbsp;
-                    Published by ${post.author}
-                    &nbsp;•&nbsp;
-                    Last Updated on ${formatDate(post.lastUpdated)}
-                    &nbsp;•&nbsp;
-                    ${post.readTime} read
-                </span>
+                <span>${post.category} &nbsp;•&nbsp; Published by ${post.author} &nbsp;•&nbsp; Last Updated on ${formatDate(post.lastUpdated)} &nbsp;•&nbsp; ${post.readTime} read</span>
             </div>
             <i class="fas fa-arrow-right list-item-arrow"></i>
         `;
@@ -77,9 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderAll() {
         blogGrid.innerHTML = '';
-        postList.innerHTML = '';
         viewMoreWrap.style.display = 'none';
         postList.classList.remove('visible');
+
+        const listChildren = postList.querySelectorAll('.list-item');
+        listChildren.forEach(el => el.remove());
+        const oldHeading = postList.querySelector('.post-list-heading');
+        if (oldHeading) oldHeading.remove();
 
         if (filteredPosts.length === 0) {
             blogGrid.innerHTML = `
@@ -92,8 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const gridPosts = filteredPosts.slice(0, MAX_GRID);
-        gridPosts.forEach(post => {
+        filteredPosts.slice(0, MAX_GRID).forEach(post => {
             blogGrid.appendChild(createGridCard(post));
         });
 
