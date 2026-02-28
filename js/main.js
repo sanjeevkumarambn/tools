@@ -185,6 +185,14 @@ const RojgarTools = {
         if (!header || !footer) return;
         if (header.dataset.loaded === 'true') return;
         header.dataset.loaded = 'true';
+        const gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-9NBSMEL0YN';
+        document.head.appendChild(gaScript);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9NBSMEL0YN');  
         try {
             const [headerRes, footerRes] = await Promise.all([
                 fetch('/components/header.html'),
