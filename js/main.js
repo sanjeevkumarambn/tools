@@ -63,6 +63,11 @@ const RojgarTools = {
         appleFavicon.rel = 'apple-touch-icon';
         appleFavicon.href = 'https://tools.rojgarsangam.in/images/RGSG-Avtar.png';
         document.head.appendChild(appleFavicon);
+        
+        const yandexMeta = document.createElement('meta');
+        yandexMeta.setAttribute('name', 'yandex-verification');
+        yandexMeta.setAttribute('content', 'eca9e67aa6b81c38');
+        document.head.appendChild(yandexMeta);
 
         const ogTags = [
             { property: 'og:locale', content: 'en-GB' },
