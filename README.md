@@ -49,4 +49,4 @@ Step-by-step guides for document preparation for government job applications.
 
 ---
 
-Built by [Sanjeev Kumar](https://rojgarsangam.in) — Uttar Pradesh, India.
+Built by [Sanjeev Kumar](https://rojgarsangam.in/about-us/) — Uttar Pradesh, India.
