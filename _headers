@@ -4,3 +4,11 @@
   X-Content-Type-Options: nosniff
   Cross-Origin-Opener-Policy: same-origin
   Referrer-Policy: strict-origin-when-cross-origin
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+  Content-Type: application/xml
+
+/sitemap.txt
+  Cache-Control: public, max-age=3600
+  Content-Type: text/plain
