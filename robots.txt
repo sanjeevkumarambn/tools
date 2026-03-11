@@ -5,3 +5,4 @@ User-agent: *
 Allow: /
 Disallow: /404.html
 Sitemap: https://tools.rojgarsangam.in/sitemap.xml
+Sitemap: https://tools.rojgarsangam.in/sitemap.txt
